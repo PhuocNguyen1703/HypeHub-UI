@@ -1,0 +1,53 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.container {
+    width: 100%;
+    height: calc(100vh - var(--default-layout-header-height));
+    display: flex;
+}
+
+.content {
+    flex: 1;
+}
+
+//blur
+.blur1 {
+    position: absolute;
+    width: 450px;
+    height: 390px;
+    top: -10%;
+    right: 0;
+    border-radius: 50%;
+    background-color: #a6ddf0;
+    filter: blur(50px);
+    z-index: 1;
+}
+
+.blur2 {
+    position: absolute;
+    width: 350px;
+    height: 290px;
+    top: -10%;
+    right: 0;
+    border-radius: 50%;
+    background-color: #a6ddf0;
+    filter: blur(50px);
+    z-index: 1;
+}
+
+.blur3 {
+    position: absolute;
+    width: 250px;
+    height: 190px;
+    bottom: 20%;
+    left: 0;
+    border-radius: 50%;
+    background-color: #a6ddf0;
+    filter: blur(50px);
+    z-index: 1;
+}

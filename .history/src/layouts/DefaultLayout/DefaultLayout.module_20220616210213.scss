@@ -1,0 +1,24 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 100%;
+    height: calc(100vh - var(--default-layout-header-height));
+    display: flex;
+}
+
+.content {
+    flex: 1;
+}
+
+//blur
+.blur1 {
+    position: absolute;
+    width: 220px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: #a6ddf0;
+    fi
+}

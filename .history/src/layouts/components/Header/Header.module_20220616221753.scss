@@ -1,0 +1,21 @@
+.wrapper {
+    height: var(--default-layout-header-height);
+    width: 100%;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    display: flex;
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    ma
+    gap: 15px;
+}
