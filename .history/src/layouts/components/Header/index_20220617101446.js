@@ -21,7 +21,6 @@ function Header() {
                 </div>
 
                 <Tippy
-                    interactive
                     render={(attrs) => (
                         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                             <PopperWrapper>

@@ -1,0 +1,26 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info {
+    flex: 1;
+    margin-left: 12px;
+}
+
+.username {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.position {
+  font-size: 1.4rem;
+  color: rg;
+}

@@ -21,6 +21,7 @@ function Header() {
                 </div>
 
                 <Tippy
+                    visible
                     interactive
                     render={(attrs) => (
                         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
