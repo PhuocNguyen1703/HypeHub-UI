@@ -5,8 +5,9 @@ import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { SearchIcon } from '~/components/Icons';
-import Tippy from '@tippyjs/react/headless';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
+
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 const cx = classNames.bind(styles);
 
@@ -19,24 +20,18 @@ function Header() {
                     <h1>Logistics</h1>
                 </div>
 
-                <Tippy
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>My tippy box</PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Search value" spellCheck={false} />
-                        <button className={cx('clear-btn')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
+                <div className={cx('search')}>
+                    <input placeholder="Search value" spellCheck={false} />
+                    <button className={cx('clear-btn')}>
+                        <FontAwesomeIcon icon={faCircleXmark} />
+                    </button>
+                    <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
+                    <Tippy content="Search">
                         <button className={cx('search-btn')}>
                             <SearchIcon />
                         </button>
-                    </div>
-                </Tippy>
+                    </Tippy>
+                </div>
 
                 <div>actions</div>
             </div>

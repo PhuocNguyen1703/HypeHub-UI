@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { SearchIcon } from '~/components/Icons';
 import Tippy from '@tippyjs/react/headless';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 
 const cx = classNames.bind(styles);
 
@@ -20,11 +19,11 @@ function Header() {
                 </div>
 
                 <Tippy
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>My tippy box</PopperWrapper>
-                        </div>
-                    )}
+                render={attrs => (
+                    <div className="box" tabIndex="-1" {...attrs}>
+                      My tippy box
+                    </div>
+                  )}
                 >
                     <div className={cx('search')}>
                         <input placeholder="Search value" spellCheck={false} />
@@ -36,7 +35,9 @@ function Header() {
                             <SearchIcon />
                         </button>
                     </div>
-                </Tippy>
+                </Tippy
+                
+                >
 
                 <div>actions</div>
             </div>

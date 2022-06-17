@@ -21,9 +21,11 @@ function Header() {
 
                 <Tippy
                     render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>My tippy box</PopperWrapper>
-                        </div>
+                        <PopperWrapper>
+                            <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                                My tippy box
+                            </div>
+                        </PopperWrapper>
                     )}
                 >
                     <div className={cx('search')}>
