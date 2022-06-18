@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { MessageIcon } from '~/components/Icons';
+import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { MessageIcon, SearchIcon } from '~/components/Icons';
+import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
+import AccountItem from '~/components/AccountItem';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
-import Search from '../Search';
 
 const cx = classNames.bind(styles);
 
@@ -30,6 +33,14 @@ const userMenu = [
 ];
 
 function Header() {
+    const [searchResult, setSearchResult] = useState([]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setSearchResult([1, 2, 3]);
+        }, 0);
+    }, [searchResult]);
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -38,7 +49,7 @@ function Header() {
                     <h1>Logistics</h1>
                 </div>
 
-                <Search />
+                
 
                 <div className={cx('actions')}>
                     <Tippy delay={[0, 50]} interactive content="Notification">

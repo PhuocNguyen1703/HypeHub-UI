@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
@@ -30,6 +30,14 @@ const userMenu = [
 ];
 
 function Header() {
+    const [searchResult, setSearchResult] = useState([]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setSearchResult([1, 2, 3]);
+        }, 0);
+    }, [searchResult]);
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -38,7 +46,7 @@ function Header() {
                     <h1>Logistics</h1>
                 </div>
 
-                <Search />
+                <Search/>
 
                 <div className={cx('actions')}>
                     <Tippy delay={[0, 50]} interactive content="Notification">
