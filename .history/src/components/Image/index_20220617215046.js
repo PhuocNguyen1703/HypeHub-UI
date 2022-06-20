@@ -1,9 +1,0 @@
-import React from 'react';
-import {}
-
-function Image({ ...props }) {
-    // eslint-disable-next-line jsx-a11y/alt-text
-    return <img {...props} />;
-}
-
-export default Image;

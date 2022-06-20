@@ -1,3 +1,0 @@
-
-
-const request = axios.create();
