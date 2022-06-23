@@ -3,6 +3,7 @@ const routes = {
     profile: '/profile',
     searchProfile: '/@:nickname',
     upload: '/upload',
+    login: '/login',
 };
 
 export default routes;
