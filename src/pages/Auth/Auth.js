@@ -9,17 +9,14 @@ const cx = classNames.bind(styles);
 function Auth() {
     return (
         <div className={cx('auth')}>
-            <div className={cx('wrapper-left')}>
-                <img className={cx('logo')} src={logo} alt="logo" />
-                <div className={cx('title')}>
+            <div className={cx('login-form')}>
+                <div className={cx('header')}>
+                    <img className={cx('logo')} src={logo} alt="logo" />
                     <h1>Logistics</h1>
-                    <h6>Do it your way!</h6>
                 </div>
-            </div>
-
-            <div className={cx('wrapper-right')}>
-                <form className={cx('login-form')}>
-                    <h3>Log In</h3>
+                <h6>Do it your way!</h6>
+                <form className={cx('form')}>
+                    <h3>Welcome back</h3>
 
                     <div>
                         <input className={cx('input')} type="text" placeholder="Username" name="username" />
