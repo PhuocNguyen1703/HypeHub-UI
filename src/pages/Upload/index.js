@@ -1,7 +1,12 @@
 import React from 'react';
+import Register from '../Auth/Register';
 
 function Upload() {
-    return <h2>Upload page</h2>;
+    return (
+        <>
+            <Register />
+        </>
+    );
 }
 
 export default Upload;

@@ -3,12 +3,12 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
-import styles from './Auth.module.scss';
+import styles from './Register.module.scss';
 import logo from '~/assets/images/logo.svg';
 
 const cx = classNames.bind(styles);
 
-function Auth() {
+function Register() {
     const [showPassword, setShowPassword] = useState(false);
     const [showIcon, setShowIcon] = useState(false);
 
@@ -34,20 +34,27 @@ function Auth() {
     };
 
     return (
-        <div className={cx('auth')}>
-            <div className={cx('login-form')}>
+        <div className={cx('wrapper')}>
+            <div className={cx('register-form')}>
                 <div className={cx('header')}>
                     <img className={cx('logo')} src={logo} alt="logo" />
                     <h1>Logistics</h1>
                 </div>
                 <h6>Do it your way!</h6>
                 <form className={cx('form')}>
-                    <h3>Welcome back</h3>
+                    <h3>Create new account</h3>
 
                     <div className={cx('input-username')}>
-                        <input type="text" placeholder="Username" name="username" />
+                        <div className={cx('input-firstname')}>
+                            <input type="text" placeholder="Fist name" name="firstname" />
+                        </div>
+                        <div className={cx('input-lastname')}>
+                            <input type="text" placeholder="Last name" name="lastname" />
+                        </div>
                     </div>
-
+                    <div className={cx('input-email')}>
+                        <input type="text" placeholder="Email" name="email" />
+                    </div>
                     <div className={cx('input-password')}>
                         <input
                             id="password"
@@ -66,11 +73,11 @@ function Auth() {
                             ) : null}
                         </div>
                     </div>
-                    <button className={cx('login-btn')}>Login</button>
+                    <button className={cx('register-btn')}>Create account</button>
                 </form>
             </div>
         </div>
     );
 }
 
-export default Auth;
+export default Register;
