@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './Auth.module.scss';
 import logo from '~/assets/images/logo.svg';
@@ -7,6 +9,30 @@ import logo from '~/assets/images/logo.svg';
 const cx = classNames.bind(styles);
 
 function Auth() {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showIcon, setShowIcon] = useState(false);
+
+    const handleChange = (e) => {
+        const passwordValue = e.target.value;
+        if (!!passwordValue) {
+            setShowIcon(true);
+        } else {
+            setShowIcon(false);
+        }
+    };
+
+    const handleShowPassword = () => {
+        const inputEl = document.getElementById('password');
+
+        if (inputEl.type === 'password') {
+            inputEl.type = 'text';
+            setShowPassword(true);
+        } else {
+            inputEl.type = 'password';
+            setShowPassword(false);
+        }
+    };
+
     return (
         <div className={cx('auth')}>
             <div className={cx('login-form')}>
@@ -18,14 +44,28 @@ function Auth() {
                 <form className={cx('form')}>
                     <h3>Welcome back</h3>
 
-                    <div>
-                        <input className={cx('input')} type="text" placeholder="Username" name="username" />
+                    <div className={cx('input-username')}>
+                        <input type="text" placeholder="Username" name="username" />
                     </div>
 
-                    <div>
-                        <input className={cx('input')} type="password" placeholder="Password" name="password" />
+                    <div className={cx('input-password')}>
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                            onChange={handleChange}
+                        />
+                        <div className={cx('icon')} onClick={handleShowPassword}>
+                            {showIcon ? (
+                                showPassword ? (
+                                    <FontAwesomeIcon icon={faEye} />
+                                ) : (
+                                    <FontAwesomeIcon icon={faEyeSlash} />
+                                )
+                            ) : null}
+                        </div>
                     </div>
-
                     <button className={cx('login-btn')}>Login</button>
                 </form>
             </div>
