@@ -63,7 +63,9 @@ function Login() {
                                 ) : (
                                     <FontAwesomeIcon icon={faEyeSlash} />
                                 )
-                            ) : null}
+                            ) : (
+                                null
+                            )}
                         </div>
                     </div>
                     <button className={cx('login-btn')}>Login</button>
