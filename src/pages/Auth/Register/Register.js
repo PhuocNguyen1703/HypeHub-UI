@@ -2,15 +2,20 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import styles from './Register.module.scss';
 import logo from '~/assets/images/logo.svg';
+import { registerUser } from '~/api/userApi';
 
 const cx = classNames.bind(styles);
 
 function Register() {
     const [showPassword, setShowPassword] = useState(false);
     const [showIcon, setShowIcon] = useState(false);
+    const { register, handleSubmit } = useForm();
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
         const passwordValue = e.target.value;
@@ -33,6 +38,10 @@ function Register() {
         }
     };
 
+    const onSubmit = (data) => {
+        registerUser(data, dispatch);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('register-form')}>
@@ -41,39 +50,51 @@ function Register() {
                     <h1>Logistics</h1>
                 </div>
                 <h6>Do it your way!</h6>
-                <form className={cx('form')}>
+                <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
                     <h3>Create new account</h3>
 
-                    <div className={cx('input-username')}>
-                        <div className={cx('input-firstname')}>
-                            <input type="text" placeholder="Fist name" name="firstname" />
+                    <div className={cx('username')}>
+                        <div className={cx('firstname')}>
+                            <input
+                                type="text"
+                                placeholder="First name"
+                                name="firstname"
+                                {...register('firstName', { required: true })}
+                            />
                         </div>
-                        <div className={cx('input-lastname')}>
-                            <input type="text" placeholder="Last name" name="lastname" />
+                        <div className={cx('lastname')}>
+                            <input type="text" placeholder="Last name" name="lastname" {...register('lastName')} />
                         </div>
                     </div>
-                    <div className={cx('input-email')}>
-                        <input type="text" placeholder="Email" name="email" />
+                    <div className={cx('email')}>
+                        <input
+                            type="text"
+                            placeholder="Email"
+                            name="email"
+                            {...register('email', { required: true })}
+                        />
                     </div>
-                    <div className={cx('input-password')}>
+                    <div className={cx('password')}>
                         <input
                             id="password"
                             type="password"
                             placeholder="Password"
                             name="password"
                             onChange={handleChange}
+                            {...register('password', { required: true })}
                         />
                         <div className={cx('icon')} onClick={handleShowPassword}>
-                            {showIcon ? (
-                                showPassword ? (
+                            {showIcon &&
+                                (showPassword ? (
                                     <FontAwesomeIcon icon={faEye} />
                                 ) : (
                                     <FontAwesomeIcon icon={faEyeSlash} />
-                                )
-                            ) : null}
+                                ))}
                         </div>
                     </div>
-                    <button className={cx('register-btn')}>Create account</button>
+                    <button type="submit" className={cx('register-btn')}>
+                        Create account
+                    </button>
                 </form>
             </div>
         </div>
