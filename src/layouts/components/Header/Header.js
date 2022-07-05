@@ -52,7 +52,9 @@ function Header() {
                     </Tippy>
                     <Tippy delay={[0, 50]} content="Message">
                         <button className={cx('action-btn')}>
-                            <MessageIcon />
+                            <Link to={config.routes.chat}>
+                                <MessageIcon />
+                            </Link>
                             <span className={cx('badge')}>12</span>
                         </button>
                     </Tippy>

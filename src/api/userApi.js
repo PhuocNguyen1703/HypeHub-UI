@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosClient from './axiosClient';
 import {
     loginFailed,
     loginStart,
@@ -12,7 +12,7 @@ export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
 
     try {
-        const res = await axios.post('http://localhost:5000/auth/login', user);
+        const res = await axiosClient.post('auth/login', user);
         dispatch(loginSuccess(res.data));
         navigate('/');
     } catch (error) {
@@ -24,7 +24,7 @@ export const registerUser = async (user, dispatch) => {
     dispatch(registerStart());
 
     try {
-        await axios.post('http://localhost:5000/auth/register', user);
+        await axiosClient.post('auth/register', user);
         dispatch(registerSuccess());
     } catch (error) {
         dispatch(registerFailed());
