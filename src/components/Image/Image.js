@@ -11,7 +11,7 @@ const Image = forwardRef(({ src, alt, className, ...props }, ref) => {
     const [fallback, setFallback] = useState('');
 
     const handleError = () => {
-        setFallback(images.logo);
+        setFallback(images.coverAvatar);
     };
 
     return (

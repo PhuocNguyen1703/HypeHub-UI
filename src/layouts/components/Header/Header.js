@@ -20,19 +20,44 @@ const userMenu = [
     {
         icon: <FontAwesomeIcon icon={faBell} />,
         title: 'Language',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'VietNam',
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faBell} />,
         title: 'Settings',
+        to: '/settings',
     },
     {
         icon: <FontAwesomeIcon icon={faBell} />,
         title: 'Logout',
+        to: '/logout',
         separate: true,
     },
 ];
 
 function Header() {
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.title) {
+            case 'Logout':
+                break;
+
+            default:
+                break;
+        }
+    };
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -59,7 +84,7 @@ function Header() {
                         </button>
                     </Tippy>
 
-                    <Menu items={userMenu}>
+                    <Menu items={userMenu} onChange={handleMenuChange}>
                         <Image className={cx('user-avatar')} src="" alt="Nguyen  van A" />
                     </Menu>
                 </div>

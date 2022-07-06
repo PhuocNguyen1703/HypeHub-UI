@@ -1,5 +1,6 @@
 const images = {
-    logo: require('./logo.svg').default,
+    logo: require('~/assets/images/logo.svg').default,
+    coverAvatar: require('~/assets/images/cover-avatar.jpg'),
 };
 
 export default images;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import PropTypes from 'prop-types';
@@ -6,12 +6,46 @@ import PropTypes from 'prop-types';
 import styles from './Menu.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import MenuItem from './MenuItem';
+import Header from './Header';
+import ViewProfile from './ViewProfile';
 
 const cx = classNames.bind(styles);
 
-function Menu({ children, items = [], hideOnClick = false }) {
+function Menu({ children, items = [], onChange, hideOnClick = false }) {
+    const [history, setHistory] = useState([{ data: items }]);
+    const currentMenu = history[history.length - 1];
+
     const renderItems = () => {
-        return items.map((item, index) => <MenuItem key={index} data={item} />);
+        return currentMenu.data.map((item, index) => {
+            const isParent = !!item.children;
+
+            const handleClick = () => {
+                if (isParent) {
+                    setHistory((prev) => [...prev, item.children]);
+                } else {
+                    onChange(item);
+                }
+            };
+
+            return <MenuItem key={index} data={item} onClick={handleClick} />;
+        });
+    };
+
+    const handleBack = () => {
+        setHistory((prev) => prev.slice(0, prev.length - 1));
+    };
+
+    const renderResult = (attrs) => (
+        <div className={cx('menu-items')} tabIndex="-1" {...attrs}>
+            <PopperWrapper>
+                {history.length > 1 ? <Header title={currentMenu.title} onBack={handleBack} /> : <ViewProfile />}
+                {renderItems()}
+            </PopperWrapper>
+        </div>
+    );
+
+    const handleResetMenu = () => {
+        setHistory((prev) => prev.slice(0, 1));
     };
 
     return (
@@ -20,14 +54,12 @@ function Menu({ children, items = [], hideOnClick = false }) {
         <div>
             <Tippy
                 interactive
+                delay={[0, 500]}
+                offset={[2, 8]}
                 hideOnClick={hideOnClick}
                 placement="bottom-end"
-                delay={[0, 500]}
-                render={(attrs) => (
-                    <div className={cx('menu-items')} tabIndex="-1" {...attrs}>
-                        <PopperWrapper>{renderItems()}</PopperWrapper>
-                    </div>
-                )}
+                onHide={handleResetMenu}
+                render={renderResult}
             >
                 {children}
             </Tippy>
@@ -38,6 +70,7 @@ function Menu({ children, items = [], hideOnClick = false }) {
 Menu.propTypes = {
     children: PropTypes.node.isRequired,
     items: PropTypes.array,
+    onChange: PropTypes.func.isRequired,
     hideOnClick: PropTypes.bool,
 };
 
