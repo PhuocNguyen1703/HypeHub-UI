@@ -1,3 +1,3 @@
-import axiosClient from './axiosClient';
+import axios from 'axios';
 
-export const userChats = (id) => axiosClient.get(`chat/${id}`);
+export const userChats = (id) => axios.get(`chat/${id}`);

@@ -1,28 +1,49 @@
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
-const axiosClient = axios.create({
-    baseURL: 'http://localhost:5000/',
-});
+axios.defaults.withCredentials = true;
+const refreshToken = async () => {
+    try {
+        const res = await axios.post('http://localhost:5000/auth/refresh');
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 
-//Interceptors
-//Add a request interceptor
-axios.interceptors.request.use(
-    function (config) {
-        return config;
-    },
-    function (error) {
-        return Promise.reject(error);
-    },
-);
+export const createAxios = (user, dispatch, stateSuccess) => {
+    const axiosInstance = axios.create();
 
-//Add a response interceptor
-axios.interceptors.response.use(
-    function (response) {
-        return response;
-    },
-    function (error) {
-        return Promise.reject(error);
-    },
-);
+    //Interceptors
+    //Add a request interceptor
+    axiosInstance.interceptors.request.use(
+        async (config) => {
+            let date = new Date();
+            const decodedToken = jwt_decode(user?.accessToken);
+            if (decodedToken.exp < date.getTime() / 1000) {
+                const data = await refreshToken();
+                const refreshUser = {
+                    ...user,
+                    accessToken: data.accessToken,
+                };
+                dispatch(stateSuccess(refreshUser));
+                config.headers['token'] = 'Bearer ' + data.accessToken;
+            }
+            return config;
+        },
+        (error) => {
+            return Promise.reject(error);
+        },
+    );
 
-export default axiosClient;
+    //Add a response interceptor
+    axiosInstance.interceptors.response.use(
+        function (response) {
+            return response;
+        },
+        function (error) {
+            return Promise.reject(error);
+        },
+    );
+    return axiosInstance;
+};

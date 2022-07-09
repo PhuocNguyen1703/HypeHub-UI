@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
@@ -13,6 +14,9 @@ import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
 import Search from '../Search';
 import config from '~/config';
+import { logOutUser } from '~/api/userApi';
+import { logOutSuccess } from '~/redux/Slice/authSlice';
+import { createAxios } from '~/api/axiosClient';
 
 const cx = classNames.bind(styles);
 
@@ -48,9 +52,17 @@ const userMenu = [
 ];
 
 function Header() {
+    const user = useSelector((state) => state.auth.login.currentUser);
+    const accessToken = user?.accessToken;
+    const id = user?._id;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    let axiosJWT = createAxios(user, dispatch, logOutSuccess);
+
     const handleMenuChange = (menuItem) => {
         switch (menuItem.title) {
             case 'Logout':
+                logOutUser(dispatch, id, navigate, accessToken, axiosJWT);
                 break;
 
             default:
