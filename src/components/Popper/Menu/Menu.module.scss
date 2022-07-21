@@ -1,6 +1,6 @@
 //Menu wrapper
 .menu-items {
-    width: 224px;
+    width: auto;
     padding: 8px 0;
     margin: -6px -6px 0 0;
 }
@@ -9,6 +9,7 @@
 .menu-item {
     display: flex;
     align-items: center;
+    min-width: 225px;
     padding: 10px 16px;
     gap: 10px;
     font-family: var(--font-family);
@@ -98,6 +99,7 @@
     width: 36px;
     height: 36px;
     border-radius: 999px;
+    object-fit: cover;
 }
 
 .info {

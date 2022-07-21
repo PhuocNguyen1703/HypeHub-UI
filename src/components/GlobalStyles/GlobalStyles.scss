@@ -5,9 +5,13 @@
     --white: #ffffff;
     --red: #e41e3f;
     --blue: #4a4eb7;
-    --gray: rgba(36, 45, 73, 0.25);
-    --text-color: #161823;
+    --gray: rgba(36, 45, 73, 0.5);
+    --text-primary: #161823;
+    --text-secondary: #65676b;
     --primary: linear-gradient(98.63deg, #f9a225 0%, #f95f35 100%);
+    --secondary-button-background: #e4e6eb;
+    --input-outline: #dedfe1;
+    --primary-button-background: #ff6a00;
 
     // DefaultLayout
     --default-layout-header-height: 60px;
@@ -50,10 +54,11 @@ input,
 [tabindex] {
     outline: none;
     border: none;
+    font-family: var(--font-family);
 }
 
 a {
-    color: var(--text-color);
+    color: var(--text-primary);
     text-decoration: none;
 }
 
@@ -87,7 +92,7 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
-    color: var(--text-color);
+    color: var(--text-primary);
     overflow-y: overlay;
 }
 

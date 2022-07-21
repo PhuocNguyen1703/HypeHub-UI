@@ -7,14 +7,28 @@ import { useDispatch } from 'react-redux';
 
 import styles from './Register.module.scss';
 import logo from '~/assets/images/logo.svg';
-import { registerUser } from '~/api/userApi';
+import { registerUser } from '~/api/authApi';
 
 const cx = classNames.bind(styles);
 
 function Register() {
     const [showPassword, setShowPassword] = useState(false);
     const [showIcon, setShowIcon] = useState(false);
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm({
+        defaultValues: {
+            profile: {
+                fullName: '',
+                livesIn: '',
+                streetAddress: '',
+                email: '',
+                birth: '',
+                gender: '',
+                hashtag: '',
+                position: '',
+                phone: '',
+            },
+        },
+    });
     const dispatch = useDispatch();
 
     const handleChange = (e) => {

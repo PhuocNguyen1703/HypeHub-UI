@@ -14,7 +14,7 @@ import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
 import Search from '../Search';
 import config from '~/config';
-import { logOutUser } from '~/api/userApi';
+import { logOutUser } from '~/api/authApi';
 import { logOutSuccess } from '~/redux/Slice/authSlice';
 import { createAxios } from '~/api/axiosClient';
 
@@ -97,7 +97,7 @@ function Header() {
                     </Tippy>
 
                     <Menu items={userMenu} onChange={handleMenuChange}>
-                        <Image className={cx('user-avatar')} src="" alt="Nguyen  van A" />
+                        <Image className={cx('user-avatar')} src={`${user.avatar}`} alt="Nguyen  van A" />
                     </Menu>
                 </div>
             </div>

@@ -1,3 +1,8 @@
 .container {
     margin-top: var(--default-layout-header-height);
 }
+
+.content {
+    display: flex;
+    justify-content: space-between;
+}

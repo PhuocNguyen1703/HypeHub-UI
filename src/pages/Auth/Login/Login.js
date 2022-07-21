@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './Login.module.scss';
 import logo from '~/assets/images/logo.svg';
-import { loginUser } from '~/api/userApi';
+import { loginUser } from '~/api/authApi';
 
 const cx = classNames.bind(styles);
 
@@ -41,7 +41,6 @@ function Login() {
     };
 
     const onSubmit = (data) => {
-        // console.log(data);
         loginUser(data, dispatch, navigate);
     };
 
