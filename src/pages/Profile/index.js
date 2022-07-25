@@ -240,7 +240,7 @@ function Profile() {
                     <div className={cx('info')}>
                         <span className={cx('username')}>{fullName}</span>
                         <span className={cx('position')}>{position}</span>
-                        <span className={cx('hashtag')}>#{hashtag}</span>
+                        <span className={cx('hashtag')}>{hashtag && `#${hashtag}`}</span>
                     </div>
                     <button className={cx('edit-profile-btn')} onClick={handleEditProfileBtn}>
                         <FontAwesomeIcon icon={faPen} />

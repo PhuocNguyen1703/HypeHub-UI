@@ -1,4 +1,23 @@
+import axios from 'axios';
 import { updateFailed, updateStart, updateSuccess } from '~/redux/Slice/authSlice';
+
+export const getUser = async (userId) => {
+    try {
+        const user = await axios.get(`/user/${userId}`);
+        return user;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getAllUser = async () => {
+    try {
+        const allUser = await axios.get('/user');
+        return allUser;
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 export const updateUser = async (data, id, dispatch, accessToken, axiosJWT) => {
     dispatch(updateStart());

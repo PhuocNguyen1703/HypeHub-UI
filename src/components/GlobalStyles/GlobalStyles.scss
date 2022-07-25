@@ -121,16 +121,26 @@ body {
 
 //Custom input-input-emoji
 body {
+    .react-emoji-picker--wrapper {
+        border-radius: 5px;
+        height: 360px;
+    }
     .react-emoji {
         width: 88%;
-    }
-
-    .react-input-emoji--wrapper {
     }
 
     .react-input-emoji--input {
         max-height: 55px;
         margin: 5px 0;
         font-size: 1.6rem;
+        overflow: overlay;
+    }
+
+    .emoji-mart-scroll {
+        overflow: overlay;
+    }
+
+    .emoji-mart.emoji-mart-dark {
+        width: auto !important;
     }
 }

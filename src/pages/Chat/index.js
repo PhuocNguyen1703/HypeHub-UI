@@ -1,262 +1,146 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import InputEmoji from 'react-input-emoji';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
+import { io } from 'socket.io-client';
 
 import config from '~/config';
 import images from '~/assets/images';
 import styles from './Chat.module.scss';
 import { SearchIcon } from '~/components/Icons';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { userChats } from '~/api/chatApi';
+import ChatBox from '~/layouts/components/ChatBox/ChatBox';
+import Conversation from '~/layouts/components/Conversation/Conversation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { getAllUser } from '~/api/userApi';
 
 const cx = classNames.bind(styles);
 
 function Chat() {
-    const user = useSelector((state) => state.auth.login.currentUser);
-    console.log(user);
+    const currentUser = useSelector((state) => state.auth.login.currentUser);
+    const [allUsers, setAllUsers] = useState([]);
     const [chats, setChats] = useState([]);
+    const [currentChat, setCurrentChat] = useState(null);
+    const [onlineUsers, setOnlineUsers] = useState([]);
+    const [sendMessage, setSendMessage] = useState(null);
+    const [receiveMessage, setReceiveMessage] = useState(null);
+    const socket = useRef();
 
+    // Get the chat in chat section
     useEffect(() => {
         const getChats = async () => {
             try {
-                const { data } = await userChats(user?._id);
+                const { data } = await userChats(currentUser._id);
                 setChats(data);
-                console.log(data);
             } catch (error) {
                 console.log(error);
             }
         };
         getChats();
-    }, [user]);
+    }, [currentUser._id]);
+
+    // Get all users in DB
+    useEffect(() => {
+        const getAllUsers = async () => {
+            try {
+                const { data } = await getAllUser();
+                const users = data.filter((user) => user._id !== currentUser._id);
+                setAllUsers(users);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getAllUsers();
+    }, []);
+
+    //Connect socket
+    // useEffect(() => {
+    //     socket.current = io('http://localhost:8800');
+    //     socket.current.emit('new-user-add', currentUser._id);
+    //     socket.current.on('get-users', (users) => {
+    //         setOnlineUsers(users);
+    //     });
+    // }, [currentUser]);
+
+    // Send Message to socket server
+    useEffect(() => {
+        if (sendMessage !== null) {
+            socket.current.emit('send-message', sendMessage);
+        }
+    }, [sendMessage]);
+
+    //Receive message from socket server
+    // useEffect(() => {
+    //     socket.current.on('receive-message', (data) => {
+    //         setReceiveMessage(data);
+    //     });
+    // }, []);
+
+    const checkOnlineStatus = (chat) => {
+        const chatMember = chat.members.find((member) => member !== currentUser._id);
+        const online = onlineUsers.find((user) => user.userId === chatMember);
+        return online ? true : false;
+    };
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('left-side-chat')}>
-                <Link to={config.routes.home} className={cx('logo')}>
-                    <img src={images.logo} alt="logo" />
-                    <h1>Logistics</h1>
-                </Link>
-                <div className={cx('online-now')}>
-                    <span className={cx('title')}>Online now</span>
-                    <div className={cx('account-online')}>
-                        <div className={cx('account-online-item')}>
-                            <img
-                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                alt="avatar"
-                            />
-                            <span></span>
-                        </div>
-                        <div className={cx('account-online-item')}>
-                            <img
-                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                alt="avatar"
-                            />
-                            <span></span>
-                        </div>
-                        <div className={cx('account-online-item')}>
-                            <img
-                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                alt="avatar"
-                            />
-                            <span></span>
-                        </div>
-                        <div className={cx('account-online-item')}>
-                            <img
-                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                alt="avatar"
-                            />
-                            <span></span>
-                        </div>
-                        <div className={cx('account-online-item')}>
-                            <img
-                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                alt="avatar"
-                            />
-                            <span></span>
-                        </div>
-                        <div className={cx('account-online-item')}>
-                            <img
-                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                alt="avatar"
-                            />
-                            <span></span>
-                        </div>
-                        <div className={cx('account-online-item')}>
-                            <img
-                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                alt="avatar"
-                            />
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-
+                <span className={cx('title')}>
+                    Messages
+                    <FontAwesomeIcon icon={faAngleDown} style={{ fontSize: 16 }} />
+                </span>
                 <div className={cx('chat-list')}>
-                    <span className={cx('title')}>Messages</span>
                     <div className={cx('search-item')}>
+                        <SearchIcon />
                         <input placeholder="search item" />
-                        <button className={cx('search-btn')}>
-                            <SearchIcon />
-                        </button>
                     </div>
                     <div className={cx('item-list')}>
-                        <div className={cx('item')}>
-                            <div className={cx('item-avatar')}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                    alt="avatar"
+                        {chats.map((chat) => (
+                            <div
+                                key={chat._id}
+                                className={cx('item')}
+                                onClick={() => {
+                                    setCurrentChat(chat);
+                                }}
+                            >
+                                <Conversation
+                                    data={chat}
+                                    currentUserId={currentUser._id}
+                                    online={checkOnlineStatus(chat)}
                                 />
-                                <span></span>
                             </div>
-                            <div className={cx('item-info')}>
-                                <h2>Jon week</h2>
-                                <span>Customer</span>
-                            </div>
-                        </div>
-
-                        <div className={cx('item')}>
-                            <div className={cx('item-avatar')}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                    alt="avatar"
-                                />
-                                <span></span>
-                            </div>
-                            <div className={cx('item-info')}>
-                                <h2>Jon week</h2>
-                                <span>Customer</span>
-                            </div>
-                        </div>
-
-                        <div className={cx('item')}>
-                            <div className={cx('item-avatar')}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                    alt="avatar"
-                                />
-                                <span></span>
-                            </div>
-                            <div className={cx('item-info')}>
-                                <h2>Jon week</h2>
-                                <span>Customer</span>
-                            </div>
-                        </div>
-
-                        <div className={cx('item')}>
-                            <div className={cx('item-avatar')}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                    alt="avatar"
-                                />
-                                <span></span>
-                            </div>
-                            <div className={cx('item-info')}>
-                                <h2>Jon week</h2>
-                                <span>Customer</span>
-                            </div>
-                        </div>
-
-                        <div className={cx('item')}>
-                            <div className={cx('item-avatar')}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                    alt="avatar"
-                                />
-                                <span></span>
-                            </div>
-                            <div className={cx('item-info')}>
-                                <h2>Jon week</h2>
-                                <span>Customer</span>
-                            </div>
-                        </div>
-
-                        <div className={cx('item')}>
-                            <div className={cx('item-avatar')}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                    alt="avatar"
-                                />
-                                <span></span>
-                            </div>
-                            <div className={cx('item-info')}>
-                                <h2>Jon week</h2>
-                                <span>Customer</span>
-                            </div>
-                        </div>
-
-                        <div className={cx('item')}>
-                            <div className={cx('item-avatar')}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                    alt="avatar"
-                                />
-                                <span></span>
-                            </div>
-                            <div className={cx('item-info')}>
-                                <h2>Jon week</h2>
-                                <span>Customer</span>
-                            </div>
-                        </div>
-
-                        <div className={cx('item')}>
-                            <div className={cx('item-avatar')}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                    alt="avatar"
-                                />
-                                <span></span>
-                            </div>
-                            <div className={cx('item-info')}>
-                                <h2>Jon week</h2>
-                                <span>Customer</span>
-                            </div>
-                        </div>
-
-                        <div className={cx('item')}>
-                            <div className={cx('item-avatar')}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                    alt="avatar"
-                                />
-                                <span></span>
-                            </div>
-                            <div className={cx('item-info')}>
-                                <h2>Jon week</h2>
-                                <span>Customer</span>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>
-            <div className={cx('chat-content')}>
-                <div className={cx('header')}>
-                    <div className={cx('item')}>
-                        <div className={cx('item-avatar')}>
-                            <img
-                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                alt="avatar"
-                            />
-                            <span></span>
-                        </div>
-                        <div className={cx('item-info')}>
-                            <h2>Jon week</h2>
-                            <span>Customer</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div className={cx('content')}></div>
-                <div className={cx('chat-content-footer')}>
-                    <FontAwesomeIcon icon={faPlus} className={cx('icon-plus')} />
-                    <InputEmoji></InputEmoji>
-                    <FontAwesomeIcon icon={faPaperPlane} className={cx('icon-send')} />
+            <ChatBox
+                chat={currentChat}
+                currentUserId={currentUser._id}
+                setSendMessage={setSendMessage}
+                receiveMessage={receiveMessage}
+            />
+
+            <div className={cx('right-side-chat')}>
+                <span className={cx('title')}>
+                    Accounts
+                    <FontAwesomeIcon icon={faAngleDown} style={{ fontSize: 16 }} />
+                </span>
+                <div className={cx('account-list')}>
+                    {allUsers.map((user) => (
+                        <div key={user._id} className={cx('account-item')}>
+                            <div className={cx('item-avatar')}>
+                                <img src={user?.avatar} alt="avatar" />
+                            </div>
+                            <div className={cx('item-info')}>
+                                <h2>{user?.fullName}</h2>
+                                <span>{user?.position}</span>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
-            <div className={cx('right-side-chat')}></div>
         </div>
     );
 }

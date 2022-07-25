@@ -17,9 +17,6 @@ function DefaultLayout({ children }) {
                     <div className={cx('content')}>{children}</div>
                 </div>
             </div>
-            <div className={cx('blur1')}></div>
-            <div className={cx('blur2')}></div>
-            <div className={cx('blur3')}></div>
         </>
     );
 }

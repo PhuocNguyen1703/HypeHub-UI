@@ -12,7 +12,7 @@ function Sidebar() {
         <aside className={cx('wrapper')}>
             <Menu>
                 <MenuItem title="My profile" to="/profile" icon={<FontAwesomeIcon icon={faGear} />} />
-                <MenuItem title="My name" to="/pro" icon={<FontAwesomeIcon icon={faGear} />} />
+                <MenuItem title="Chats" to="/chat" icon={<FontAwesomeIcon icon={faGear} />} />
                 <MenuItem title="My password" to="/profi" icon={<FontAwesomeIcon icon={faGear} />} />
                 <MenuItem title="My live" to="/pr" icon={<FontAwesomeIcon icon={faGear} />} />
             </Menu>

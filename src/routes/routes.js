@@ -12,7 +12,7 @@ const publicRoutes = [
     { path: config.routes.searchProfile, component: Upload },
     { path: config.routes.upload, component: Upload, layout: null },
     { path: config.routes.login, component: Auth, layout: null },
-    { path: config.routes.chat, component: Chat, layout: null },
+    { path: config.routes.chat, component: Chat, },
 ];
 
 const privateRoutes = [];

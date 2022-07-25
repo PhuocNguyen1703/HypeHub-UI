@@ -2,52 +2,23 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    z-index: 10;
+    width: 100vw;
+    height: 100vh;
 }
 
 .container {
-    width: 100%;
-    margin-top: var(--default-layout-header-height);
     display: flex;
+    width: 100%;
+    height: calc(100vh - var(--default-layout-header-height));
+    margin-top: var(--default-layout-header-height);
+    padding: 0.7rem;
+    background-color: #f3f3f3;
 }
 
 .content {
     flex: 1;
+    margin-left: 0.7rem;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    background-color: var(--white);
 }
-
-//blur
-// .blur1 {
-//     position: absolute;
-//     width: 350px;
-//     height: 350px;
-//     top: -18%;
-//     right: 0;
-//     border-radius: 50%;
-//     background-color: var(--blur-color);
-//     filter: blur(50px);
-//     z-index: 1;
-// }
-
-// .blur2 {
-//     position: absolute;
-//     width: 350px;
-//     height: 290px;
-//     bottom: 30%;
-//     left: 0;
-//     border-radius: 50%;
-//     background-color: var(--blur-color);
-//     filter: blur(50px);
-//     z-index: 1;
-// }
-
-// .blur3 {
-//     position: absolute;
-//     width: 250px;
-//     height: 190px;
-//     bottom: 5%;
-//     left: 0;
-//     border-radius: 50%;
-//     background-color: var(--blur-color);
-//     filter: blur(50px);
-//     z-index: 1;
-// }
