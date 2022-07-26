@@ -18,6 +18,7 @@
         "dayjs": "^1.11.4",
         "dom": "^0.0.3",
         "jwt-decode": "^3.1.2",
+        "lodash-es": "^4.17.21",
         "normalize.css": "^8.0.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

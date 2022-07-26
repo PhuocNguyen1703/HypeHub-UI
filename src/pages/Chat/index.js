@@ -14,6 +14,7 @@ import Conversation from '~/layouts/components/Conversation/Conversation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { getAllUser } from '~/api/userApi';
+import Calendar from '~/components/Calendar/Calendar';
 
 const cx = classNames.bind(styles);
 
@@ -123,6 +124,7 @@ function Chat() {
             />
 
             <div className={cx('right-side-chat')}>
+                <Calendar />
                 <span className={cx('title')}>
                     Accounts
                     <FontAwesomeIcon icon={faAngleDown} style={{ fontSize: 16 }} />

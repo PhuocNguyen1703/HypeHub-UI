@@ -1,0 +1,75 @@
+.calendar {
+    max-width: 270px;
+    padding: 5px 0;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 5px;
+    background-color: #fefefe;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.prev-btn,
+.next-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 27px;
+    height: 27px;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 3px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
+
+.date {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.week-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.week-cell,
+.day-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 calc(100% / 7);
+    height: 30px;
+    font-weight: 600;
+}
+
+.day-cell {
+    border-radius: 7px;
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
+
+.day-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.faded {
+    opacity: 0.5;
+}
+
+.today {
+    color: #008ffd;
+    border: 2px solid #cce9ff;
+    border-radius: 10px;
+}
