@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Profile.module.scss';
@@ -57,7 +57,7 @@ function Profile() {
     const handleFileBannerInputChange = (e) => {
         const file = e.target.files[0];
         if (!file) return;
-
+        console.log(file);
         setDisabledAvatarInput(true);
         previewFileBanner(file);
         setSelectedFileBanner(file);

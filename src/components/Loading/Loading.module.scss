@@ -1,0 +1,28 @@
+.loading {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: inherit;
+    height: inherit;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+}
+
+.img {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 999px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

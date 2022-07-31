@@ -55,11 +55,17 @@ input,
     outline: none;
     border: none;
     font-family: var(--font-family);
+    background-color: transparent;
 }
 
 a {
     color: var(--text-primary);
     text-decoration: none;
+}
+
+ul,
+li {
+    list-style: none;
 }
 
 // Fonts emmbeded
