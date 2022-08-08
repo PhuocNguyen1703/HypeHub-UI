@@ -17,17 +17,6 @@
     background-color: var(--white);
     border-radius: 15px 0 0 15px;
     overflow: hidden;
-
-    &::after {
-        position: absolute;
-        content: '';
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 2px;
-        height: 90%;
-        background-color: rgba(22, 24, 35, 0.12);
-    }
 }
 
 .title {
@@ -126,17 +115,6 @@
     background-color: var(--white);
     border-radius: 0 15px 15px 0;
     overflow: hidden;
-
-    &::after {
-        position: absolute;
-        content: '';
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 2px;
-        height: 90%;
-        background-color: rgba(22, 24, 35, 0.12);
-    }
 }
 
 .account-list {

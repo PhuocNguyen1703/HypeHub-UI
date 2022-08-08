@@ -15,7 +15,7 @@ function Sidebar() {
                 <MenuItem title="My profile" to="/profile" icon={<FontAwesomeIcon icon={faAddressCard} />} />
                 <MenuItem title="Chats" to="/chat" icon={<FontAwesomeIcon icon={faRocketchat} />} />
                 <MenuItem title="Employee" to="/employee" icon={<FontAwesomeIcon icon={faUserGroup} />} />
-                <MenuItem title="My live" to="/pr" icon={<FontAwesomeIcon icon={faGear} />} />
+                <MenuItem title="Room" to="/" icon={<FontAwesomeIcon icon={faGear} />} />
             </Menu>
         </aside>
     );

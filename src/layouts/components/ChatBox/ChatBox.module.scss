@@ -3,8 +3,11 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    background-color: var(--white);
-    border-radius: 1rem;
+    margin: 10px 5px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    // background-color: var(--white);
+    background-color: rgba(0, 0, 0, 0.04);
     overflow: hidden;
 
     .item {
@@ -48,15 +51,14 @@
 }
 
 .content {
-    // display: flex;
+    display: flex;
     // height: 100%;
     flex: 1;
-    margin: 0 10px;
-    padding: 10px;
-    border: 1px solid rgba(22, 24, 35, 0.12);
-    border-radius: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-    overflow: scroll;
+    padding: 0 20px;
+    // border: 1px solid rgba(22, 24, 35, 0.12);
+    // border-radius: 15px;
+    // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: overlay;
 }
 
 .wrapper {
@@ -65,9 +67,11 @@
     gap: 8px;
     width: 100%;
     max-height: 100%;
-    overflow: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: overlay;
     scrollbar-width: none;
-    // -ms-overflow-style: none;
+    -ms-overflow-style: none;
 }
 
 .wrapper::-webkit-scrollbar {
@@ -81,8 +85,8 @@
     flex-direction: column;
     max-width: 60%;
     width: fit-content;
-    background: var(--primary);
-    color: white;
+    // background: var(--primary);
+    background-color: #E4E6EB;
     padding: 7px;
     border-radius: 10px 10px 10px 0;
     gap: 5px;
@@ -91,7 +95,8 @@
 .message-own {
     align-self: end;
     border-radius: 10px 10px 0 10px;
-    background: linear-gradient(98.63deg, #24e4f0 0%, #358ff9 100%);
+    // background: linear-gradient(98.63deg, #24e4f0 0%, #358ff9 100%);
+    background-color: rgba(0, 153, 255,0.2);
 }
 
 .chat-time {
@@ -104,8 +109,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     max-width: 100%;
-    padding: 20px 10px;
+    padding: 10px;
     gap: 10px;
 }
 

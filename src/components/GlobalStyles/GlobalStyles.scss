@@ -140,10 +140,17 @@ body {
         margin: 5px 0;
         font-size: 1.6rem;
         overflow: overlay;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
 
     .emoji-mart-scroll {
         overflow: overlay;
+    }
+
+    .react-input-emoji--input::-webkit-scrollbar {
+        display: none;
+        width: 0 !important;
     }
 
     .emoji-mart.emoji-mart-dark {
