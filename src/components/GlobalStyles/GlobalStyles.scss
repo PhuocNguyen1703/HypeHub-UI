@@ -1,17 +1,63 @@
 @import 'normalize.css';
 
 :root {
-    --black: #242d49;
+    --background: #fafbff;
     --white: #ffffff;
     --red: #e41e3f;
-    --blue: #4a4eb7;
-    --gray: rgba(36, 45, 73, 0.5);
     --text-primary: #161823;
     --text-secondary: #65676b;
     --primary: linear-gradient(98.63deg, #f9a225 0%, #f95f35 100%);
     --secondary-button-background: #e4e6eb;
     --input-outline: #dedfe1;
     --primary-button-background: #ff6a00;
+
+    --blue: #316bff;
+    --blue-alpha-80: rgba(49, 107, 255, 0.8);
+    --blue-alpha-60: rgba(49, 107, 255, 0.6);
+    --blue-alpha-40: rgba(49, 107, 255, 0.4);
+    --blue-alpha-20: rgba(49, 107, 255, 0.2);
+
+    --orangeRed: #ff543d;
+    --orangeRed-alpha-80: rgba(255, 84, 61, 0.8);
+    --orangeRed-alpha-60: rgba(255, 84, 61, 0.6);
+    --orangeRed-alpha-40: rgba(255, 84, 61, 0.4);
+    --orangeRed-alpha-20: rgba(255, 84, 61, 0.2);
+
+    --mediumSlateBlue: #878cff;
+    --mediumSlateBlue-alpha-80: rgba(135, 140, 255, 0.8);
+    --mediumSlateBlue-alpha-60: rgba(135, 140, 255, 0.6);
+    --mediumSlateBlue-alpha-40: rgba(135, 140, 255, 0.4);
+    --mediumSlateBlue-alpha-20: rgba(135, 140, 255, 0.2);
+
+    --orange: #ffaf4e;
+    --orange-alpha-80: rgba(255, 175, 78, 0.8);
+    --orange-alpha-60: rgba(255, 175, 78, 0.6);
+    --orange-alpha-40: rgba(255, 175, 78, 0.4);
+    --orange-alpha-20: rgba(255, 175, 78, 0.2);
+
+    --skyBlue: #a4cde3;
+    --skyBlue-alpha-80: rgba(164, 205, 227, 0.8);
+    --skyBlue-alpha-60: rgba(164, 205, 227, 0.6);
+    --skyBlue-alpha-40: rgba(164, 205, 227, 0.4);
+    --skyBlue-alpha-20: rgba(164, 205, 227, 0.2);
+
+    --black: #141416;
+    --black-alpha-80: rgba(20, 20, 22, 0.8);
+    --black-alpha-60: rgba(20, 20, 22, 0.6);
+    --black-alpha-40: rgba(20, 20, 22, 0.4);
+    --black-alpha-20: rgba(20, 20, 22, 0.2);
+
+    --gray: #8e94a3;
+    --gray-alpha-80: rgba(142, 148, 163, 0.8);
+    --gray-alpha-60: rgba(142, 148, 163, 0.6);
+    --gray-alpha-40: rgba(142, 148, 163, 0.4);
+    --gray-alpha-20: rgba(142, 148, 163, 0.2);
+
+    --yellow:#FFD166;
+    --yellow-alpha-80:#FFDA85;
+    --yellow-alpha-60:#FFE3A3;
+    --yellow-alpha-40:#FFEDC2;
+    --yellow-alpha-20:#FFF6E0;
 
     // DefaultLayout
     --default-layout-header-height: 60px;

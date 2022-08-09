@@ -5,6 +5,7 @@ const routes = {
     login: '/login',
     chat: '/chat',
     employee: '/employee',
+    candidates: '/candidates',
 };
 
 export default routes;

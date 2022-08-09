@@ -2,8 +2,9 @@ import { faRocketchat } from '@fortawesome/free-brands-svg-icons';
 import { faAddressCard, faGear, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import Menu, { MenuItem } from './Menu';
+import {MdOutlineDashboardCustomize} from 'react-icons/md'
 
+import Menu, { MenuItem } from './Menu';
 import styles from './Sidebar.module.scss';
 
 const cx = classNames.bind(styles);
@@ -16,6 +17,7 @@ function Sidebar() {
                 <MenuItem title="Chats" to="/chat" icon={<FontAwesomeIcon icon={faRocketchat} />} />
                 <MenuItem title="Employee" to="/employee" icon={<FontAwesomeIcon icon={faUserGroup} />} />
                 <MenuItem title="Room" to="/" icon={<FontAwesomeIcon icon={faGear} />} />
+                <MenuItem title="Candidate" to="/candidates" icon={<MdOutlineDashboardCustomize />} />
             </Menu>
         </aside>
     );
