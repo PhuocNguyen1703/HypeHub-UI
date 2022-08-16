@@ -5,8 +5,9 @@ import Auth from '~/pages/Auth/Login';
 import config from '~/config';
 import Chat from '~/pages/Chat';
 import Register from '~/pages/Auth/Register';
-import Employee from '~/pages/Employee';
 import Candidate from '~/pages/Candidate';
+import Checkin from '~/pages/Checkin';
+import Employee from '~/pages/Employee';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
@@ -15,6 +16,7 @@ const publicRoutes = [
     { path: config.routes.profile, component: Profile, layout: HeaderOnly },
     { path: config.routes.chat, component: Chat },
     { path: config.routes.employee, component: Employee },
+    { path: config.routes.checkin, component: Checkin },
     { path: config.routes.candidates, component: Candidate },
 ];
 
