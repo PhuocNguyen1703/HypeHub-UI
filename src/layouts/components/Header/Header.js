@@ -6,10 +6,12 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
+import { CgMenu, CgMoreVerticalAlt } from 'react-icons/cg';
+import { IoLanguageOutline } from 'react-icons/io5';
+import { BsFullscreen, BsColumnsGap, BsChatSquareDots, BsBell, BsGear } from 'react-icons/bs';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-import { MessageIcon } from '~/components/Icons';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
 import Search from '../Search';
@@ -51,7 +53,7 @@ const userMenu = [
     },
 ];
 
-function Header() {
+function Header({ setShowSidebar }) {
     const user = useSelector((state) => state.auth.login.currentUser);
     const accessToken = user?.accessToken;
     const id = user?._id;
@@ -70,31 +72,61 @@ function Header() {
         }
     };
 
+    const handleShowSidebar = () => {
+        setShowSidebar((setShowSidebar) => !setShowSidebar);
+    };
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={config.routes.home} className={cx('logo')}>
-                    <img src={images.logo} alt="logo" />
-                    <h1>Oriental Sun</h1>
-                </Link>
+                <div className={cx('header-left')}>
+                    <CgMenu className={cx('menu-icon')} onClick={handleShowSidebar} />
+                    <Link to={config.routes.home} className={cx('logo')}>
+                        <img src={images.logo} alt="logo" />
+                        <h1>Oriental Sun</h1>
+                    </Link>
+                </div>
 
                 <Search />
 
-                <div className={cx('actions')}>
-                    <Tippy delay={[0, 50]} interactive content="Notification">
-                        <button className={cx('action-btn')}>
-                            <FontAwesomeIcon className={cx('notification-btn')} icon={faBell} />
-                            <span className={cx('badge')}>12</span>
-                        </button>
-                    </Tippy>
-                    <Tippy delay={[0, 50]} content="Message">
-                        <button className={cx('action-btn')}>
-                            <Link to={config.routes.chat}>
-                                <MessageIcon />
-                            </Link>
-                            <span className={cx('badge')}>12</span>
-                        </button>
-                    </Tippy>
+                <div className={cx('header-right')}>
+                    <CgMoreVerticalAlt className={cx('more-icon')} />
+                    <div className={cx('actions')}>
+                        <Tippy delay={[0, 50]} interactive content="Language">
+                            <button className={cx('action-btn')}>
+                                <span>EN</span>
+                                <IoLanguageOutline className={cx('icon')} />
+                            </button>
+                        </Tippy>
+                        <Tippy delay={[0, 50]} interactive content="Fullscreen">
+                            <button className={cx('action-btn')}>
+                                <BsFullscreen className={cx('icon')} />
+                            </button>
+                        </Tippy>
+                        <Tippy delay={[0, 50]} interactive content="Apps">
+                            <button className={cx('action-btn')}>
+                                <BsColumnsGap className={cx('icon')} />
+                            </button>
+                        </Tippy>
+                        <Tippy delay={[0, 50]} interactive content="Notification">
+                            <button className={cx('action-btn')}>
+                                <BsBell className={cx('icon')} />
+                                <span className={cx('badge')}></span>
+                            </button>
+                        </Tippy>
+                        <Tippy delay={[0, 50]} interactive content="Message">
+                            <button className={cx('action-btn')}>
+                                <BsChatSquareDots className={cx('icon')} />
+                                <span className={cx('badge')}></span>
+                            </button>
+                        </Tippy>
+                        <Tippy delay={[0, 50]} interactive content="Settings">
+                            <button className={cx('action-btn')}>
+                                <BsGear className={cx('icon')} />
+                            </button>
+                        </Tippy>
+                    </div>
+                    <CgMoreVerticalAlt className={cx('more-icon')} />
 
                     <Menu items={userMenu} onChange={handleMenuChange}>
                         <Image className={cx('user-avatar')} src={`${user.avatar}`} alt="Nguyen  van A" />

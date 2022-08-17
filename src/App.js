@@ -7,7 +7,7 @@ import { publicRoutes } from './routes';
 function App() {
     return (
         <Router>
-            <div className="App">
+            <div className="App" style={{backgroundColor:'rgba(1, 94, 194)'}}>
                 <Routes>
                     {publicRoutes.map((routes, index) => {
                         const Page = routes.component;

@@ -5,7 +5,7 @@
     --white: #ffffff;
     --red: #e41e3f;
     --text-primary: #161823;
-    --text-secondary: #65676b;
+    --text-secondary: #666666;
     --primary: linear-gradient(98.63deg, #f9a225 0%, #f95f35 100%);
     --secondary-button-background: #e4e6eb;
     --input-outline: #dedfe1;
@@ -53,19 +53,18 @@
     --gray-alpha-40: rgba(142, 148, 163, 0.4);
     --gray-alpha-20: rgba(142, 148, 163, 0.2);
 
-    --yellow:#FFD166;
-    --yellow-alpha-80:#FFDA85;
-    --yellow-alpha-60:#FFE3A3;
-    --yellow-alpha-40:#FFEDC2;
-    --yellow-alpha-20:#FFF6E0;
+    --yellow: #ffd166;
+    --yellow-alpha-80: #ffda85;
+    --yellow-alpha-60: #ffe3a3;
+    --yellow-alpha-40: #ffedc2;
+    --yellow-alpha-20: #fff6e0;
 
     // DefaultLayout
-    --default-layout-header-height: 60px;
+    --default-layout-header-height: 70px;
+    --default-background-color: rgba(1, 94, 194);
+    --main-overlay-color: rgba(255, 255, 255, 0.91);
 
     --font-family: 'ProximaNova', sans-serif;
-
-    //Blur
-    --blur-color: #a6ddf0;
 }
 
 * {

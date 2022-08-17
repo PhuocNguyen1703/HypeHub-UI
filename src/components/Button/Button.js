@@ -20,7 +20,7 @@ function Button({ to, href, leftIcon, rightIcon, className, children, onClick, .
         Comp = 'a';
     }
 
-    const classes = cx('wrapper', {
+    const classes = cx({
         [className]: className,
     });
 

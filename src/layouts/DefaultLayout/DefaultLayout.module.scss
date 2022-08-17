@@ -4,6 +4,8 @@
     flex-direction: column;
     width: 100vw;
     height: 100vh;
+    background-color: var(--main-overlay-color);
+    backdrop-filter: saturate(120%) blur(10px);
 }
 
 .container {
@@ -11,14 +13,9 @@
     width: 100%;
     height: calc(100vh - var(--default-layout-header-height));
     margin-top: var(--default-layout-header-height);
-    padding: 0.7rem;
-    background-color: #f3f3f3;
 }
 
 .content {
     flex: 1;
-    margin-left: 0.7rem;
-    border-radius: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
     background-color: var(--white);
 }
