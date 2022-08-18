@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import { IoMdClose } from 'react-icons/io';
 
 import styles from './Setting.module.scss';
+import ToggleSwitch from '~/components/ToggleSwitch';
 
 const cx = classNames.bind(styles);
 
@@ -45,19 +46,10 @@ function Setting() {
                 </div>
                 <span className={cx('title')}>Menu Layout</span>
                 <div className={cx('input-field')}>
-                    <label>RTL</label>
-                    <div className={cx('toggle-switch')}>
-                        <input type="checkbox" />
-                        <span class="slider round"></span>
-                    </div>
+                    <ToggleSwitch label="Menu Collapsed" id="menu-collapsed" />
                 </div>
                 <div className={cx('input-field')}>
-                    <label>Menu Collapsed</label>
-                    <input type="checkbox" />
-                </div>
-                <div className={cx('input-field')}>
-                    <label>Menu Hidden</label>
-                    <input type="checkbox" />
+                    <ToggleSwitch label="Menu Hidden" id="menu-hidden" />
                 </div>
                 <span className={cx('title')}>Navbar Color</span>
                 <div className={cx('input-field')}>
