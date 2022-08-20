@@ -51,16 +51,47 @@ function Setting() {
                 <div className={cx('input-field')}>
                     <ToggleSwitch label="Menu Hidden" id="menu-hidden" />
                 </div>
+                <span className={cx('title')}>Sidebar Color</span>
+                <div className={cx('input-field')}>
+                    <ul className={cx('color-list')}>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                    </ul>
+                </div>
                 <span className={cx('title')}>Navbar Color</span>
                 <div className={cx('input-field')}>
-                    <input type="radio" value="Boxed" />
-                    <input type="radio" value="Boxed" />
-                    <input type="radio" value="Boxed" />
-                    <input type="radio" value="Boxed" />
-                    <input type="radio" value="Boxed" />
-                    <input type="radio" value="Boxed" />
-                    <input type="radio" value="Boxed" />
-                    <input type="radio" value="Boxed" />
+                    <ul className={cx('color-list')}>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                        <li className={cx('color')}></li>
+                    </ul>
                 </div>
             </form>
         </div>
