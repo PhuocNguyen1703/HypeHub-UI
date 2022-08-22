@@ -7,6 +7,7 @@ const routes = {
     employee: '/employee',
     checkin: '/checkin',
     candidates: '/candidates',
+    email: '/email',
 };
 
 export default routes;

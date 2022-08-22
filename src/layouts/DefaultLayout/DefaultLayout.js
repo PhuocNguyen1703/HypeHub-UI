@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import Header from '~/layouts/components/Header';
 import Sidebar from '~/layouts/components/Sidebar';
 import styles from './DefaultLayout.module.scss';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 

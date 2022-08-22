@@ -8,6 +8,7 @@ import Register from '~/pages/Auth/Register';
 import Candidate from '~/pages/Candidate';
 import Checkin from '~/pages/Checkin';
 import Employee from '~/pages/Employee';
+import Email from '~/pages/Email';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
@@ -18,6 +19,7 @@ const publicRoutes = [
     { path: config.routes.employee, component: Employee },
     { path: config.routes.checkin, component: Checkin },
     { path: config.routes.candidates, component: Candidate },
+    { path: config.routes.email, component: Email },
 ];
 
 const privateRoutes = [];
