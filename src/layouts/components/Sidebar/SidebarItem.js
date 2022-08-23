@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function SidebarItem({ item }) {
+function SidebarItem({ item, className }) {
     const [open, setOpen] = useState(false);
 
     if (item.children) {
@@ -38,9 +38,9 @@ function SidebarItem({ item }) {
         );
     } else {
         return (
-            <NavLink className={(nav) => cx('item', { active: nav.isActive })} to={item.path}>
+            <NavLink className={(nav) => cx('item', `${className}`, { active: nav.isActive })} to={item.path}>
                 <span>
-                    {item?.icon}
+                    <span style={{ color: `${item?.color}` }}>{item?.icon}</span>
                     {item.title}
                 </span>
             </NavLink>

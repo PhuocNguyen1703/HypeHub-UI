@@ -1,6 +1,12 @@
 import classNames from 'classnames/bind';
-import { MdMailOutline } from 'react-icons/md';
-import { BsColumnsGap, BsCalendar2Date, BsChatSquareDots, BsCheck2Square, BsClipboardCheck } from 'react-icons/bs';
+import {
+    BsColumnsGap,
+    BsCalendar2Date,
+    BsChatSquareDots,
+    BsCheck2Square,
+    BsClipboardCheck,
+    BsEnvelope,
+} from 'react-icons/bs';
 import config from '~/config';
 
 import styles from './Sidebar.module.scss';
@@ -32,7 +38,7 @@ function Sidebar({ showSidebar }) {
             ],
         },
         {
-            icon: <MdMailOutline />,
+            icon: <BsEnvelope />,
             title: 'Email',
             path: config.routes.email,
         },
