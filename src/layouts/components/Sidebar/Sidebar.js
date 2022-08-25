@@ -6,6 +6,7 @@ import {
     BsCheck2Square,
     BsClipboardCheck,
     BsEnvelope,
+    BsPerson,
 } from 'react-icons/bs';
 import config from '~/config';
 
@@ -61,6 +62,11 @@ function Sidebar({ showSidebar }) {
             icon: <BsClipboardCheck />,
             title: 'Kanban',
             path: '/kanban',
+        },
+        {
+            icon: <BsPerson />,
+            title: 'Profile',
+            path: '/profile',
         },
     ];
 

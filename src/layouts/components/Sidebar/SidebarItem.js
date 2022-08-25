@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function SidebarItem({ item, className }) {
+function SidebarItem({ item, className = '' }) {
     const [open, setOpen] = useState(false);
 
     if (item.children) {

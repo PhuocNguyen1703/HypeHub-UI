@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Profile.module.scss';
-import Sidebar from '~/layouts/components/Sidebar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faBriefcase,
-    faCakeCandles,
-    faCamera,
-    faEnvelope,
-    faHashtag,
-    faHouseChimney,
-    faMarsAndVenus,
-    faPen,
-    faPhone,
-    faUserPen,
-} from '@fortawesome/free-solid-svg-icons';
+    BsCameraFill,
+    BsPersonCircle,
+    BsPencil,
+    BsTelephone,
+    BsGenderAmbiguous,
+    BsGeoAlt,
+    BsBriefcase,
+    BsEnvelope,
+    BsCalendarEvent,
+    BsHeart,
+} from 'react-icons/bs';
 import Image from '~/components/Image';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -171,33 +169,57 @@ function Profile() {
 
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('side-bar')}>
-                <Sidebar />
-            </div>
-            <div className={cx('container')}>
-                <div className={cx('banner')}>
-                    {user.banner && <Image className={cx('banner-img')} src={`${user.banner}`} alt="banner" />}
-                    {previewSourceBanner && (
-                        <Image className={cx('banner-img')} src={previewSourceBanner} alt="banner" />
+            <div className={cx('banner')}>
+                {user.banner && <Image className={cx('banner-img')} src={`${user.banner}`} alt="banner" />}
+                {previewSourceBanner && <Image className={cx('banner-img')} src={previewSourceBanner} alt="banner" />}
+                <form className={cx('add-banner-btn')} onSubmit={handleSubmitBanner}>
+                    {!previewSourceBanner && (
+                        <label htmlFor="upload-banner">
+                            <BsCameraFill className={cx('icon-change-banner')} />
+                            Add Cover Photo
+                        </label>
                     )}
-                    <form className={cx('add-banner-btn')} onSubmit={handleSubmitBanner}>
-                        {!previewSourceBanner && (
-                            <label htmlFor="upload-banner">
-                                <FontAwesomeIcon icon={faCamera} />
-                                Add Cover Photo
-                            </label>
-                        )}
+                    <input
+                        id="upload-banner"
+                        type="file"
+                        className={cx('upload-banner')}
+                        onChange={handleFileBannerInputChange}
+                        hidden
+                        disabled={disabledBannerInput}
+                    />
+                    {previewSourceBanner && (
+                        <div className={cx('banner-btn')}>
+                            <button className={cx('cancel-btn')} onClick={handleCancelBanner}>
+                                Cancel
+                            </button>
+                            <button type="submit" className={cx('save-btn')}>
+                                Save
+                            </button>
+                        </div>
+                    )}
+                </form>
+            </div>
+            <div className={cx('header')}>
+                <div className={cx('avatar')}>
+                    <Image className={cx('user-avatar')} src={`${user.avatar}`} alt="Nguyen  van A" />
+                    {previewSourceAvatar && (
+                        <Image className={cx('user-avatar')} src={`${previewSourceAvatar}`} alt="Nguyen  van A" />
+                    )}
+                    <form onSubmit={handleSubmitAvatar}>
+                        <label htmlFor="upload-avatar">
+                            <BsCameraFill className={cx('icon-camera')} />
+                        </label>
                         <input
-                            id="upload-banner"
+                            id="upload-avatar"
                             type="file"
-                            className={cx('upload-banner')}
-                            onChange={handleFileBannerInputChange}
+                            className={cx('upload-avatar')}
+                            onChange={handleFileAvatarInputChange}
                             hidden
-                            disabled={disabledBannerInput}
+                            disabled={disabledAvatarInput}
                         />
-                        {previewSourceBanner && (
-                            <div className={cx('banner-btn')}>
-                                <button className={cx('cancel-btn')} onClick={handleCancelBanner}>
+                        {previewSourceAvatar && (
+                            <div className={cx('avatar-btn')}>
+                                <button className={cx('cancel-btn')} onClick={handleCancelAvatar}>
                                     Cancel
                                 </button>
                                 <button type="submit" className={cx('save-btn')}>
@@ -207,124 +229,99 @@ function Profile() {
                         )}
                     </form>
                 </div>
-                <div className={cx('header')}>
-                    <div className={cx('avatar')}>
-                        <Image className={cx('user-avatar')} src={`${user.avatar}`} alt="Nguyen  van A" />
-                        {previewSourceAvatar && (
-                            <Image className={cx('user-avatar')} src={`${previewSourceAvatar}`} alt="Nguyen  van A" />
-                        )}
-                        <form onSubmit={handleSubmitAvatar}>
-                            <label htmlFor="upload-avatar">
-                                <FontAwesomeIcon className={cx('edit-avatar')} icon={faCamera} />
-                            </label>
-                            <input
-                                id="upload-avatar"
-                                type="file"
-                                className={cx('upload-avatar')}
-                                onChange={handleFileAvatarInputChange}
-                                hidden
-                                disabled={disabledAvatarInput}
-                            />
-                            {previewSourceAvatar && (
-                                <div className={cx('avatar-btn')}>
-                                    <button className={cx('cancel-btn')} onClick={handleCancelAvatar}>
-                                        Cancel
-                                    </button>
-                                    <button type="submit" className={cx('save-btn')}>
-                                        Save
-                                    </button>
-                                </div>
-                            )}
-                        </form>
+                <div className={cx('info')}>
+                    <span className={cx('username')}>{fullName}</span>
+                    <span className={cx('position')}>{position}</span>
+                    <span className={cx('hashtag')}>{hashtag && `#${hashtag}`}</span>
+                </div>
+            </div>
+
+            <div className={cx('about')}>
+                <div className={cx('about-header')}>
+                    <div className={cx('heading')}>
+                        <span className={cx('icon-person')}>
+                            <BsPersonCircle />
+                        </span>
+                        <div className={cx('title')}>
+                            <h6>About</h6>
+                            <p>{hashtag && `#${hashtag}`}</p>
+                        </div>
                     </div>
-                    <div className={cx('info')}>
-                        <span className={cx('username')}>{fullName}</span>
-                        <span className={cx('position')}>{position}</span>
-                        <span className={cx('hashtag')}>{hashtag && `#${hashtag}`}</span>
-                    </div>
-                    <button className={cx('edit-profile-btn')} onClick={handleEditProfileBtn}>
-                        <FontAwesomeIcon icon={faPen} />
-                        Edit profile
+                    <button className={cx('edit-profile-btn')}>
+                        <BsPencil />
+                        Edit Profile
                     </button>
                 </div>
+                <div className={cx('about-content')}>
+                    <div className={cx('about-item')}>
+                        <span className={cx('icon')}>
+                            <BsTelephone />
+                        </span>
+                        <div>
+                            <span className={cx('label')}>Phone</span>
+                            <p>+84349985272</p>
+                        </div>
+                    </div>
 
-                <div className={cx('content')}>
-                    <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
-                        <div className={cx('full-name')}>
-                            <label>Username</label>
-                            <div>
-                                <FontAwesomeIcon icon={faUserPen} />
-                                <input disabled={disabled} {...register('fullName')} />
-                            </div>
+                    <div className={cx('about-item')}>
+                        <span className={cx('icon')}>
+                            <BsBriefcase />
+                        </span>
+                        <div>
+                            <span className={cx('label')}>Working</span>
+                            <p>Developer</p>
                         </div>
-                        <div className={cx('live-in')}>
-                            <label>Live in</label>
-                            <div>
-                                <FontAwesomeIcon icon={faHouseChimney} />
-                                <input disabled={disabled} {...register('livesIn')} />
-                            </div>
-                        </div>
-                        <div className={cx('street-address')}>
-                            <label>Street address</label>
-                            <div>
-                                <FontAwesomeIcon icon={faHouseChimney} />
-                                <input disabled={disabled} {...register('streetAddress')} />
-                            </div>
-                        </div>
-                        <div className={cx('email-address')}>
-                            <label>Email address</label>
-                            <div>
-                                <FontAwesomeIcon icon={faEnvelope} />
-                                <input disabled {...register('email')} />
-                            </div>
-                        </div>
-                        <div className={cx('birth')}>
-                            <label>Date of Birth</label>
-                            <div>
-                                <FontAwesomeIcon icon={faCakeCandles} />
-                                <input disabled={disabled} {...register('birth')} />
-                            </div>
-                        </div>
-                        <div className={cx('gender')}>
-                            <label>Gender</label>
-                            <div>
-                                <FontAwesomeIcon icon={faMarsAndVenus} />
-                                <input disabled={disabled} {...register('gender')} />
-                            </div>
-                        </div>
-                        <div className={cx('hashtag')}>
-                            <label>Hashtag</label>
-                            <div>
-                                <FontAwesomeIcon icon={faHashtag} />
-                                <input disabled={disabled} {...register('hashtag')} />
-                            </div>
-                        </div>
-                        <div className={cx('user-position')}>
-                            <label>Position</label>
-                            <div>
-                                <FontAwesomeIcon icon={faBriefcase} />
-                                <input disabled={disabled} {...register('position')} />
-                            </div>
-                        </div>
-                        <div className={cx('user-phone')}>
-                            <label>Phone number</label>
-                            <div>
-                                <FontAwesomeIcon icon={faPhone} />
-                                <input disabled={disabled} {...register('phone')} />
-                            </div>
-                        </div>
+                    </div>
 
-                        {!disabled && (
-                            <div className={cx('form-btn')}>
-                                <button className={cx('cancel-btn')} onClick={handleCancel}>
-                                    Cancel
-                                </button>
-                                <button type="submit" className={cx('save-btn')}>
-                                    Save
-                                </button>
-                            </div>
-                        )}
-                    </form>
+                    <div className={cx('about-item')}>
+                        <span className={cx('icon')}>
+                            <BsGenderAmbiguous />
+                        </span>
+                        <div>
+                            <span className={cx('label')}>Gender</span>
+                            <p>Male</p>
+                        </div>
+                    </div>
+
+                    <div className={cx('about-item')}>
+                        <span className={cx('icon')}>
+                            <BsEnvelope />
+                        </span>
+                        <div>
+                            <span className={cx('label')}>Email Address</span>
+                            <p>information@maxartkiller.com</p>
+                        </div>
+                    </div>
+
+                    <div className={cx('about-item')}>
+                        <span className={cx('icon')}>
+                            <BsCalendarEvent />
+                        </span>
+                        <div>
+                            <span className={cx('label')}>Birthday</span>
+                            <p>1 August 1992</p>
+                        </div>
+                    </div>
+
+                    <div className={cx('about-item')}>
+                        <span className={cx('icon')}>
+                            <BsHeart />
+                        </span>
+                        <div>
+                            <span className={cx('label')}>Social Status</span>
+                            <p>Single</p>
+                        </div>
+                    </div>
+
+                    <div className={cx('about-item')}>
+                        <span className={cx('icon')}>
+                            <BsGeoAlt />
+                        </span>
+                        <div>
+                            <span className={cx('label')}>Address</span>
+                            <p>Japan</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

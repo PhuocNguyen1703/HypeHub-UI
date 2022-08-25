@@ -16,7 +16,9 @@
 
 .content {
     flex: 1;
+    height: calc(100vh - var(--default-layout-header-height));
     background-color: var(--white);
     box-shadow: 0px 1px 6px rgb(0 0 0 / 15%);
     border-top-left-radius: 5px;
+    overflow: overlay;
 }

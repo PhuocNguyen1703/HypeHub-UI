@@ -14,11 +14,11 @@ const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
     { path: config.routes.register, component: Register, layout: null },
     { path: config.routes.home, component: Home },
-    { path: config.routes.profile, component: Profile, layout: HeaderOnly },
+    { path: config.routes.profile, component: Profile },
     { path: config.routes.chat, component: Chat },
     { path: config.routes.employee, component: Employee },
     { path: config.routes.checkin, component: Checkin },
-    { path: config.routes.candidates, component: Candidate },
+    { path: config.routes.candidates, component: Candidate, layout: HeaderOnly },
     { path: config.routes.email, component: Email },
 ];
 
