@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +19,7 @@ import config from '~/config';
 import { logOutUser } from '~/api/authApi';
 import { logOutSuccess } from '~/redux/Slice/authSlice';
 import { createAxios } from '~/api/axiosClient';
+import Modal from '~/components/Modal';
 
 const cx = classNames.bind(styles);
 
@@ -54,6 +55,7 @@ const userMenu = [
 ];
 
 function Header({ setShowSidebar }) {
+    const [modalIsOpen, setIsOpen] = useState(false);
     const user = useSelector((state) => state.auth.login.currentUser);
     const accessToken = user?.accessToken;
     const id = user?._id;
@@ -74,6 +76,14 @@ function Header({ setShowSidebar }) {
 
     const handleShowSidebar = () => {
         setShowSidebar((setShowSidebar) => !setShowSidebar);
+    };
+
+    const openModal = () => {
+        setIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsOpen(false);
     };
 
     return (
@@ -121,7 +131,7 @@ function Header({ setShowSidebar }) {
                             </button>
                         </Tippy>
                         <Tippy delay={[0, 50]} interactive content="Settings">
-                            <button className={cx('action-btn')}>
+                            <button className={cx('action-btn')} onClick={openModal}>
                                 <BsGear className={cx('icon')} />
                             </button>
                         </Tippy>
@@ -133,6 +143,10 @@ function Header({ setShowSidebar }) {
                     </Menu>
                 </div>
             </div>
+
+            <Modal isOpen={modalIsOpen}>
+                <h1>hello</h1>
+            </Modal>
         </header>
     );
 }
