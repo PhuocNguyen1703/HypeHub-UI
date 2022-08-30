@@ -7,13 +7,13 @@ import ToggleSwitch from '~/components/ToggleSwitch';
 
 const cx = classNames.bind(styles);
 
-function Setting() {
+function Setting({ closeModal }) {
     return (
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
                 <span className={cx('heading')}>
                     Theme Customizer
-                    <IoMdClose />
+                    <IoMdClose className={cx('icon-close')} onClick={closeModal} />
                 </span>
                 <p className={cx('desc')}>Customize & Preview in Real Time</p>
             </header>

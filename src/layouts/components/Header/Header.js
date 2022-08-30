@@ -20,6 +20,7 @@ import { logOutUser } from '~/api/authApi';
 import { logOutSuccess } from '~/redux/Slice/authSlice';
 import { createAxios } from '~/api/axiosClient';
 import Modal from '~/components/Modal';
+import Setting from '../Setting';
 
 const cx = classNames.bind(styles);
 
@@ -145,7 +146,7 @@ function Header({ setShowSidebar }) {
             </div>
 
             <Modal isOpen={modalIsOpen}>
-                <h1>hello</h1>
+                <Setting closeModal={closeModal} />
             </Modal>
         </header>
     );
