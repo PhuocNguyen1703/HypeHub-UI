@@ -8,6 +8,7 @@ const routes = {
     checkin: '/checkin',
     candidates: '/candidates',
     email: '/email',
+    private: '/private-chat',
 };
 
 export default routes;

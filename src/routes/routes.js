@@ -9,6 +9,7 @@ import Candidate from '~/pages/Candidate';
 import Checkin from '~/pages/Checkin';
 import Employee from '~/pages/Employee';
 import Email from '~/pages/Email';
+import PrivateChat from '~/pages/Chat/Private';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
@@ -16,6 +17,7 @@ const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.profile, component: Profile },
     { path: config.routes.chat, component: Chat },
+    { path: config.routes.private, component: PrivateChat },
     { path: config.routes.employee, component: Employee },
     { path: config.routes.checkin, component: Checkin },
     { path: config.routes.candidates, component: Candidate, layout: HeaderOnly },

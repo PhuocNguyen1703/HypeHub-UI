@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Conversation.module.scss';
 import { getUser } from '~/api/userApi';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -25,13 +26,10 @@ function Conversation({ data, currentUserId, online }) {
 
     return (
         <>
-            <div className={cx('item-avatar')}>
-                <img src={userData?.avatar} alt="avatar" />
-                {online && <span></span>}
-            </div>
-            <div className={cx('item-info')}>
-                <h2>{userData?.fullName}</h2>
-                <span>{userData?.position}</span>
+            <Image src={userData?.avatar} alt="avatar" className={cx('avatar')} />
+            <div className={cx('info')}>
+                <span className={cx('name')}>{userData?.fullName}</span>
+                <p>{userData?.position}</p>
             </div>
         </>
     );

@@ -64,7 +64,7 @@
 .sidebar {
     width: 250px;
     border-right: 1px solid var(--gray-alpha-40);
-    overflow: overlay;
+    overflow: auto;
 }
 
 .create-email {

@@ -7,6 +7,7 @@ import {
     BsClipboardCheck,
     BsEnvelope,
     BsPerson,
+    BsPeople,
 } from 'react-icons/bs';
 import config from '~/config';
 
@@ -46,7 +47,18 @@ function Sidebar({ showSidebar }) {
         {
             icon: <BsChatSquareDots />,
             title: 'Chat',
-            path: '/chat',
+            children: [
+                {
+                    icon: <BsPerson />,
+                    title: 'Private Chat',
+                    path: config.routes.private,
+                },
+                {
+                    icon: <BsPeople />,
+                    title: 'Group Chat',
+                    path: '/setting',
+                },
+            ],
         },
         {
             icon: <BsCheck2Square />,

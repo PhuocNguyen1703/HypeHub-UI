@@ -11,6 +11,7 @@ import styles from './ChatBox.module.scss';
 import { getUser } from '~/api/userApi';
 import { addMessage, getMessages } from '~/api/messageApi';
 import images from '~/assets/images';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 dayjs.extend(relativeTime);
@@ -93,15 +94,10 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
             {chat ? (
                 <>
                     <div className={cx('header')}>
-                        <div className={cx('item')}>
-                            <div className={cx('item-avatar')}>
-                                <img src={userData?.avatar} alt="avatar" />
-                                <span></span>
-                            </div>
-                            <div className={cx('item-info')}>
-                                <h2>{userData?.fullName}</h2>
-                                <span>{userData?.position}</span>
-                            </div>
+                        <Image src={userData?.avatar} alt="avatar" className={cx('avatar')} />
+                        <div className={cx('info')}>
+                            <span className={cx('name')}>{userData?.fullName}</span>
+                            <p>{userData?.position}</p>
                         </div>
                     </div>
 
@@ -118,14 +114,15 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
                                 </div>
                             ))}
                         </div>
-                    </div>
-                    <div className={cx('chat-content-footer')}>
-                        <label onClick={() => imageRef.current.click()}>
-                            <FontAwesomeIcon icon={faPlus} className={cx('icon-plus')} />
-                        </label>
-                        <input id="send-file" type="file" ref={imageRef} hidden />
-                        <InputEmoji value={newMessage} onChange={handleChange} />
-                        <FontAwesomeIcon icon={faPaperPlane} className={cx('icon-send')} onClick={handleSend} />
+
+                        <div className={cx('chat-content-footer')}>
+                            <label onClick={() => imageRef.current.click()}>
+                                <FontAwesomeIcon icon={faPlus} className={cx('icon-plus')} />
+                            </label>
+                            <input id="send-file" type="file" ref={imageRef} hidden />
+                            <InputEmoji value={newMessage} onChange={handleChange} />
+                            <FontAwesomeIcon icon={faPaperPlane} className={cx('icon-send')} onClick={handleSend} />
+                        </div>
                     </div>
                 </>
             ) : (
