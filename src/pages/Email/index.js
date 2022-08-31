@@ -15,7 +15,6 @@ import {
 } from 'react-icons/bs';
 
 import styles from './Email.module.scss';
-import Search from '~/layouts/components/Search';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
 
 const cx = classNames.bind(styles);
