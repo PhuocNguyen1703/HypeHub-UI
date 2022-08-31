@@ -5,7 +5,7 @@ import styles from './Modal.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Modal({ isOpen = false, children }) {
+function Modal({ isOpen = true, children }) {
     if (!isOpen) {
         return null;
     }

@@ -6,6 +6,7 @@ import { getMonth } from '~/utils/day';
 import dayjs from 'dayjs';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import GlobalContext from '~/Context/GlobalContext';
+import EventCalendar from '~/components/Modal/EventCalendar';
 
 const cx = classNames.bind(styles);
 
@@ -35,6 +36,7 @@ function Calendar() {
 
     return (
         <div className={cx('wrapper')}>
+            {/* <EventCalendar /> */}
             <header className={cx('header')}>
                 <div className={cx('header-left')}>
                     <h1>Calendar</h1>
