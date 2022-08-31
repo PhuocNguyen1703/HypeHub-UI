@@ -10,6 +10,7 @@ const routes = {
     email: '/email',
     private: '/private-chat',
     todo: '/todo',
+    calendar: '/calendar',
 };
 
 export default routes;
