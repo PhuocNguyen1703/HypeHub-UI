@@ -4,15 +4,25 @@ import classNames from 'classnames/bind';
 import styles from './Calendar.module.scss';
 import { getMonth } from '~/utils/day';
 import dayjs from 'dayjs';
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import { BsCheck2, BsChevronLeft, BsChevronRight, BsExclamationLg, BsJournal, BsPlus, BsTrash } from 'react-icons/bs';
 import GlobalContext from '~/Context/GlobalContext';
 import EventCalendar from '~/components/Modal/EventCalendar';
+import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
+import Modal from '~/components/Modal';
 
 const cx = classNames.bind(styles);
 
 function Calendar() {
+    const [modalIsOpen, setIsOpen] = useState(false);
     const [currentMonth, setCurrentMonth] = useState(getMonth());
     const { monthIndex, setMonthIndex } = useContext(GlobalContext);
+
+    const menu = [
+        { icon: <BsJournal />, title: 'My Tasks', path: '/calendar' },
+        { icon: <BsExclamationLg />, title: 'Important', path: '/sent' },
+        { icon: <BsCheck2 />, title: 'Completed', path: '/title' },
+        { icon: <BsTrash />, title: 'Deleted', path: '/calendar' },
+    ];
 
     useEffect(() => {
         setCurrentMonth(getMonth(monthIndex));
@@ -34,9 +44,16 @@ function Calendar() {
         setMonthIndex(monthIndex + 1);
     };
 
+    const openModal = () => {
+        setIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
     return (
         <div className={cx('wrapper')}>
-            {/* <EventCalendar /> */}
             <header className={cx('header')}>
                 <div className={cx('header-left')}>
                     <h1>Calendar</h1>
@@ -56,7 +73,15 @@ function Calendar() {
                 <p className={cx('header-right')}></p>
             </header>
             <div className={cx('container')}>
-                <div className={cx('sidebar')}></div>
+                <div className={cx('sidebar')}>
+                    <button className={cx('create-calendar')} onClick={openModal}>
+                        <BsPlus />
+                        Create Calendar
+                    </button>
+                    {menu.map((item, index) => (
+                        <SidebarItem key={index} item={item} className={'menu-item'} />
+                    ))}
+                </div>
                 <div className={cx('content')}>
                     {currentMonth.map((row, idx) => (
                         <React.Fragment key={idx}>
@@ -84,6 +109,10 @@ function Calendar() {
                     ))}
                 </div>
             </div>
+
+            <Modal isOpen={modalIsOpen}>
+                <EventCalendar closeModal={closeModal} />
+            </Modal>
         </div>
     );
 }

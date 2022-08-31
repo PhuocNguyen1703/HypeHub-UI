@@ -1,16 +1,27 @@
 import React from 'react';
-import Modal from '../Modal';
+import { BsX } from 'react-icons/bs';
+import classNames from 'classnames/bind';
 
-function EventCalendar() {
+import styles from './EventCalendar.module.scss';
+
+const cx = classNames.bind(styles);
+
+function EventCalendar({ closeModal }) {
     return (
-        <Modal>
+        <div className={cx('wrapper')}>
+            <header>
+                <span>Event</span>
+                <button onClick={closeModal}>
+                    <BsX />
+                </button>
+            </header>
             <form>
-                <header>
-                    <span>hello</span>
-                    <button></button>
-                </header>
+                <label htmlFor="title">
+                    Title
+                    <input type="text" name="title" placeholder="Add title" />
+                </label>
             </form>
-        </Modal>
+        </div>
     );
 }
 
