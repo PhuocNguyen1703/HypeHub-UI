@@ -39,7 +39,7 @@ function Email() {
     const email = [
         {
             sender: 'Victoria secret',
-            title: 'How are you today ?',
+            title: 'How are you today ? How are you today ?How are you today ? How are you today ? How are you today ? How are you today ? How are you today ? How are you today ?How are you today ? How are you today ? How are you today ?',
             status: { star: true, spam: false },
             type: 'important',
             createdAt: 'Feb 22',

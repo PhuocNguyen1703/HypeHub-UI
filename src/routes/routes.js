@@ -10,6 +10,7 @@ import Checkin from '~/pages/Checkin';
 import Employee from '~/pages/Employee';
 import Email from '~/pages/Email';
 import PrivateChat from '~/pages/Chat/Private';
+import Todo from '~/pages/Todo';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
@@ -22,6 +23,7 @@ const publicRoutes = [
     { path: config.routes.checkin, component: Checkin },
     { path: config.routes.candidates, component: Candidate, layout: HeaderOnly },
     { path: config.routes.email, component: Email },
+    { path: config.routes.todo, component: Todo },
 ];
 
 const privateRoutes = [];

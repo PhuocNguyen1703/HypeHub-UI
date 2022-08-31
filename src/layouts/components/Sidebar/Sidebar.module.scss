@@ -170,3 +170,42 @@
         }
     }
 }
+
+// todo sidebar
+
+.tags-item {
+    position: relative;
+    margin: 5px 0;
+    padding-left: 15px;
+
+    &::before {
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 80%;
+        border-radius: 5px;
+        background-color: var(--default-background-color);
+        transition: width 0.3s;
+    }
+
+    &:hover {
+        color: var(--default-background-color);
+        background-color: var(--skyBlue-alpha-20);
+
+        &::before {
+            width: 4px;
+        }
+    }
+
+    &.active {
+        color: var(--default-background-color);
+        background-color: var(--skyBlue-alpha-20);
+
+        &::before {
+            width: 4px;
+        }
+    }
+}
