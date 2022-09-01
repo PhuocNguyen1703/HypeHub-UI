@@ -7,18 +7,15 @@ import App from './App';
 import GlobalStyles from '~/components/GlobalStyles';
 import { store, persistor } from './redux/Store/store';
 import { PersistGate } from 'redux-persist/integration/react';
-import ContextWrapper from './Context/ContextWrapper';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
-                <ContextWrapper>
-                    <GlobalStyles>
-                        <App />
-                    </GlobalStyles>
-                </ContextWrapper>
+                <GlobalStyles>
+                    <App />
+                </GlobalStyles>
             </PersistGate>
         </Provider>
     </React.StrictMode>,

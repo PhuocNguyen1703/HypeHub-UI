@@ -1,21 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Calendar.module.scss';
 import { getMonth } from '~/utils/day';
 import dayjs from 'dayjs';
 import { BsCheck2, BsChevronLeft, BsChevronRight, BsExclamationLg, BsJournal, BsPlus, BsTrash } from 'react-icons/bs';
-import GlobalContext from '~/Context/GlobalContext';
 import EventCalendar from '~/components/Modal/EventCalendar';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
 import Modal from '~/components/Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMonthIndex } from '~/redux/Slice/calendarSlice';
 
 const cx = classNames.bind(styles);
 
 function Calendar() {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [currentMonth, setCurrentMonth] = useState(getMonth());
-    const { monthIndex, setMonthIndex } = useContext(GlobalContext);
+    const monthIndex = useSelector((state) => state.calendar.monthIndex);
+    const dispatch = useDispatch();
 
     const menu = [
         { icon: <BsJournal />, title: 'My Tasks', path: '/calendar' },
@@ -33,15 +35,15 @@ function Calendar() {
     };
 
     const handleReset = () => {
-        setMonthIndex(dayjs().month());
+        dispatch(setMonthIndex(dayjs().month()));
     };
 
     const handlePrevMonth = () => {
-        setMonthIndex(monthIndex - 1);
+        dispatch(setMonthIndex(monthIndex - 1));
     };
 
     const handleNextMonth = () => {
-        setMonthIndex(monthIndex + 1);
+        dispatch(setMonthIndex(monthIndex + 1));
     };
 
     const openModal = () => {
