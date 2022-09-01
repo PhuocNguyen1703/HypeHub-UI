@@ -5,16 +5,12 @@ import styles from './Modal.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Modal({ isOpen = true, children }) {
-    if (!isOpen) {
-        return null;
-    }
-
+function Modal({ children }) {
     return (
         <Portal>
             <div className={cx('wrapper')}>
                 <div className={cx('overlay')}></div>
-                <div className={cx('body')}>{children}</div>
+                {children}
             </div>
         </Portal>
     );

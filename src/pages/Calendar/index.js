@@ -10,13 +10,14 @@ import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
 import Modal from '~/components/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMonthIndex } from '~/redux/Slice/calendarSlice';
+import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 
 const cx = classNames.bind(styles);
 
 function Calendar() {
-    const [modalIsOpen, setIsOpen] = useState(false);
     const [currentMonth, setCurrentMonth] = useState(getMonth());
-    const monthIndex = useSelector((state) => state.calendar.monthIndex);
+    const { monthIndex } = useSelector((state) => state.calendar);
+    const { calendarEventModalIsOpen } = useSelector((state) => state.modal);
     const dispatch = useDispatch();
 
     const menu = [
@@ -57,12 +58,8 @@ function Calendar() {
         dispatch(setMonthIndex(monthIndex + 1));
     };
 
-    const openModal = () => {
-        setIsOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsOpen(false);
+    const handleOpenModal = () => {
+        dispatch(setCalendarEventModalIsOpen(true));
     };
 
     return (
@@ -87,7 +84,7 @@ function Calendar() {
             </header>
             <div className={cx('container')}>
                 <div className={cx('sidebar')}>
-                    <button className={cx('create-calendar')} onClick={openModal}>
+                    <button className={cx('create-calendar')} onClick={handleOpenModal}>
                         <BsPlus />
                         Create Calendar
                     </button>
@@ -115,9 +112,11 @@ function Calendar() {
                 </div>
             </div>
 
-            <Modal isOpen={modalIsOpen}>
-                <EventCalendar closeModal={closeModal} />
-            </Modal>
+            {calendarEventModalIsOpen && (
+                <Modal>
+                    <EventCalendar />
+                </Modal>
+            )}
         </div>
     );
 }

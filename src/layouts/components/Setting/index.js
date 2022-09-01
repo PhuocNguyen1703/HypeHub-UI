@@ -4,16 +4,24 @@ import { IoMdClose } from 'react-icons/io';
 
 import styles from './Setting.module.scss';
 import ToggleSwitch from '~/components/ToggleSwitch';
+import { useDispatch } from 'react-redux';
+import { setSettingModalIsOpen } from '~/redux/Slice/modalSlice';
 
 const cx = classNames.bind(styles);
 
-function Setting({ closeModal }) {
+function Setting() {
+    const dispatch = useDispatch();
+
+    const handleCloseModal = () => {
+        dispatch(setSettingModalIsOpen(false));
+    };
+
     return (
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
                 <span className={cx('heading')}>
                     Theme Customizer
-                    <IoMdClose className={cx('icon-close')} onClick={closeModal} />
+                    <IoMdClose className={cx('icon-close')} onClick={handleCloseModal} />
                 </span>
                 <p className={cx('desc')}>Customize & Preview in Real Time</p>
             </header>

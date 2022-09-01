@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,6 +21,7 @@ import { logOutSuccess } from '~/redux/Slice/authSlice';
 import { createAxios } from '~/api/axiosClient';
 import Modal from '~/components/Modal';
 import Setting from '../Setting';
+import { setSettingModalIsOpen } from '~/redux/Slice/modalSlice';
 
 const cx = classNames.bind(styles);
 
@@ -56,8 +57,8 @@ const userMenu = [
 ];
 
 function Header({ setShowSidebar }) {
-    const [modalIsOpen, setIsOpen] = useState(false);
     const user = useSelector((state) => state.auth.login.currentUser);
+    const { settingModalIsOpen } = useSelector((state) => state.modal);
     const accessToken = user?.accessToken;
     const id = user?._id;
     const dispatch = useDispatch();
@@ -79,12 +80,8 @@ function Header({ setShowSidebar }) {
         setShowSidebar((setShowSidebar) => !setShowSidebar);
     };
 
-    const openModal = () => {
-        setIsOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsOpen(false);
+    const handleOpenModal = () => {
+        dispatch(setSettingModalIsOpen(true));
     };
 
     return (
@@ -132,7 +129,7 @@ function Header({ setShowSidebar }) {
                             </button>
                         </Tippy>
                         <Tippy delay={[0, 50]} interactive content="Settings">
-                            <button className={cx('action-btn')} onClick={openModal}>
+                            <button className={cx('action-btn')} onClick={handleOpenModal}>
                                 <BsGear className={cx('icon')} />
                             </button>
                         </Tippy>
@@ -145,9 +142,11 @@ function Header({ setShowSidebar }) {
                 </div>
             </div>
 
-            <Modal isOpen={modalIsOpen}>
-                <Setting closeModal={closeModal} />
-            </Modal>
+            {settingModalIsOpen && (
+                <Modal>
+                    <Setting />
+                </Modal>
+            )}
         </header>
     );
 }

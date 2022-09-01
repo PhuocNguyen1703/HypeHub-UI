@@ -3,10 +3,18 @@ import { BsX } from 'react-icons/bs';
 import classNames from 'classnames/bind';
 
 import styles from './EventCalendar.module.scss';
+import { useDispatch } from 'react-redux';
+import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 
 const cx = classNames.bind(styles);
 
-function EventCalendar({ closeModal }) {
+function EventCalendar() {
+    const dispatch = useDispatch();
+
+    const closeModal = () => {
+        dispatch(setCalendarEventModalIsOpen(false));
+    };
+
     return (
         <div className={cx('wrapper')}>
             <header>
