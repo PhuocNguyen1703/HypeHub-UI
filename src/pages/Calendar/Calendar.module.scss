@@ -123,6 +123,14 @@
     color: var(--black-alpha-80);
 }
 
+.sunday {
+    color: red;
+}
+
+.saturday {
+    color: blue;
+}
+
 .date {
     display: flex;
     justify-content: center;
@@ -130,10 +138,26 @@
     width: 30px;
     height: 30px;
     margin-top: 4px;
+    border-radius: 50%;
+    opacity: 0.3;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--gray-alpha-20);
+    }
 }
 
 .today {
-    background-color: var(--blue);
+    background-color: var(--blue-alpha-80);
     color: white;
     border-radius: 50%;
+    opacity: 1;
+
+    &:hover {
+        background-color: var(--blue);
+    }
+}
+
+.day-of-current-month {
+    opacity: 1;
 }

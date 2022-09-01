@@ -30,8 +30,19 @@ function Calendar() {
         setCurrentMonth(getMonth(monthIndex));
     }, [monthIndex]);
 
-    const getCurrentDayClass = (day) => {
-        return day.format('DD-MM-YYYY') === dayjs().format('DD-MM-YYYY') && 'today';
+    const getWeekendClass = (day) => {
+        if (day.format('dddd') === 'Sunday') return 'sunday';
+        if (day.format('dddd') === 'Saturday') return 'saturday';
+    };
+
+    const getDayOfCurrentMonthClass = (day) => {
+        if (day.format('DD-MM-YYYY') === dayjs().format('DD-MM-YYYY')) {
+            return 'today';
+        }
+
+        if (day.format('MMM') === dayjs().month(monthIndex).format('MMM')) {
+            return 'day-of-current-month';
+        }
     };
 
     const handleReset = () => {
@@ -91,17 +102,9 @@ function Calendar() {
                                 <div key={i} className={cx('row-day')}>
                                     <header className={cx('day-box')}>
                                         {idx === 0 && (
-                                            <p
-                                                className={cx('day')}
-                                                style={{ color: `${(i === 0 && 'red') || (i === 6 && 'blue')}` }}
-                                            >
-                                                {day.format('ddd')}
-                                            </p>
+                                            <p className={cx('day', getWeekendClass(day))}>{day.format('ddd')}</p>
                                         )}
-                                        <p
-                                            className={cx('date', getCurrentDayClass(day))}
-                                            style={{ color: `${(i === 0 && 'red') || (i === 6 && 'blue')}` }}
-                                        >
+                                        <p className={cx('date', getDayOfCurrentMonthClass(day), getWeekendClass(day))}>
                                             {day.format('DD')}
                                         </p>
                                     </header>
