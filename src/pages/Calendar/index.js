@@ -9,7 +9,7 @@ import EventCalendar from '~/components/Modal/EventCalendar';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
 import Modal from '~/components/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMonthIndex } from '~/redux/Slice/calendarSlice';
+import { setDaySelected, setMonthIndex } from '~/redux/Slice/calendarSlice';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 
 const cx = classNames.bind(styles);
@@ -58,7 +58,13 @@ function Calendar() {
         dispatch(setMonthIndex(monthIndex + 1));
     };
 
-    const handleOpenModal = () => {
+    const handleCreateCalendar = () => {
+        dispatch(setDaySelected(dayjs().format('MMM DD, YYYY')));
+        dispatch(setCalendarEventModalIsOpen(true));
+    };
+
+    const handleSelectedDay = (day) => {
+        dispatch(setDaySelected(day.format('MMM DD, YYYY')));
         dispatch(setCalendarEventModalIsOpen(true));
     };
 
@@ -84,7 +90,7 @@ function Calendar() {
             </header>
             <div className={cx('container')}>
                 <div className={cx('sidebar')}>
-                    <button className={cx('create-calendar')} onClick={handleOpenModal}>
+                    <button className={cx('create-calendar')} onClick={handleCreateCalendar}>
                         <BsPlus />
                         Create Calendar
                     </button>
@@ -96,7 +102,7 @@ function Calendar() {
                     {currentMonth.map((row, idx) => (
                         <React.Fragment key={idx}>
                             {row.map((day, i) => (
-                                <div key={i} className={cx('row-day')}>
+                                <div key={i} className={cx('row-day')} onClick={() => handleSelectedDay(day)}>
                                     <header className={cx('day-box')}>
                                         {idx === 0 && (
                                             <p className={cx('day', getWeekendClass(day))}>{day.format('ddd')}</p>
@@ -112,7 +118,7 @@ function Calendar() {
                 </div>
             </div>
 
-            {calendarEventModalIsOpen && (
+            {!calendarEventModalIsOpen && (
                 <Modal>
                     <EventCalendar />
                 </Modal>
