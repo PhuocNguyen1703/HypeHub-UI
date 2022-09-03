@@ -4,12 +4,15 @@ import classNames from 'classnames/bind';
 import styles from './EventForm.module.scss';
 import { BsClock, BsFillRecordFill, BsJustifyLeft, BsTags } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
+import PickerCalendar from '~/components/PickerCalendar';
+import dayjs from 'dayjs';
 
 const cx = classNames.bind(styles);
 
 function TaskForm() {
     const [showTime, setShowTime] = useState(false);
     const { daySelected } = useSelector((state) => state.calendar);
+    const { smallCalendarSelectedDay } = useSelector((state) => state.calendar);
 
     const handleShowPickerCalendar = () => {
         console.log('ok');
@@ -23,6 +26,18 @@ function TaskForm() {
         setShowTime(false);
     };
 
+    const getTime = () => {
+        if (daySelected !== dayjs().format('MMM DD, YYYY')) {
+            return daySelected;
+        }
+
+        if (smallCalendarSelectedDay !== dayjs().format('MMM DD, YYYY')) {
+            return smallCalendarSelectedDay;
+        }
+
+        return dayjs().format('MMM DD, YYYY');
+    };
+
     const onSubmit = () => {};
 
     return (
@@ -34,7 +49,7 @@ function TaskForm() {
                 <input
                     className={cx('calendar-time')}
                     type="text"
-                    value={daySelected}
+                    value={getTime()}
                     readOnly={true}
                     onClick={handleShowPickerCalendar}
                 />
@@ -48,7 +63,6 @@ function TaskForm() {
                         All time
                     </button>
                 )}
-                <div className={cx('picker-calendar')}></div>
             </div>
             <div className={cx('note')}>
                 <span className={cx('icon')}>

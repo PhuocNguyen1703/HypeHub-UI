@@ -14,7 +14,7 @@ import Conversation from '~/layouts/components/Conversation/Conversation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { getAllUser } from '~/api/userApi';
-import Calendar from '~/components/Calendar/Calendar';
+import Calendar from '~/components/Calenda/Calendar';
 
 const cx = classNames.bind(styles);
 

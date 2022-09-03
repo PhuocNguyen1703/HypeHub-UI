@@ -6,13 +6,17 @@ import { useDispatch } from 'react-redux';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 import TaskForm from './TaskForm';
 import EventForm from './EventForm';
+import { setDaySelected, setSmallCalendarSelectedDay } from '~/redux/Slice/calendarSlice';
+import dayjs from 'dayjs';
 
 const cx = classNames.bind(styles);
 
-function TaskCalendar() {
+function CreateCalendar() {
     const dispatch = useDispatch();
 
     const closeModal = () => {
+        dispatch(setDaySelected(dayjs().format('MMM DD, YYYY')));
+        dispatch(setSmallCalendarSelectedDay(dayjs().format('MMM DD, YYYY')));
         dispatch(setCalendarEventModalIsOpen(false));
     };
 
@@ -41,4 +45,4 @@ function TaskCalendar() {
     );
 }
 
-export default TaskCalendar;
+export default CreateCalendar;

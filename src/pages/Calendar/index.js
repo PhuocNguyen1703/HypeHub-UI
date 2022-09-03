@@ -5,12 +5,13 @@ import styles from './Calendar.module.scss';
 import { getMonth } from '~/utils/day';
 import dayjs from 'dayjs';
 import { BsCheck2, BsChevronLeft, BsChevronRight, BsExclamationLg, BsJournal, BsPlus, BsTrash } from 'react-icons/bs';
-import EventCalendar from '~/components/Modal/CreateCalendar';
+import CreateCalendar from '~/components/Modal/CreateCalendar';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
 import Modal from '~/components/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { setDaySelected, setMonthIndex } from '~/redux/Slice/calendarSlice';
+import { setDaySelected, setMonthIndex, setSmallCalendarSelectedDay } from '~/redux/Slice/calendarSlice';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
+import PickerCalendar from '~/components/PickerCalendar';
 
 const cx = classNames.bind(styles);
 
@@ -48,6 +49,7 @@ function Calendar() {
 
     const handleReset = () => {
         dispatch(setMonthIndex(dayjs().month()));
+        dispatch(setSmallCalendarSelectedDay(null));
     };
 
     const handlePrevMonth = () => {
@@ -94,6 +96,7 @@ function Calendar() {
                         <BsPlus />
                         Create Calendar
                     </button>
+                    <PickerCalendar />
                     {menu.map((item, index) => (
                         <SidebarItem key={index} item={item} className={'menu-item'} />
                     ))}
@@ -118,9 +121,9 @@ function Calendar() {
                 </div>
             </div>
 
-            {!calendarEventModalIsOpen && (
+            {calendarEventModalIsOpen && (
                 <Modal>
-                    <EventCalendar />
+                    <CreateCalendar />
                 </Modal>
             )}
         </div>
