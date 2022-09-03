@@ -5,7 +5,7 @@ import styles from './Calendar.module.scss';
 import { getMonth } from '~/utils/day';
 import dayjs from 'dayjs';
 import { BsCheck2, BsChevronLeft, BsChevronRight, BsExclamationLg, BsJournal, BsPlus, BsTrash } from 'react-icons/bs';
-import EventCalendar from '~/components/Modal/EventCalendar';
+import EventCalendar from '~/components/Modal/CreateCalendar';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
 import Modal from '~/components/Modal';
 import { useDispatch, useSelector } from 'react-redux';
