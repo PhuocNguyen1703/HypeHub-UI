@@ -11,12 +11,13 @@
     --input-outline: #dedfe1;
     --primary-button-background: #ff6a00;
 
-    --blue: #316bff;
-    --blue-alpha-90: rgba(49, 107, 255, 0.9);
-    --blue-alpha-80: rgba(49, 107, 255, 0.8);
-    --blue-alpha-60: rgba(49, 107, 255, 0.6);
-    --blue-alpha-40: rgba(49, 107, 255, 0.4);
-    --blue-alpha-20: rgba(49, 107, 255, 0.2);
+    --blue: #015ec2;
+    --blue-alpha-90: rgba(1, 94, 194, 0.9);
+    --blue-alpha-80: rgba(1, 94, 194, 0.8);
+    --blue-alpha-60: rgba(1, 94, 194, 0.6);
+    --blue-alpha-40: rgba(1, 94, 194, 0.4);
+    --blue-alpha-20: rgba(1, 94, 194, 0.2);
+    --blue-alpha-05: rgba(1, 94, 194, 0.05);
 
     --orangeRed: #ff543d;
     --orangeRed-alpha-80: rgba(255, 84, 61, 0.8);
@@ -63,7 +64,7 @@
 
     // DefaultLayout
     --default-layout-header-height: 70px;
-    --default-background-color: rgba(1, 94, 194);
+    --default-background-color: rgb(1, 94, 194);
     --main-overlay-color: rgba(255, 255, 255, 0.91);
 
     //Font
@@ -74,6 +75,32 @@
     --box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     --box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
     --box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+
+    //Calendar tag color
+    --radicchio-rgb: 204, 166, 172;
+    --tangerine-rgb: 250, 87, 60;
+    --citron-rgb: 251, 233, 131;
+    --basil-rgb: 22, 167, 101;
+    --blueBerry-rgb: 73, 134, 231;
+    --grape-rgb: 205, 116, 230;
+    --cherryBlossom-rgb: 246, 145, 178;
+    --pumpkin-rgb: 255, 117, 55;
+    --avocado-rgb: 179, 220, 108;
+    --eucalyptus-rgb: 66, 214, 146;
+    --lavender-rgb: 154, 156, 255;
+    --cocoa-rgb: 172, 114, 94;
+    --tomato-rgb: 248, 58, 34;
+    --mango-rgb: 255, 173, 70;
+    --pistachio-rgb: 123, 209, 72;
+    --peacock-rgb: 159, 225, 231;
+    --wisteria-rgb: 185, 154, 255;
+    --graphite-rgb: 194, 194, 194;
+    --flamingo-rgb: 208, 107, 100;
+    --banana-rgb: 250, 209, 101;
+    --sage-rgb: 146, 225, 192;
+    --cobalt-rgb: 159, 198, 231;
+    --amethyst-rgb: 164, 122, 226;
+    --birch-rgb: 202, 189, 191;
 }
 
 * {

@@ -28,6 +28,23 @@ function Calendar() {
         { icon: <BsTrash />, title: 'Deleted', path: '/calendar' },
     ];
 
+    const events = [
+        { title: 'How are you ?', calendar: 'Aug 29, 2022', description: 'how are you ?', theme: 'grape' },
+        { title: 'What your name ?', calendar: 'Aug 25, 2022', description: 'how are you ?', theme: 'radicchio' },
+        { title: 'Wedding', calendar: 'Sep 10, 2022', description: 'how are you ?', theme: 'tangerine' },
+        { title: 'Birthday', calendar: 'Aug 15, 2022', description: 'how are you ?', theme: 'citron' },
+        { title: 'Wedding', calendar: 'Sep 10, 2022', description: 'how are you ?', theme: 'basil' },
+        { title: 'Wedding', calendar: 'Sep 20, 2022', description: 'how are you ?', theme: 'blueBerry' },
+        { title: 'Wedding', calendar: 'Sep 15, 2022', description: 'how are you ?', theme: 'cherryBlossom' },
+        { title: 'Wedding', calendar: 'Sep 15, 2022', description: 'how are you ?', theme: 'pumpkin' },
+        { title: 'Wedding', calendar: 'Sep 15, 2022', description: 'how are you ?', theme: 'avocado' },
+        { title: 'Wedding', calendar: 'Sep 15, 2022', description: 'how are you ?', theme: 'eucalyptus' },
+        { title: 'Wedding', calendar: 'Sep 21, 2022', description: 'how are you ?', theme: 'lavender' },
+        { title: 'Wedding', calendar: 'Sep 12, 2022', description: 'how are you ?', theme: 'cocoa' },
+        { title: 'Wedding', calendar: 'Sep 18, 2022', description: 'how are you ?', theme: 'tomato' },
+        { title: 'Wedding', calendar: 'Sep 25, 2022', description: 'how are you ?', theme: 'banana' },
+    ];
+
     useEffect(() => {
         setCurrentMonth(getMonth(monthIndex));
     }, [monthIndex]);
@@ -49,7 +66,7 @@ function Calendar() {
 
     const handleReset = () => {
         dispatch(setMonthIndex(dayjs().month()));
-        dispatch(setSmallCalendarSelectedDay(null));
+        dispatch(setSmallCalendarSelectedDay(dayjs().format('MMM DD, YYYY')));
     };
 
     const handlePrevMonth = () => {
@@ -114,6 +131,28 @@ function Calendar() {
                                             {day.format('DD')}
                                         </p>
                                     </header>
+                                    <div className={cx('note-schedule')}>
+                                        {events.map(
+                                            (evt, idx) =>
+                                                evt.calendar === day.format('MMM DD, YYYY') && (
+                                                    <div
+                                                        key={idx}
+                                                        className={cx('event')}
+                                                        style={{
+                                                            backgroundColor: `rgba(var(--${evt?.theme}-rgb),0.3)`,
+                                                        }}
+                                                    >
+                                                        <span
+                                                            className={cx('tag')}
+                                                            style={{
+                                                                backgroundColor: `rgb(var(--${evt?.theme}-rgb))`,
+                                                            }}
+                                                        ></span>
+                                                        {evt.title}
+                                                    </div>
+                                                ),
+                                        )}
+                                    </div>
                                 </div>
                             ))}
                         </React.Fragment>

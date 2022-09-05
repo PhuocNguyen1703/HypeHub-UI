@@ -16,7 +16,7 @@ function CreateCalendar() {
 
     const closeModal = () => {
         dispatch(setDaySelected(dayjs().format('MMM DD, YYYY')));
-        dispatch(setSmallCalendarSelectedDay(dayjs().format('MMM DD, YYYY')));
+        // dispatch(setSmallCalendarSelectedDay(dayjs().format('MMM DD, YYYY')));
         dispatch(setCalendarEventModalIsOpen(false));
     };
 
