@@ -136,7 +136,7 @@ function Header({ setShowSidebar }) {
                     </div>
                     <CgMoreVerticalAlt className={cx('more-icon')} />
 
-                    <Menu items={userMenu} onChange={handleMenuChange}>
+                    <Menu items={userMenu} onChange={handleMenuChange} viewProfile={true}>
                         <Image className={cx('user-avatar')} src={`${user.avatar}`} alt="Nguyen  van A" />
                     </Menu>
                 </div>

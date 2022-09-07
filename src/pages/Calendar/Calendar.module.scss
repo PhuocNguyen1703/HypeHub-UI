@@ -1,8 +1,9 @@
 .wrapper {
+    --layout-header-height: 60px;
+
     display: flex;
     flex-direction: column;
     height: calc(100vh - var(--default-layout-header-height));
-
     overflow: auto;
 }
 
@@ -10,6 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: var(--layout-header-height);
 }
 
 .header-left {
@@ -51,6 +53,26 @@
 }
 
 .header-right {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-right: 40px;
+    padding: 6px 10px;
+    color: var(--black-alpha-80);
+    border: 1px solid var(--gray-alpha-40);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--gray-alpha-10);
+    }
+
+    .icon-down {
+        margin-left: 6px;
+        font-size: 1.2rem;
+        color: var(--gray);
+    }
 }
 
 .today-btn {
@@ -102,7 +124,8 @@
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 1fr);
     width: 100%;
-    overflow: auto;
+    height: calc(100vh - var(--default-layout-header-height) - var(--layout-header-height));
+    overflow: overlay;
     background-color: var(--blue-alpha-05);
 }
 
@@ -177,9 +200,17 @@
     // background-color: rgba($color: var(--grape-rgb), $alpha: 0.3);
     border-radius: 4px;
     cursor: pointer;
+    width: 100%;
 
     &:hover {
         box-shadow: var(--box-shadow);
+    }
+
+    p {
+        width: 15rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 

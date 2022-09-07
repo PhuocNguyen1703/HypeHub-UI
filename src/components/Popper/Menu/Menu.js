@@ -11,7 +11,7 @@ import ViewProfile from './ViewProfile';
 
 const cx = classNames.bind(styles);
 
-function Menu({ children, items = [], onChange, hideOnClick = false }) {
+function Menu({ children, items = [], onChange, viewProfile = false }) {
     const [history, setHistory] = useState([{ data: items }]);
     const currentMenu = history[history.length - 1];
 
@@ -38,7 +38,8 @@ function Menu({ children, items = [], onChange, hideOnClick = false }) {
     const renderResult = (attrs) => (
         <div className={cx('menu-items')} tabIndex="-1" {...attrs}>
             <PopperWrapper>
-                {history.length > 1 ? <Header title={currentMenu.title} onBack={handleBack} /> : <ViewProfile />}
+                {viewProfile &&
+                    (history.length > 1 ? <Header title={currentMenu.title} onBack={handleBack} /> : <ViewProfile />)}
                 {renderItems()}
             </PopperWrapper>
         </div>
@@ -54,9 +55,9 @@ function Menu({ children, items = [], onChange, hideOnClick = false }) {
         <div>
             <Tippy
                 interactive
-                delay={[0, 500]}
+                delay={[0, 400]}
                 offset={[2, 8]}
-                hideOnClick={hideOnClick}
+                hideOnClick
                 placement="bottom-end"
                 onHide={handleResetMenu}
                 render={renderResult}
