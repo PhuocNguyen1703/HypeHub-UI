@@ -3,8 +3,10 @@ import classNames from 'classnames/bind';
 
 import styles from './EventForm.module.scss';
 import { BsClock, BsFillRecordFill, BsJustifyLeft, BsTags } from 'react-icons/bs';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
+import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
+import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 
 const cx = classNames.bind(styles);
 
@@ -12,6 +14,7 @@ function TaskForm() {
     const { daySelected, smallCalendarSelectedDay, selectedEvent } = useSelector((state) => state.calendar);
     const [showTime, setShowTime] = useState(false);
     const [desc] = useState(selectedEvent ? selectedEvent.description : '');
+    const dispatch = useDispatch();
 
     const handleShowPickerCalendar = () => {
         console.log('calendar');
@@ -35,6 +38,12 @@ function TaskForm() {
         }
 
         return dayjs().format('MMM DD, YYYY');
+    };
+
+    const handleCancel = () => {
+        dispatch(setDaySelected(dayjs().format('MMM DD, YYYY')));
+        dispatch(setCalendarEventModalIsOpen(false));
+        dispatch(setSelectedEvent(null));
     };
 
     const onSubmit = () => {};
@@ -82,6 +91,9 @@ function TaskForm() {
                 </span>
             </div>
             <footer className={cx('action-btn')}>
+                <button className={cx('cancel-btn')} type="button" onClick={handleCancel}>
+                    Cancel
+                </button>
                 <button className={cx('save-btn')} type="submit">
                     Save
                 </button>

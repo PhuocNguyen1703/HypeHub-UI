@@ -132,7 +132,8 @@
     // margin-top: 16px;
 }
 
-.save-btn {
+.save-btn,
+.cancel-btn {
     padding: 10px 18px;
     font-size: 1.7rem;
     font-weight: 600;
@@ -140,4 +141,14 @@
     background-color: var(--blue);
     border-radius: 6px;
     cursor: pointer;
+}
+
+.cancel-btn {
+    color: var(--black-alpha-60);
+    background-color: transparent;
+    margin-right: 4px;
+
+    &:hover {
+        color: var(--black);
+    }
 }
