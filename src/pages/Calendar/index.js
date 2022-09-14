@@ -33,7 +33,7 @@ const cx = classNames.bind(styles);
 function Calendar() {
     const [buttonTitle, setButtonTitle] = useState('Month');
     const [currentMonth, setCurrentMonth] = useState(getMonth());
-    const { monthIndex } = useSelector((state) => state.calendar);
+    const { monthIndex, selectedEvent } = useSelector((state) => state.calendar);
     const { calendarEventModalIsOpen } = useSelector((state) => state.modal);
     const dispatch = useDispatch();
 
@@ -51,6 +51,7 @@ function Calendar() {
             calendar: 'Aug 29, 2022',
             description: 'how are you ?',
             theme: 'grape',
+            completed: true,
         },
         {
             type: 'Task',
@@ -58,35 +59,136 @@ function Calendar() {
             calendar: 'Aug 25, 2022',
             description: 'how are you ?',
             theme: 'radicchio',
+            completed: false,
         },
-        { type: 'Event', title: 'Wedding', calendar: 'Sep 10, 2022', description: 'how are you ?', theme: 'tangerine' },
-        { type: 'Task', title: 'Birthday', calendar: 'Aug 15, 2022', description: 'What are you ?', theme: 'citron' },
-        { type: 'Event', title: 'Wedding', calendar: 'Sep 10, 2022', description: 'how are you ?', theme: 'basil' },
-        { type: 'Task', title: 'Wedding', calendar: 'Sep 20, 2022', description: 'how are you ?', theme: 'blueBerry' },
+        {
+            type: 'Event',
+            title: 'Wedding',
+            calendar: 'Sep 10, 2022',
+            description: 'how are you ?',
+            theme: 'tangerine',
+            completed: false,
+        },
+        {
+            type: 'Task',
+            title: 'Birthday',
+            calendar: 'Aug 15, 2022',
+            description: 'What are you ?',
+            theme: 'citron',
+            completed: true,
+        },
+        {
+            type: 'Event',
+            title: 'Wedding',
+            calendar: 'Sep 10, 2022',
+            description: 'how are you ?',
+            theme: 'basil',
+            completed: false,
+        },
+        {
+            type: 'Task',
+            title: 'Wedding',
+            calendar: 'Sep 20, 2022',
+            description: 'how are you ?',
+            theme: 'blueBerry',
+            completed: false,
+        },
         {
             type: 'Event',
             title: 'Wedding',
             calendar: 'Sep 15, 2022',
             description: 'how are you ?',
             theme: 'cherryBlossom',
+            completed: true,
         },
-        { type: 'Event', title: 'Wedding', calendar: 'Sep 15, 2022', description: 'how are you ?', theme: 'pumpkin' },
-        { type: 'Task', title: 'Wedding', calendar: 'Sep 15, 2022', description: 'How are you ?', theme: 'avocado' },
+        {
+            type: 'Event',
+            title: 'Wedding',
+            calendar: 'Sep 15, 2022',
+            description: 'how are you ?',
+            theme: 'pumpkin',
+            completed: false,
+        },
+        {
+            type: 'Task',
+            title: 'Wedding',
+            calendar: 'Sep 15, 2022',
+            description: 'How are you ?',
+            theme: 'avocado',
+            completed: false,
+        },
         {
             type: 'Event',
             title: 'Wedding',
             calendar: 'Sep 15, 2022',
             description: 'Where are you ?',
             theme: 'eucalyptus',
+            completed: false,
         },
-        { type: 'Event', title: 'Wedding', calendar: 'Sep 21, 2022', description: 'how are you ?', theme: 'lavender' },
-        { type: 'Task', title: 'Wedding', calendar: 'Sep 12, 2022', description: 'how are you ?', theme: 'cocoa' },
-        { type: 'Event', title: 'Wedding', calendar: 'Sep 18, 2022', description: 'Who are you ?', theme: 'tomato' },
-        { type: 'Task', title: 'Wedding', calendar: 'Sep 01, 2022', description: 'how are you ?', theme: 'banana' },
-        { type: 'Event', title: 'Wedding', calendar: 'Sep 05, 2022', description: 'What are you ?', theme: 'sage' },
-        { type: 'Task', title: 'Wedding', calendar: 'Sep 07, 2022', description: 'how are you ?', theme: 'cobalt' },
-        { type: 'Task', title: 'Wedding', calendar: 'Sep 28, 2022', description: 'how are you ?', theme: 'amethyst' },
-        { type: 'Event', title: 'Wedding', calendar: 'Sep 30, 2022', description: 'how are you ?', theme: 'birch' },
+        {
+            type: 'Event',
+            title: 'Wedding',
+            calendar: 'Sep 21, 2022',
+            description: 'how are you ?',
+            theme: 'lavender',
+            completed: true,
+        },
+        {
+            type: 'Task',
+            title: 'Wedding',
+            calendar: 'Sep 12, 2022',
+            description: 'how are you ?',
+            theme: 'cocoa',
+            completed: true,
+        },
+        {
+            type: 'Event',
+            title: 'Wedding',
+            calendar: 'Sep 18, 2022',
+            description: 'Who are you ?',
+            theme: 'tomato',
+            completed: true,
+        },
+        {
+            type: 'Task',
+            title: 'Wedding',
+            calendar: 'Sep 01, 2022',
+            description: 'how are you ?',
+            theme: 'banana',
+            completed: false,
+        },
+        {
+            type: 'Event',
+            title: 'Wedding',
+            calendar: 'Sep 05, 2022',
+            description: 'What are you ?',
+            theme: 'sage',
+            completed: true,
+        },
+        {
+            type: 'Task',
+            title: 'Wedding Wedding Wedding Wedding Wedding Wedding Wedding Wedding Wedding Wedding v Wedding Wedding Wedding Wedding Wedding Wedding Wedding Wedding Wedding Wedding Wedding Wedding Wedding Wedding Wedding v ',
+            calendar: 'Sep 07, 2022',
+            description: 'how are you ? how are you ? how are you ? how are you ?how are you ?how are you ? how are you ?how are you ? how are you ?vv how are you ? how are you ? v vv how are you ? how are you ? how are you ? v how are you ? vv how are you ? how are you ? how are you ? how are you ? how are you ? how are you ? how are you ? how are you ?',
+            theme: 'cobalt',
+            completed: false,
+        },
+        {
+            type: 'Task',
+            title: 'Wedding',
+            calendar: 'Sep 28, 2022',
+            description: 'how are you ?',
+            theme: 'amethyst',
+            completed: true,
+        },
+        {
+            type: 'Event',
+            title: 'Wedding',
+            calendar: 'Sep 30, 2022',
+            description: 'how are you ?',
+            theme: 'birch',
+            completed: false,
+        },
     ];
 
     const viewMenu = [
@@ -130,7 +232,7 @@ function Calendar() {
         dispatch(setMonthIndex(monthIndex + 1));
     };
 
-    const handleMenuChange = (menuItem) => {
+    const handleChangeLayout = (menuItem) => {
         switch (menuItem.title) {
             case 'Day':
                 setButtonTitle('Day');
@@ -187,7 +289,7 @@ function Calendar() {
                         <BsChevronRight />
                     </button>
                 </div>
-                <Menu items={viewMenu} onChange={handleMenuChange}>
+                <Menu items={viewMenu} onChange={handleChangeLayout}>
                     <button className={cx('header-right')}>
                         {buttonTitle}
                         <BsFillCaretDownFill className={cx('icon-down')} />
@@ -222,22 +324,23 @@ function Calendar() {
                                         {events.map(
                                             (evt, idx) =>
                                                 evt.calendar === day.format('MMM DD, YYYY') && (
-                                                    <div
-                                                        key={idx}
-                                                        className={cx('event')}
-                                                        style={{
-                                                            backgroundColor: `rgba(var(--${evt?.theme}-rgb),0.3)`,
-                                                        }}
-                                                        onClick={() => handleClickEvent(evt)}
-                                                    >
-                                                        <span
-                                                            className={cx('tag')}
+                                                    <React.Fragment key={idx}>
+                                                        <div
+                                                            className={cx('event')}
                                                             style={{
-                                                                backgroundColor: `rgb(var(--${evt?.theme}-rgb))`,
+                                                                backgroundColor: `rgba(var(--${evt?.theme}-rgb),0.3)`,
                                                             }}
-                                                        ></span>
-                                                        <p>{evt.title}</p>
-                                                    </div>
+                                                            onClick={() => handleClickEvent(evt)}
+                                                        >
+                                                            <span
+                                                                className={cx('tag')}
+                                                                style={{
+                                                                    backgroundColor: `rgb(var(--${evt?.theme}-rgb))`,
+                                                                }}
+                                                            ></span>
+                                                            <p>{evt.title}</p>
+                                                        </div>
+                                                    </React.Fragment>
                                                 ),
                                         )}
                                     </div>

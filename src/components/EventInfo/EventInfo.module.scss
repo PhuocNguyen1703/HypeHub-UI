@@ -1,0 +1,91 @@
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 450px;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-lg);
+    z-index: 100;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 46px;
+    padding: 0 14px;
+    background-color: var(--gray-alpha-10);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.edit-btn,
+.delete-btn,
+.close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-left: 2px;
+    font-size: 1.6rem;
+    border-radius: 999px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--gray-alpha-10);
+    }
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.calendar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.icon {
+    display: flex;
+    font-size: 1.8rem;
+    margin-right: 16px;
+}
+
+.note {
+    display: flex;
+    align-items: flex-start;
+}
+
+.footer {
+    display: flex;
+    justify-content: end;
+    border-top: 1px solid var(--gray-alpha-20);
+}
+
+.mark-btn {
+    font-size: 1.6rem;
+    margin: 8px 16px;
+    padding: 4px 10px;
+    color: var(--black);
+    background-color: rgba($color: green, $alpha: 0.1);
+    border: 1px solid green;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.uncompleted {
+    background-color: rgba($color: red, $alpha: 0.1);
+    border: 1px solid red;
+}
