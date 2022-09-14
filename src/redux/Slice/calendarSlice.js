@@ -8,6 +8,7 @@ const calendarSlice = createSlice({
         monthIndex: dayjs().month(),
         daySelected: dayjs().format('MMM DD, YYYY'),
         smallCalendarSelectedDay: dayjs().format('MMM DD, YYYY'),
+        selectedEvent: null,
     },
     reducers: {
         setMonthIndex: (state, action) => {
@@ -19,9 +20,12 @@ const calendarSlice = createSlice({
         setSmallCalendarSelectedDay: (state, action) => {
             state.smallCalendarSelectedDay = action.payload;
         },
+        setSelectedEvent: (state, action) => {
+            state.selectedEvent = action.payload;
+        },
     },
 });
 
-export const { setMonthIndex, setDaySelected, setSmallCalendarSelectedDay } = calendarSlice.actions;
+export const { setMonthIndex, setDaySelected, setSmallCalendarSelectedDay, setSelectedEvent } = calendarSlice.actions;
 
 export default calendarSlice.reducer;

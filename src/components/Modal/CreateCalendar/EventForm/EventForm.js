@@ -4,18 +4,17 @@ import classNames from 'classnames/bind';
 import styles from './EventForm.module.scss';
 import { BsClock, BsFillRecordFill, BsJustifyLeft, BsTags } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
-import PickerCalendar from '~/components/PickerCalendar';
 import dayjs from 'dayjs';
 
 const cx = classNames.bind(styles);
 
 function TaskForm() {
+    const { daySelected, smallCalendarSelectedDay, selectedEvent } = useSelector((state) => state.calendar);
     const [showTime, setShowTime] = useState(false);
-    const { daySelected } = useSelector((state) => state.calendar);
-    const { smallCalendarSelectedDay } = useSelector((state) => state.calendar);
+    const [desc] = useState(selectedEvent ? selectedEvent.description : '');
 
     const handleShowPickerCalendar = () => {
-        console.log('ok');
+        console.log('calendar');
     };
 
     const handleAddTime = () => {
@@ -69,7 +68,7 @@ function TaskForm() {
                     <BsJustifyLeft />
                 </span>
                 <div className={cx('desc')}>
-                    <textarea className={cx('textarea')} placeholder="Add description"></textarea>
+                    <textarea className={cx('textarea')} placeholder="Add description" defaultValue={desc}></textarea>
                     <span className={cx('underline-desc')}></span>
                 </div>
             </div>
