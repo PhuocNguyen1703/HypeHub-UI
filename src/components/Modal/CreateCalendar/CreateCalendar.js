@@ -16,7 +16,6 @@ const cx = classNames.bind(styles);
 
 function CreateCalendar() {
     const { selectedEvent } = useSelector((state) => state.calendar);
-    const [type] = useState(selectedEvent ? selectedEvent.type : 'Event');
     const [title] = useState(selectedEvent ? selectedEvent.title : '');
     const dispatch = useDispatch();
 
@@ -26,59 +25,40 @@ function CreateCalendar() {
         dispatch(setSelectedEvent(null));
     };
 
+    if (selectedEvent) {
+        return (
+            <div className={cx('wrapper')}>
+                <EventInfo />
+            </div>
+        );
+    }
+
     return (
-        <div>
-            <EventInfo />
+        <div className={cx('wrapper')}>
+            <header className={cx('header')}>
+                <div>
+                    <button className={cx('close-btn')} onClick={closeModal}>
+                        <BsXLg />
+                    </button>
+                </div>
+            </header>
+            <div className={cx('body')}>
+                <div className={cx('title')}>
+                    <input
+                        className={cx('title-ipt')}
+                        type="text"
+                        name="title"
+                        defaultValue={title}
+                        required
+                        autoFocus
+                    />
+                    <span className={cx('underline-title-ipt')}></span>
+                    <label className={cx('label')}>Title</label>
+                </div>
+                {/* <TaskForm /> */}
+                <EventForm />
+            </div>
         </div>
-        // <div className={cx('wrapper')}>
-        //     <header className={cx('header')}>
-        //         <span className={cx('type')}>{type}</span>
-        //         <div className={cx('header-action-btn')}>
-        //             {selectedEvent && (
-        //                 <>
-        //                     <span></span>
-        //                     <Tippy delay={[0, 50]} interactive content="Edit">
-        //                         <button className={cx('edit-btn')}>
-        //                             <BsPencil />
-        //                         </button>
-        //                     </Tippy>
-        //                     <Tippy delay={[0, 50]} interactive content="Delete">
-        //                         <button className={cx('delete-btn')}>
-        //                             <BsTrash />
-        //                         </button>
-        //                     </Tippy>
-        //                 </>
-        //             )}
-        //             <Tippy delay={[0, 50]} interactive content="Close">
-        //                 <button className={cx('close-btn')} onClick={closeModal}>
-        //                     <BsXLg />
-        //                 </button>
-        //             </Tippy>
-        //         </div>
-        //     </header>
-        //     <div className={cx('body')}>
-        //         <div className={cx('title')}>
-        //             <input
-        //                 className={cx('title-ipt')}
-        //                 type="text"
-        //                 name="title"
-        //                 defaultValue={title}
-        //                 required
-        //                 autoFocus
-        //             />
-        //             <span className={cx('underline-title-ipt')}></span>
-        //             <label className={cx('label')}>Title</label>
-        //         </div>
-        //         {!selectedEvent && (
-        //             <div className={cx('type-btn')}>
-        //                 <button className={cx('event-btn')}>Event</button>
-        //                 <button className={cx('task-btn')}>Task</button>
-        //             </div>
-        //         )}
-        //         {/* <TaskForm /> */}
-        //         {/* <EventForm /> */}
-        //     </div>
-        // </div>
     );
 }
 

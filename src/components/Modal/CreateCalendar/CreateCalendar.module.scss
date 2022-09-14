@@ -13,7 +13,7 @@
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     height: 46px;
     padding: 0 14px;
     background-color: var(--gray-alpha-10);
@@ -21,26 +21,12 @@
     border-top-right-radius: 10px;
 }
 
-.type {
-    font-size: 2.2rem;
-    font-weight: 700;
-}
-
-.header-action-btn {
-    display: flex;
-    align-items: center;
-}
-
-.edit-btn,
-.delete-btn,
 .close-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 32px;
     height: 32px;
-    margin-left: 2px;
-    font-size: 1.5rem;
     border-radius: 999px;
     cursor: pointer;
 

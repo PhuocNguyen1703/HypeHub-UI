@@ -29,21 +29,24 @@ function EventInfo() {
     return (
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
-                <Tippy delay={[0, 50]} interactive content="Edit">
-                    <button className={cx('edit-btn')}>
-                        <BsPencil />
-                    </button>
-                </Tippy>
-                <Tippy delay={[0, 50]} interactive content="Delete">
-                    <button className={cx('delete-btn')}>
-                        <BsTrash />
-                    </button>
-                </Tippy>
-                <Tippy delay={[0, 50]} interactive content="Close">
-                    <button className={cx('close-btn')} onClick={closeModal}>
-                        <BsXLg />
-                    </button>
-                </Tippy>
+                <span className={cx('type')}>{selectedEvent.type}</span>
+                <div className={cx('header-action-btn')}>
+                    <Tippy delay={[0, 50]} interactive content="Edit">
+                        <button className={cx('edit-btn')}>
+                            <BsPencil />
+                        </button>
+                    </Tippy>
+                    <Tippy delay={[0, 50]} interactive content="Delete">
+                        <button className={cx('delete-btn')}>
+                            <BsTrash />
+                        </button>
+                    </Tippy>
+                    <Tippy delay={[0, 50]} interactive content="Close">
+                        <button className={cx('close-btn')} onClick={closeModal}>
+                            <BsXLg />
+                        </button>
+                    </Tippy>
+                </div>
             </header>
             <div className={cx('body')}>
                 <p className={cx('title')}>{selectedEvent.title}</p>
