@@ -1,10 +1,13 @@
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import dayjs from 'dayjs';
+import { useState } from 'react';
 import { BsClock, BsJustifyLeft, BsPencil, BsTrash, BsXLg } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
+import EditForm from '../EditForm';
+import CreateCalendar from '../Modal/CreateCalendar';
 
 import styles from './EventInfo.module.scss';
 
@@ -12,6 +15,7 @@ const cx = classNames.bind(styles);
 
 function EventInfo() {
     const { selectedEvent } = useSelector((state) => state.calendar);
+    const [showEditForm, setShowEditForm] = useState(false);
     const dispatch = useDispatch();
 
     const closeModal = () => {
@@ -24,7 +28,15 @@ function EventInfo() {
         if (!selectedEvent.completed) return 'uncompleted';
     };
 
+    const handleEdit = () => {
+        setShowEditForm(true);
+    };
+
     const handleCompleted = () => {};
+
+    if (showEditForm) {
+        return <EditForm />;
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -32,7 +44,7 @@ function EventInfo() {
                 <span className={cx('type')}>{selectedEvent.type}</span>
                 <div className={cx('header-action-btn')}>
                     <Tippy delay={[0, 50]} interactive content="Edit">
-                        <button className={cx('edit-btn')}>
+                        <button className={cx('edit-btn')} onClick={handleEdit}>
                             <BsPencil />
                         </button>
                     </Tippy>

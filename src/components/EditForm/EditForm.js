@@ -1,18 +1,18 @@
-import { BsXLg } from 'react-icons/bs';
+import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './CreateCalendar.module.scss';
+import styles from './EditForm.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
-import EventForm from './EventForm';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import dayjs from 'dayjs';
+import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
+import { BsTrash, BsXLg } from 'react-icons/bs';
+import EventForm from '../Modal/CreateCalendar/EventForm';
 import Tippy from '@tippyjs/react';
-import EventInfo from '~/components/EventInfo';
 
 const cx = classNames.bind(styles);
 
-function CreateCalendar() {
+function EditForm() {
     const { selectedEvent } = useSelector((state) => state.calendar);
     const dispatch = useDispatch();
 
@@ -22,18 +22,16 @@ function CreateCalendar() {
         dispatch(setSelectedEvent(null));
     };
 
-    if (selectedEvent) {
-        return (
-            <div className={cx('wrapper')}>
-                <EventInfo />
-            </div>
-        );
-    }
-
     return (
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
-                <div>
+                <span className={cx('type')}>{selectedEvent.type}</span>
+                <div className={cx('header-action-btn')}>
+                    <Tippy delay={[0, 50]} interactive content="Delete">
+                        <button className={cx('delete-btn')}>
+                            <BsTrash />
+                        </button>
+                    </Tippy>
                     <Tippy delay={[0, 50]} interactive content="Close">
                         <button className={cx('close-btn')} onClick={closeModal}>
                             <BsXLg />
@@ -43,7 +41,14 @@ function CreateCalendar() {
             </header>
             <div className={cx('body')}>
                 <div className={cx('title')}>
-                    <input className={cx('title-ipt')} type="text" name="title" required autoFocus />
+                    <input
+                        className={cx('title-ipt')}
+                        type="text"
+                        name="title"
+                        defaultValue={selectedEvent.title}
+                        required
+                        autoFocus
+                    />
                     <span className={cx('underline-title-ipt')}></span>
                     <label className={cx('label')}>Title</label>
                 </div>
@@ -54,4 +59,4 @@ function CreateCalendar() {
     );
 }
 
-export default CreateCalendar;
+export default EditForm;
