@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 import EditForm from '../EditForm';
-import CreateCalendar from '../Modal/CreateCalendar';
 
 import styles from './EventInfo.module.scss';
 
@@ -16,6 +15,7 @@ const cx = classNames.bind(styles);
 function EventInfo() {
     const { selectedEvent } = useSelector((state) => state.calendar);
     const [showEditForm, setShowEditForm] = useState(false);
+    const [completed, setCompleted] = useState(selectedEvent.completed ? 'completed' : 'uncompleted');
     const dispatch = useDispatch();
 
     const closeModal = () => {
@@ -32,7 +32,9 @@ function EventInfo() {
         setShowEditForm(true);
     };
 
-    const handleCompleted = () => {};
+    const handleCompleted = () => {
+        setCompleted(completed === 'completed' ? 'uncompleted' : 'completed');
+    };
 
     if (showEditForm) {
         return <EditForm />;
@@ -77,7 +79,7 @@ function EventInfo() {
             </div>
             <footer className={cx('footer')}>
                 <button className={cx('mark-btn', getCompletedClass())} onClick={handleCompleted}>
-                    Mark completed
+                    Mark {completed}
                 </button>
             </footer>
         </div>

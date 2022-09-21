@@ -25,7 +25,6 @@ function EditForm() {
     return (
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
-                <span className={cx('type')}>{selectedEvent.type}</span>
                 <div className={cx('header-action-btn')}>
                     <Tippy delay={[0, 50]} interactive content="Delete">
                         <button className={cx('delete-btn')}>
