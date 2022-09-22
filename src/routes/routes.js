@@ -11,6 +11,7 @@ import Email from '~/pages/Email';
 import PrivateChat from '~/pages/Chat/Private';
 import Todo from '~/pages/Todo';
 import Calendar from '~/pages/Calendar';
+import Kanban from '~/pages/Kanban';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
@@ -24,6 +25,7 @@ const publicRoutes = [
     { path: config.routes.email, component: Email },
     { path: config.routes.todo, component: Todo },
     { path: config.routes.calendar, component: Calendar },
+    { path: config.routes.kanban, component: Kanban },
 ];
 
 const privateRoutes = [];

@@ -11,6 +11,7 @@ const routes = {
     private: '/private-chat',
     todo: '/todo',
     calendar: '/calendar',
+    kanban: '/kanban',
 };
 
 export default routes;
