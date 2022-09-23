@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './Kanban.module.scss';
 import Column from '~/layouts/components/Column';
 import { isEmpty } from 'lodash-es';
+import { mapOrder } from '~/utils/sort';
 
 const cx = classNames.bind(styles);
 
@@ -11,7 +12,7 @@ function Kanban() {
     const boards = [
         {
             id: 'board-1',
-            columnOrder: ['column-1', 'column-3', 'column-2'],
+            columnOrder: ['column-1', 'column-2', 'column-3'],
             columns: [
                 {
                     id: 'column-1',
@@ -23,14 +24,21 @@ function Kanban() {
                             id: 'card-1',
                             boardId: 'board-1',
                             columnId: 'column-1',
+                            label: 'UI',
+                            createdAt: 'Sep 05, 2022',
                             title: 'title card 1',
-                            picture: null,
+                            description: 'HOw old are you ?',
+                            picture:
+                                'https://images.unsplash.com/photo-1617654112329-c446806d40e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aHlwZXIlMjBjYXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
                         },
                         {
                             id: 'card-2',
                             boardId: 'board-1',
                             columnId: 'column-1',
                             title: 'title card 2',
+                            label: 'UI Team',
+                            createdAt: 'Sep 22, 2023',
+                            description: 'HOw old are you ?',
                             picture: null,
                         },
                         {
@@ -38,6 +46,9 @@ function Kanban() {
                             boardId: 'board-1',
                             columnId: 'column-1',
                             title: 'title card 3',
+                            label: 'UX Team',
+                            createdAt: 'Jan 13, 2022',
+                            description: 'HOw old are you ?',
                             picture: null,
                         },
                         {
@@ -45,6 +56,9 @@ function Kanban() {
                             boardId: 'board-1',
                             columnId: 'column-1',
                             title: 'title card 4',
+                            label: 'Design Team',
+                            createdAt: 'Oct 05, 2022',
+                            description: 'HOw old are you ?',
                             picture: null,
                         },
                         {
@@ -52,6 +66,9 @@ function Kanban() {
                             boardId: 'board-1',
                             columnId: 'column-1',
                             title: 'title card 5',
+                            label: 'UI Team',
+                            createdAt: 'Sep 05, 2022',
+                            description: 'HOw old are you ?',
                             picture: null,
                         },
                         {
@@ -59,6 +76,9 @@ function Kanban() {
                             boardId: 'board-1',
                             columnId: 'column-1',
                             title: 'title card 6',
+                            label: 'Developer',
+                            createdAt: 'Sep 05, 2022',
+                            description: 'HOw old are you ?',
                             picture: null,
                         },
                     ],
@@ -74,6 +94,9 @@ function Kanban() {
                             boardId: 'board-1',
                             columnId: 'column-2',
                             title: 'title card 7',
+                            label: 'Marketing',
+                            createdAt: 'Dec 05, 2022',
+                            description: 'HOw old are you ?',
                             picture: null,
                         },
                         {
@@ -81,6 +104,9 @@ function Kanban() {
                             boardId: 'board-1',
                             columnId: 'column-2',
                             title: 'title card 8',
+                            label: 'UI',
+                            createdAt: 'Sep 05, 2022',
+                            description: 'HOw old are you ?',
                             picture: null,
                         },
                         {
@@ -88,13 +114,20 @@ function Kanban() {
                             boardId: 'board-1',
                             columnId: 'column-2',
                             title: 'title card 9',
-                            picture: null,
+                            label: 'UI',
+                            createdAt: 'Sep 05, 2022',
+                            description: 'HOw old are you ?',
+                            picture:
+                                'https://images.unsplash.com/photo-1584902645120-f86567d892b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGh5cGVyJTIwY2FyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
                         },
                         {
                             id: 'card-10',
                             boardId: 'board-1',
                             columnId: 'column-2',
                             title: 'title card 10',
+                            label: 'UI',
+                            createdAt: 'Sep 05, 2022',
+                            description: 'HOw old are you ?',
                             picture: null,
                         },
                         {
@@ -102,6 +135,9 @@ function Kanban() {
                             boardId: 'board-1',
                             columnId: 'column-2',
                             title: 'title card 11',
+                            label: 'UI',
+                            createdAt: 'Sep 05, 2022',
+                            description: 'HOw old are you ?',
                             picture: null,
                         },
                         {
@@ -109,7 +145,11 @@ function Kanban() {
                             boardId: 'board-1',
                             columnId: 'column-2',
                             title: 'title card 12',
-                            picture: null,
+                            label: 'UI',
+                            createdAt: 'Sep 05, 2022',
+                            description: 'HOw old are you ?',
+                            picture:
+                                'https://images.unsplash.com/photo-1632441730372-d8509de481d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGh5cGVyJTIwY2FyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
                         },
                     ],
                 },
@@ -124,6 +164,9 @@ function Kanban() {
                             boardId: 'board-1',
                             columnId: 'column-3',
                             title: 'title card 13',
+                            label: 'UI',
+                            createdAt: 'Sep 05, 2022',
+                            description: 'HOw old are you ?',
                             picture: null,
                         },
                         {
@@ -131,14 +174,22 @@ function Kanban() {
                             boardId: 'board-1',
                             columnId: 'column-3',
                             title: 'title card 14',
-                            picture: null,
+                            label: 'UI',
+                            createdAt: 'Sep 05, 2022',
+                            description: 'HOw old are you ?',
+                            picture:
+                                'https://images.unsplash.com/photo-1562234246-ca4e88982724?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDJ8fGh5cGVyJTIwY2FyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
                         },
                         {
                             id: 'card-15',
                             boardId: 'board-1',
                             columnId: 'column-3',
                             title: 'title card 15',
-                            picture: null,
+                            label: 'UI',
+                            createdAt: 'Sep 05, 2022',
+                            description: 'HOw old are you ?',
+                            picture:
+                                'https://images.unsplash.com/photo-1663529628961-80aa6ebcd157?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
                         },
                     ],
                 },
@@ -154,11 +205,8 @@ function Kanban() {
         if (boardFromDB) {
             setBoard(boardFromDB);
 
-            // sort column
-            boardFromDB.columns.sort((a, b) => {
-                return boardFromDB.columnOrder.indexOf(a.id) - boardFromDB.columnOrder.indexOf(b.id);
-            });
-            setColumns(boardFromDB.columns);
+            // sort column after setColumn
+            setColumns(mapOrder(boardFromDB.columns, boardFromDB.columnOrder, 'id'));
         }
     }, []);
 
