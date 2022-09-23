@@ -1,0 +1,40 @@
+.wrapper {
+    flex: 0 0 auto;
+    margin-left: 10px;
+    width: 308px;
+    height: 100%;
+}
+
+.column-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 8px;
+    max-height: calc(100% - 64px);
+    overflow-y: hidden;
+
+    &:hover {
+        overflow-y: overlay;
+    }
+
+    &::-webkit-scrollbar:vertical {
+        width: 5px;
+    }
+}
+
+.column-header {
+    height: 46px;
+    padding: 6px 0 6px 10px;
+    margin-bottom: 18px;
+    margin-right: 8px;
+    font-size: 2rem;
+    font-weight: 700;
+    border: 1px solid var(--gray-alpha-40);
+    border-radius: 4px;
+}
+
+.card {
+    padding: 6px;
+    border: 1px solid var(--gray-alpha-40);
+    border-radius: 6px;
+}
