@@ -69,7 +69,8 @@ function Kanban() {
                             label: 'UI Team',
                             createdAt: 'Sep 05, 2022',
                             description: 'HOw old are you ?',
-                            picture: null,
+                            picture:
+                                'https://images.unsplash.com/photo-1525498128493-380d1990a112?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fCVFNSVCNyVBNSVFNSVBMCVCNHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
                         },
                         {
                             id: 'card-6',
