@@ -5,21 +5,27 @@ import Header from '~/layouts/components/Header';
 import Sidebar from '~/layouts/components/Sidebar';
 import styles from './DefaultLayout.module.scss';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
     const [showSidebar, setShowSidebar] = useState(true);
     return (
-        <>
-            <div className={cx('wrapper')}>
-                <Header setShowSidebar={setShowSidebar} />
-                <div className={cx('container')}>
-                    <Sidebar showSidebar={showSidebar} />
-                    <div className={cx('content')}>{children}</div>
-                </div>
+        <div className={cx('wrapper')}>
+            <Header setShowSidebar={setShowSidebar} />
+            <div className={cx('container')}>
+                <Sidebar showSidebar={showSidebar} />
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                    className={cx('content')}
+                >
+                    {children}
+                </motion.div>
             </div>
-        </>
+        </div>
     );
 }
 
