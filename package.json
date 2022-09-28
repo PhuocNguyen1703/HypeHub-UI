@@ -12,6 +12,7 @@
         "classnames": "^2.3.1",
         "dayjs": "^1.11.4",
         "dom": "^0.0.3",
+        "framer-motion": "^7.4.0",
         "jwt-decode": "^3.1.2",
         "lodash-es": "^4.17.21",
         "normalize.css": "^8.0.1",
