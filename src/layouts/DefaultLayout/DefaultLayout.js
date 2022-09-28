@@ -11,9 +11,14 @@ const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
     const [showSidebar, setShowSidebar] = useState(true);
+
+    const handleShowSidebar = () => {
+        setShowSidebar((prevState) => !prevState);
+    };
+
     return (
         <div className={cx('wrapper')}>
-            <Header setShowSidebar={setShowSidebar} />
+            <Header setShowSidebar={handleShowSidebar} />
             <div className={cx('container')}>
                 <Sidebar showSidebar={showSidebar} />
                 <motion.div
