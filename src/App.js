@@ -1,40 +1,46 @@
 import { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { DefaultLayout } from './layouts';
-import { publicRoutes } from './routes';
+import Login from './pages/Auth/Login';
+import { privateRoutes } from './routes';
 
 function App() {
+    const user = useSelector((state) => state.auth.login.currentUser);
+
     return (
         <Router>
-            <div className="App" style={{backgroundColor:'rgba(1, 94, 194)'}}>
-                <Routes>
-                    {publicRoutes.map((routes, index) => {
-                        const Page = routes.component;
+            <Routes>
+                {privateRoutes.map((routes, index) => {
+                    const Page = routes.component;
 
-                        let Layout = DefaultLayout;
+                    let Layout = DefaultLayout;
 
-                        if (routes.layout) {
-                            Layout = routes.layout;
-                        }
-                        if (routes.layout === null) {
-                            Layout = Fragment;
-                        }
+                    if (routes.layout) {
+                        Layout = routes.layout;
+                    }
+                    if (routes.layout === null) {
+                        Layout = Fragment;
+                    }
 
-                        return (
-                            <Route
-                                key={index}
-                                path={routes.path}
-                                element={
+                    return (
+                        <Route
+                            key={index}
+                            path={routes.path}
+                            element={
+                                user ? (
                                     <Layout>
                                         <Page />
                                     </Layout>
-                                }
-                            />
-                        );
-                    })}
-                </Routes>
-            </div>
+                                ) : (
+                                    <Login />
+                                )
+                            }
+                        />
+                    );
+                })}
+            </Routes>
         </Router>
     );
 }

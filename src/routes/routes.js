@@ -13,7 +13,9 @@ import Todo from '~/pages/Todo';
 import Calendar from '~/pages/Calendar';
 import Kanban from '~/pages/Kanban';
 
-const publicRoutes = [
+const publicRoutes = [];
+
+const privateRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
     { path: config.routes.register, component: Register, layout: null },
     { path: config.routes.home, component: Home },
@@ -27,7 +29,5 @@ const publicRoutes = [
     { path: config.routes.calendar, component: Calendar },
     { path: config.routes.kanban, component: Kanban },
 ];
-
-const privateRoutes = [];
 
 export { publicRoutes, privateRoutes };
