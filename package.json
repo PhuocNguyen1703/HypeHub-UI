@@ -33,8 +33,11 @@
     "devDependencies": {
         "babel-plugin-module-resolver": "^4.1.0",
         "customize-cra": "^1.0.0",
+        "node-sass": "^7.0.3",
         "react-app-rewired": "^2.2.1",
-        "sass": "^1.52.3"
+        "sass": "^1.55.0",
+        "sass-loader": "^13.0.2",
+        "webpack": "^5.74.0"
     },
     "scripts": {
         "start": "react-app-rewired start",

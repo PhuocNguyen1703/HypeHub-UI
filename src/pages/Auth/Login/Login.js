@@ -8,10 +8,12 @@ import styles from './Login.module.scss';
 import logo from '~/assets/images/logo.svg';
 import { loginUser } from '~/api/authApi';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function Login() {
+    const { error } = useSelector((state) => state.auth.login);
     const [showPassword, setShowPassword] = useState(false);
     const [showIcon, setShowIcon] = useState(false);
     const { register, handleSubmit } = useForm();
@@ -48,9 +50,11 @@ function Login() {
             <div className={cx('login-form')}>
                 <div className={cx('header')}>
                     <img className={cx('logo')} src={logo} alt="logo" />
-                    <h1>Logistics</h1>
+                    <div>
+                        <h1>Minato</h1>
+                        <h6>Do it your way!</h6>
+                    </div>
                 </div>
-                <h6>Do it your way!</h6>
                 <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
                     <h3>Welcome back</h3>
 
@@ -71,6 +75,7 @@ function Login() {
                             {showIcon && (showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />)}
                         </div>
                     </div>
+                    {error && <span className={cx('error')}>* Incorrect email or password</span>}
                     <button className={cx('login-btn')} type="submit">
                         Login
                     </button>
