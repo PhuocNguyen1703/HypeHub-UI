@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { CgMenu, CgMoreVerticalAlt } from 'react-icons/cg';
-import { IoLanguageOutline } from 'react-icons/io5';
+import { IoLanguageOutline, IoLogOutOutline, IoSettingsOutline } from 'react-icons/io5';
 import { BsFullscreen, BsColumnsGap, BsChatSquareDots, BsBell, BsGear } from 'react-icons/bs';
 
 import styles from './Header.module.scss';
@@ -27,7 +25,7 @@ const cx = classNames.bind(styles);
 
 const userMenu = [
     {
-        icon: <FontAwesomeIcon icon={faBell} />,
+        icon: <IoLanguageOutline />,
         title: 'Language',
         children: {
             title: 'Language',
@@ -44,12 +42,12 @@ const userMenu = [
         },
     },
     {
-        icon: <FontAwesomeIcon icon={faBell} />,
+        icon: <IoSettingsOutline />,
         title: 'Settings',
         to: '/settings',
     },
     {
-        icon: <FontAwesomeIcon icon={faBell} />,
+        icon: <IoLogOutOutline />,
         title: 'Logout',
         to: '/logout',
         separate: true,

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import * as faceapi from 'face-api.js';
 
 function Checkin() {
     const webcamRef = useRef(null);

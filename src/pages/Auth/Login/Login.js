@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
 import logo from '~/assets/images/logo.svg';
 import { loginUser } from '~/api/authApi';
+import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 
 const cx = classNames.bind(styles);
 
@@ -69,12 +68,7 @@ function Login() {
                             onChange={handleChange}
                         />
                         <div className={cx('icon')} onClick={handleShowPassword}>
-                            {showIcon &&
-                                (showPassword ? (
-                                    <FontAwesomeIcon icon={faEye} />
-                                ) : (
-                                    <FontAwesomeIcon icon={faEyeSlash} />
-                                ))}
+                            {showIcon && (showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />)}
                         </div>
                     </div>
                     <button className={cx('login-btn')} type="submit">

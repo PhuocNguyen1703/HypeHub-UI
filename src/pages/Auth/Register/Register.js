@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 import styles from './Register.module.scss';
 import logo from '~/assets/images/logo.svg';
 import { registerUser } from '~/api/authApi';
+import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 
 const cx = classNames.bind(styles);
 
@@ -98,12 +97,7 @@ function Register() {
                             {...register('password', { required: true })}
                         />
                         <div className={cx('icon')} onClick={handleShowPassword}>
-                            {showIcon &&
-                                (showPassword ? (
-                                    <FontAwesomeIcon icon={faEye} />
-                                ) : (
-                                    <FontAwesomeIcon icon={faEyeSlash} />
-                                ))}
+                            {showIcon && (showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />)}
                         </div>
                     </div>
                     <button type="submit" className={cx('register-btn')}>

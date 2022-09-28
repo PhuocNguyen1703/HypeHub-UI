@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Employee.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsis, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import Image from '~/components/Image';
 import Pagination from '~/components/Pagination/Pagination';
 import { getAllUser } from '~/api/userApi';
 import Loading from '~/components/Loading/Loading';
 import ViewItemPerPage from '~/components/ViewItemPerPage/ViewItemPerPage';
 import EmployeeHeader from '~/layouts/components/EmployeeHeader/EmployeeHeader';
+import { IoCallOutline, IoEllipsisVertical, IoMailOutline } from 'react-icons/io5';
 
 const cx = classNames.bind(styles);
 
@@ -72,7 +71,7 @@ function Employee() {
                                     <div key={user._id} className={cx('employee-item')}>
                                         <div className={cx('item-header')}>
                                             <span className={cx('status')}>Active</span>
-                                            <FontAwesomeIcon icon={faEllipsis} />
+                                            <IoEllipsisVertical />
                                         </div>
                                         <div className={cx('info')}>
                                             <Image src={user.avatar} alt="avatar" className={cx('avatar')} />
@@ -92,11 +91,11 @@ function Employee() {
                                             </div>
                                             <div className={cx('contact')}>
                                                 <span className={cx('email')}>
-                                                    <FontAwesomeIcon icon={faEnvelope} />
+                                                    <IoMailOutline />
                                                     {user.email}
                                                 </span>
                                                 <span className={cx('phone')}>
-                                                    <FontAwesomeIcon icon={faPhone} />
+                                                    <IoCallOutline />
                                                     {user.phone}
                                                 </span>
                                             </div>

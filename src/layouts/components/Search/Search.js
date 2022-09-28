@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 
@@ -10,6 +8,8 @@ import AccountItem from '~/components/AccountItem';
 import styles from './Search.module.scss';
 import { useDebounce } from '~/hooks';
 import * as searchServices from '~/api/searchApi';
+import { IoCloseCircle } from 'react-icons/io5';
+import { FaSpinner } from 'react-icons/fa';
 
 const cx = classNames.bind(styles);
 
@@ -90,11 +90,11 @@ function Search() {
 
                     {!!searchValue && !loading && (
                         <button className={cx('clear-btn')} onClick={handleClear}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
+                            <IoCloseCircle />
                         </button>
                     )}
 
-                    {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+                    {loading && <FaSpinner className={cx('loading')}  />}
 
                     <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()} onClick={handleSubmit}>
                         <SearchIcon />

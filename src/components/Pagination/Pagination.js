@@ -2,8 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Pagination.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);
 
@@ -24,7 +23,7 @@ function Pagination({ currentPage = 1, usersPerPage, totalUsers, prevPage, pagin
                         prevPage(currentPage - 1);
                     }}
                 >
-                    <FontAwesomeIcon icon={faAngleLeft} />
+                    <BsChevronLeft />
                     Prev
                 </button>
                 {pageNumbers.map((number) => (
@@ -40,7 +39,7 @@ function Pagination({ currentPage = 1, usersPerPage, totalUsers, prevPage, pagin
                     }}
                 >
                     Next
-                    <FontAwesomeIcon icon={faAngleRight} />
+                    <BsChevronRight />
                 </button>
             </ul>
         </nav>

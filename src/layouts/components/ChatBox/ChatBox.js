@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import InputEmoji from 'react-input-emoji';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
@@ -12,6 +9,7 @@ import { getUser } from '~/api/userApi';
 import { addMessage, getMessages } from '~/api/messageApi';
 import images from '~/assets/images';
 import Image from '~/components/Image';
+import { BsCursor, BsPlus } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);
 dayjs.extend(relativeTime);
@@ -117,11 +115,11 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
 
                         <div className={cx('chat-content-footer')}>
                             <label onClick={() => imageRef.current.click()}>
-                                <FontAwesomeIcon icon={faPlus} className={cx('icon-plus')} />
+                                <BsPlus className={cx('icon-plus')} />
                             </label>
                             <input id="send-file" type="file" ref={imageRef} hidden />
                             <InputEmoji value={newMessage} onChange={handleChange} />
-                            <FontAwesomeIcon icon={faPaperPlane} className={cx('icon-send')} onClick={handleSend} />
+                            <BsCursor className={cx('icon-send')} onClick={handleSend} />
                         </div>
                     </div>
                 </>
