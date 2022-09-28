@@ -74,10 +74,6 @@ function Header({ setShowSidebar }) {
         }
     };
 
-    // const handleShowSidebar = () => {
-    //     setShowSidebar((setShowSidebar) => !setShowSidebar);
-    // };
-
     const handleOpenModal = () => {
         dispatch(setSettingModalIsOpen(true));
     };
@@ -89,7 +85,7 @@ function Header({ setShowSidebar }) {
                     <CgMenu className={cx('menu-icon')} onClick={setShowSidebar} />
                     <Link to={config.routes.home} className={cx('logo')}>
                         <img src={images.logo} alt="logo" />
-                        <h1>Oriental Sun</h1>
+                        <h1>Minato</h1>
                     </Link>
                 </div>
 

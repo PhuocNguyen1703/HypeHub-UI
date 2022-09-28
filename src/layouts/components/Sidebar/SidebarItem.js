@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Sidebar.module.scss';
 import { NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const cx = classNames.bind(styles);
 
@@ -20,7 +21,10 @@ function SidebarItem({ item, className = '' }) {
                     </span>
                     <MdNavigateNext className={cx('toggle-btn')} />
                 </div>
-                <div className={cx('child-list')}>
+                <motion.div
+                    animate={{ height: open ? 'auto' : '0', transition: { duration: 0.4 } }}
+                    className={cx('child-list')}
+                >
                     {item.children.map((child, index) => (
                         <NavLink
                             to={child.path}
@@ -33,7 +37,7 @@ function SidebarItem({ item, className = '' }) {
                             </span>
                         </NavLink>
                     ))}
-                </div>
+                </motion.div>
             </div>
         );
     } else {
