@@ -1,27 +1,67 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import { IoMdClose } from 'react-icons/io';
+import { motion } from 'framer-motion';
 
 import styles from './Setting.module.scss';
 import ToggleSwitch from '~/components/ToggleSwitch';
 import { useDispatch } from 'react-redux';
 import { setSettingModalIsOpen } from '~/redux/Slice/modalSlice';
+import { BsXLg } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function Setting() {
+    const { settingModalIsOpen } = useSelector((state) => state.modal);
     const dispatch = useDispatch();
+
+    const colorData = [
+        { name: 'radicchio', code: '--radicchio-rgb' },
+        { name: 'tangerine', code: '--tangerine-rgb' },
+        { name: 'citron', code: '--citron-rgb' },
+        { name: 'basil', code: '--basil-rgb' },
+        { name: 'blueBerry', code: '--blueBerry-rgb' },
+        { name: 'grape', code: '--grape-rgb' },
+        { name: 'cherryBlossom', code: '--cherryBlossom-rgb' },
+        { name: 'pumpkin', code: '--pumpkin-rgb' },
+        { name: 'avocado', code: '--avocado-rgb' },
+        { name: 'eucalyptus', code: '--eucalyptus-rgb' },
+        { name: 'lavender', code: '--lavender-rgb' },
+        { name: 'cocoa', code: '--cocoa-rgb' },
+        { name: 'tomato', code: '--tomato-rgb' },
+        { name: 'mango', code: '--mango-rgb' },
+        { name: 'pistachio', code: '--pistachio-rgb' },
+        { name: 'peacock', code: '--peacock-rgb' },
+        { name: 'wisteria', code: '--wisteria-rgb' },
+        { name: 'graphite', code: '--graphite-rgb' },
+        { name: 'flamingo', code: '--flamingo-rgb' },
+        { name: 'banana', code: '--banana-rgb' },
+        { name: 'sage', code: '--sage-rgb' },
+        { name: 'cobalt', code: '--cobalt-rgb' },
+        { name: 'amethyst', code: '--amethyst-rgb' },
+        { name: 'birch', code: '--birch-rgb' },
+    ];
 
     const handleCloseModal = () => {
         dispatch(setSettingModalIsOpen(false));
     };
 
+    const handleSetSidebarColor = (color) => {
+        console.log(color.name);
+    };
+
+    const handleSetNavColor = (color) => {
+        console.log(color.name);
+    };
+
     return (
-        <div className={cx('wrapper')}>
+        <motion.div animate={{ width: settingModalIsOpen ? '400px' : '0' }} className={cx('wrapper')}>
             <header className={cx('header')}>
                 <span className={cx('heading')}>
                     Theme Customizer
-                    <IoMdClose className={cx('icon-close')} onClick={handleCloseModal} />
+                    <button className={cx('close-btn')} onClick={handleCloseModal}>
+                        <BsXLg />
+                    </button>
                 </span>
                 <p className={cx('desc')}>Customize & Preview in Real Time</p>
             </header>
@@ -62,47 +102,33 @@ function Setting() {
                 <span className={cx('title')}>Sidebar Color</span>
                 <div className={cx('input-field')}>
                     <ul className={cx('color-list')}>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
+                        {colorData.map((color, idx) => (
+                            <li
+                                key={idx}
+                                style={{ backgroundColor: `rgb(var(${color.code}))` }}
+                                className={cx('color')}
+                                value={color.name}
+                                onClick={() => handleSetSidebarColor(color)}
+                            ></li>
+                        ))}
                     </ul>
                 </div>
                 <span className={cx('title')}>Navbar Color</span>
                 <div className={cx('input-field')}>
                     <ul className={cx('color-list')}>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
-                        <li className={cx('color')}></li>
+                        {colorData.map((color, idx) => (
+                            <li
+                                key={idx}
+                                style={{ backgroundColor: `rgb(var(${color.code}))` }}
+                                className={cx('color')}
+                                value={color.name}
+                                onClick={() => handleSetNavColor(color)}
+                            ></li>
+                        ))}
                     </ul>
                 </div>
             </form>
-        </div>
+        </motion.div>
     );
 }
 
