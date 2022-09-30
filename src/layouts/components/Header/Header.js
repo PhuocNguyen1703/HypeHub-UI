@@ -27,8 +27,9 @@ import { logOutSuccess } from '~/redux/Slice/authSlice';
 import { createAxios } from '~/api/axiosClient';
 import Modal from '~/components/Modal';
 import Setting from '../Setting';
-import { setSettingModalIsOpen } from '~/redux/Slice/modalSlice';
+import { setCheckinModalIsOpen, setSettingModalIsOpen } from '~/redux/Slice/modalSlice';
 import { setIsFullscreen } from '~/redux/Slice/screenSlice';
+import Checkin from '~/components/Modal/TimeKeeping/Checkin';
 
 const cx = classNames.bind(styles);
 
@@ -66,7 +67,7 @@ const userMenu = [
 function Header({ setShowSidebar }) {
     const user = useSelector((state) => state.auth.login.currentUser);
     const { isFullscreen } = useSelector((state) => state.screen);
-    const { settingModalIsOpen } = useSelector((state) => state.modal);
+    const { settingModalIsOpen, checkinModalIsOpen } = useSelector((state) => state.modal);
     const accessToken = user?.accessToken;
     const id = user?._id;
     const dispatch = useDispatch();
@@ -122,7 +123,7 @@ function Header({ setShowSidebar }) {
     };
 
     const handleOpenModal = () => {
-        
+        dispatch(setCheckinModalIsOpen(true));
     };
 
     return (
@@ -190,6 +191,11 @@ function Header({ setShowSidebar }) {
             {settingModalIsOpen && (
                 <Modal>
                     <Setting />
+                </Modal>
+            )}
+            {checkinModalIsOpen && (
+                <Modal>
+                    <Checkin />
                 </Modal>
             )}
         </header>
