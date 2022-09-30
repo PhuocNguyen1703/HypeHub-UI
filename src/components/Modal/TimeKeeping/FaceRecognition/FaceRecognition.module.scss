@@ -31,13 +31,13 @@
     top: -6px;
     right: -6px;
     padding: 6px;
-    background-color: var(--white);
+    background-color: var(--gray-alpha-10);
     border-radius: 999px;
     box-shadow: var(--box-shadow-sm);
     cursor: pointer;
 
     &:hover {
-        background-color: var(--gray);
+        background-color: var(--gray-alpha-20);
     }
 }
 

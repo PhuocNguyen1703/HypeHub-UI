@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
@@ -11,7 +11,6 @@ import {
     BsColumnsGap,
     BsChatSquareDots,
     BsBell,
-    BsGear,
     BsFullscreenExit,
     BsPersonBoundingBox,
 } from 'react-icons/bs';
@@ -27,9 +26,13 @@ import { logOutSuccess } from '~/redux/Slice/authSlice';
 import { createAxios } from '~/api/axiosClient';
 import Modal from '~/components/Modal';
 import Setting from '../Setting';
-import { setCheckinModalIsOpen, setSettingModalIsOpen } from '~/redux/Slice/modalSlice';
+import {
+    setFaceRecognitionModalIsOpen,
+    setFaceRecognitionTitle,
+    setSettingModalIsOpen,
+} from '~/redux/Slice/modalSlice';
 import { setIsFullscreen } from '~/redux/Slice/screenSlice';
-import Checkin from '~/components/Modal/TimeKeeping/Checkin';
+import Checkin from '~/components/Modal/TimeKeeping/FaceRecognition';
 
 const cx = classNames.bind(styles);
 
@@ -52,6 +55,14 @@ const userMenu = [
         },
     },
     {
+        icon: <BsPersonBoundingBox />,
+        title: 'Check in',
+    },
+    {
+        icon: <BsPersonBoundingBox />,
+        title: 'Check out',
+    },
+    {
         icon: <IoSettingsOutline />,
         title: 'Settings',
         // to: '/settings',
@@ -67,7 +78,7 @@ const userMenu = [
 function Header({ setShowSidebar }) {
     const user = useSelector((state) => state.auth.login.currentUser);
     const { isFullscreen } = useSelector((state) => state.screen);
-    const { settingModalIsOpen, checkinModalIsOpen } = useSelector((state) => state.modal);
+    const { settingModalIsOpen, faceRecognitionModalIsOpen } = useSelector((state) => state.modal);
     const accessToken = user?.accessToken;
     const id = user?._id;
     const dispatch = useDispatch();
@@ -116,6 +127,14 @@ function Header({ setShowSidebar }) {
             case 'Settings':
                 dispatch(setSettingModalIsOpen(true));
                 break;
+            case 'Check in':
+                dispatch(setFaceRecognitionTitle('Check in'));
+                dispatch(setFaceRecognitionModalIsOpen(true));
+                break;
+            case 'Check out':
+                dispatch(setFaceRecognitionTitle('Check out'));
+                dispatch(setFaceRecognitionModalIsOpen(true));
+                break;
 
             default:
                 break;
@@ -123,7 +142,8 @@ function Header({ setShowSidebar }) {
     };
 
     const handleOpenModal = () => {
-        dispatch(setCheckinModalIsOpen(true));
+        dispatch(setFaceRecognitionTitle('Sign up'));
+        dispatch(setFaceRecognitionModalIsOpen(true));
     };
 
     return (
@@ -174,7 +194,7 @@ function Header({ setShowSidebar }) {
                                 <span className={cx('badge')}></span>
                             </button>
                         </Tippy>
-                        <Tippy delay={[0, 50]} interactive content="Checkin">
+                        <Tippy delay={[0, 50]} interactive content="Sign up">
                             <button className={cx('action-btn')} onClick={handleOpenModal}>
                                 <BsPersonBoundingBox className={cx('icon')} />
                             </button>
@@ -193,7 +213,7 @@ function Header({ setShowSidebar }) {
                     <Setting />
                 </Modal>
             )}
-            {checkinModalIsOpen && (
+            {faceRecognitionModalIsOpen && (
                 <Modal>
                     <Checkin />
                 </Modal>

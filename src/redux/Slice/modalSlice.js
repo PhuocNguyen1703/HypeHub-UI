@@ -4,15 +4,19 @@ const modalSlice = createSlice({
     name: 'modal',
     initialState: {
         settingModalIsOpen: false,
-        checkinModalIsOpen: true,
+        faceRecognitionModalIsOpen: false,
+        faceRecognitionTitle: '',
         calendarEventModalIsOpen: false,
     },
     reducers: {
         setSettingModalIsOpen: (state, action) => {
             state.settingModalIsOpen = action.payload;
         },
-        setCheckinModalIsOpen: (state, action) => {
-            state.checkinModalIsOpen = action.payload;
+        setFaceRecognitionModalIsOpen: (state, action) => {
+            state.faceRecognitionModalIsOpen = action.payload;
+        },
+        setFaceRecognitionTitle: (state, action) => {
+            state.faceRecognitionTitle = action.payload;
         },
 
         setCalendarEventModalIsOpen: (state, action) => {
@@ -21,6 +25,11 @@ const modalSlice = createSlice({
     },
 });
 
-export const { setSettingModalIsOpen, setCheckinModalIsOpen, setCalendarEventModalIsOpen } = modalSlice.actions;
+export const {
+    setSettingModalIsOpen,
+    setFaceRecognitionModalIsOpen,
+    setFaceRecognitionTitle,
+    setCalendarEventModalIsOpen,
+} = modalSlice.actions;
 
 export default modalSlice.reducer;

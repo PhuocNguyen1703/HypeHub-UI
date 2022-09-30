@@ -12,6 +12,7 @@ function Portal({ children }) {
 
         return () => {
             document.body.removeChild(portal);
+
         };
     }, []);
 
