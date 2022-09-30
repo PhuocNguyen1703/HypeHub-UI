@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
@@ -6,7 +6,7 @@ import 'tippy.js/dist/tippy.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { CgMenu, CgMoreVerticalAlt } from 'react-icons/cg';
 import { IoLanguageOutline, IoLogOutOutline, IoSettingsOutline } from 'react-icons/io5';
-import { BsFullscreen, BsColumnsGap, BsChatSquareDots, BsBell, BsGear } from 'react-icons/bs';
+import { BsFullscreen, BsColumnsGap, BsChatSquareDots, BsBell, BsGear, BsFullscreenExit } from 'react-icons/bs';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
@@ -20,6 +20,7 @@ import { createAxios } from '~/api/axiosClient';
 import Modal from '~/components/Modal';
 import Setting from '../Setting';
 import { setSettingModalIsOpen } from '~/redux/Slice/modalSlice';
+import { setIsFullscreen } from '~/redux/Slice/screenSlice';
 
 const cx = classNames.bind(styles);
 
@@ -56,12 +57,47 @@ const userMenu = [
 
 function Header({ setShowSidebar }) {
     const user = useSelector((state) => state.auth.login.currentUser);
+    const { isFullscreen } = useSelector((state) => state.screen);
     const { settingModalIsOpen } = useSelector((state) => state.modal);
     const accessToken = user?.accessToken;
     const id = user?._id;
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let axiosJWT = createAxios(user, dispatch, logOutSuccess);
+
+    const handleFullscreen = () => {
+        const maxHeight = window.screen.height;
+        const maxWidth = window.screen.width;
+        const curHeight = window.innerHeight;
+        const curWidth = window.innerWidth;
+
+        if (maxWidth === curWidth && maxHeight === curHeight) {
+            dispatch(setIsFullscreen(false));
+            document.exitFullscreen();
+        } else {
+            dispatch(setIsFullscreen(true));
+            document.documentElement.requestFullscreen().catch((e) => console.log(e));
+        }
+    };
+
+    document.addEventListener('fullscreenchange', () => {
+        const maxHeight = window.screen.height;
+        const maxWidth = window.screen.width;
+        const curHeight = window.innerHeight;
+        const curWidth = window.innerWidth;
+
+        if (maxWidth === curWidth && maxHeight === curHeight) {
+            dispatch(setIsFullscreen(true));
+        } else {
+            dispatch(setIsFullscreen(false));
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'F11') {
+            e.preventDefault();
+        }
+    });
 
     const handleMenuChange = (menuItem) => {
         switch (menuItem.title) {
@@ -100,9 +136,13 @@ function Header({ setShowSidebar }) {
                                 <IoLanguageOutline className={cx('icon')} />
                             </button>
                         </Tippy>
-                        <Tippy delay={[0, 50]} interactive content="Fullscreen">
-                            <button className={cx('action-btn')}>
-                                <BsFullscreen className={cx('icon')} />
+                        <Tippy delay={[0, 50]} interactive content={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}>
+                            <button className={cx('action-btn')} onClick={handleFullscreen}>
+                                {isFullscreen ? (
+                                    <BsFullscreenExit className={cx('icon')} />
+                                ) : (
+                                    <BsFullscreen className={cx('icon')} />
+                                )}
                             </button>
                         </Tippy>
                         <Tippy delay={[0, 50]} interactive content="Apps">

@@ -4,15 +4,21 @@ import storage from 'redux-persist/lib/storage';
 import authReducer from '../Slice/authSlice';
 import calendarReducer from '../Slice/calendarSlice';
 import modalReducer from '../Slice/modalSlice';
+import screenReducer from '../Slice/screenSlice';
 
 const persistConfig = {
     key: 'root',
     version: 1,
     storage,
-    blacklist: ['calendar', 'modal'],
+    blacklist: ['calendar', 'modal', 'screen'],
 };
 
-const rootReducer = combineReducers({ auth: authReducer, calendar: calendarReducer, modal: modalReducer });
+const rootReducer = combineReducers({
+    auth: authReducer,
+    screen: screenReducer,
+    calendar: calendarReducer,
+    modal: modalReducer,
+});
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({

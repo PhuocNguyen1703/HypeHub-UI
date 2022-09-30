@@ -85,7 +85,7 @@ function Sidebar({ showSidebar }) {
 
     return (
         <motion.div
-            animate={{ width: showSidebar ? '180px' : '0px', transition: { duration: 0.6 } }}
+            animate={{ width: showSidebar ? '180px' : '0px', transition: { duration: 0.4 } }}
             className={cx('wrapper')}
         >
             {menu.map((item, index) => (
