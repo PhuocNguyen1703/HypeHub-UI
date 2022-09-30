@@ -6,7 +6,15 @@ import 'tippy.js/dist/tippy.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { CgMenu, CgMoreVerticalAlt } from 'react-icons/cg';
 import { IoLanguageOutline, IoLogOutOutline, IoSettingsOutline } from 'react-icons/io5';
-import { BsFullscreen, BsColumnsGap, BsChatSquareDots, BsBell, BsGear, BsFullscreenExit } from 'react-icons/bs';
+import {
+    BsFullscreen,
+    BsColumnsGap,
+    BsChatSquareDots,
+    BsBell,
+    BsGear,
+    BsFullscreenExit,
+    BsPersonBoundingBox,
+} from 'react-icons/bs';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
@@ -45,12 +53,12 @@ const userMenu = [
     {
         icon: <IoSettingsOutline />,
         title: 'Settings',
-        to: '/settings',
+        // to: '/settings',
     },
     {
         icon: <IoLogOutOutline />,
         title: 'Logout',
-        to: '/logout',
+        to: '/login',
         separate: true,
     },
 ];
@@ -104,6 +112,9 @@ function Header({ setShowSidebar }) {
             case 'Logout':
                 logOutUser(dispatch, id, navigate, accessToken, axiosJWT);
                 break;
+            case 'Settings':
+                dispatch(setSettingModalIsOpen(true));
+                break;
 
             default:
                 break;
@@ -111,7 +122,7 @@ function Header({ setShowSidebar }) {
     };
 
     const handleOpenModal = () => {
-        dispatch(setSettingModalIsOpen(true));
+        
     };
 
     return (
@@ -162,9 +173,9 @@ function Header({ setShowSidebar }) {
                                 <span className={cx('badge')}></span>
                             </button>
                         </Tippy>
-                        <Tippy delay={[0, 50]} interactive content="Settings">
+                        <Tippy delay={[0, 50]} interactive content="Checkin">
                             <button className={cx('action-btn')} onClick={handleOpenModal}>
-                                <BsGear className={cx('icon')} />
+                                <BsPersonBoundingBox className={cx('icon')} />
                             </button>
                         </Tippy>
                     </div>

@@ -192,7 +192,8 @@ body {
         font-weight: 600;
         line-height: 2.2rem;
         border-radius: 8px;
-        background-color: rgba(84, 84, 84, 0.92);
+        color: var(--white);
+        background-color: rgba(84, 84, 84, 0.7);
     }
 
     .tippy-content {
@@ -200,7 +201,7 @@ body {
     }
 
     .tippy-arrow {
-        color: rgba(84, 84, 84, 0.92);
+        color: rgba(84, 84, 84, 0.7);
     }
 
     .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
