@@ -20,7 +20,19 @@ function DefaultLayout({ children }) {
         <div className={cx('wrapper')}>
             <Header setShowSidebar={handleShowSidebar} />
             <div className={cx('container')}>
-                <Sidebar showSidebar={showSidebar} />
+                <motion.div
+                    className={cx('sidebar')}
+                    animate={{
+                        width: showSidebar ? '190px' : '50px',
+                        transition: {
+                            duration: 0.5,
+                            type: 'spring',
+                            damping: 15,
+                        },
+                    }}
+                >
+                    <Sidebar showSidebar={showSidebar} />
+                </motion.div>
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

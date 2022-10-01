@@ -5,13 +5,18 @@
     width: 100vw;
     height: 100vh;
     background-color: var(--blue-alpha-10);
-    // backdrop-filter: saturate(120%) blur(10px);
 }
 
 .container {
     display: flex;
     height: calc(100vh - var(--default-layout-header-height));
     margin-top: var(--default-layout-header-height);
+}
+
+.sidebar {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: overlay;
 }
 
 .content {
@@ -21,5 +26,4 @@
     box-shadow: var(--box-shadow-lg);
     border-top-left-radius: 5px;
     overflow: overlay;
-    // z-index: 1;
 }

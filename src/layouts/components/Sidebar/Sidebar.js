@@ -10,7 +10,6 @@ import {
     BsPeople,
 } from 'react-icons/bs';
 import config from '~/config';
-import { motion } from 'framer-motion';
 
 import styles from './Sidebar.module.scss';
 import SidebarItem from './SidebarItem';
@@ -84,14 +83,11 @@ function Sidebar({ showSidebar }) {
     ];
 
     return (
-        <motion.div
-            animate={{ width: showSidebar ? '180px' : '0px', transition: { duration: 0.4 } }}
-            className={cx('wrapper')}
-        >
+        <div className={cx('wrapper')}>
             {menu.map((item, index) => (
                 <SidebarItem key={index} item={item} />
             ))}
-        </motion.div>
+        </div>
     );
 }
 
