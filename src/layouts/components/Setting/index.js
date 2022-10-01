@@ -46,12 +46,15 @@ function Setting() {
         dispatch(setSettingModalIsOpen(false));
     };
 
-    const handleSetSidebarColor = (color) => {
-        console.log(color.name);
+    const handleSetSidebarColor = (e) => {
+        // const sidebarEl = document.querySelectorAll('#sidebar-color > li');
+        // sidebarEl.forEach((el) => el.classList.remove('active'));
+        // e.target.classList.add('active');
+        console.log(e.target.dataset.color);
     };
 
-    const handleSetNavColor = (color) => {
-        console.log(color.name);
+    const handleSetNavColor = (e) => {
+        console.log(e.target.dataset.color);
     };
 
     return (
@@ -101,28 +104,28 @@ function Setting() {
                 </div>
                 <span className={cx('title')}>Sidebar Color</span>
                 <div className={cx('input-field')}>
-                    <ul className={cx('color-list')}>
+                    <ul className={cx('color-list')} id="sidebar-color">
                         {colorData.map((color, idx) => (
                             <li
                                 key={idx}
                                 style={{ backgroundColor: `rgb(var(${color.code}))` }}
-                                className={cx('color')}
-                                value={color.name}
-                                onClick={() => handleSetSidebarColor(color)}
+                                className={cx('box-color')}
+                                data-color={color.name}
+                                onClick={handleSetSidebarColor}
                             ></li>
                         ))}
                     </ul>
                 </div>
                 <span className={cx('title')}>Navbar Color</span>
                 <div className={cx('input-field')}>
-                    <ul className={cx('color-list')}>
+                    <ul className={cx('color-list')} id="nav-color">
                         {colorData.map((color, idx) => (
                             <li
                                 key={idx}
                                 style={{ backgroundColor: `rgb(var(${color.code}))` }}
-                                className={cx('color')}
-                                value={color.name}
-                                onClick={() => handleSetNavColor(color)}
+                                className={cx('box-color')}
+                                data-color={color.name}
+                                onClick={handleSetNavColor}
                             ></li>
                         ))}
                     </ul>
