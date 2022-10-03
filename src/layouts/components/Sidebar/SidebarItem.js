@@ -29,8 +29,8 @@ function SidebarItem({ item, className = '' }) {
 
     if (item.children) {
         return (
-            <div className={cx('item', isOpen && 'open')}>
-                <div className={cx('item-title')} onClick={handleItemList}>
+            <div className={cx('item', isOpen && 'open')} onClick={handleItemList}>
+                <div className={cx('item-title')}>
                     <span>
                         {item?.icon}
                         {item.title}

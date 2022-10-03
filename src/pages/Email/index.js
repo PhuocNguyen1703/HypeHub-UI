@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import {
     BsLayoutSidebar,
@@ -27,15 +27,17 @@ const cx = classNames.bind(styles);
 
 function Email() {
     const { composeEmailModalIsOpen } = useSelector((state) => state.modal);
+    const [isHidden, setIsHidden] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
     const dispatch = useDispatch();
 
     const menu = [
         { icon: <BsEnvelope />, title: 'Inbox', path: '/email' },
-        { icon: <BsCursor />, title: 'Sent', path: '/sent' },
-        { icon: <BsFileEarmarkMinus />, title: 'Draft', path: '/title' },
-        { icon: <BsStar />, title: 'Starred', path: '/starred' },
-        { icon: <BsPatchExclamation />, title: 'Spam', path: '/spam' },
-        { icon: <BsTrash />, title: 'Deleted', path: '/deleted' },
+        { icon: <BsCursor />, title: 'Sent', path: '/email/sent' },
+        { icon: <BsFileEarmarkMinus />, title: 'Draft', path: '/email/draft' },
+        { icon: <BsStar />, title: 'Starred', path: '/email/starred' },
+        { icon: <BsPatchExclamation />, title: 'Spam', path: '/email/spam' },
+        { icon: <BsTrash />, title: 'Deleted', path: '/email/deleted' },
     ];
 
     const label = [
@@ -328,6 +330,25 @@ function Email() {
         },
     ];
 
+    const handleHiddenSidebar = () => {
+        setIsHidden((prevState) => !prevState);
+        getHiddenClass();
+    };
+
+    const handleCheckAll = () => {
+        setIsChecked(!isChecked);
+        console.log(isChecked);
+    };
+
+    const handleRefresh = () => {
+        window.location.reload();
+    };
+
+    const getHiddenClass = () => {
+        if (isHidden) return 'hide';
+        return '';
+    };
+
     const handleComposeEmail = () => {
         dispatch(setComposeEmailModalIsOpen(true));
     };
@@ -343,18 +364,24 @@ function Email() {
             </header>
             <div className={cx('header')}>
                 <div className={cx('nav')}>
-                    <BsLayoutSidebar className={cx('icon')} />
-                    <label className={cx('check-all')}>
+                    <span className={cx('icon')} onClick={handleHiddenSidebar}>
+                        <BsLayoutSidebar />
+                    </span>
+                    <label className={cx('check-all')} onClick={handleCheckAll}>
                         <input type="checkbox" />
                         All
                     </label>
-                    <BsArrowClockwise className={cx('icon')} />
-                    <BsTrash className={cx('icon')} />
+                    <span className={cx('icon')} onClick={handleRefresh}>
+                        <BsArrowClockwise />
+                    </span>
+                    <span className={cx('icon')}>
+                        <BsTrash />
+                    </span>
                 </div>
                 <div>15 of 12348</div>
             </div>
             <div className={cx('container')}>
-                <div className={cx('sidebar')}>
+                <div className={cx('sidebar', getHiddenClass())}>
                     <button className={cx('create-email')} onClick={handleComposeEmail}>
                         <BsPlus />
                         Compose
