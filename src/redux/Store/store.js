@@ -5,12 +5,13 @@ import authReducer from '../Slice/authSlice';
 import calendarReducer from '../Slice/calendarSlice';
 import modalReducer from '../Slice/modalSlice';
 import screenReducer from '../Slice/screenSlice';
+import layoutReducer from '../Slice/layoutSlice';
 
 const persistConfig = {
     key: 'root',
     version: 1,
     storage,
-    blacklist: ['calendar', 'modal', 'screen', 'layout'],
+    blacklist: ['calendar', 'modal', 'screen'],
 };
 
 const rootReducer = combineReducers({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     screen: screenReducer,
     calendar: calendarReducer,
     modal: modalReducer,
+    layout: layoutReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

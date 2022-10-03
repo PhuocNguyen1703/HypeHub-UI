@@ -4,26 +4,25 @@ import classNames from 'classnames/bind';
 import Header from '~/layouts/components/Header';
 import Sidebar from '~/layouts/components/Sidebar';
 import styles from './DefaultLayout.module.scss';
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
 
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
-    const [showSidebar, setShowSidebar] = useState(true);
-
-    const handleShowSidebar = () => {
-        setShowSidebar((prevState) => !prevState);
-    };
+    const { sidebarCollapsed } = useSelector((state) => state.layout);
+    const dispatch = useDispatch();
 
     return (
         <div className={cx('wrapper')}>
-            <Header setShowSidebar={handleShowSidebar} />
+            <Header />
             <div className={cx('container')}>
                 <motion.div
                     className={cx('sidebar')}
+                    initial={{ width: '50px' }}
                     animate={{
-                        width: showSidebar ? '190px' : '50px',
+                        width: sidebarCollapsed ? '50px' : '190px',
                         transition: {
                             duration: 0.5,
                             type: 'spring',
@@ -31,7 +30,7 @@ function DefaultLayout({ children }) {
                         },
                     }}
                 >
-                    <Sidebar showSidebar={showSidebar} />
+                    <Sidebar />
                 </motion.div>
                 <motion.div
                     initial={{ opacity: 0 }}

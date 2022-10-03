@@ -1,23 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdNavigateNext } from 'react-icons/md';
 import classNames from 'classnames/bind';
 
 import styles from './Sidebar.module.scss';
 import { NavLink } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
+import { useSelector } from 'react-redux';
+import { FaJava } from 'react-icons/fa';
 
 const cx = classNames.bind(styles);
 
 function SidebarItem({ item, className = '' }) {
-    const [open, setOpen] = useState(false);
+    const { sidebarCollapsed } = useSelector((state) => state.layout);
+    const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (sidebarCollapsed) {
+            setIsOpen(false);
+        }
+    }, [sidebarCollapsed]);
 
     const handleItemList = () => {
-        setOpen((prevState) => !prevState);
+        dispatch(setSidebarCollapsed(false));
+        setIsOpen((prevState) => !prevState);
     };
 
     if (item.children) {
         return (
-            <div className={cx('item', open && 'open')}>
+            <div className={cx('item', isOpen && 'open')}>
                 <div className={cx('item-title')} onClick={handleItemList}>
                     <span>
                         {item?.icon}
@@ -27,7 +40,7 @@ function SidebarItem({ item, className = '' }) {
                 </div>
                 <AnimatePresence>
                     <motion.div
-                        animate={{ height: open ? 'auto' : '0', transition: { duration: 0.4 } }}
+                        animate={{ height: isOpen ? 'auto' : '0', transition: { duration: 0.4 } }}
                         className={cx('child-list')}
                     >
                         {item.children.map((child, index) => (

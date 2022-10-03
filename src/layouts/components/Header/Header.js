@@ -33,6 +33,7 @@ import {
 } from '~/redux/Slice/modalSlice';
 import { setIsFullscreen } from '~/redux/Slice/screenSlice';
 import Checkin from '~/components/Modal/TimeKeeping/FaceRecognition';
+import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
 
 const cx = classNames.bind(styles);
 
@@ -75,8 +76,9 @@ const userMenu = [
     },
 ];
 
-function Header({ setShowSidebar }) {
+function Header() {
     const user = useSelector((state) => state.auth.login.currentUser);
+    const { sidebarCollapsed } = useSelector((state) => state.layout);
     const { isFullscreen } = useSelector((state) => state.screen);
     const { settingModalIsOpen, faceRecognitionModalIsOpen } = useSelector((state) => state.modal);
     const accessToken = user?.accessToken;
@@ -146,11 +148,15 @@ function Header({ setShowSidebar }) {
         dispatch(setFaceRecognitionModalIsOpen(true));
     };
 
+    const handleIsShowSidebar = () => {
+        dispatch(setSidebarCollapsed(!sidebarCollapsed));
+    };
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('header-left')}>
-                    <CgMenu className={cx('menu-icon')} onClick={setShowSidebar} />
+                    <CgMenu className={cx('menu-icon')} onClick={handleIsShowSidebar} />
                     <Link to={config.routes.home} className={cx('logo')}>
                         <img src={images.logo} alt="logo" />
                         <h1>Minato</h1>

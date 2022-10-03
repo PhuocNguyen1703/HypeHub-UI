@@ -16,7 +16,7 @@ import SidebarItem from './SidebarItem';
 
 const cx = classNames.bind(styles);
 
-function Sidebar({ showSidebar }) {
+function Sidebar() {
     const menu = [
         {
             icon: <BsColumnsGap />,
