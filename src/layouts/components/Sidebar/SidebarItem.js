@@ -8,7 +8,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
 import { useSelector } from 'react-redux';
-import { FaJava } from 'react-icons/fa';
 
 const cx = classNames.bind(styles);
 

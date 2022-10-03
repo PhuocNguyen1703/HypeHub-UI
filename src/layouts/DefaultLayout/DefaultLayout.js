@@ -5,14 +5,12 @@ import Header from '~/layouts/components/Header';
 import Sidebar from '~/layouts/components/Sidebar';
 import styles from './DefaultLayout.module.scss';
 import { motion } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
     const { sidebarCollapsed } = useSelector((state) => state.layout);
-    const dispatch = useDispatch();
 
     return (
         <div className={cx('wrapper')}>
