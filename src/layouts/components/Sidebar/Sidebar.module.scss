@@ -15,6 +15,7 @@
     &:hover {
         background-color: var(--white);
         color: var(--default-background-color);
+        box-shadow: var(--box-shadow);
     }
 
     span {
@@ -28,6 +29,7 @@
     &.active {
         background-color: var(--white);
         color: var(--default-background-color);
+        box-shadow: var(--box-shadow);
     }
 }
 
@@ -77,6 +79,8 @@
 
     &:hover {
         background-color: var(--white);
+        color: var(--default-background-color);
+        box-shadow: var(--box-shadow);
     }
 
     span {
@@ -90,6 +94,7 @@
     &.active {
         background-color: var(--white);
         color: var(--default-background-color);
+        box-shadow: var(--box-shadow);
     }
 }
 
