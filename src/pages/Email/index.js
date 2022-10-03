@@ -17,6 +17,8 @@ import {
 
 import styles from './Email.module.scss';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
+import ComposeEmail from '~/components/Modal/ComposeEmail';
+import Modal from '~/components/Modal';
 
 const cx = classNames.bind(styles);
 
@@ -392,6 +394,10 @@ function Email() {
                     ))}
                 </div>
             </div>
+
+            <Modal>
+                <ComposeEmail />
+            </Modal>
         </div>
     );
 }

@@ -1,0 +1,148 @@
+.wrapper {
+    --header-height-layout: 40px;
+    --input-height-layout: 40px;
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 600px;
+    height: 615px;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    border-top-left-radius: 6px;
+    border: 1px solid var(--gray-alpha-20);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    height: var(--header-height-layout);
+    background-color: #f2f6fc;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.minimize-btn,
+.fullscreen-btn,
+.close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    font-size: 1.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--gray-alpha-20);
+    }
+}
+
+.fullscreen-btn {
+    font-size: 1.4rem !important;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    // height: 100%;
+    height: calc(100% - var(--header-height-layout));
+    padding: 0 16px;
+}
+
+.input-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: var(--input-height-layout);
+    margin-top: 10px;
+    border-bottom: 1px solid var(--gray-alpha-20);
+}
+
+.to-ipt {
+    display: flex;
+    align-items: center;
+    flex: 1;
+
+    input {
+        flex: 1;
+        height: 100%;
+        font-size: 1.6rem;
+        line-height: 1;
+        margin: 0 4px;
+    }
+}
+
+.input-btn {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.cc-btn,
+.bcc-btn {
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.subject {
+    height: var(--input-height-layout);
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 1;
+    border-bottom: 1px solid var(--gray-alpha-20);
+}
+
+.content {
+    flex: 1;
+    padding-top: 10px;
+    width: 100%;
+
+    textarea {
+        width: 100%;
+        height: 100%;
+        font-size: 1.6rem;
+        outline: none;
+        border: none;
+        resize: none;
+    }
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0 16px;
+    height: 60px;
+}
+
+.send-btn {
+    padding: 8px 18px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    background-color: var(--default-background-color);
+    color: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.delete-btn {
+}
