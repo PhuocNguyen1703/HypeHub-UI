@@ -12,6 +12,7 @@ import {
     BsPatchExclamation,
     BsFillRecordFill,
     BsFillStarFill,
+    BsRecord,
 } from 'react-icons/bs';
 
 import styles from './Email.module.scss';
@@ -30,10 +31,10 @@ function Email() {
     ];
 
     const label = [
-        { icon: <BsFillRecordFill />, color: 'forestgreen', title: 'Personal', path: '/personal' },
-        { icon: <BsFillRecordFill />, color: 'indigo', title: 'Company', path: '/company' },
-        { icon: <BsFillRecordFill />, color: 'orange', title: 'Important', path: '/important' },
-        { icon: <BsFillRecordFill />, color: 'red', title: 'Private', path: '/private' },
+        { icon: <BsRecord />, color: 'forestgreen', title: 'Personal', path: '/personal' },
+        { icon: <BsRecord />, color: 'indigo', title: 'Company', path: '/company' },
+        { icon: <BsRecord />, color: 'orange', title: 'Important', path: '/important' },
+        { icon: <BsRecord />, color: 'red', title: 'Private', path: '/private' },
     ];
 
     const email = [
@@ -344,7 +345,7 @@ function Email() {
                 <div className={cx('sidebar')}>
                     <button className={cx('create-email')}>
                         <BsPlus />
-                        Create Email
+                        Compose
                     </button>
                     {menu.map((item, index) => (
                         <SidebarItem key={index} item={item} className={'menu-item'} />
