@@ -19,10 +19,16 @@ import styles from './Email.module.scss';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
 import ComposeEmail from '~/components/Modal/ComposeEmail';
 import Modal from '~/components/Modal';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setComposeEmailModalIsOpen } from '~/redux/Slice/modalSlice';
 
 const cx = classNames.bind(styles);
 
 function Email() {
+    const { composeEmailModalIsOpen } = useSelector((state) => state.modal);
+    const dispatch = useDispatch();
+
     const menu = [
         { icon: <BsEnvelope />, title: 'Inbox', path: '/email' },
         { icon: <BsCursor />, title: 'Sent', path: '/sent' },
@@ -322,6 +328,10 @@ function Email() {
         },
     ];
 
+    const handleComposeEmail = () => {
+        dispatch(setComposeEmailModalIsOpen(true));
+    };
+
     return (
         <div className={cx('wrapper')}>
             <header className={cx('heading')}>
@@ -345,7 +355,7 @@ function Email() {
             </div>
             <div className={cx('container')}>
                 <div className={cx('sidebar')}>
-                    <button className={cx('create-email')}>
+                    <button className={cx('create-email')} onClick={handleComposeEmail}>
                         <BsPlus />
                         Compose
                     </button>
@@ -395,9 +405,11 @@ function Email() {
                 </div>
             </div>
 
-            <Modal>
-                <ComposeEmail />
-            </Modal>
+            {composeEmailModalIsOpen && (
+                <Modal>
+                    <ComposeEmail />
+                </Modal>
+            )}
         </div>
     );
 }
