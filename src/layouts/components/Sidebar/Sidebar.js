@@ -47,18 +47,7 @@ function Sidebar() {
         {
             icon: <BsChatSquareDots />,
             title: 'Chat',
-            children: [
-                {
-                    icon: <BsPerson />,
-                    title: 'Private Chat',
-                    path: config.routes.private,
-                },
-                {
-                    icon: <BsPeople />,
-                    title: 'Group Chat',
-                    path: '/setting',
-                },
-            ],
+            path: config.routes.chat,
         },
         {
             icon: <BsCheck2Square />,

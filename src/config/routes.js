@@ -8,7 +8,6 @@ const routes = {
     checkin: '/checkin',
     candidates: '/candidates',
     email: '/email',
-    private: '/private-chat',
     todo: '/todo',
     calendar: '/calendar',
     kanban: '/kanban',

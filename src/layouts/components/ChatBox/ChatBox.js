@@ -89,49 +89,37 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
 
     return (
         <div className={cx('chat-content')}>
-            {chat ? (
-                <>
-                    <div className={cx('header')}>
-                        <Image src={userData?.avatar} alt="avatar" className={cx('avatar')} />
-                        <div className={cx('info')}>
-                            <span className={cx('name')}>{userData?.fullName}</span>
-                            <p>{userData?.position}</p>
-                        </div>
-                    </div>
+            <div className={cx('header')}>
+                <Image src={userData?.avatar} alt="avatar" className={cx('avatar')} />
+                <div className={cx('info')}>
+                    <span className={cx('name')}>{userData?.fullName}</span>
+                    <p>{userData?.position}</p>
+                </div>
+            </div>
 
-                    <div className={cx('content')}>
-                        <div className={cx('wrapper')}>
-                            {messages.map((message) => (
-                                <div
-                                    key={message._id}
-                                    ref={scroll}
-                                    className={cx(message.senderId === currentUserId ? 'message-own' : 'message')}
-                                >
-                                    <span>{message.content}</span>
-                                    <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span>
-                                </div>
-                            ))}
+            <div className={cx('content')}>
+                <div className={cx('wrapper')}>
+                    {messages.map((message) => (
+                        <div
+                            key={message._id}
+                            ref={scroll}
+                            className={cx(message.senderId === currentUserId ? 'message-own' : 'message')}
+                        >
+                            <span>{message.content}</span>
+                            <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span>
                         </div>
+                    ))}
+                </div>
 
-                        <div className={cx('chat-content-footer')}>
-                            <label onClick={() => imageRef.current.click()}>
-                                <BsPlus className={cx('icon-plus')} />
-                            </label>
-                            <input id="send-file" type="file" ref={imageRef} hidden />
-                            <InputEmoji value={newMessage} onChange={handleChange} />
-                            <BsCursor className={cx('icon-send')} onClick={handleSend} />
-                        </div>
-                    </div>
-                </>
-            ) : (
-                <>
-                    <span className={cx('welcome')}>Welcome to Messenger</span>
-                    <div className={cx('logo')}>
-                        <img src={images.logo} alt="logo-img" />
-                        <h1>Logistics</h1>
-                    </div>
-                </>
-            )}
+                <div className={cx('chat-content-footer')}>
+                    <label onClick={() => imageRef.current.click()}>
+                        <BsPlus className={cx('icon-plus')} />
+                    </label>
+                    <input id="send-file" type="file" ref={imageRef} hidden />
+                    <InputEmoji value={newMessage} onChange={handleChange} />
+                    <BsCursor className={cx('icon-send')} onClick={handleSend} />
+                </div>
+            </div>
         </div>
     );
 }

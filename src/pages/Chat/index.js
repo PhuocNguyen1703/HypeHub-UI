@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './PrivateChat.module.scss';
+import styles from './Chat.module.scss';
 import Image from '~/components/Image';
 import ChatBox from '~/layouts/components/ChatBox/ChatBox';
 import { useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import { io } from 'socket.io-client';
 import { getAllUser } from '~/api/userApi';
 import { userChats } from '~/api/chatApi';
 import Conversation from '~/layouts/components/Conversation/Conversation';
+import Message from '~/components/Search/Message';
 
 const cx = classNames.bind(styles);
 
@@ -156,7 +157,9 @@ function PrivateChat() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('sidebar')}>
-                <div className={cx('search')}>Search</div>
+                <div className={cx('search')}>
+                    <Message />
+                </div>
                 <h5 className={cx('label')}>Messages</h5>
                 <div className={cx('message-list')}>
                     {chats.map((item) => (
@@ -176,7 +179,7 @@ function PrivateChat() {
                     ))}
                 </div>
             </div>
-            
+
             <ChatBox
                 chat={currentChat}
                 currentUserId={currentUser._id}
