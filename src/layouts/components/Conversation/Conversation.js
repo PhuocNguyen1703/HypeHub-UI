@@ -10,28 +10,34 @@ const cx = classNames.bind(styles);
 function Conversation({ data, currentUserId, online }) {
     const [userData, setUserData] = useState(null);
 
-    useEffect(() => {
-        const userId = data.members.find((id) => id !== currentUserId);
-        const getUserData = async () => {
-            try {
-                const { data } = await getUser(userId);
-                setUserData(data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
+    // useEffect(() => {
+    //     const userId = data.members.find((id) => id !== currentUserId);
+    //     const getUserData = async () => {
+    //         try {
+    //             const { data } = await getUser(userId);
+    //             setUserData(data);
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
 
-        getUserData();
-    }, []);
+    //     getUserData();
+    // }, []);
 
     return (
-        <>
-            <Image src={userData?.avatar} alt="avatar" className={cx('avatar')} />
+        <div className={cx('wrapper')}>
             <div className={cx('info')}>
-                <span className={cx('name')}>{userData?.fullName}</span>
-                <p>{userData?.position}</p>
+                <div className={cx('user-avatar')}>
+                    <Image src={data?.avatar} alt="avatar" className={cx('avatar')} />
+                    <span className={cx('dot-online')}></span>
+                </div>
+                <div>
+                    <span className={cx('name')}>{data?.fullName}</span>
+                    <p className={cx('preview-message')}>{data?.message}</p>
+                </div>
             </div>
-        </>
+            <span className={cx('time')}>a few ago</span>
+        </div>
     );
 }
 
