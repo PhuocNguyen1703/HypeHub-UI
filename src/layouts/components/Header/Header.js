@@ -27,6 +27,7 @@ import { createAxios } from '~/api/axiosClient';
 import Modal from '~/components/Modal';
 import Setting from '../Setting';
 import {
+    setContactManagementModalIsOpen,
     setFaceRecognitionModalIsOpen,
     setFaceRecognitionTitle,
     setSettingModalIsOpen,
@@ -34,6 +35,7 @@ import {
 import { setIsFullscreen } from '~/redux/Slice/screenSlice';
 import Checkin from '~/components/Modal/TimeKeeping/FaceRecognition';
 import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
+import ContactManagement from '~/components/Modal/ContactManagement';
 
 const cx = classNames.bind(styles);
 
@@ -80,7 +82,9 @@ function Header() {
     const user = useSelector((state) => state.auth.login.currentUser);
     const { sidebarCollapsed } = useSelector((state) => state.layout);
     const { isFullscreen } = useSelector((state) => state.screen);
-    const { settingModalIsOpen, faceRecognitionModalIsOpen } = useSelector((state) => state.modal);
+    const { settingModalIsOpen, faceRecognitionModalIsOpen, contactManagementModalIsOpen } = useSelector(
+        (state) => state.modal,
+    );
     const accessToken = user?.accessToken;
     const id = user?._id;
     const dispatch = useDispatch();
@@ -152,6 +156,10 @@ function Header() {
         dispatch(setSidebarCollapsed(!sidebarCollapsed));
     };
 
+    const handleContactManagement = () => {
+        dispatch(setContactManagementModalIsOpen(true));
+    };
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -183,8 +191,8 @@ function Header() {
                                 )}
                             </button>
                         </Tippy>
-                        <Tippy delay={[0, 50]} interactive content="Apps">
-                            <button className={cx('action-btn')}>
+                        <Tippy delay={[0, 50]} interactive content="Contact management">
+                            <button className={cx('action-btn')} onClick={handleContactManagement}>
                                 <BsFillPersonPlusFill className={cx('icon')} />
                             </button>
                         </Tippy>
@@ -222,6 +230,11 @@ function Header() {
             {faceRecognitionModalIsOpen && (
                 <Modal>
                     <Checkin />
+                </Modal>
+            )}
+            {contactManagementModalIsOpen && (
+                <Modal>
+                    <ContactManagement />
                 </Modal>
             )}
         </header>

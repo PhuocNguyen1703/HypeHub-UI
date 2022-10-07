@@ -5,7 +5,6 @@ const routes = {
     login: '/login',
     chat: '/chat',
     employee: '/employee',
-    checkin: '/checkin',
     candidates: '/candidates',
     email: '/email',
     todo: '/todo',

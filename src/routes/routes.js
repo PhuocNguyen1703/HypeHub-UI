@@ -5,7 +5,6 @@ import Auth from '~/pages/Auth/Login';
 import config from '~/config';
 import Register from '~/pages/Auth/Register';
 import Candidate from '~/pages/Candidate';
-import Checkin from '~/pages/Checkin';
 import Employee from '~/pages/Employee';
 import Email from '~/pages/Email';
 import Chat from '~/pages/Chat';
@@ -22,7 +21,6 @@ const privateRoutes = [
     { path: config.routes.profile, component: Profile },
     { path: config.routes.chat, component: Chat },
     { path: config.routes.employee, component: Employee },
-    { path: config.routes.checkin, component: Checkin },
     { path: config.routes.candidates, component: Candidate, layout: HeaderOnly },
     { path: config.routes.email, component: Email },
     { path: config.routes.todo, component: Todo },
