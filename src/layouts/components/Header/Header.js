@@ -8,11 +8,11 @@ import { CgMenu, CgMoreVerticalAlt } from 'react-icons/cg';
 import { IoLanguageOutline, IoLogOutOutline, IoSettingsOutline } from 'react-icons/io5';
 import {
     BsFullscreen,
-    BsColumnsGap,
     BsChatSquareDots,
     BsBell,
     BsFullscreenExit,
     BsPersonBoundingBox,
+    BsFillPersonPlusFill,
 } from 'react-icons/bs';
 
 import styles from './Header.module.scss';
@@ -185,7 +185,7 @@ function Header() {
                         </Tippy>
                         <Tippy delay={[0, 50]} interactive content="Apps">
                             <button className={cx('action-btn')}>
-                                <BsColumnsGap className={cx('icon')} />
+                                <BsFillPersonPlusFill className={cx('icon')} />
                             </button>
                         </Tippy>
                         <Tippy delay={[0, 50]} interactive content="Notification">

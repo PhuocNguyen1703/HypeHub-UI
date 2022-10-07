@@ -9,7 +9,7 @@ import { getUser } from '~/api/userApi';
 import { addMessage, getMessages } from '~/api/messageApi';
 import images from '~/assets/images';
 import Image from '~/components/Image';
-import { BsCursor, BsPlus } from 'react-icons/bs';
+import { BsCardImage, BsCursor, BsPlus } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);
 dayjs.extend(relativeTime);
@@ -88,17 +88,19 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
     }, [messages]);
 
     return (
-        <div className={cx('chat-content')}>
+        <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <Image src={userData?.avatar} alt="avatar" className={cx('avatar')} />
-                <div className={cx('info')}>
-                    <span className={cx('name')}>{userData?.fullName}</span>
-                    <p>{userData?.position}</p>
+                <div>
+                    <span className={cx('to')}>To:</span>
+                    <span className={cx('name')}>Me Me</span>
+                </div>
+                <div>
+                    <div></div>
                 </div>
             </div>
 
-            <div className={cx('content')}>
-                <div className={cx('wrapper')}>
+            <div className={cx('container')}>
+                <div className={cx('content')}>
                     {messages.map((message) => (
                         <div
                             key={message._id}
@@ -111,11 +113,14 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
                     ))}
                 </div>
 
-                <div className={cx('chat-content-footer')}>
-                    <label onClick={() => imageRef.current.click()}>
-                        <BsPlus className={cx('icon-plus')} />
+                <div className={cx('footer')}>
+                    <label className={cx('icon-image')} onClick={() => imageRef.current.click()}>
+                        <BsCardImage />
                     </label>
                     <input id="send-file" type="file" ref={imageRef} hidden />
+
+                    
+
                     <InputEmoji value={newMessage} onChange={handleChange} />
                     <BsCursor className={cx('icon-send')} onClick={handleSend} />
                 </div>

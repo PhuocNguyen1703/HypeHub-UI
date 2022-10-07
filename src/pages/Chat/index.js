@@ -217,12 +217,12 @@ function PrivateChat() {
                 </div>
             </div>
 
-            {/* <ChatBox
+            <ChatBox
                 chat={currentChat}
                 currentUserId={currentUser._id}
                 setSendMessage={setSendMessage}
                 receiveMessage={receiveMessage}
-            /> */}
+            />
         </div>
     );
 }
