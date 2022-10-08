@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './ContactManagement.module.scss';
 import { BsXLg } from 'react-icons/bs';
+import Contact from '~/components/Contact';
 
 const cx = classNames.bind(styles);
 
@@ -65,7 +66,9 @@ function ContactManagement() {
                         Friend request
                     </span>
                 </div>
-                <div className={cx('content')}></div>
+                <div className={cx('content')}>
+                    <Contact />
+                </div>
             </div>
         </div>
     );
