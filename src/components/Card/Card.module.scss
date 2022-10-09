@@ -8,11 +8,13 @@
 }
 
 .position {
-    padding: 4px 8px;
+    padding: 2px 4px;
     font-size: 1.2rem;
     font-weight: 600;
     border: 1px solid var(--gray-alpha-20);
     border-radius: 4px;
+    user-select: none;
+    background-color: var(--yellow-alpha-60);
 }
 
 .user-avatar {
@@ -72,8 +74,14 @@
 
 .add-btn {
     margin: 4px 0;
-    padding: 4px 8px;
+    padding: 6px 8px;
     font-size: 1.2rem;
-    border: 1px solid black;
     border-radius: 4px;
+    background-color: var(--blue-alpha-80);
+    color: var(--white);
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--blue);
+    }
 }
