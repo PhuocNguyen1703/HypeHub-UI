@@ -5,6 +5,7 @@ import styles from './ContactManagement.module.scss';
 import { BsXLg } from 'react-icons/bs';
 import Contact from '~/components/Contact';
 import Account from '~/components/Search/Account';
+import Directory from '~/components/Directory';
 
 const cx = classNames.bind(styles);
 
@@ -64,19 +65,22 @@ function ContactManagement() {
                         <span className={cx('directory', isDirectory && 'active')} onClick={handleOnDirectory}>
                             Directory
                         </span>
-                        <span className={cx('confirm', isConfirm && 'active')} onClick={handleOnConfirm}>
-                            Confirm
-                        </span>
                         <span className={cx('request', isRequest && 'active')} onClick={handleOnRequest}>
                             Friend request
                         </span>
+                        <span className={cx('confirm', isConfirm && 'active')} onClick={handleOnConfirm}>
+                            Confirm
+                        </span>
                     </div>
-                    <div className={cx('search')}>
-                        <Account />
-                    </div>
+                    {isSearchContact && (
+                        <div className={cx('search')}>
+                            <Account />
+                        </div>
+                    )}
                 </div>
                 <div className={cx('content')}>
-                    <Contact />
+                    {isSearchContact && <Contact />}
+                    {isDirectory && <Directory />}
                 </div>
             </div>
         </div>

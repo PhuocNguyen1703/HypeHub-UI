@@ -70,11 +70,12 @@
 .footer {
     display: flex;
     justify-content: center;
+    margin: 4px 0;
 }
 
-.add-btn {
-    margin: 4px 0;
-    padding: 6px 8px;
+.add-btn,
+.message-btn {
+    padding: 4px 8px;
     font-size: 1.2rem;
     border-radius: 4px;
     background-color: var(--blue-alpha-80);
@@ -83,5 +84,45 @@
 
     &:hover {
         background-color: var(--blue);
+    }
+}
+
+.delete-btn {
+    display: flex;
+    align-items: center;
+    margin-left: 6px;
+    padding: 4px;
+    border-radius: 4px;
+    color: var(--red);
+    border: 1px solid var(--red);
+    cursor: pointer;
+
+    &:hover {
+        background-color: lighten($color: red, $amount: 45);
+    }
+}
+
+.confirm-btn {
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: green;
+    border: 1px solid green;
+    cursor: pointer;
+
+    &:hover {
+        background-color: lighten($color: green, $amount: 60);
+    }
+}
+
+.discard-btn {
+    margin-left: 4px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: var(--red);
+    border: 1px solid var(--red);
+    cursor: pointer;
+
+    &:hover {
+        background-color: lighten($color: red, $amount: 45);
     }
 }

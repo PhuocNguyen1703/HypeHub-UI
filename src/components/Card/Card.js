@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Card.module.scss';
 import Image from '../Image';
+import { BsTrash } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);
 function Card() {
@@ -22,7 +23,13 @@ function Card() {
                 <span className={cx('phone')}>0349985272</span>
             </div>
             <footer className={cx('footer')}>
-                <button className={cx('add-btn')}>Add contact</button>
+                {/* <button className={cx('add-btn')}>Add contact</button> */}
+                {/* <button className={cx('message-btn')}>Message</button>
+                <button className={cx('delete-btn')}>
+                    <BsTrash />
+                </button> */}
+                <button className={cx('confirm-btn')}>Confirm</button>
+                <button className={cx('discard-btn')}>Discard</button>
             </footer>
         </div>
     );
