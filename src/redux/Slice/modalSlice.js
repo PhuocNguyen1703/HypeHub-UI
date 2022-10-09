@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const modalSlice = createSlice({
     name: 'modal',
     initialState: {
+        notificationModalIsOpen: false,
         settingModalIsOpen: false,
         faceRecognitionModalIsOpen: false,
         faceRecognitionTitle: '',
@@ -11,6 +12,9 @@ const modalSlice = createSlice({
         calendarEventModalIsOpen: false,
     },
     reducers: {
+        setNotificationModalIsOpen: (state, action) => {
+            state.notificationModalIsOpen = action.payload;
+        },
         setSettingModalIsOpen: (state, action) => {
             state.settingModalIsOpen = action.payload;
         },
@@ -33,6 +37,7 @@ const modalSlice = createSlice({
 });
 
 export const {
+    setNotificationModalIsOpen,
     setSettingModalIsOpen,
     setFaceRecognitionModalIsOpen,
     setFaceRecognitionTitle,

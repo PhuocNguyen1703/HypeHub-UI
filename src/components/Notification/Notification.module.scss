@@ -1,0 +1,12 @@
+.wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 350px;
+    height: 100vh;
+    padding: 0 20px;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    overflow: overlay;
+}

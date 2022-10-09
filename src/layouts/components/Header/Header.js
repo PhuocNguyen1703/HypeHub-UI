@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
@@ -30,12 +30,14 @@ import {
     setContactManagementModalIsOpen,
     setFaceRecognitionModalIsOpen,
     setFaceRecognitionTitle,
+    setNotificationModalIsOpen,
     setSettingModalIsOpen,
 } from '~/redux/Slice/modalSlice';
 import { setIsFullscreen } from '~/redux/Slice/screenSlice';
 import Checkin from '~/components/Modal/TimeKeeping/FaceRecognition';
 import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
 import ContactManagement from '~/components/Modal/ContactManagement';
+import Notification from '~/components/Notification';
 
 const cx = classNames.bind(styles);
 
@@ -82,9 +84,8 @@ function Header() {
     const user = useSelector((state) => state.auth.login.currentUser);
     const { sidebarCollapsed } = useSelector((state) => state.layout);
     const { isFullscreen } = useSelector((state) => state.screen);
-    const { settingModalIsOpen, faceRecognitionModalIsOpen, contactManagementModalIsOpen } = useSelector(
-        (state) => state.modal,
-    );
+    const { notificationModalIsOpen, settingModalIsOpen, faceRecognitionModalIsOpen, contactManagementModalIsOpen } =
+        useSelector((state) => state.modal);
     const accessToken = user?.accessToken;
     const id = user?._id;
     const dispatch = useDispatch();
@@ -147,7 +148,11 @@ function Header() {
         }
     };
 
-    const handleOpenModal = () => {
+    const handleNotification = () => {
+        dispatch(setNotificationModalIsOpen(true));
+    };
+
+    const handleOpenFaceModal = () => {
         dispatch(setFaceRecognitionTitle('Sign up'));
         dispatch(setFaceRecognitionModalIsOpen(true));
     };
@@ -176,43 +181,59 @@ function Header() {
                 <div className={cx('header-right')}>
                     <CgMoreVerticalAlt className={cx('more-icon')} />
                     <div className={cx('actions')}>
-                        <Tippy delay={[0, 50]} interactive content="Language">
-                            <button className={cx('action-btn')}>
-                                <span>EN</span>
-                                <IoLanguageOutline className={cx('icon')} />
-                            </button>
-                        </Tippy>
-                        <Tippy delay={[0, 50]} interactive content={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}>
-                            <button className={cx('action-btn')} onClick={handleFullscreen}>
-                                {isFullscreen ? (
-                                    <BsFullscreenExit className={cx('icon')} />
-                                ) : (
-                                    <BsFullscreen className={cx('icon')} />
-                                )}
-                            </button>
-                        </Tippy>
-                        <Tippy delay={[0, 50]} interactive content="Contact management">
-                            <button className={cx('action-btn')} onClick={handleContactManagement}>
-                                <BsFillPersonPlusFill className={cx('icon')} />
-                            </button>
-                        </Tippy>
-                        <Tippy delay={[0, 50]} interactive content="Notification">
-                            <button className={cx('action-btn')}>
-                                <BsBell className={cx('icon')} />
-                                <span className={cx('badge')}></span>
-                            </button>
-                        </Tippy>
-                        <Tippy delay={[0, 50]} interactive content="Message">
-                            <button className={cx('action-btn')}>
-                                <BsChatSquareDots className={cx('icon')} />
-                                <span className={cx('badge')}></span>
-                            </button>
-                        </Tippy>
-                        <Tippy delay={[0, 50]} interactive content="Sign up">
-                            <button className={cx('action-btn')} onClick={handleOpenModal}>
-                                <BsPersonBoundingBox className={cx('icon')} />
-                            </button>
-                        </Tippy>
+                        <div>
+                            <Tippy delay={[0, 50]} interactive content="Language">
+                                <button className={cx('action-btn')}>
+                                    <span>EN</span>
+                                    <IoLanguageOutline className={cx('icon')} />
+                                </button>
+                            </Tippy>
+                        </div>
+                        <div>
+                            <Tippy
+                                delay={[0, 50]}
+                                interactive
+                                content={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+                            >
+                                <button className={cx('action-btn')} onClick={handleFullscreen}>
+                                    {isFullscreen ? (
+                                        <BsFullscreenExit className={cx('icon')} />
+                                    ) : (
+                                        <BsFullscreen className={cx('icon')} />
+                                    )}
+                                </button>
+                            </Tippy>
+                        </div>
+                        <div className={cx('notification')}>
+                            <Tippy delay={[0, 50]} interactive content="Notification">
+                                <button className={cx('action-btn')} onClick={handleNotification}>
+                                    <BsBell className={cx('icon')} />
+                                    <span className={cx('badge')}></span>
+                                </button>
+                            </Tippy>
+                        </div>
+                        <div>
+                            <Tippy delay={[0, 50]} interactive content="Message">
+                                <button className={cx('action-btn')}>
+                                    <BsChatSquareDots className={cx('icon')} />
+                                    <span className={cx('badge')}></span>
+                                </button>
+                            </Tippy>
+                        </div>
+                        <div>
+                            <Tippy delay={[0, 50]} interactive content="Contact management">
+                                <button className={cx('action-btn')} onClick={handleContactManagement}>
+                                    <BsFillPersonPlusFill className={cx('icon')} />
+                                </button>
+                            </Tippy>
+                        </div>
+                        <div>
+                            <Tippy delay={[0, 50]} interactive content="Sign up">
+                                <button className={cx('action-btn')} onClick={handleOpenFaceModal}>
+                                    <BsPersonBoundingBox className={cx('icon')} />
+                                </button>
+                            </Tippy>
+                        </div>
                     </div>
                     <CgMoreVerticalAlt className={cx('more-icon')} />
 
@@ -221,6 +242,12 @@ function Header() {
                     </Menu>
                 </div>
             </div>
+
+            {notificationModalIsOpen && (
+                <Modal>
+                    <Notification />
+                </Modal>
+            )}
 
             {settingModalIsOpen && (
                 <Modal>

@@ -208,36 +208,3 @@ body {
         top: -8px;
     }
 }
-
-//Custom input-input-emoji
-body {
-    .react-emoji-picker--wrapper {
-        border-radius: 5px;
-        height: 360px;
-    }
-    .react-emoji {
-        width: 88%;
-    }
-
-    .react-input-emoji--input {
-        max-height: 55px;
-        margin: 5px 0;
-        font-size: 1.6rem;
-        overflow: overlay;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .emoji-mart-scroll {
-        overflow: overlay;
-    }
-
-    .react-input-emoji--input::-webkit-scrollbar {
-        display: none;
-        width: 0 !important;
-    }
-
-    .emoji-mart.emoji-mart-dark {
-        width: auto !important;
-    }
-}
