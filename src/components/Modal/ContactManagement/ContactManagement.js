@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './ContactManagement.module.scss';
 import { BsXLg } from 'react-icons/bs';
 import Contact from '~/components/Contact';
+import Account from '~/components/Search/Account';
 
 const cx = classNames.bind(styles);
 
@@ -52,19 +53,27 @@ function ContactManagement() {
                 </button>
             </header>
             <div className={cx('container')}>
-                <div className={cx('nav')}>
-                    <span className={cx('search-contact', isSearchContact && 'active')} onClick={handleOnSearchContact}>
-                        Search contact
-                    </span>
-                    <span className={cx('directory', isDirectory && 'active')} onClick={handleOnDirectory}>
-                        Directory
-                    </span>
-                    <span className={cx('confirm', isConfirm && 'active')} onClick={handleOnConfirm}>
-                        Confirm
-                    </span>
-                    <span className={cx('request', isRequest && 'active')} onClick={handleOnRequest}>
-                        Friend request
-                    </span>
+                <div className={cx('navbar')}>
+                    <div className={cx('action-btn')}>
+                        <span
+                            className={cx('search-contact', isSearchContact && 'active')}
+                            onClick={handleOnSearchContact}
+                        >
+                            Search contact
+                        </span>
+                        <span className={cx('directory', isDirectory && 'active')} onClick={handleOnDirectory}>
+                            Directory
+                        </span>
+                        <span className={cx('confirm', isConfirm && 'active')} onClick={handleOnConfirm}>
+                            Confirm
+                        </span>
+                        <span className={cx('request', isRequest && 'active')} onClick={handleOnRequest}>
+                            Friend request
+                        </span>
+                    </div>
+                    <div className={cx('search')}>
+                        <Account />
+                    </div>
                 </div>
                 <div className={cx('content')}>
                     <Contact />
