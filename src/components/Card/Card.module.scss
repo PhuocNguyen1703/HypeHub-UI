@@ -75,7 +75,7 @@
 
 .add-btn,
 .message-btn {
-    padding: 4px 8px;
+    padding: 6px 8px;
     font-size: 1.2rem;
     border-radius: 4px;
     background-color: var(--blue-alpha-80);
@@ -110,7 +110,7 @@
     cursor: pointer;
 
     &:hover {
-        background-color: lighten($color: green, $amount: 60);
+        background-color: lighten($color: green, $amount: 65);
     }
 }
 

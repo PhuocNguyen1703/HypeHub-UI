@@ -7,7 +7,7 @@ const modalSlice = createSlice({
         faceRecognitionModalIsOpen: false,
         faceRecognitionTitle: '',
         composeEmailModalIsOpen: false,
-        contactManagementModalIsOpen: true,
+        contactManagementModalIsOpen: false,
         calendarEventModalIsOpen: false,
     },
     reducers: {

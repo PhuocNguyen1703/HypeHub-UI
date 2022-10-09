@@ -6,7 +6,7 @@ import Image from '../Image';
 import { BsTrash } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);
-function Card() {
+function Card({ layout }) {
     return (
         <div className={cx('wrapper')}>
             <span className={cx('position')}>Design</span>
@@ -23,13 +23,19 @@ function Card() {
                 <span className={cx('phone')}>0349985272</span>
             </div>
             <footer className={cx('footer')}>
-                {/* <button className={cx('add-btn')}>Add contact</button> */}
-                {/* <button className={cx('message-btn')}>Message</button>
-                <button className={cx('delete-btn')}>
-                    <BsTrash />
-                </button> */}
-                <button className={cx('confirm-btn')}>Confirm</button>
-                <button className={cx('discard-btn')}>Discard</button>
+                {layout === 'contact' && <button className={cx('add-btn')}>Add contact</button>}
+                {layout === 'directory' && (
+                    <>
+                        <button className={cx('message-btn')}>Message</button>
+                        <button className={cx('delete-btn')}>
+                            <BsTrash />
+                        </button>
+                    </>
+                )}
+                {layout === 'confirm' && <button className={cx('confirm-btn')}>Confirm</button>}
+                {(layout === 'request' || layout === 'confirm') && (
+                    <button className={cx('discard-btn')}>Discard</button>
+                )}
             </footer>
         </div>
     );
