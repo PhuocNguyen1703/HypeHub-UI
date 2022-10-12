@@ -6,10 +6,15 @@ import { BsArrowsAngleContract, BsDash, BsTrash, BsX } from 'react-icons/bs';
 import { IoResizeSharp } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 import { setComposeEmailModalIsOpen } from '~/redux/Slice/modalSlice';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 
 const cx = classNames.bind(styles);
 
 function ComposeEmail() {
+    const { composeEmailModalIsOpen } = useSelector((state) => state.modal);
     const [isMinimize, setMinimize] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const dispatch = useDispatch();
@@ -44,7 +49,12 @@ function ComposeEmail() {
     };
 
     return (
-        <div className={cx('wrapper', getFullscreenClass(), getMinimizeClass())} id="compose-email-modal">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className={cx('wrapper', getFullscreenClass(), getMinimizeClass())}
+            id="compose-email-modal"
+        >
             <header className={cx('header')}>
                 <span className={cx('title')} onClick={handleMinimize}>
                     New Message
@@ -76,7 +86,8 @@ function ComposeEmail() {
                     <input className={cx('subject')} placeholder="Subject" />
                 </div>
                 <div className={cx('content')}>
-                    <textarea />
+                    {/* <textarea /> */}
+                    <ReactQuill />
                 </div>
                 <div className={cx('footer')}>
                     <div>
@@ -87,7 +98,7 @@ function ComposeEmail() {
                     </button>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 
