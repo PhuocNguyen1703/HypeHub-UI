@@ -209,5 +209,13 @@ body {
     }
 }
 
+//Custom LightBox
+body {
+    .ReactModal__Content {
+        background-color: var(--gray-alpha-10) !important;
+        backdrop-filter: saturate(120%) blur(2px);
+    }
+}
+
 .dark {
 }
