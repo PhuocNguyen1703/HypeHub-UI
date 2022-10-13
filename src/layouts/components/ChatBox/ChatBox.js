@@ -13,12 +13,15 @@ import images from '~/assets/images';
 import Image from '~/components/Image';
 import { BsCardImage, BsCursor, BsEmojiSmile } from 'react-icons/bs';
 import Lightbox from 'react-18-image-lightbox';
+import { useSelector } from 'react-redux';
+import { IoLogoJavascript } from 'react-icons/io5';
 // import 'react-image-lightbox/style.css';
 
 const cx = classNames.bind(styles);
 dayjs.extend(relativeTime);
 
 function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
+    const { currentUser } = useSelector((state) => state.auth.login);
     const [userData, setUserData] = useState(null);
     const [showEmojis, setShowEmojis] = useState(false);
     const [previewImg, setPreviewImg] = useState(null);
@@ -57,12 +60,19 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
     }, [chat]);
 
     const handleChange = (e) => {
+        e.preventDefault();
         setNewMessage(e.target.value);
+    };
+
+    const handleEnter = (e) => {
+        if (e.key === 'Enter') {
+            handleSend();
+        }
     };
 
     //Send message
     const handleSend = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         const message = {
             senderId: currentUserId,
             content: newMessage,
@@ -103,6 +113,14 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
         setIsOpenLightBox(true);
     };
 
+    const handleSelectEmoji = (e) => {
+        let sym = e.unified.split('-');
+        let codesArray = [];
+        sym.forEach((el) => codesArray.push('0x' + el));
+        let emoji = String.fromCodePoint(...codesArray);
+        setNewMessage(newMessage + emoji);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
@@ -117,83 +135,23 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
 
             <div className={cx('container')}>
                 <div className={cx('content')}>
-                    {/* {messages.map((message) => (
+                    {messages.map((message) => (
                         <div
                             key={message._id}
                             ref={scroll}
-                            className={cx(message.senderId === currentUserId ? 'message-own' : 'message')}
+                            className={cx('message', message.senderId === currentUserId && 'owner')}
                         >
-                            <span>{message.content}</span>
-                            <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span>
+                            <Image
+                                className={cx('avatar')}
+                                src={message.senderId === currentUserId ? currentUser?.avatar : userData?.avatar}
+                                alt="avatar"
+                            />
+                            <div className={cx('message-content')}>
+                                <p>{message.content}</p>
+                                <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span>
+                            </div>
                         </div>
-                    ))} */}
-                    <div className={cx('message', 'owner')}>
-                        <Image
-                            className={cx('avatar')}
-                            src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="avatar"
-                        />
-                        <div className={cx('message-content')}>
-                            <p>
-                                helloooas asd asd asd asd asd ad asd ad asd as dasd asd asd asd asd asd as das das as
-                                dsdas dasd as dasdasd s dasdasdasdas asd asd sad asd asd asd asd asd asd asd asd
-                            </p>
-                            <span className={cx('chat-time')}>2022-12</span>
-                        </div>
-                    </div>
-                    <div className={cx('message')}>
-                        <Image
-                            className={cx('avatar')}
-                            src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="avatar"
-                        />
-                        <div className={cx('message-content')}>
-                            <p>
-                                helloooas asd asd asd asd asd ad asd ad asd as dasd asd asd asd asd asd as das das as
-                                dsdas dasd as dasdasd s dasdasdasdas asd asd sad asd asd asd asd asd asd asd asd
-                            </p>
-                            <span className={cx('chat-time')}>2022-12</span>
-                        </div>
-                    </div>
-                    <div className={cx('message', 'owner')}>
-                        <Image
-                            className={cx('avatar')}
-                            src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="avatar"
-                        />
-                        <div className={cx('message-content')}>
-                            <p>
-                                helloooas asd asd asd asd asd ad asd ad asd as dasd asd asd asd asd asd as das das as
-                                dsdas dasd as dasdasd s dasdasdasdas asd asd sad asd asd asd asd asd asd asd asd
-                            </p>
-                            <span className={cx('chat-time')}>2022-12</span>
-                        </div>
-                    </div>
-                    <div className={cx('message')}>
-                        <Image
-                            className={cx('avatar')}
-                            src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="avatar"
-                        />
-                        <div className={cx('message-content')}>
-                            <p>helloooas asd asd</p>
-                            <span className={cx('chat-time')}>2022-12</span>
-                        </div>
-                    </div>
-                    <div className={cx('message')}>
-                        <Image
-                            className={cx('avatar')}
-                            src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="avatar"
-                        />
-                        <div className={cx('message-content')}>
-                            <p>
-                                helloooas asd asd asd asd asd ad asd ad asd as dasd asd asd asd asd asd as das das as
-                                dsdas dasd as dasdasd s dasdasdasdas asd asd sad asd asd asd asd asd asd asd asd
-                            </p>
-                            <span className={cx('chat-time')}>2022-12</span>
-                        </div>
-                    </div>
+                    ))}
                     <div className={cx('message')}>
                         <Image
                             className={cx('avatar')}
@@ -221,20 +179,6 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
                             alt="avatar"
                         />
                         <div className={cx('message-content')}>
-                            <p>
-                                helloooas asd asd asd asd asd ad asd ad asd as dasd asd asd asd asd asd as das das as
-                                dsdas dasd as dasdasd s dasdasdasdas asd asd sad asd asd asd asd asd asd asd asd
-                            </p>
-                            <span className={cx('chat-time')}>2022-12</span>
-                        </div>
-                    </div>
-                    <div className={cx('message')}>
-                        <Image
-                            className={cx('avatar')}
-                            src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="avatar"
-                        />
-                        <div className={cx('message-content')}>
                             <p>helloooas asd asd asd asd</p>
                             <img
                                 className={cx('image')}
@@ -242,20 +186,6 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
                                 alt="img"
                                 onClick={handleClickImage}
                             />
-                            <span className={cx('chat-time')}>2022-12</span>
-                        </div>
-                    </div>
-                    <div className={cx('message', 'owner')}>
-                        <Image
-                            className={cx('avatar')}
-                            src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="avatar"
-                        />
-                        <div className={cx('message-content')}>
-                            <p>
-                                helloooas asd asd asd asd asd ad asd ad asd as dasd asd asd asd asd asd as das das as
-                                dsdas dasd as dasdasd s dasdasdasdas asd asd sad asd asd asd asd asd asd asd asd
-                            </p>
                             <span className={cx('chat-time')}>2022-12</span>
                         </div>
                     </div>
@@ -272,6 +202,7 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
                         placeholder="emoji picker demo"
                         value={newMessage}
                         onChange={handleChange}
+                        onKeyDown={handleEnter}
                     />
                     <div className={cx('emoji')}>
                         <button className={cx('emoji-icon')} onClick={handleShowEmojis}>
@@ -279,7 +210,12 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
                         </button>
                         {showEmojis && (
                             <div className={cx('picker-emoji')}>
-                                <Picker data={data} onEmojiSelect={console.log} previewPosition="none" theme="light" />
+                                <Picker
+                                    data={data}
+                                    onEmojiSelect={handleSelectEmoji}
+                                    previewPosition="none"
+                                    theme="light"
+                                />
                             </div>
                         )}
                     </div>

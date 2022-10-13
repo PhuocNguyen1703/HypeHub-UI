@@ -4,36 +4,50 @@ import classNames from 'classnames/bind';
 import styles from './Conversation.module.scss';
 import { getUser } from '~/api/userApi';
 import Image from '~/components/Image';
+import { getMessages } from '~/api/messageApi';
 
 const cx = classNames.bind(styles);
 
-function Conversation({ data, currentUserId, online }) {
+function Conversation({ data, currentUserId, online, chatId }) {
     const [userData, setUserData] = useState(null);
+    const [lastMessage, setLastMessage] = useState('');
 
-    // useEffect(() => {
-    //     const userId = data.members.find((id) => id !== currentUserId);
-    //     const getUserData = async () => {
-    //         try {
-    //             const { data } = await getUser(userId);
-    //             setUserData(data);
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
+    useEffect(() => {
+        const MessagesData = async () => {
+            try {
+                const { data } = await getMessages(chatId);
+                setLastMessage(data[data.length - 1]);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        if (data !== null) MessagesData();
+    }, []);
 
-    //     getUserData();
-    // }, []);
+    useEffect(() => {
+        const userId = data.members.find((id) => id !== currentUserId);
+        const getUserData = async () => {
+            try {
+                const { data } = await getUser(userId);
+                setUserData(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getUserData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('info')}>
                 <div className={cx('user-avatar')}>
-                    <Image src={data?.avatar} alt="avatar" className={cx('avatar')} />
+                    <Image src={userData?.avatar} alt="avatar" className={cx('avatar')} />
                     <span className={cx('dot-online')}></span>
                 </div>
                 <div>
-                    <span className={cx('name')}>{data?.fullName}</span>
-                    <p className={cx('preview-message')}>{data?.message}</p>
+                    <span className={cx('name')}>{userData?.fullName}</span>
+                    <p className={cx('preview-message')}>{lastMessage?.content}</p>
                 </div>
             </div>
             <span className={cx('time')}>a few ago</span>
