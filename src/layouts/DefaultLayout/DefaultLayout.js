@@ -22,7 +22,7 @@ function DefaultLayout({ children }) {
                     animate={{
                         width: sidebarCollapsed ? '50px' : '190px',
                         transition: {
-                            duration: 0.5,
+                            // duration: 0.5,
                             type: 'spring',
                             damping: 15,
                         },

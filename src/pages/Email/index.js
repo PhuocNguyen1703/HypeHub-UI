@@ -22,6 +22,7 @@ import Modal from '~/components/Modal';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setComposeEmailModalIsOpen } from '~/redux/Slice/modalSlice';
+import { motion } from 'framer-motion';
 
 const cx = classNames.bind(styles);
 
@@ -332,21 +333,14 @@ function Email() {
 
     const handleHiddenSidebar = () => {
         setIsHidden((prevState) => !prevState);
-        getHiddenClass();
     };
 
     const handleCheckAll = () => {
-        setIsChecked(!isChecked);
-        console.log(isChecked);
+        setIsChecked((prevState) => !prevState);
     };
 
     const handleRefresh = () => {
         window.location.reload();
-    };
-
-    const getHiddenClass = () => {
-        if (isHidden) return 'hide';
-        return '';
     };
 
     const handleComposeEmail = () => {
@@ -367,8 +361,8 @@ function Email() {
                     <span className={cx('icon')} onClick={handleHiddenSidebar}>
                         <BsLayoutSidebar />
                     </span>
-                    <label className={cx('check-all')} onClick={handleCheckAll}>
-                        <input type="checkbox" />
+                    <label htmlFor="check" className={cx('check-all')}>
+                        <input id="check" type="checkbox" onClick={handleCheckAll} />
                         All
                     </label>
                     <span className={cx('icon')} onClick={handleRefresh}>
@@ -381,7 +375,11 @@ function Email() {
                 <div>15 of 12348</div>
             </div>
             <div className={cx('container')}>
-                <div className={cx('sidebar', getHiddenClass())}>
+                <motion.div
+                    initial={{ width: '250px' }}
+                    animate={{ width: isHidden ? '0' : '250px', transition: { duration: 0.8 } }}
+                    className={cx('sidebar')}
+                >
                     <button className={cx('create-email')} onClick={handleComposeEmail}>
                         <BsPlus />
                         Compose
@@ -393,7 +391,7 @@ function Email() {
                     {label.map((item, index) => (
                         <SidebarItem key={index} item={item} className={'label-item'} />
                     ))}
-                </div>
+                </motion.div>
                 <div className={cx('content')}>
                     {email.map((item, index) => (
                         <div key={index} className={cx('email-item')}>

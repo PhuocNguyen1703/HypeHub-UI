@@ -2,8 +2,8 @@
 
 :root {
     --background: #fafbff;
-    --white: #ffffff;
     --red: #e41e3f;
+    --white: #ffffff;
     --text-primary: #161823;
     // --text-secondary: #041e49;
     --primary: #ff6a00;
@@ -11,6 +11,12 @@
     --secondary-button-background: linear-gradient(177.34deg, #21a2ff, #8951ff 73.36%);
     --primary-button-background: #ff6a00;
     --input-outline: #dedfe1;
+
+    --orangeRed: #ff543d;
+    --orangeRed-alpha-80: rgba(255, 84, 61, 0.8);
+    --orangeRed-alpha-60: rgba(255, 84, 61, 0.6);
+    --orangeRed-alpha-40: rgba(255, 84, 61, 0.4);
+    --orangeRed-alpha-20: rgba(255, 84, 61, 0.2);
 
     --blue: #015ec2;
     --blue-alpha-90: rgba(1, 94, 194, 0.9);
@@ -20,12 +26,6 @@
     --blue-alpha-20: rgba(1, 94, 194, 0.2);
     --blue-alpha-10: rgba(1, 94, 194, 0.1);
     --blue-alpha-05: rgba(1, 94, 194, 0.05);
-
-    --orangeRed: #ff543d;
-    --orangeRed-alpha-80: rgba(255, 84, 61, 0.8);
-    --orangeRed-alpha-60: rgba(255, 84, 61, 0.6);
-    --orangeRed-alpha-40: rgba(255, 84, 61, 0.4);
-    --orangeRed-alpha-20: rgba(255, 84, 61, 0.2);
 
     --mediumSlateBlue: #878cff;
     --mediumSlateBlue-alpha-80: rgba(135, 140, 255, 0.8);
@@ -209,15 +209,5 @@ body {
     }
 }
 
-//Custom React Quill
-// body {
-//     .ql-toolbar {
-//         position: absolute;
-//         left: 50%;
-//         bottom: 0;
-//         transform: translate(-50%, -140%);
-//         width: 98%;
-//         background-color: var(--white);
-//         z-index: 1;
-//     }
-// }
+.dark {
+}
