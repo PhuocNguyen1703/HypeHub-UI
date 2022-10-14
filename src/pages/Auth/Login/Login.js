@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
 import logo from '~/assets/images/logo.svg';
 import { loginUser } from '~/api/authApi';
-import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import { useSelector } from 'react-redux';
+import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);
 
@@ -71,9 +71,11 @@ function Login() {
                             {...register('password')}
                             onChange={handleChange}
                         />
-                        <div className={cx('icon')} onClick={handleShowPassword}>
-                            {showIcon && (showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />)}
-                        </div>
+                        {showIcon && (
+                            <div className={cx('icon')} onClick={handleShowPassword}>
+                                {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                            </div>
+                        )}
                     </div>
                     {error && <span className={cx('error')}>* Incorrect email or password</span>}
                     <button className={cx('login-btn')} type="submit">

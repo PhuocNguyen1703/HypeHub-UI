@@ -7,9 +7,9 @@ import {
     BsClipboardCheck,
     BsEnvelope,
     BsPerson,
-    BsPeople,
     BsAlarm,
 } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 import config from '~/config';
 
 import styles from './Sidebar.module.scss';
@@ -18,6 +18,7 @@ import SidebarItem from './SidebarItem';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
+    const { currentUser } = useSelector((state) => state.auth.login);
     const menu = [
         {
             icon: <BsColumnsGap />,
@@ -53,23 +54,26 @@ function Sidebar() {
         {
             icon: <BsCheck2Square />,
             title: 'Todo',
-            path: '/todo',
+            path: config.routes.todo,
         },
         {
             icon: <BsCalendar2Date />,
             title: 'Calendar',
-            path: '/calendar',
+            path: config.routes.calendar,
         },
         {
             icon: <BsClipboardCheck />,
             title: 'Kanban',
-            path: '/kanban',
+            path: config.routes.kanban,
         },
         {
             icon: <BsPerson />,
             title: 'Profile',
-            path: '/profile',
+            path: config.routes.profile,
         },
+    ];
+
+    const adminMenu = [
         {
             icon: <BsAlarm />,
             title: 'Check in',
@@ -82,6 +86,8 @@ function Sidebar() {
             {menu.map((item, index) => (
                 <SidebarItem key={index} item={item} />
             ))}
+
+            {currentUser?.isAdmin && adminMenu.map((item, index) => <SidebarItem key={index} item={item} />)}
         </div>
     );
 }

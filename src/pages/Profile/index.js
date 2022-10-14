@@ -33,10 +33,11 @@ function Profile() {
     const [previewSourceAvatar, setPreviewSourceAvatar] = useState('');
     const [selectedFileAvatar, setSelectedFileAvatar] = useState();
 
-    const user = useSelector((state) => state.auth.login.currentUser);
-    const { _id, accessToken, email, fullName, livesIn, streetAddress, birth, gender, hashtag, position, phone } = user;
+    const { currentUser } = useSelector((state) => state.auth.login);
+    const { _id, accessToken, email, fullName, livesIn, streetAddress, birth, gender, hashtag, position, phone } =
+        currentUser;
     const dispatch = useDispatch();
-    let axiosJWT = createAxios(user, dispatch, updateSuccess);
+    let axiosJWT = createAxios(currentUser, dispatch, updateSuccess);
 
     const { register, handleSubmit, reset } = useForm({
         defaultValues: {
@@ -170,8 +171,14 @@ function Profile() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('banner')}>
-                {user.banner && <Image className={cx('banner-img')} src={`${user.banner}`} alt="banner" />}
-                {previewSourceBanner && <Image className={cx('banner-img')} src={previewSourceBanner} alt="banner" />}
+                {/* {currentUser?.banner && (
+                    <Image className={cx('banner-img')} src={`${currentUser?.banner}`} alt="banner" />
+                )} */}
+                {previewSourceBanner ? (
+                    <Image className={cx('banner-img')} src={previewSourceBanner} alt="banner" />
+                ) : (
+                    <Image className={cx('banner-img')} src={`${currentUser?.banner}`} alt="banner" />
+                )}
                 <form className={cx('add-banner-btn')} onSubmit={handleSubmitBanner}>
                     {!previewSourceBanner && (
                         <label htmlFor="upload-banner">
@@ -201,7 +208,7 @@ function Profile() {
             </div>
             <div className={cx('header')}>
                 <div className={cx('avatar')}>
-                    <Image className={cx('user-avatar')} src={`${user.avatar}`} alt="Nguyen  van A" />
+                    <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="Nguyen  van A" />
                     {previewSourceAvatar && (
                         <Image className={cx('user-avatar')} src={`${previewSourceAvatar}`} alt="Nguyen  van A" />
                     )}

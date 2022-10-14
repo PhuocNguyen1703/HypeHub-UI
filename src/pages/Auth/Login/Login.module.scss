@@ -124,7 +124,12 @@
     color: #fff;
     background: var(--primary);
     box-shadow: var(--box-shadow);
+    opacity: 0.9;
     cursor: pointer;
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
 .error-input {

@@ -9,13 +9,10 @@ import Picker from '@emoji-mart/react';
 import styles from './ChatBox.module.scss';
 import { getUser } from '~/api/userApi';
 import { addMessage, getMessages } from '~/api/messageApi';
-import images from '~/assets/images';
 import Image from '~/components/Image';
 import { BsCardImage, BsCursor, BsEmojiSmile } from 'react-icons/bs';
 import Lightbox from 'react-18-image-lightbox';
 import { useSelector } from 'react-redux';
-import { IoLogoJavascript } from 'react-icons/io5';
-// import 'react-image-lightbox/style.css';
 
 const cx = classNames.bind(styles);
 dayjs.extend(relativeTime);

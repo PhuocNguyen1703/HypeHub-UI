@@ -3,7 +3,6 @@ import Home from '~/pages/Home';
 import Profile from '~/pages/Profile';
 import Auth from '~/pages/Auth/Login';
 import config from '~/config';
-import Register from '~/pages/Auth/Register';
 import Candidate from '~/pages/Candidate';
 import Employee from '~/pages/Employee';
 import Email from '~/pages/Email';
@@ -13,11 +12,8 @@ import Calendar from '~/pages/Calendar';
 import Kanban from '~/pages/Kanban';
 import CheckIn from '~/pages/CheckIn';
 
-const publicRoutes = [];
-
-const privateRoutes = [
+const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
-    { path: config.routes.register, component: Register, layout: null },
     { path: config.routes.home, component: Home },
     { path: config.routes.profile, component: Profile },
     { path: config.routes.chat, component: Chat },
@@ -27,7 +23,8 @@ const privateRoutes = [
     { path: config.routes.todo, component: Todo },
     { path: config.routes.calendar, component: Calendar },
     { path: config.routes.kanban, component: Kanban },
-    { path: config.routes.checkin, component: CheckIn },
 ];
+
+const privateRoutes = [...publicRoutes, { path: config.routes.checkin, component: CheckIn }];
 
 export { publicRoutes, privateRoutes };

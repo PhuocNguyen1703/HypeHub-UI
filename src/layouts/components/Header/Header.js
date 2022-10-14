@@ -28,6 +28,7 @@ import Modal from '~/components/Modal';
 import Setting from '../Setting';
 import {
     setContactManagementModalIsOpen,
+    setCreateUserModalIsOpen,
     setFaceRecognitionModalIsOpen,
     setFaceRecognitionTitle,
     setNotificationModalIsOpen,
@@ -38,59 +39,72 @@ import Checkin from '~/components/Modal/TimeKeeping/FaceRecognition';
 import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
 import ContactManagement from '~/components/Modal/ContactManagement';
 import Notification from '~/components/Notification';
+import Register from '~/components/Modal/Register';
 
 const cx = classNames.bind(styles);
 
-const userMenu = [
-    {
-        icon: <IoLanguageOutline />,
-        title: 'Language',
-        children: {
-            title: 'Language',
-            data: [
-                {
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    code: 'vi',
-                    title: 'VietNam',
-                },
-            ],
-        },
-    },
-    {
-        icon: <BsPersonBoundingBox />,
-        title: 'Check in',
-    },
-    {
-        icon: <BsPersonBoundingBox />,
-        title: 'Check out',
-    },
-    {
-        icon: <IoSettingsOutline />,
-        title: 'Settings',
-        // to: '/settings',
-    },
-    {
-        icon: <IoLogOutOutline />,
-        title: 'Logout',
-        to: '/login',
-        separate: true,
-    },
-];
-
 function Header() {
-    const user = useSelector((state) => state.auth.login.currentUser);
+    const { currentUser } = useSelector((state) => state.auth.login);
     const { sidebarCollapsed } = useSelector((state) => state.layout);
     const { isFullscreen } = useSelector((state) => state.screen);
-    const { notificationModalIsOpen, settingModalIsOpen, faceRecognitionModalIsOpen, contactManagementModalIsOpen } =
-        useSelector((state) => state.modal);
-    const accessToken = user?.accessToken;
-    const id = user?._id;
+    const {
+        createUserModalIsOpen,
+        notificationModalIsOpen,
+        settingModalIsOpen,
+        faceRecognitionModalIsOpen,
+        contactManagementModalIsOpen,
+    } = useSelector((state) => state.modal);
+    const accessToken = currentUser?.accessToken;
+    const id = currentUser?._id;
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    let axiosJWT = createAxios(user, dispatch, logOutSuccess);
+    let axiosJWT = createAxios(currentUser, dispatch, logOutSuccess);
+
+    const userMenu = [
+        {
+            icon: <IoLanguageOutline />,
+            title: 'Language',
+            children: {
+                title: 'Language',
+                data: [
+                    {
+                        code: 'en',
+                        title: 'English',
+                    },
+                    {
+                        code: 'vi',
+                        title: 'VietNam',
+                    },
+                ],
+            },
+        },
+        {
+            icon: <BsPersonBoundingBox />,
+            title: 'Check in',
+        },
+        {
+            icon: <BsPersonBoundingBox />,
+            title: 'Check out',
+        },
+        {
+            icon: <IoSettingsOutline />,
+            title: 'Settings',
+        },
+        {
+            icon: <IoLogOutOutline />,
+            title: 'Logout',
+            to: '/login',
+            separate: true,
+        },
+    ];
+
+    const adminMenu = [
+        {
+            icon: <BsFillPersonPlusFill />,
+            title: 'Create user',
+        },
+        ...userMenu,
+    ];
 
     const handleFullscreen = () => {
         const maxHeight = window.screen.height;
@@ -141,6 +155,9 @@ function Header() {
             case 'Check out':
                 dispatch(setFaceRecognitionTitle('Check out'));
                 dispatch(setFaceRecognitionModalIsOpen(true));
+                break;
+            case 'Create user':
+                dispatch(setCreateUserModalIsOpen(true));
                 break;
 
             default:
@@ -237,11 +254,21 @@ function Header() {
                     </div>
                     <CgMoreVerticalAlt className={cx('more-icon')} />
 
-                    <Menu items={userMenu} onChange={handleMenuChange} viewProfile={true}>
-                        <Image className={cx('user-avatar')} src={`${user.avatar}`} alt="Nguyen  van A" />
+                    <Menu
+                        items={currentUser?.isAdmin ? adminMenu : userMenu}
+                        onChange={handleMenuChange}
+                        viewProfile={true}
+                    >
+                        <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="Nguyen  van A" />
                     </Menu>
                 </div>
             </div>
+
+            {createUserModalIsOpen && (
+                <Modal>
+                    <Register />
+                </Modal>
+            )}
 
             {notificationModalIsOpen && (
                 <Modal>

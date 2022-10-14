@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { DefaultLayout } from '~/layouts';
 import Login from '~/pages/Auth/Login';
-import { privateRoutes } from '~/routes';
+import { privateRoutes, publicRoutes } from '~/routes';
 
 function AnimatedRoutes() {
     const user = useSelector((state) => state.auth.login.currentUser);
@@ -13,7 +13,7 @@ function AnimatedRoutes() {
     return (
         <AnimatePresence>
             <Routes location={location} key={location.pathname}>
-                {privateRoutes.map((routes, index) => {
+                {publicRoutes.map((routes, index) => {
                     const Page = routes.component;
 
                     let Layout = DefaultLayout;
@@ -41,6 +41,32 @@ function AnimatedRoutes() {
                         />
                     );
                 })}
+
+                {user?.isAdmin &&
+                    privateRoutes.map((routes, index) => {
+                        const Page = routes.component;
+
+                        let Layout = DefaultLayout;
+
+                        if (routes.layout) {
+                            Layout = routes.layout;
+                        }
+                        if (routes.layout === null) {
+                            Layout = Fragment;
+                        }
+
+                        return (
+                            <Route
+                                key={index}
+                                path={routes.path}
+                                element={
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
+                                }
+                            />
+                        );
+                    })}
             </Routes>
         </AnimatePresence>
     );

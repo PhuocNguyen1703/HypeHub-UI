@@ -15,7 +15,7 @@ import { BsFunnel } from 'react-icons/bs';
 const cx = classNames.bind(styles);
 
 function PrivateChat() {
-    const currentUser = useSelector((state) => state.auth.login.currentUser);
+    const { currentUser } = useSelector((state) => state.auth.login);
     const [isOpenFilter, setIsOpenFilter] = useState(true);
     const [allUsers, setAllUsers] = useState([]);
     const [chats, setChats] = useState([]);
@@ -29,14 +29,14 @@ function PrivateChat() {
     useEffect(() => {
         const getChats = async () => {
             try {
-                const { data } = await userChats(currentUser._id);
+                const { data } = await userChats(currentUser?._id);
                 setChats(data);
             } catch (error) {
                 console.log(error);
             }
         };
         getChats();
-    }, [currentUser._id]);
+    }, [currentUser?._id]);
 
     // Get all users in DB
     useEffect(() => {
@@ -209,7 +209,7 @@ function PrivateChat() {
                         >
                             <Conversation
                                 data={item}
-                                currentUserId={currentUser._id}
+                                currentUserId={currentUser?._id}
                                 chatId={item._id}
                                 // online={checkOnlineStatus(item)}
                             />
@@ -220,7 +220,7 @@ function PrivateChat() {
 
             <ChatBox
                 chat={currentChat}
-                currentUserId={currentUser._id}
+                currentUserId={currentUser?._id}
                 setSendMessage={setSendMessage}
                 receiveMessage={receiveMessage}
             />

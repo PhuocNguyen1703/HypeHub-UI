@@ -14,10 +14,10 @@ function ViewProfile() {
     return (
         <div className={cx('wrapper')}>
             <Link to={'/profile'} className={cx('view-profile')}>
-                <Image className={cx('avatar')} src={`${user.avatar}`} alt="Nguyen  van A" />
+                <Image className={cx('avatar')} src={`${user?.avatar}`} alt="Nguyen  van A" />
                 <div className={cx('info')}>
-                    <span className={cx('name')}>{user.fullName}</span>
-                    <span className={cx('position')}>{user.position}</span>
+                    <span className={cx('name')}>{user?.fullName}</span>
+                    <span className={cx('position')}>{user?.position}</span>
                 </div>
             </Link>
             <Button className={cx('menu-item')} to={'/profile'}>
