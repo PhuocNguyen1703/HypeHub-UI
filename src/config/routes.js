@@ -10,6 +10,7 @@ const routes = {
     todo: '/todo',
     calendar: '/calendar',
     kanban: '/kanban',
+    checkin: '/checkin',
 };
 
 export default routes;

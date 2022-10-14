@@ -8,6 +8,7 @@ import {
     BsEnvelope,
     BsPerson,
     BsPeople,
+    BsAlarm,
 } from 'react-icons/bs';
 import config from '~/config';
 
@@ -68,6 +69,11 @@ function Sidebar() {
             icon: <BsPerson />,
             title: 'Profile',
             path: '/profile',
+        },
+        {
+            icon: <BsAlarm />,
+            title: 'Check in',
+            path: '/checkin',
         },
     ];
 

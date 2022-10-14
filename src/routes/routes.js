@@ -11,6 +11,7 @@ import Chat from '~/pages/Chat';
 import Todo from '~/pages/Todo';
 import Calendar from '~/pages/Calendar';
 import Kanban from '~/pages/Kanban';
+import CheckIn from '~/pages/CheckIn';
 
 const publicRoutes = [];
 
@@ -26,6 +27,7 @@ const privateRoutes = [
     { path: config.routes.todo, component: Todo },
     { path: config.routes.calendar, component: Calendar },
     { path: config.routes.kanban, component: Kanban },
+    { path: config.routes.checkin, component: CheckIn },
 ];
 
 export { publicRoutes, privateRoutes };
