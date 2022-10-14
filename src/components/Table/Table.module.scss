@@ -1,15 +1,24 @@
 .wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow-lg);
+    border-radius: 6px;
+}
+
+.table-wrapper {
     overflow-y: auto;
 }
 
 table {
     width: 100%;
-    min-width: 400px;
+    min-width: 500px;
     border-spacing: 0;
 }
 
 thead {
-    background-color: var(--gray);
+    background-color: var(--gray-alpha-10);
 }
 
 tr {
@@ -23,8 +32,8 @@ td {
 }
 
 tbody > tr:hover {
-    background-color: var(--gray-alpha-10);
-    color: red;
+    background-color: var(--blue-alpha-05);
+    color: var(--blue);
 }
 
 .pagination {
@@ -32,28 +41,27 @@ tbody > tr:hover {
     justify-content: flex-end;
     align-items: center;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .item {
-    width: 30px;
-    height: 30px;
-    margin-left: 10px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-left: 6px;
+    border-radius: 50%;
     cursor: pointer;
 
     &:hover {
-        color: green;
-        background-color: yellow;
+        background-color: var(--gray-alpha-10);
     }
 }
 
 .active,
 .active:hover {
-    background-color: var(--orangeRed);
-    color: blue;
+    background-color: var(--blue-alpha-10);
+    color: var(--blue);
     font-weight: 600;
 }

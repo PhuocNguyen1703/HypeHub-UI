@@ -132,7 +132,7 @@ function CheckIn() {
     return (
         <div className={cx('wrapper')}>
             <Table
-                limit="5"
+                limit="10"
                 headData={customerTableHead}
                 renderHead={(item, idx) => renderHead(item, idx)}
                 bodyData={customerList}
