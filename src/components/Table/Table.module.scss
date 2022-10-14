@@ -1,0 +1,59 @@
+.wrapper {
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 400px;
+    border-spacing: 0;
+}
+
+thead {
+    background-color: var(--gray);
+}
+
+tr {
+    text-align: left;
+}
+
+th,
+td {
+    text-transform: capitalize;
+    padding: 14px 10px;
+}
+
+tbody > tr:hover {
+    background-color: var(--gray-alpha-10);
+    color: red;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.item {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+        color: green;
+        background-color: yellow;
+    }
+}
+
+.active,
+.active:hover {
+    background-color: var(--orangeRed);
+    color: blue;
+    font-weight: 600;
+}
