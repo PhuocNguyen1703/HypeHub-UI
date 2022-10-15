@@ -4,7 +4,7 @@
     flex-direction: column;
     width: 100vw;
     height: 100vh;
-    background-color: var(--blue-alpha-10);
+    background-color: var(--main-bg-default);
 }
 
 .container {
@@ -22,7 +22,7 @@
 .content {
     flex: 1;
     height: calc(100vh - var(--default-layout-header-height));
-    background-color: var(--white);
+    background-color: var(--second-bg-default);
     box-shadow: var(--box-shadow-lg);
     border-top-left-radius: 5px;
     overflow: overlay;

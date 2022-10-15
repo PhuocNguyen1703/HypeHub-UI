@@ -5,11 +5,13 @@ import styles from './ToggleSwitch.module.scss';
 
 const cx = classNames.bind(styles);
 
-function ToggleSwitch({label, id}) {
+function ToggleSwitch({ label, id }) {
     return (
         <div className={cx('toggle-switch')}>
-            <label htmlFor={id} className={cx('label')}>{label}</label>
-            <input id={id} type="checkbox" className={cx('checkbox')} name="toggleSwitch" />
+            <label htmlFor={id} className={cx('label')}>
+                {label}
+                <input id={id} type="checkbox" className={cx('checkbox')} name="toggleSwitch" />
+            </label>
         </div>
     );
 }

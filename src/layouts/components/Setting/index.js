@@ -6,7 +6,7 @@ import styles from './Setting.module.scss';
 import ToggleSwitch from '~/components/ToggleSwitch';
 import { useDispatch } from 'react-redux';
 import { setSettingModalIsOpen } from '~/redux/Slice/modalSlice';
-import { BsXLg } from 'react-icons/bs';
+import { BsCheck, BsXLg } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
@@ -15,31 +15,47 @@ function Setting() {
     const { settingModalIsOpen } = useSelector((state) => state.modal);
     const dispatch = useDispatch();
 
-    const colorData = [
-        { name: 'radicchio', code: '--radicchio-rgb' },
-        { name: 'tangerine', code: '--tangerine-rgb' },
-        { name: 'citron', code: '--citron-rgb' },
-        { name: 'basil', code: '--basil-rgb' },
-        { name: 'blueBerry', code: '--blueBerry-rgb' },
-        { name: 'grape', code: '--grape-rgb' },
-        { name: 'cherryBlossom', code: '--cherryBlossom-rgb' },
-        { name: 'pumpkin', code: '--pumpkin-rgb' },
-        { name: 'avocado', code: '--avocado-rgb' },
-        { name: 'eucalyptus', code: '--eucalyptus-rgb' },
-        { name: 'lavender', code: '--lavender-rgb' },
-        { name: 'cocoa', code: '--cocoa-rgb' },
-        { name: 'tomato', code: '--tomato-rgb' },
-        { name: 'mango', code: '--mango-rgb' },
-        { name: 'pistachio', code: '--pistachio-rgb' },
-        { name: 'peacock', code: '--peacock-rgb' },
-        { name: 'wisteria', code: '--wisteria-rgb' },
-        { name: 'graphite', code: '--graphite-rgb' },
-        { name: 'flamingo', code: '--flamingo-rgb' },
-        { name: 'banana', code: '--banana-rgb' },
-        { name: 'sage', code: '--sage-rgb' },
-        { name: 'cobalt', code: '--cobalt-rgb' },
-        { name: 'amethyst', code: '--amethyst-rgb' },
-        { name: 'birch', code: '--birch-rgb' },
+    const modeSettings = [
+        { id: 'default', name: 'Default', class: 'theme-mode-default' },
+        { id: 'light', name: 'Light', class: 'theme-mode-light' },
+        { id: 'dark', name: 'Dark', class: 'theme-mode-dark' },
+    ];
+
+    const contentWidths = [
+        { id: 'full width', name: 'Full width', class: 'content-width-full' },
+        { id: 'boxed', name: 'Boxed', class: 'content-width-boxed' },
+    ];
+
+    const menuLayouts = [
+        { id: 'menu collapsed', name: 'Menu collapsed', class: 'menu-layout-collapsed' },
+        { id: 'menu hidden', name: 'Menu hidden', class: 'menu-layout-hidden' },
+    ];
+
+    const sidebarColors = [
+        { id: 'radicchio', background: 'radicchio-color', class: 'theme-color-radicchio' },
+        { id: 'tangerine', background: 'tangerine-color', class: 'theme-color-tangerine' },
+        { id: 'citron', background: 'citron-color', class: 'theme-color-citron' },
+        { id: 'basil', background: 'basil-color', class: 'theme-color-basil' },
+        { id: 'blueBerry', background: 'blueBerry-color', class: 'theme-color-blueBerry' },
+        { id: 'grape', background: 'grape-color', class: 'theme-color-grape' },
+        { id: 'cherryBlossom', background: 'cherryBlossom-color', class: 'theme-color-cherryBlossom' },
+        { id: 'pumpkin', background: 'pumpkin-color', class: 'theme-color-pumpkin' },
+        { id: 'avocado', background: 'avocado-color', class: 'theme-color-avocado' },
+        { id: 'eucalyptus', background: 'eucalyptus-color', class: 'theme-color-eucalyptus' },
+        { id: 'lavender', background: 'lavender-color', class: 'theme-color-lavender' },
+        { id: 'cocoa', background: 'cocoa-color', class: 'theme-color-cocoa' },
+        { id: 'tomato', background: 'tomato-color', class: 'theme-color-tomato' },
+        { id: 'mango', background: 'mango-color', class: 'theme-color-mango' },
+        { id: 'pistachio', background: 'pistachio-color', class: 'theme-color-pistachio' },
+        { id: 'peacock', background: 'peacock-color', class: 'theme-color-peacock' },
+        { id: 'wisteria', background: 'wisteria-color', class: 'theme-color-wisteria' },
+        { id: 'graphite', background: 'graphite-color', class: 'theme-color-graphite' },
+        { id: 'flamingo', background: 'flamingo-color', class: 'theme-color-flamingo' },
+        { id: 'banana', background: 'banana-color', class: 'theme-color-banana' },
+        { id: 'sage', background: 'sage-color', class: 'theme-color-sage' },
+        { id: 'cobalt', background: 'cobalt-color', class: 'theme-color-cobalt' },
+        { id: 'amethyst', background: 'amethyst-color', class: 'theme-color-amethyst' },
+        { id: 'birch', background: 'birch-color', class: 'theme-color-birch' },
     ];
 
     const handleCloseModal = () => {
@@ -71,62 +87,56 @@ function Setting() {
             <form className={cx('form')}>
                 <span className={cx('title')}>Mode</span>
                 <div className={cx('input-field')}>
-                    <label htmlFor="light">
-                        <input id="light" type="radio" name="mode" value="Light" />
-                        Light
-                    </label>
-                    <label htmlFor="dark">
-                        <input id="dark" type="radio" name="mode" value="Dark" />
-                        Dark
-                    </label>
-                    <label htmlFor="semi-dark">
-                        <input id="semi-dark" type="radio" name="mode" value="Semi Dark" />
-                        Semi Dark
-                    </label>
+                    {modeSettings.map((item, idx) => (
+                        <label htmlFor={item.id} key={idx}>
+                            <input id={item.id} type="radio" name="mode" value={item.name} />
+                            {item.name}
+                        </label>
+                    ))}
                 </div>
                 <span className={cx('title')}>Content Width</span>
                 <div className={cx('input-field')}>
-                    <label htmlFor="full-width">
-                        <input id="full-width" type="radio" name="content-width" value="Full Width" />
-                        Full Width
-                    </label>
-                    <label htmlFor="boxed">
-                        <input id="boxed" type="radio" name="content-width" value="Boxed" />
-                        Boxed
-                    </label>
+                    {contentWidths.map((item, idx) => (
+                        <label htmlFor={item.id} key={idx}>
+                            <input id={item.id} type="radio" name="content-width" value={item.name} />
+                            {item.name}
+                        </label>
+                    ))}
                 </div>
                 <span className={cx('title')}>Menu Layout</span>
-                <div className={cx('input-field')}>
-                    <ToggleSwitch label="Menu Collapsed" id="menu-collapsed" />
-                </div>
-                <div className={cx('input-field')}>
-                    <ToggleSwitch label="Menu Hidden" id="menu-hidden" />
-                </div>
+                {menuLayouts.map((item, idx) => (
+                    <div className={cx('input-field')} key={idx}>
+                        <ToggleSwitch label={item.name} id={item.id} />
+                    </div>
+                ))}
                 <span className={cx('title')}>Sidebar Color</span>
                 <div className={cx('input-field')}>
                     <ul className={cx('color-list')} id="sidebar-color">
-                        {colorData.map((color, idx) => (
+                        {sidebarColors.map((item, idx) => (
                             <li
                                 key={idx}
-                                style={{ backgroundColor: `rgb(var(${color.code}))` }}
-                                className={cx('box-color')}
-                                data-color={color.name}
+                                style={{ backgroundColor: `rgb(var(${item.code}))` }}
+                                className={cx('box-color', `${item.background}`)}
+                                // data-color={item.name}
                                 onClick={handleSetSidebarColor}
-                            ></li>
+                            >
+                                <BsCheck className={cx('icon-check')} />
+                            </li>
                         ))}
                     </ul>
                 </div>
                 <span className={cx('title')}>Navbar Color</span>
                 <div className={cx('input-field')}>
                     <ul className={cx('color-list')} id="nav-color">
-                        {colorData.map((color, idx) => (
+                        {sidebarColors.map((item, idx) => (
                             <li
                                 key={idx}
-                                style={{ backgroundColor: `rgb(var(${color.code}))` }}
-                                className={cx('box-color')}
-                                data-color={color.name}
+                                className={cx('box-color', `${item.background}`)}
+                                // data-color={color.name}
                                 onClick={handleSetNavColor}
-                            ></li>
+                            >
+                                <BsCheck className={cx('icon-check')} />
+                            </li>
                         ))}
                     </ul>
                 </div>
