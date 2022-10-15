@@ -65,7 +65,6 @@
     --yellow-alpha-20: #fff6e0;
 
     // DefaultLayout
-    --default-layout-header-height: 70px;
     --default-background-color: rgb(1, 94, 194);
     --main-overlay-color: rgba(255, 255, 255, 0.91);
 
@@ -73,7 +72,7 @@
     --font-family: 'ProximaNova', sans-serif;
 
     //Shadow
-    --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    // --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     --box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     --box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
     --box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.075);
@@ -105,12 +104,11 @@
     --birch-rgb: 202, 189, 191;
 
     //////////////
-    --main-bg-default: #015ec20d;
-    --second-bg-default: #fafafb;
-    --text-color-default: #161823;
+    --main-bg: #a4cde333;
+    --second-bg: #ffffff;
+    --text-color: #161823;
 
     --text-white: #ffffff;
-    --main-color: #349eff;
     --second-color: #62b4ff;
     --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
@@ -153,14 +151,14 @@
     --main-color-blue: #349eff;
     --second-color-blue: #62b4ff;
 
-    --main-color-red: #fb0b12;
-    --second-color-red: #ff4a6b;
+    // --main-color-red: #fb0b12;
+    // --second-color-red: #ff4a6b;
 
     --main-color-cyan: #10d4d2;
     --second-color-cyan: #2ae9e6;
 
-    --main-color-green: #019707;
-    --second-color-green: #4caf50;
+    // --main-color-green: #019707;
+    // --second-color-green: #4caf50;
 
     --main-color-orange: #d68102;
     --second-color-orange: #fca11a;
@@ -172,7 +170,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 }
 
 html {

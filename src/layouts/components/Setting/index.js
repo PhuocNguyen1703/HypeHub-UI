@@ -8,16 +8,19 @@ import { useDispatch } from 'react-redux';
 import { setSettingModalIsOpen } from '~/redux/Slice/modalSlice';
 import { BsCheck, BsXLg } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
+import { setNavbarColor, setSidebarColor, setThemeMode } from '~/redux/Slice/themeSlice';
+import { setContentWidth } from '~/redux/Slice/layoutSlice';
 
 const cx = classNames.bind(styles);
 
 function Setting() {
     const { settingModalIsOpen } = useSelector((state) => state.modal);
-    const [currentMode, setCurrentMode] = useState();
-    const [currentWidth, setCurrentWidth] = useState();
-    const [currentLayout, setCurrentLayout] = useState();
-    const [currentSidebarColor, setCurrentSidebarColor] = useState('default');
-    const [currentNavbarColor, setCurrentNavbarColor] = useState('default');
+    const { themeMode, sidebarColor, navbarColor } = useSelector((state) => state.theme);
+    const { contentWidth } = useSelector((state) => state.layout);
+    const [currentMode, setCurrentMode] = useState(themeMode);
+    const [currentWidth, setCurrentWidth] = useState(contentWidth);
+    const [currentSidebarColor, setCurrentSidebarColor] = useState(sidebarColor);
+    const [currentNavbarColor, setCurrentNavbarColor] = useState(navbarColor);
     const dispatch = useDispatch();
 
     const modeSettings = [
@@ -31,10 +34,7 @@ function Setting() {
         { id: 'boxed', name: 'Boxed', class: 'content-width-boxed' },
     ];
 
-    const menuLayouts = [
-        { id: 'menu collapsed', name: 'Menu collapsed', class: 'menu-layout-collapsed' },
-        { id: 'menu hidden', name: 'Menu hidden', class: 'menu-layout-hidden' },
-    ];
+    const menuLayouts = [{ id: 'menu collapsed', name: 'Menu collapsed' }];
 
     const colorData = [
         { id: 'default', background: 'default-color', class: 'theme-color-default' },
@@ -62,20 +62,32 @@ function Setting() {
         { id: 'cobalt', background: 'cobalt-color', class: 'theme-color-cobalt' },
         { id: 'amethyst', background: 'amethyst-color', class: 'theme-color-amethyst' },
         { id: 'birch', background: 'birch-color', class: 'theme-color-birch' },
+        { id: 'cyan', background: 'cyan-color', class: 'theme-color-cyan' },
+        { id: 'orange', background: 'orange-color', class: 'theme-color-orange' },
     ];
 
     const handleCloseModal = () => {
         dispatch(setSettingModalIsOpen(false));
     };
 
+    const handleSetMode = (item) => {
+        setCurrentMode(item.class);
+        dispatch(setThemeMode(item.class));
+    };
+
+    const handleSetContentWidth = (item) => {
+        setCurrentWidth(item.class);
+        dispatch(setContentWidth(item.class));
+    };
+
     const handleSetSidebarColor = (item) => {
-        setCurrentSidebarColor(item.id);
-        localStorage.setItem('sidebarColor', item.class);
+        setCurrentSidebarColor(item.class);
+        dispatch(setSidebarColor(item.class));
     };
 
     const handleSetNavColor = (item) => {
-        setCurrentNavbarColor(item.id);
-        localStorage.setItem('navbarColor', item.class);
+        setCurrentNavbarColor(item.class);
+        dispatch(setNavbarColor(item.class));
     };
 
     return (
@@ -94,7 +106,15 @@ function Setting() {
                 <div className={cx('input-field')}>
                     {modeSettings.map((item, idx) => (
                         <label htmlFor={item.id} key={idx}>
-                            <input id={item.id} type="radio" name="mode" value={item.name} />
+                            <input
+                                id={item.id}
+                                type="radio"
+                                name="mode"
+                                value={item.name}
+                                checked={item.class === currentMode ? true : false}
+                                onClick={() => handleSetMode(item)}
+                                readOnly
+                            />
                             {item.name}
                         </label>
                     ))}
@@ -103,7 +123,15 @@ function Setting() {
                 <div className={cx('input-field')}>
                     {contentWidths.map((item, idx) => (
                         <label htmlFor={item.id} key={idx}>
-                            <input id={item.id} type="radio" name="content-width" value={item.name} />
+                            <input
+                                id={item.id}
+                                type="radio"
+                                name="content-width"
+                                value={item.name}
+                                checked={item.class === currentWidth ? true : false}
+                                onClick={() => handleSetContentWidth(item)}
+                                readOnly
+                            />
                             {item.name}
                         </label>
                     ))}
@@ -111,9 +139,27 @@ function Setting() {
                 <span className={cx('title')}>Menu Layout</span>
                 {menuLayouts.map((item, idx) => (
                     <div className={cx('input-field')} key={idx}>
-                        <ToggleSwitch label={item.name} id={item.id} />
+                        <ToggleSwitch item={item} />
                     </div>
                 ))}
+                <span className={cx('title')}>Navbar Color</span>
+                <div className={cx('input-field')}>
+                    <ul className={cx('color-list')} id="nav-color">
+                        {colorData.map((item, idx) => (
+                            <li
+                                key={idx}
+                                className={cx(
+                                    'box-color',
+                                    `${item.background}`,
+                                    `${item.class === currentNavbarColor ? 'active' : ''}`,
+                                )}
+                                onClick={() => handleSetNavColor(item)}
+                            >
+                                <BsCheck className={cx('icon-check')} />
+                            </li>
+                        ))}
+                    </ul>
+                </div>
                 <span className={cx('title')}>Sidebar Color</span>
                 <div className={cx('input-field')}>
                     <ul className={cx('color-list')} id="sidebar-color">
@@ -124,29 +170,9 @@ function Setting() {
                                 className={cx(
                                     'box-color',
                                     `${item.background}`,
-                                    `${item.id === currentSidebarColor ? 'active' : ''}`,
+                                    `${item.class === currentSidebarColor ? 'active' : ''}`,
                                 )}
-                                // data-color={item.name}
                                 onClick={() => handleSetSidebarColor(item)}
-                            >
-                                <BsCheck className={cx('icon-check')} />
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <span className={cx('title')}>Navbar Color</span>
-                <div className={cx('input-field')}>
-                    <ul className={cx('color-list')} id="nav-color">
-                        {colorData.map((item, idx) => (
-                            <li
-                                key={idx}
-                                className={cx(
-                                    'box-color',
-                                    `${item.background}`,
-                                    `${item.id === currentNavbarColor ? 'active' : ''}`,
-                                )}
-                                // data-color={color.name}
-                                onClick={() => handleSetNavColor(item)}
                             >
                                 <BsCheck className={cx('icon-check')} />
                             </li>

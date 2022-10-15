@@ -6,12 +6,13 @@ import calendarReducer from '../Slice/calendarSlice';
 import modalReducer from '../Slice/modalSlice';
 import screenReducer from '../Slice/screenSlice';
 import layoutReducer from '../Slice/layoutSlice';
+import themeReducer from '../Slice/themeSlice';
 
 const persistConfig = {
     key: 'root',
     version: 1,
     storage,
-    blacklist: ['calendar', 'modal', 'screen', 'theme'],
+    blacklist: ['calendar', 'modal', 'screen'],
 };
 
 const rootReducer = combineReducers({
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     calendar: calendarReducer,
     modal: modalReducer,
     layout: layoutReducer,
+    theme: themeReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

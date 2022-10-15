@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
@@ -47,6 +47,7 @@ function Header() {
     const { currentUser } = useSelector((state) => state.auth.login);
     const { sidebarCollapsed } = useSelector((state) => state.layout);
     const { isFullscreen } = useSelector((state) => state.screen);
+    const { navbarColor } = useSelector((state) => state.theme);
     const {
         createUserModalIsOpen,
         notificationModalIsOpen,
@@ -183,7 +184,7 @@ function Header() {
     };
 
     return (
-        <header className={cx('wrapper')}>
+        <div className={cx('wrapper', `${navbarColor}`)}>
             <div className={cx('inner')}>
                 <div className={cx('header-left')}>
                     <CgMenu className={cx('menu-icon')} onClick={handleIsShowSidebar} />
@@ -291,7 +292,7 @@ function Header() {
                     <ContactManagement />
                 </Modal>
             )}
-        </header>
+        </div>
     );
 }
 

@@ -11,9 +11,10 @@ const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
     const { sidebarCollapsed } = useSelector((state) => state.layout);
+    const { themeMode, sidebarColor } = useSelector((state) => state.theme);
 
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper', `${themeMode}`, `${sidebarColor}`)}>
             <Header />
             <div className={cx('container')}>
                 <motion.div

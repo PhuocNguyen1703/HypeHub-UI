@@ -1,5 +1,110 @@
+//Theme mode
+.theme-mode-default {
+    --main-bg: #a4cde333;
+    --second-bg: #ffffff;
+    --text-color: #161823;
+}
+
+.theme-mode-light {
+    --main-bg: var(--main-bg-light);
+    --second-bg: var(--second-bg-light);
+    --text-color: var(--text-color-light);
+    // --box-shadow: var(--box-shadow-light);
+}
+
+.theme-mode-dark {
+    --main-bg: var(--main-bg-dark);
+    --second-bg: var(--second-bg-dark);
+    --text-color: var(--text-color-dark);
+    // --box-shadow: var(--box-shadow-dark);
+}
+
+//Theme color
+.theme-color-default {
+    --main-color: var(--main-bg);
+}
+.theme-color-radicchio {
+    --main-color: var(--main-color-radicchio);
+}
+.theme-color-tangerine {
+    --main-color: var(--main-color-tangerine);
+}
+.theme-color-citron {
+    --main-color: var(--main-color-citron);
+}
+.theme-color-basil {
+    --main-color: var(--main-color-basil);
+}
+.theme-color-blueBerry {
+    --main-color: var(--main-color-blueBerry);
+}
+.theme-color-grape {
+    --main-color: var(--main-color-grape);
+}
+.theme-color-cherryBlossom {
+    --main-color: var(--main-color-cherryBlossom);
+}
+.theme-color-pumpkin {
+    --main-color: var(--main-color-pumpkin);
+}
+.theme-color-avocado {
+    --main-color: var(--main-color-avocado);
+}
+.theme-color-eucalyptus {
+    --main-color: var(--main-color-eucalyptus);
+}
+.theme-color-lavender {
+    --main-color: var(--main-color-lavender);
+}
+.theme-color-cocoa {
+    --main-color: var(--main-color-cocoa);
+}
+.theme-color-tomato {
+    --main-color: var(--main-color-tomato);
+}
+.theme-color-mango {
+    --main-color: var(--main-color-mango);
+}
+.theme-color-pistachio {
+    --main-color: var(--main-color-pistachio);
+}
+.theme-color-peacock {
+    --main-color: var(--main-color-peacock);
+}
+.theme-color-wisteria {
+    --main-color: var(--main-color-wisteria);
+}
+.theme-color-graphite {
+    --main-color: var(--main-color-graphite);
+}
+.theme-color-flamingo {
+    --main-color: var(--main-color-flamingo);
+}
+.theme-color-banana {
+    --main-color: var(--main-color-banana);
+}
+.theme-color-sage {
+    --main-color: var(--main-color-sage);
+}
+.theme-color-cobalt {
+    --main-color: var(--main-color-cobalt);
+}
+.theme-color-amethyst {
+    --main-color: var(--main-color-amethyst);
+}
+.theme-color-birch {
+    --main-color: var(--main-color-birch);
+}
+.theme-color-cyan {
+    --main-color: var(--main-color-cyan);
+}
+.theme-color-orange {
+    --main-color: var(--main-color-orange);
+}
+
+// Background-color
 .default-color {
-    background-color: var(--main-bg-default);
+    background-color: var(--main-bg);
 }
 
 .radicchio-color {
@@ -73,4 +178,12 @@
 }
 .birch-color {
     background-color: var(--main-color-birch);
+}
+
+.cyan-color {
+    background-color: var(--main-color-cyan);
+}
+
+.orange-color {
+    background-color: var(--main-color-orange);
 }
