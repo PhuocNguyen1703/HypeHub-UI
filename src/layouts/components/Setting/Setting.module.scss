@@ -120,3 +120,7 @@
     transform: scale(0);
     transition: transform 0.5s var(--transition-cubic);
 }
+
+.active > .icon-check {
+    transform: scale(1);
+}

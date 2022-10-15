@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { motion } from 'framer-motion';
 
@@ -13,6 +13,11 @@ const cx = classNames.bind(styles);
 
 function Setting() {
     const { settingModalIsOpen } = useSelector((state) => state.modal);
+    const [currentMode, setCurrentMode] = useState();
+    const [currentWidth, setCurrentWidth] = useState();
+    const [currentLayout, setCurrentLayout] = useState();
+    const [currentSidebarColor, setCurrentSidebarColor] = useState('default');
+    const [currentNavbarColor, setCurrentNavbarColor] = useState('default');
     const dispatch = useDispatch();
 
     const modeSettings = [
@@ -31,7 +36,8 @@ function Setting() {
         { id: 'menu hidden', name: 'Menu hidden', class: 'menu-layout-hidden' },
     ];
 
-    const sidebarColors = [
+    const colorData = [
+        { id: 'default', background: 'default-color', class: 'theme-color-default' },
         { id: 'radicchio', background: 'radicchio-color', class: 'theme-color-radicchio' },
         { id: 'tangerine', background: 'tangerine-color', class: 'theme-color-tangerine' },
         { id: 'citron', background: 'citron-color', class: 'theme-color-citron' },
@@ -62,15 +68,14 @@ function Setting() {
         dispatch(setSettingModalIsOpen(false));
     };
 
-    const handleSetSidebarColor = (e) => {
-        // const sidebarEl = document.querySelectorAll('#sidebar-color > li');
-        // sidebarEl.forEach((el) => el.classList.remove('active'));
-        // e.target.classList.add('active');
-        console.log(e.target.dataset.color);
+    const handleSetSidebarColor = (item) => {
+        setCurrentSidebarColor(item.id);
+        localStorage.setItem('sidebarColor', item.class);
     };
 
-    const handleSetNavColor = (e) => {
-        console.log(e.target.dataset.color);
+    const handleSetNavColor = (item) => {
+        setCurrentNavbarColor(item.id);
+        localStorage.setItem('navbarColor', item.class);
     };
 
     return (
@@ -112,13 +117,17 @@ function Setting() {
                 <span className={cx('title')}>Sidebar Color</span>
                 <div className={cx('input-field')}>
                     <ul className={cx('color-list')} id="sidebar-color">
-                        {sidebarColors.map((item, idx) => (
+                        {colorData.map((item, idx) => (
                             <li
                                 key={idx}
                                 style={{ backgroundColor: `rgb(var(${item.code}))` }}
-                                className={cx('box-color', `${item.background}`)}
+                                className={cx(
+                                    'box-color',
+                                    `${item.background}`,
+                                    `${item.id === currentSidebarColor ? 'active' : ''}`,
+                                )}
                                 // data-color={item.name}
-                                onClick={handleSetSidebarColor}
+                                onClick={() => handleSetSidebarColor(item)}
                             >
                                 <BsCheck className={cx('icon-check')} />
                             </li>
@@ -128,12 +137,16 @@ function Setting() {
                 <span className={cx('title')}>Navbar Color</span>
                 <div className={cx('input-field')}>
                     <ul className={cx('color-list')} id="nav-color">
-                        {sidebarColors.map((item, idx) => (
+                        {colorData.map((item, idx) => (
                             <li
                                 key={idx}
-                                className={cx('box-color', `${item.background}`)}
+                                className={cx(
+                                    'box-color',
+                                    `${item.background}`,
+                                    `${item.id === currentNavbarColor ? 'active' : ''}`,
+                                )}
                                 // data-color={color.name}
-                                onClick={handleSetNavColor}
+                                onClick={() => handleSetNavColor(item)}
                             >
                                 <BsCheck className={cx('icon-check')} />
                             </li>
