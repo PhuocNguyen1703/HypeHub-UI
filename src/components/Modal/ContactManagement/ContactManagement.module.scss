@@ -8,10 +8,10 @@
     left: 50%;
     width: 800px;
     height: 600px;
-    transform: translate(-50%, -50%);
-    background-color: var(--white);
+    // transform: translate(-50%, -50%);
+    background-color: var(--second-bg);
     border-radius: 10px;
-    box-shadow: var(--box-shadow-lg);
+    box-shadow: var(--box-shadow);
 }
 
 .header {
@@ -29,13 +29,14 @@
 .title {
     font-size: 2.2rem;
     font-weight: 600;
-    color: var(--black-alpha-80);
+    color: var(--text-color);
     user-select: none;
 }
 
 .close-btn {
     padding: 4px;
     border-radius: 4px;
+    color: var(--text-color);
     cursor: pointer;
 
     &:hover {
@@ -47,7 +48,7 @@
     display: flex;
     flex-direction: column;
     height: calc(100% - var(--height-header-contact));
-    // padding: 10px;
+    color: var(--text-color);
 }
 
 .navbar {

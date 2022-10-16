@@ -2,7 +2,7 @@
     --search-border-radius: 92px;
     --search-height: 46px;
     --search-top-spacer: 9px;
-    --search-button-width: 52px;
+    --search-button-width: 48px;
 
     position: fixed;
     top: 0;
@@ -38,7 +38,7 @@
     width: 35px;
     height: 35px;
     padding: 5px;
-    color: var(--text-secondary);
+    color: var(--text-color);
     cursor: pointer;
 
     &:hover {
@@ -70,7 +70,7 @@
 }
 
 .more-icon {
-    color: var(--gray-alpha-60);
+    color: var(--text-color);
 }
 
 .actions {
@@ -85,6 +85,7 @@
     background-color: transparent;
     padding: 0 10px;
     cursor: pointer;
+    color: var(--text-color);
 }
 
 .icon {
@@ -112,6 +113,6 @@
     margin: 0 5px 0 15px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: var(--box-shadow-lg);
+    box-shadow: var(--box-shadow);
     cursor: pointer;
 }

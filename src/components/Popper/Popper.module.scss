@@ -4,7 +4,11 @@
     width: 100%;
     // max-height: min((100vh - 96px) - 60px, 734px);
     padding: 8px 0 5px 0;
-    background: rgb(255, 255, 255);
-    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+    // background: rgb(255, 255, 255);
+    background-color: var(--main-bg);
+    box-shadow: var(--box-shadow);
+    border: 0.5px solid var(--gray-alpha-20);
+    // box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
     border-radius: 8px;
+    z-index: 10;
 }

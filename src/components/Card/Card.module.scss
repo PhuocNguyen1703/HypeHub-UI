@@ -4,7 +4,9 @@
     padding: 0px 6px;
     border-radius: 4px;
     border: 1px solid var(--gray-alpha-20);
-    box-shadow: 0px 2px 8px 0px rgba(99, 99, 99, 0.15);
+    background-color: var(--main-color);
+    // box-shadow: 0px 2px 8px 0px rgba(99, 99, 99, 0.15);
+    box-shadow: var(--box-shadow);
 }
 
 .position {
@@ -14,7 +16,7 @@
     border: 1px solid var(--gray-alpha-20);
     border-radius: 4px;
     user-select: none;
-    background-color: var(--yellow-alpha-60);
+    background-color: var(--skyBlue-alpha-40);
 }
 
 .user-avatar {
@@ -59,12 +61,12 @@
 
 .email {
     font-size: 1.2rem;
-    color: var(--black-alpha-60);
+    color: var(--gray);
 }
 
 .phone {
     font-size: 1.2rem;
-    color: var(--black-alpha-60);
+    color: var(--gray);
 }
 
 .footer {
@@ -80,6 +82,7 @@
     border-radius: 4px;
     background-color: var(--blue-alpha-80);
     color: var(--white);
+    box-shadow: var(--box-shadow);
     cursor: pointer;
 
     &:hover {

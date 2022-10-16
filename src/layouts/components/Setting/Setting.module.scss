@@ -6,7 +6,7 @@
     width: 0;
     height: 100vh;
     padding: 0 20px;
-    background-color: var(--white);
+    background-color: var(--second-bg);
     box-shadow: var(--box-shadow);
     overflow: overlay;
 }
@@ -21,7 +21,7 @@
     justify-content: space-between;
     font-size: 2.2rem;
     font-weight: 600;
-    color: var(--black-alpha-80);
+    color: var(--text-color);
 }
 
 .close-btn {
@@ -31,6 +31,7 @@
     padding: 6px;
     font-size: 1.6rem;
     border-radius: 6px;
+    color: var(--text-color);
     cursor: pointer;
 
     &:hover {
@@ -40,7 +41,7 @@
 
 .desc {
     font-size: 1.8rem;
-    color: var(--black-alpha-60);
+    color: var(--gray-alpha-60);
 }
 
 .form {
@@ -61,7 +62,7 @@
     padding-top: 15px;
     font-size: 1.8rem;
     font-weight: 600;
-    color: var(--black-alpha-60);
+    color: var(--text-color);
 
     &::after {
         position: absolute;
@@ -80,7 +81,7 @@
     align-items: center;
     justify-content: space-between;
     margin: 10px 0 20px 10px;
-    color: var(--black-alpha-60);
+    color: var(--text-color);
 
     label {
         display: flex;
@@ -108,7 +109,7 @@
     font-size: 2.5rem;
     margin: 4px;
     box-shadow: var(--box-shadow);
-    border: 1px solid var(--gray-alpha-10);
+    border: 1px solid var(--gray-alpha-20);
     cursor: pointer;
 
     &:hover {

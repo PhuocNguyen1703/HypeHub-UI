@@ -16,7 +16,7 @@
     padding-left: 12px;
     // background-color: rgba(22, 24, 35, 0.06);
     background-color: var(--gray-alpha-10);
-    border: 1.5px solid transparent;
+    border: 1px solid var(--gray-alpha-20);
     border-radius: var(--search-border-radius);
 
     input {
@@ -25,12 +25,11 @@
         padding-right: 28px;
         font-family: var(--font-family);
         font-size: 1.6rem;
-        color: var(--black);
-        background-color: transparent;
+        color: var(--text-color);
     }
 
     input:not(:placeholder-shown) ~ .search-btn {
-        color: rgba(22, 24, 35, 0.75);
+        color: var(--text-color);
     }
 
     &::after {
@@ -40,11 +39,11 @@
         right: var(--search-button-width);
         width: 1px;
         height: calc(var(--search-height) - var(--search-top-spacer) * 2);
-        background-color: rgba(22, 24, 35, 0.12);
+        background-color: var(--gray-alpha-20);
     }
 
     &:focus-within {
-        border: 1.5px solid rgba(22, 24, 35, 0.2);
+        border: 1px solid var(--gray-alpha-60);
     }
 }
 
@@ -54,7 +53,7 @@
     align-items: center;
     position: absolute;
     right: calc(var(--search-button-width) + 6px);
-    color: rgba(22, 24, 35, 0.34);
+    color: var(--gray-alpha-40);
 }
 
 .loading {
@@ -70,13 +69,13 @@
 .search-btn {
     width: var(--search-button-width);
     height: 100%;
-    color: rgba(22, 24, 35, 0.34);
+    color: var(--gray-alpha-40);
     border-top-right-radius: var(--search-border-radius);
     border-bottom-right-radius: var(--search-border-radius);
     cursor: pointer;
 
     &:hover {
-        background-color: rgba(22, 24, 35, 0.03);
+        background-color: var(--gray-alpha-05);
     }
 
     &:active {

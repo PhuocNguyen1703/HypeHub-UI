@@ -14,17 +14,21 @@
     gap: 10px;
     font-family: var(--font-family);
     font-size: 1.6rem;
-    line-height: 2.2rem;
+    color: var(--text-color);
+    // line-height: 2.2rem;
+    line-height: 2rem;
     font-weight: 600;
-    background-color: transparent;
+    // background-color: transparent;
     cursor: pointer;
 
     &.separate {
-        border-top: 1px solid rgba(22, 24, 35, 0.12);
+        border-top: 1px solid var(--gray-alpha-40);
+        // border-top: 1px solid rgba(22, 24, 35, 0.12);
     }
 
     &:hover {
-        background-color: rgba(22, 24, 35, 0.03);
+        background-color: var(--gray-alpha-10);
+        // background-color: rgba(22, 24, 35, 0.03);
     }
 }
 
@@ -36,10 +40,18 @@
 }
 
 .back-btn {
-    width: 50px;
-    height: 100%;
-    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    padding: 6px;
+    color: var(--text-color);
+    border-radius: 50%;
     cursor: pointer;
+
+    &:hover {
+        background-color: var(--gray-alpha-10);
+    }
 }
 
 .header-title {
@@ -47,6 +59,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color: var(--text-color);
+    user-select: none;
 }
 
 //View profile
@@ -55,9 +69,11 @@
     flex-direction: column;
     justify-content: center;
     border-radius: 8px;
+    border: 0.5px solid var(--gray-alpha-20);
     margin: 0px 8px 12px 8px;
     padding: 5px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--box-shadow);
+    // box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 
     .menu-item {
         height: 35px;
@@ -86,11 +102,13 @@
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
-        background-color: rgba(22, 24, 35, 0.12);
+        background-color: var(--gray-alpha-40);
+        // background-color: rgba(22, 24, 35, 0.12);
     }
 
     &:hover {
-        background-color: rgba(22, 24, 35, 0.03);
+        background-color: var(--gray-alpha-10);
+        // background-color: rgba(22, 24, 35, 0.03);
         border-radius: 5px;
     }
 }
@@ -99,12 +117,14 @@
     width: 36px;
     height: 36px;
     border-radius: 999px;
+    box-shadow: var(--box-shadow);
     object-fit: cover;
 }
 
 .info {
     display: flex;
     flex-direction: column;
+    color: var(--text-color);
 }
 
 .name {

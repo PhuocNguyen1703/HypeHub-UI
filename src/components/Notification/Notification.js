@@ -208,7 +208,7 @@ function Notification() {
             </nav>
             <div className={cx('container')}>
                 {notificationItem.map((item, idx) => (
-                    <div className={cx('item', item?.isWatch && 'watch')} key={idx}>
+                    <div className={cx('item', item?.isWatch ? 'watched' : '')} key={idx}>
                         <Image src={item?.avatar} className={cx('avatar')} alt="avatar" />
                         <div className={cx('notification')}>
                             <p className={cx('content')}>

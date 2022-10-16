@@ -94,7 +94,7 @@ function Search() {
                         </button>
                     )}
 
-                    {loading && <FaSpinner className={cx('loading')}  />}
+                    {loading && <FaSpinner className={cx('loading')} />}
 
                     <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()} onClick={handleSubmit}>
                         <SearchIcon />
