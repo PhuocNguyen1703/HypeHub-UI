@@ -11,6 +11,7 @@ const modalSlice = createSlice({
         composeEmailModalIsOpen: false,
         contactManagementModalIsOpen: false,
         calendarEventModalIsOpen: false,
+        editProfileModalIsOpen: false,
     },
     reducers: {
         setCreateUserModalIsOpen: (state, action) => {
@@ -37,6 +38,9 @@ const modalSlice = createSlice({
         setCalendarEventModalIsOpen: (state, action) => {
             state.calendarEventModalIsOpen = action.payload;
         },
+        setEditProfileModalIsOpen: (state, action) => {
+            state.editProfileModalIsOpen = action.payload;
+        },
     },
 });
 
@@ -49,6 +53,7 @@ export const {
     setComposeEmailModalIsOpen,
     setCalendarEventModalIsOpen,
     setContactManagementModalIsOpen,
+    setEditProfileModalIsOpen,
 } = modalSlice.actions;
 
 export default modalSlice.reducer;

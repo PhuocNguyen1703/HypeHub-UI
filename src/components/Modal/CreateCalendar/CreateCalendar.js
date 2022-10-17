@@ -1,5 +1,6 @@
 import { BsXLg } from 'react-icons/bs';
 import classNames from 'classnames/bind';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import styles from './CreateCalendar.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,33 +25,41 @@ function CreateCalendar() {
 
     if (selectedEvent) {
         return (
-            <div className={cx('wrapper')}>
-                <EventInfo />
-            </div>
+            <AnimatePresence>
+                <motion.div
+                    initial={{ x: '-50%', y: '-50%', scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className={cx('wrapper')}
+                >
+                    <EventInfo />
+                </motion.div>
+            </AnimatePresence>
         );
     }
 
     return (
-        <div className={cx('wrapper')}>
-            <header className={cx('header')}>
-                <div>
-                    <Tippy delay={[0, 50]} interactive content="Close">
-                        <button className={cx('close-btn')} onClick={closeModal}>
-                            <BsXLg />
-                        </button>
-                    </Tippy>
+        <AnimatePresence>
+            <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
+                <header className={cx('header')}>
+                    <div>
+                        <Tippy delay={[0, 50]} interactive content="Close">
+                            <button className={cx('close-btn')} onClick={closeModal}>
+                                <BsXLg />
+                            </button>
+                        </Tippy>
+                    </div>
+                </header>
+                <div className={cx('body')}>
+                    <div className={cx('title')}>
+                        <input className={cx('title-ipt')} type="text" name="title" required autoFocus />
+                        <span className={cx('underline-title-ipt')}></span>
+                        <label className={cx('label')}>Title</label>
+                    </div>
+                    {/* <TaskForm /> */}
+                    <EventForm />
                 </div>
-            </header>
-            <div className={cx('body')}>
-                <div className={cx('title')}>
-                    <input className={cx('title-ipt')} type="text" name="title" required autoFocus />
-                    <span className={cx('underline-title-ipt')}></span>
-                    <label className={cx('label')}>Title</label>
-                </div>
-                {/* <TaskForm /> */}
-                <EventForm />
-            </div>
-        </div>
+            </motion.div>
+        </AnimatePresence>
     );
 }
 

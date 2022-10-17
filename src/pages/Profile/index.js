@@ -12,7 +12,6 @@ import {
     BsBriefcase,
     BsEnvelope,
     BsCalendarEvent,
-    BsHeart,
     BsPerson,
     BsHash,
 } from 'react-icons/bs';
@@ -23,11 +22,18 @@ import { updateUser } from '~/api/userApi';
 import { createAxios } from '~/api/axiosClient';
 import { updateSuccess } from '~/redux/Slice/authSlice';
 import { uploadImages } from '~/api/uploadImagesApi';
+import { setEditProfileModalIsOpen } from '~/redux/Slice/modalSlice';
+import Modal from '~/components/Modal';
+import EditProfile from '~/components/Modal/EditProfile';
 
 const cx = classNames.bind(styles);
 
 function Profile() {
-    const [disabled, setDisabled] = useState(true);
+    const { currentUser } = useSelector((state) => state.auth.login);
+    const { _id, accessToken, email, fullName, livesIn, streetAddress, birth, gender, hashtag, position, phone } =
+        currentUser;
+    const { editProfileModalIsOpen } = useSelector((state) => state.modal);
+
     const [disabledBannerInput, setDisabledBannerInput] = useState(false);
     const [disabledAvatarInput, setDisabledAvatarInput] = useState(false);
     const [previewSourceBanner, setPreviewSourceBanner] = useState('');
@@ -35,9 +41,6 @@ function Profile() {
     const [previewSourceAvatar, setPreviewSourceAvatar] = useState('');
     const [selectedFileAvatar, setSelectedFileAvatar] = useState();
 
-    const { currentUser } = useSelector((state) => state.auth.login);
-    const { _id, accessToken, email, fullName, livesIn, streetAddress, birth, gender, hashtag, position, phone } =
-        currentUser;
     const dispatch = useDispatch();
     let axiosJWT = createAxios(currentUser, dispatch, updateSuccess);
 
@@ -159,7 +162,7 @@ function Profile() {
     };
 
     const handleEditProfileBtn = () => {
-        setDisabled(false);
+        dispatch(setEditProfileModalIsOpen(true));
     };
 
     const handleCancel = () => {
@@ -173,11 +176,9 @@ function Profile() {
             position: position,
             phone: phone,
         });
-        setDisabled(true);
     };
 
     const onSubmit = (formData) => {
-        setDisabled(true);
         updateUser(formData, _id, dispatch, accessToken, axiosJWT);
     };
 
@@ -267,7 +268,7 @@ function Profile() {
                             <p>{hashtag && `#${hashtag}`}</p>
                         </div>
                     </div>
-                    <button className={cx('edit-profile-btn')}>
+                    <button className={cx('edit-profile-btn')} onClick={handleEditProfileBtn}>
                         <BsPencil />
                         Edit Profile
                     </button>
@@ -284,6 +285,12 @@ function Profile() {
                     ))}
                 </div>
             </div>
+
+            {editProfileModalIsOpen && (
+                <Modal>
+                    <EditProfile />
+                </Modal>
+            )}
         </div>
     );
 }
