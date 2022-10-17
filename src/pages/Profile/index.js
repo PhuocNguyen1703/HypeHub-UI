@@ -13,6 +13,8 @@ import {
     BsEnvelope,
     BsCalendarEvent,
     BsHeart,
+    BsPerson,
+    BsHash,
 } from 'react-icons/bs';
 import Image from '~/components/Image';
 import { useDispatch, useSelector } from 'react-redux';
@@ -38,6 +40,17 @@ function Profile() {
         currentUser;
     const dispatch = useDispatch();
     let axiosJWT = createAxios(currentUser, dispatch, updateSuccess);
+
+    const iconProfile = [
+        { id: 'Email', icon: <BsEnvelope />, desc: email },
+        { id: 'FullName', icon: <BsPerson />, desc: fullName },
+        { id: 'Address', icon: <BsGeoAlt />, desc: streetAddress },
+        { id: 'Birth', icon: <BsCalendarEvent />, desc: birth },
+        { id: 'Gender', icon: <BsGenderAmbiguous />, desc: gender },
+        { id: 'HashTag', icon: <BsHash />, desc: hashtag },
+        { id: 'Work', icon: <BsBriefcase />, desc: position },
+        { id: 'Phone', icon: <BsTelephone />, desc: phone },
+    ];
 
     const { register, handleSubmit, reset } = useForm({
         defaultValues: {
@@ -213,8 +226,8 @@ function Profile() {
                         <Image className={cx('user-avatar')} src={`${previewSourceAvatar}`} alt="Nguyen  van A" />
                     )}
                     <form onSubmit={handleSubmitAvatar}>
-                        <label htmlFor="upload-avatar">
-                            <BsCameraFill className={cx('icon-camera')} />
+                        <label htmlFor="upload-avatar" className={cx('icon-camera')}>
+                            <BsCameraFill />
                         </label>
                         <input
                             id="upload-avatar"
@@ -260,75 +273,15 @@ function Profile() {
                     </button>
                 </div>
                 <div className={cx('about-content')}>
-                    <div className={cx('about-item')}>
-                        <span className={cx('icon')}>
-                            <BsTelephone />
-                        </span>
-                        <div>
-                            <span className={cx('label')}>Phone</span>
-                            <p>+84349985272</p>
+                    {iconProfile.map((item, idx) => (
+                        <div className={cx('about-item')} key={idx}>
+                            <span className={cx('icon')}>{item.icon}</span>
+                            <div>
+                                <span className={cx('label')}>{item.id}</span>
+                                <p className={cx('desc')}>{item.desc}</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div className={cx('about-item')}>
-                        <span className={cx('icon')}>
-                            <BsBriefcase />
-                        </span>
-                        <div>
-                            <span className={cx('label')}>Working</span>
-                            <p>Developer</p>
-                        </div>
-                    </div>
-
-                    <div className={cx('about-item')}>
-                        <span className={cx('icon')}>
-                            <BsGenderAmbiguous />
-                        </span>
-                        <div>
-                            <span className={cx('label')}>Gender</span>
-                            <p>Male</p>
-                        </div>
-                    </div>
-
-                    <div className={cx('about-item')}>
-                        <span className={cx('icon')}>
-                            <BsEnvelope />
-                        </span>
-                        <div>
-                            <span className={cx('label')}>Email Address</span>
-                            <p>information@maxartkiller.com</p>
-                        </div>
-                    </div>
-
-                    <div className={cx('about-item')}>
-                        <span className={cx('icon')}>
-                            <BsCalendarEvent />
-                        </span>
-                        <div>
-                            <span className={cx('label')}>Birthday</span>
-                            <p>1 August 1992</p>
-                        </div>
-                    </div>
-
-                    <div className={cx('about-item')}>
-                        <span className={cx('icon')}>
-                            <BsHeart />
-                        </span>
-                        <div>
-                            <span className={cx('label')}>Social Status</span>
-                            <p>Single</p>
-                        </div>
-                    </div>
-
-                    <div className={cx('about-item')}>
-                        <span className={cx('icon')}>
-                            <BsGeoAlt />
-                        </span>
-                        <div>
-                            <span className={cx('label')}>Address</span>
-                            <p>Japan</p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>

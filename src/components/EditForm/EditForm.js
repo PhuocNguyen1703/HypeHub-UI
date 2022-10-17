@@ -26,16 +26,20 @@ function EditForm() {
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
                 <div className={cx('header-action-btn')}>
-                    <Tippy delay={[0, 50]} interactive content="Delete">
-                        <button className={cx('delete-btn')}>
-                            <BsTrash />
-                        </button>
-                    </Tippy>
-                    <Tippy delay={[0, 50]} interactive content="Close">
-                        <button className={cx('close-btn')} onClick={closeModal}>
-                            <BsXLg />
-                        </button>
-                    </Tippy>
+                    <div>
+                        <Tippy delay={[0, 50]} interactive content="Delete">
+                            <button className={cx('delete-btn')}>
+                                <BsTrash />
+                            </button>
+                        </Tippy>
+                    </div>
+                    <div>
+                        <Tippy delay={[0, 50]} interactive content="Close">
+                            <button className={cx('close-btn')} onClick={closeModal}>
+                                <BsXLg />
+                            </button>
+                        </Tippy>
+                    </div>
                 </div>
             </header>
             <div className={cx('body')}>

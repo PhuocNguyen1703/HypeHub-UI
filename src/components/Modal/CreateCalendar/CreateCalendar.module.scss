@@ -4,10 +4,10 @@
     left: 50%;
     width: 450px;
     transform: translate(-50%, -50%);
-    background-color: var(--white);
+    background-color: var(--main-bg);
     border-radius: 10px;
-    box-shadow: var(--box-shadow-lg);
-    z-index: 100;
+    box-shadow: var(--box-shadow);
+    color: var(--text-color);
 }
 
 .header {
@@ -25,9 +25,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    font-size: 1.4rem;
+    padding: 8px;
     border-radius: 999px;
+    color: var(--text-color);
     cursor: pointer;
 
     &:hover {
@@ -53,8 +54,8 @@
     width: 95%;
     font-size: 2.2rem;
     font-weight: 600;
-    color: var(--black-alpha-80);
-    border-bottom: 1px solid var(--gray-alpha-40);
+    color: var(--text-color);
+    border-bottom: 1px solid var(--gray-alpha-20);
 
     &:focus ~ .label {
         transform: translateY(-22px);
@@ -69,7 +70,7 @@
     &:valid ~ .label {
         transform: translateY(-22px);
         font-size: 1.6rem;
-        color: var(--black-alpha-80);
+        color: var(--gray);
     }
 
     &:valid ~ .underline-title-ipt::before {
@@ -105,32 +106,27 @@
     transition: all 0.3s ease;
 }
 
-.type-btn {
-    display: flex;
-    gap: 8px;
-    margin-top: 20px;
-    margin-left: 40px;
-}
+// Event form
 
-.event-btn,
-.task-btn {
-    padding: 10px 12px;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--black-alpha-80);
-    border-radius: 4px;
-    cursor: pointer;
+// .event-btn,
+// .task-btn {
+//     padding: 10px 12px;
+//     font-size: 1.5rem;
+//     font-weight: 600;
+//     color: var(--black-alpha-80);
+//     border-radius: 4px;
+//     cursor: pointer;
 
-    &:hover {
-        background-color: var(--gray-alpha-10);
-    }
-}
+//     &:hover {
+//         background-color: var(--gray-alpha-10);
+//     }
+// }
 
-.active {
-    color: var(--blue);
-    background-color: var(--skyBlue-alpha-20);
+// .active {
+//     color: var(--blue);
+//     background-color: var(--skyBlue-alpha-20);
 
-    &:hover {
-        background-color: var(--skyBlue-alpha-40);
-    }
-}
+//     &:hover {
+//         background-color: var(--skyBlue-alpha-40);
+//     }
+// }

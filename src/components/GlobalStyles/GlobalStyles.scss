@@ -1,15 +1,13 @@
 @import 'normalize.css';
 
 :root {
-    --background: #fafbff;
     --red: #e41e3f;
     --white: #ffffff;
     --text-primary: #161823;
     // --text-secondary: #041e49;
-    --primary: #ff6a00;
+    --button-primary: #ff6a00;
     --text-linear-gradient-color: linear-gradient(98.63deg, #f9a225 0%, #ff6a00 100%);
     --secondary-button-background: linear-gradient(177.34deg, #21a2ff, #8951ff 73.36%);
-    --primary-button-background: #ff6a00;
     --input-outline: #dedfe1;
 
     --orangeRed: #ff543d;
@@ -105,6 +103,7 @@
     --birch-rgb: 202, 189, 191;
 
     //////////////
+    --saturation-factor: 1;
     --main-bg: #a4cde333;
     --second-bg: #ffffff;
     --text-color: #161823;
@@ -118,9 +117,11 @@
     --text-color-light: #455560;
     --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
-    --main-bg-dark: #2d2d2d;
-    --second-bg-dark: #202020;
-    --text-color-dark: #bbbbbb;
+    --main-bg-dark: hsl(216, calc(var(--saturation-factor, 1) * 7.2%), 13.5%);
+    // --second-bg-dark: hsl(220, calc(var(--saturation-factor, 1) * 7.7%), 22.9%);
+    --second-bg-dark: hsl(0, 0%, 18%);
+    // --text-color-dark: #bbbbbb;
+    --text-color-dark: #b9bbbe;
     --box-shadow-dark: rgba(0, 0, 0, 0.2) 0px 5px 10px;
 
     // Main color
@@ -273,13 +274,30 @@ body {
     }
 }
 
+//Custom quill
+body {
+    .quill {
+        color: var(--text-color);
+    }
+
+    .ql-toolbar,
+    .ql-container {
+        border: 1px solid var(--gray-alpha-20) !important;
+    }
+
+    .ql-picker {
+        color: var(--gray-alpha-80) !important;
+    }
+
+    .ql-picker-options {
+        background-color: var(--main-bg) !important;
+    }
+}
+
 //Custom LightBox
 body {
     .ReactModal__Content {
         background-color: var(--gray-alpha-10) !important;
         backdrop-filter: saturate(120%) blur(2px);
     }
-}
-
-.dark {
 }

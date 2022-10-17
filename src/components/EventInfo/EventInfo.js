@@ -24,10 +24,6 @@ function EventInfo() {
         dispatch(setSelectedEvent(null));
     };
 
-    const getCompletedClass = () => {
-        if (!selectedEvent.completed) return 'uncompleted';
-    };
-
     const handleEdit = () => {
         setShowEditForm(true);
     };
@@ -45,21 +41,27 @@ function EventInfo() {
             <header className={cx('header')}>
                 <span className={cx('type')}>{selectedEvent.type}</span>
                 <div className={cx('header-action-btn')}>
-                    <Tippy delay={[0, 50]} interactive content="Edit">
-                        <button className={cx('edit-btn')} onClick={handleEdit}>
-                            <BsPencil />
-                        </button>
-                    </Tippy>
-                    <Tippy delay={[0, 50]} interactive content="Delete">
-                        <button className={cx('delete-btn')}>
-                            <BsTrash />
-                        </button>
-                    </Tippy>
-                    <Tippy delay={[0, 50]} interactive content="Close">
-                        <button className={cx('close-btn')} onClick={closeModal}>
-                            <BsXLg />
-                        </button>
-                    </Tippy>
+                    <div>
+                        <Tippy delay={[0, 50]} interactive content="Edit">
+                            <button className={cx('edit-btn')} onClick={handleEdit}>
+                                <BsPencil />
+                            </button>
+                        </Tippy>
+                    </div>
+                    <div>
+                        <Tippy delay={[0, 50]} interactive content="Delete">
+                            <button className={cx('delete-btn')}>
+                                <BsTrash />
+                            </button>
+                        </Tippy>
+                    </div>
+                    <div>
+                        <Tippy delay={[0, 50]} interactive content="Close">
+                            <button className={cx('close-btn')} onClick={closeModal}>
+                                <BsXLg />
+                            </button>
+                        </Tippy>
+                    </div>
                 </div>
             </header>
             <div className={cx('body')}>
@@ -78,7 +80,10 @@ function EventInfo() {
                 </div>
             </div>
             <footer className={cx('footer')}>
-                <button className={cx('mark-btn', getCompletedClass())} onClick={handleCompleted}>
+                <button
+                    className={cx('mark-btn', completed === 'uncompleted' ? 'uncompleted' : '')}
+                    onClick={handleCompleted}
+                >
                     Mark {completed}
                 </button>
             </footer>

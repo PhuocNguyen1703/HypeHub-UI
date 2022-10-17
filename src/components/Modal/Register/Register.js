@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import styles from './Register.module.scss';
 import logo from '~/assets/images/logo.svg';
 import { registerUser } from '~/api/authApi';
-import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import { BsEyeFill, BsEyeSlashFill, BsXLg } from 'react-icons/bs';
 import { setCreateUserModalIsOpen } from '~/redux/Slice/modalSlice';
 
@@ -62,57 +62,59 @@ function Register() {
     };
 
     return (
-        <div className={cx('wrapper')}>
-            <div className={cx('register-form')}>
-                <div className={cx('header')}>
-                    <img className={cx('logo')} src={logo} alt="logo" />
-                    <h1>Minato</h1>
-                    <button className={cx('close-btn')} onClick={handleCloseModal}>
-                        <BsXLg />
-                    </button>
-                </div>
-                <h6>Do it your way!</h6>
-                <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
-                    <h3>Create new account</h3>
-
-                    <div className={cx('username')}>
-                        <div className={cx('firstname')}>
-                            <input
-                                type="text"
-                                placeholder="First name"
-                                name="firstname"
-                                {...register('firstName', { required: true })}
-                            />
-                        </div>
-                        <div className={cx('lastname')}>
-                            <input type="text" placeholder="Last name" name="lastname" {...register('lastName')} />
-                        </div>
+        <AnimatePresence>
+            <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
+                <div className={cx('register-form')}>
+                    <div className={cx('header')}>
+                        <img className={cx('logo')} src={logo} alt="logo" />
+                        <h1>Minato</h1>
+                        <button className={cx('close-btn')} onClick={handleCloseModal}>
+                            <BsXLg />
+                        </button>
                     </div>
-                    <div className={cx('email')}>
-                        <input type="text" placeholder="Email" name="email" {...register('email')} />
-                    </div>
-                    <div className={cx('password')}>
-                        <input
-                            id="password"
-                            type="password"
-                            placeholder="Password"
-                            name="password"
-                            {...register('password')}
-                            onChange={handleChange}
-                        />
+                    <h6>Do it your way!</h6>
+                    <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
+                        <h3>Create new account</h3>
 
-                        {showIcon && (
-                            <div className={cx('icon')} onClick={handleShowPassword}>
-                                {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                        <div className={cx('username')}>
+                            <div className={cx('firstname')}>
+                                <input
+                                    type="text"
+                                    placeholder="First name"
+                                    name="firstname"
+                                    {...register('firstName', { required: true })}
+                                />
                             </div>
-                        )}
-                    </div>
-                    <button type="submit" className={cx('register-btn')}>
-                        Create account
-                    </button>
-                </form>
-            </div>
-        </div>
+                            <div className={cx('lastname')}>
+                                <input type="text" placeholder="Last name" name="lastname" {...register('lastName')} />
+                            </div>
+                        </div>
+                        <div className={cx('email')}>
+                            <input type="text" placeholder="Email" name="email" {...register('email')} />
+                        </div>
+                        <div className={cx('password')}>
+                            <input
+                                id="password"
+                                type="password"
+                                placeholder="Password"
+                                name="password"
+                                {...register('password')}
+                                onChange={handleChange}
+                            />
+
+                            {showIcon && (
+                                <div className={cx('icon')} onClick={handleShowPassword}>
+                                    {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                                </div>
+                            )}
+                        </div>
+                        <button type="submit" className={cx('register-btn')}>
+                            Create account
+                        </button>
+                    </form>
+                </div>
+            </motion.div>
+        </AnimatePresence>
     );
 }
 

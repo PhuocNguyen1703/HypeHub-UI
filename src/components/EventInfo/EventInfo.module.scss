@@ -17,6 +17,7 @@
 .type {
     font-size: 2.2rem;
     font-weight: 600;
+    user-select: none;
 }
 
 .header-action-btn {
@@ -30,9 +31,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    color: var(--text-color);
     margin-left: 2px;
+    padding: 8px;
     font-size: 1.6rem;
     border-radius: 999px;
     cursor: pointer;
@@ -81,7 +82,7 @@
     font-size: 1.6rem;
     margin: 8px 16px;
     padding: 4px 10px;
-    color: var(--black);
+    color: var(--text-color);
     background-color: rgba($color: green, $alpha: 0.1);
     border: 1px solid green;
     border-radius: 4px;
@@ -90,5 +91,5 @@
 
 .uncompleted {
     background-color: rgba($color: red, $alpha: 0.1);
-    border: 1px solid red;
+    border: 1px solid var(--red);
 }

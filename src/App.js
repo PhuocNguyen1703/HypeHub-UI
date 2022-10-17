@@ -4,7 +4,7 @@ import AnimatedRoutes from './components/AnimatedRoutes';
 
 function App() {
     return (
-        <div className="app dark">
+        <div className="app">
             <Router>
                 <AnimatedRoutes />
             </Router>

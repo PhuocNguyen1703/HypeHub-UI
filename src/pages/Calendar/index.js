@@ -290,7 +290,7 @@ function Calendar() {
                     </button>
                 </div>
                 <Menu items={viewMenu} onChange={handleChangeLayout}>
-                    <button className={cx('header-right')}>
+                    <button className={cx('calendar-view-btn')}>
                         {buttonTitle}
                         <BsFillCaretDownFill className={cx('icon-down')} />
                     </button>

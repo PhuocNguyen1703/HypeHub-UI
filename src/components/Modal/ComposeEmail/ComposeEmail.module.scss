@@ -7,7 +7,8 @@
     bottom: 0;
     width: 600px;
     height: 615px;
-    background-color: var(--white);
+    background-color: var(--main-bg);
+    color: var(--text-color);
     box-shadow: var(--box-shadow);
     border-top-left-radius: 6px;
     border: 1px solid var(--gray-alpha-20);
@@ -39,7 +40,8 @@
     align-items: center;
     padding-right: 12px;
     height: var(--header-height-layout);
-    background-color: #f2f6fc;
+    // background-color: #f2f6fc;
+    background-color: var(--gray-alpha-10);
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 }
@@ -71,6 +73,7 @@
     justify-content: center;
     width: 20px;
     height: 20px;
+    color: var(--text-color);
     font-size: 1.8rem;
     border-radius: 4px;
     cursor: pointer;
@@ -113,6 +116,7 @@
         height: 100%;
         font-size: 1.6rem;
         line-height: 1;
+        color: var(--text-color);
         margin: 0 4px;
     }
 }
@@ -125,6 +129,7 @@
 
 .cc-btn,
 .bcc-btn {
+    color: var(--text-color);
     cursor: pointer;
     &:hover {
         text-decoration: underline;
@@ -134,9 +139,10 @@
 .subject {
     height: var(--input-height-layout);
     width: 100%;
+    color: var(--text-color);
     font-size: 1.6rem;
     line-height: 1;
-    border-bottom: 1px solid var(--gray-alpha-20);
+    // border-bottom: 1px solid var(--gray-alpha-20);
 }
 
 .content {
@@ -159,11 +165,11 @@
     padding: 8px 18px;
     font-size: 1.6rem;
     font-weight: 600;
-    background-color: var(--default-background-color);
+    background-color: var(--blue);
     color: var(--white);
     box-shadow: var(--box-shadow);
     border-radius: 999px;
-    opacity: 0.9;
+    opacity: 0.85;
     cursor: pointer;
 
     &:hover {
@@ -172,4 +178,17 @@
 }
 
 .delete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    font-size: 1.6rem;
+    color: var(--gray);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--red);
+        background-color: var(--gray-alpha-10);
+    }
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './EventForm.module.scss';
-import { BsClipboard, BsClock, BsFillRecordFill, BsJustifyLeft, BsTags } from 'react-icons/bs';
+import { BsCheck, BsClipboard, BsClock, BsFillRecordFill, BsJustifyLeft, BsTags } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
@@ -19,6 +19,7 @@ function TaskForm() {
     const [desc] = useState(selectedEvent ? selectedEvent.description : '');
     const [type, setType] = useState(selectedEvent ? selectedEvent.type : 'Event');
     const [tagName, setTagName] = useState('Select Tag');
+    const [tagColor, setTagColor] = useState('');
     const dispatch = useDispatch();
 
     const timeList = [
@@ -120,31 +121,34 @@ function TaskForm() {
         '11:45pm',
     ];
 
-    const tagList = [
-        { name: 'Radicchio', color: 'radicchio' },
-        { name: 'Tangerine', color: 'tangerine' },
-        { name: 'Citron', color: 'citron' },
-        { name: 'Basil', color: 'basil' },
-        { name: 'BlueBerry', color: 'blueBerry' },
-        { name: 'Grape', color: 'grape' },
-        { name: 'CherryBlossom', color: 'cherryBlossom' },
-        { name: 'Pumpkin', color: 'pumpkin' },
-        { name: 'Avocado', color: 'avocado' },
-        { name: 'Eucalyptus', color: 'eucalyptus' },
-        { name: 'Lavender', color: 'lavender' },
-        { name: 'Cocoa', color: 'cocoa' },
-        { name: 'Tomato', color: 'tomato' },
-        { name: 'Mango', color: 'mango' },
-        { name: 'Pistachio', color: 'pistachio' },
-        { name: 'Peacock', color: 'peacock' },
-        { name: 'Wisteria', color: 'wisteria' },
-        { name: 'Graphite', color: 'graphite' },
-        { name: 'Flamingo', color: 'flamingo' },
-        { name: 'Banana', color: 'banana' },
-        { name: 'Sage', color: 'sage' },
-        { name: 'Cobalt', color: 'cobalt' },
-        { name: 'Amethyst', color: 'amethyst' },
-        { name: 'Birch', color: 'birch' },
+    const colorData = [
+        { id: 'default', background: 'default-color', class: 'theme-color-default' },
+        { id: 'radicchio', background: 'radicchio-color', class: 'theme-color-radicchio' },
+        { id: 'tangerine', background: 'tangerine-color', class: 'theme-color-tangerine' },
+        { id: 'citron', background: 'citron-color', class: 'theme-color-citron' },
+        { id: 'basil', background: 'basil-color', class: 'theme-color-basil' },
+        { id: 'blueBerry', background: 'blueBerry-color', class: 'theme-color-blueBerry' },
+        { id: 'grape', background: 'grape-color', class: 'theme-color-grape' },
+        { id: 'cherryBlossom', background: 'cherryBlossom-color', class: 'theme-color-cherryBlossom' },
+        { id: 'pumpkin', background: 'pumpkin-color', class: 'theme-color-pumpkin' },
+        { id: 'avocado', background: 'avocado-color', class: 'theme-color-avocado' },
+        { id: 'eucalyptus', background: 'eucalyptus-color', class: 'theme-color-eucalyptus' },
+        { id: 'lavender', background: 'lavender-color', class: 'theme-color-lavender' },
+        { id: 'cocoa', background: 'cocoa-color', class: 'theme-color-cocoa' },
+        { id: 'tomato', background: 'tomato-color', class: 'theme-color-tomato' },
+        { id: 'mango', background: 'mango-color', class: 'theme-color-mango' },
+        { id: 'pistachio', background: 'pistachio-color', class: 'theme-color-pistachio' },
+        { id: 'peacock', background: 'peacock-color', class: 'theme-color-peacock' },
+        { id: 'wisteria', background: 'wisteria-color', class: 'theme-color-wisteria' },
+        { id: 'graphite', background: 'graphite-color', class: 'theme-color-graphite' },
+        { id: 'flamingo', background: 'flamingo-color', class: 'theme-color-flamingo' },
+        { id: 'banana', background: 'banana-color', class: 'theme-color-banana' },
+        { id: 'sage', background: 'sage-color', class: 'theme-color-sage' },
+        { id: 'cobalt', background: 'cobalt-color', class: 'theme-color-cobalt' },
+        { id: 'amethyst', background: 'amethyst-color', class: 'theme-color-amethyst' },
+        { id: 'birch', background: 'birch-color', class: 'theme-color-birch' },
+        { id: 'cyan', background: 'cyan-color', class: 'theme-color-cyan' },
+        { id: 'orange', background: 'orange-color', class: 'theme-color-orange' },
     ];
 
     const handleCategory = () => {
@@ -183,8 +187,9 @@ function TaskForm() {
         return dayjs().format('MMM DD, YYYY');
     };
 
-    const handleSelectTag = (tag) => {
-        setTagName(tag);
+    const handleSelectTag = (item) => {
+        setTagName(item.id);
+        setTagColor(item.background);
     };
 
     const handleCancel = () => {
@@ -218,6 +223,17 @@ function TaskForm() {
                         onClick={handleShowPickerCalendar}
                     />
                 </div>
+
+                {!showTime ? (
+                    <button type="button" className={cx('add-time-btn')} onClick={handleAddTime}>
+                        Add time
+                    </button>
+                ) : (
+                    <button type="button" className={cx('add-time-btn')} onClick={handleAllTime}>
+                        All time
+                    </button>
+                )}
+
                 {showTime && (
                     <>
                         <div className={cx('time')}>
@@ -257,15 +273,6 @@ function TaskForm() {
                         </div>
                     </>
                 )}
-                {!showTime ? (
-                    <button type="button" className={cx('add-time-btn')} onClick={handleAddTime}>
-                        Add time
-                    </button>
-                ) : (
-                    <button type="button" className={cx('add-time-btn')} onClick={handleAllTime}>
-                        All time
-                    </button>
-                )}
             </div>
             <div className={cx('note')}>
                 <span className={cx('icon')}>
@@ -281,24 +288,19 @@ function TaskForm() {
                     <BsTags />
                 </span>
                 <div className={cx('tag')}>
-                    <span className={cx('tag-select')}>
-                        <BsFillRecordFill
-                            style={
-                                tagName === 'Select Tag' ? '' : { color: `rgb(var(--${tagName.toLowerCase()}-rgb))` }
-                            }
-                        />
+                    <div className={cx('tag-select')}>
+                        <span className={cx('tag-color', tagColor)}></span>
                         {tagName}
-                    </span>
-                    <div className={cx('tag-list')}>
-                        {tagList.map((tag, idx) => (
-                            <span key={idx} className={cx('tag-item')}>
-                                <BsFillRecordFill
-                                    style={{ color: `rgb(var(--${tag.color}-rgb))` }}
-                                    onClick={() => handleSelectTag(tag.name)}
-                                />
-                            </span>
-                        ))}
                     </div>
+                    <ul className={cx('tag-list')}>
+                        {colorData.map((item, idx) => (
+                            <li
+                                key={idx}
+                                className={cx('tag-item', `${item.background}`)}
+                                onClick={() => handleSelectTag(item)}
+                            ></li>
+                        ))}
+                    </ul>
                 </div>
             </div>
             <footer className={cx('action-btn')}>

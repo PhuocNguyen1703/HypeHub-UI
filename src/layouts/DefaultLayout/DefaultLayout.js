@@ -19,9 +19,9 @@ function DefaultLayout({ children }) {
             <div className={cx('container')}>
                 <motion.div
                     className={cx('sidebar')}
-                    initial={{ width: '50px' }}
+                    initial={{ width: '49px' }}
                     animate={{
-                        width: sidebarCollapsed ? '50px' : '190px',
+                        width: sidebarCollapsed ? '49px' : '190px',
                         transition: {
                             // duration: 0.5,
                             type: 'spring',

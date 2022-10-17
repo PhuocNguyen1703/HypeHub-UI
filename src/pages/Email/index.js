@@ -396,15 +396,17 @@ function Email() {
                     {email.map((item, index) => (
                         <div key={index} className={cx('email-item')}>
                             <div className={cx('item-content')}>
-                                <input type="checkbox" />
-                                <BsFillStarFill
-                                    className={cx('icon-star')}
-                                    style={{ color: `${item.status.star && 'gold'}` }}
-                                />
-                                <BsPatchExclamation
-                                    className={cx('icon-spam')}
-                                    style={{ color: `${item.status.spam && 'red'}` }}
-                                />
+                                <div className={cx('content-left')}>
+                                    <input type="checkbox" />
+                                    <BsFillStarFill
+                                        className={cx('icon-star')}
+                                        style={{ color: `${item.status.star && 'gold'}` }}
+                                    />
+                                    <BsPatchExclamation
+                                        className={cx('icon-spam')}
+                                        style={{ color: `${item.status.spam && 'red'}` }}
+                                    />
+                                </div>
                                 <div className={cx('item-title')}>
                                     <span>{item.sender}</span>
                                     <p>{item.title}</p>

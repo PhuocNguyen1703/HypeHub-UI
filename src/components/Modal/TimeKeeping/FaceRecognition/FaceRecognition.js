@@ -169,7 +169,7 @@ function Checkin() {
                     <img src={images.faceRecognition} alt="faceRecognition" />
                 </div>
                 <button
-                    className={cx('checkin-btn')}
+                    className={cx('recognition-btn')}
                     onClick={faceRecognitionTitle === 'Sign up' ? faceRegistration : faceRecognition}
                 >
                     Face Recognition

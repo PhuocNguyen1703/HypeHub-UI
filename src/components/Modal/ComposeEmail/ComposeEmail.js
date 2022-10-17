@@ -8,13 +8,11 @@ import { useDispatch } from 'react-redux';
 import { setComposeEmailModalIsOpen } from '~/redux/Slice/modalSlice';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 
 const cx = classNames.bind(styles);
 
 function ComposeEmail() {
-    const { composeEmailModalIsOpen } = useSelector((state) => state.modal);
     const [isMinimize, setMinimize] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const dispatch = useDispatch();

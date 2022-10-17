@@ -166,7 +166,6 @@ function Setting() {
                         {colorData.map((item, idx) => (
                             <li
                                 key={idx}
-                                style={{ backgroundColor: `rgb(var(${item.code}))` }}
                                 className={cx(
                                     'box-color',
                                     `${item.background}`,

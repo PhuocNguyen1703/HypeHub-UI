@@ -24,7 +24,7 @@ function Todo() {
 
     const todo = [
         {
-            title: 'How are you today ?',
+            title: 'How are you today ? How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?',
             type: ['hight', 'team'],
             createdAt: 'Feb 22',
         },
