@@ -1,7 +1,8 @@
 .wrapper {
     width: 100%;
-    height: calc(100vh - var(--default-layout-header-height));
+    height: calc(100vh - var(--default-layout-header-height) - 10px);
     padding: 10px 0;
+    margin-bottom: 10px;
 }
 
 .board-columns {
