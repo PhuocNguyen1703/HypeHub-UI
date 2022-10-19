@@ -38,7 +38,7 @@
     width: 35px;
     height: 35px;
     padding: 5px;
-    color: var(--text-color);
+    color: var(--second-color);
     cursor: pointer;
 
     &:hover {
@@ -70,7 +70,7 @@
 }
 
 .more-icon {
-    color: var(--text-color);
+    color: var(--second-color);
 }
 
 .actions {
@@ -85,7 +85,7 @@
     background-color: transparent;
     padding: 0 10px;
     cursor: pointer;
-    color: var(--text-color);
+    color: var(--second-color);
 }
 
 .icon {

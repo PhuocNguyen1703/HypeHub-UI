@@ -184,7 +184,7 @@ function Header() {
     };
 
     return (
-        <div className={cx('wrapper', `${navbarColor}`)}>
+        <div className={cx('wrapper', navbarColor)}>
             <div className={cx('inner')}>
                 <div className={cx('header-left')}>
                     <CgMenu className={cx('menu-icon')} onClick={handleIsShowSidebar} />

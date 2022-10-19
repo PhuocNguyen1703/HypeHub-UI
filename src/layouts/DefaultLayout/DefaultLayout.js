@@ -14,11 +14,11 @@ function DefaultLayout({ children }) {
     const { themeMode, sidebarColor } = useSelector((state) => state.theme);
 
     return (
-        <div className={cx('wrapper', `${themeMode}`, `${sidebarColor}`)}>
+        <div className={cx('wrapper', themeMode)}>
             <Header />
             <div className={cx('container')}>
                 <motion.div
-                    className={cx('sidebar')}
+                    className={cx('sidebar', sidebarColor)}
                     initial={{ width: '49px' }}
                     animate={{
                         width: sidebarCollapsed ? '49px' : '190px',

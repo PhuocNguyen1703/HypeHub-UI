@@ -124,18 +124,14 @@ function TaskForm() {
     const colorData = [
         { id: 'default', background: 'default-color', class: 'theme-color-default' },
         { id: 'radicchio', background: 'radicchio-color', class: 'theme-color-radicchio' },
-        { id: 'tangerine', background: 'tangerine-color', class: 'theme-color-tangerine' },
         { id: 'citron', background: 'citron-color', class: 'theme-color-citron' },
         { id: 'basil', background: 'basil-color', class: 'theme-color-basil' },
         { id: 'blueBerry', background: 'blueBerry-color', class: 'theme-color-blueBerry' },
         { id: 'grape', background: 'grape-color', class: 'theme-color-grape' },
-        { id: 'cherryBlossom', background: 'cherryBlossom-color', class: 'theme-color-cherryBlossom' },
-        { id: 'pumpkin', background: 'pumpkin-color', class: 'theme-color-pumpkin' },
         { id: 'avocado', background: 'avocado-color', class: 'theme-color-avocado' },
         { id: 'eucalyptus', background: 'eucalyptus-color', class: 'theme-color-eucalyptus' },
         { id: 'lavender', background: 'lavender-color', class: 'theme-color-lavender' },
         { id: 'cocoa', background: 'cocoa-color', class: 'theme-color-cocoa' },
-        { id: 'tomato', background: 'tomato-color', class: 'theme-color-tomato' },
         { id: 'mango', background: 'mango-color', class: 'theme-color-mango' },
         { id: 'pistachio', background: 'pistachio-color', class: 'theme-color-pistachio' },
         { id: 'peacock', background: 'peacock-color', class: 'theme-color-peacock' },
@@ -149,6 +145,10 @@ function TaskForm() {
         { id: 'birch', background: 'birch-color', class: 'theme-color-birch' },
         { id: 'cyan', background: 'cyan-color', class: 'theme-color-cyan' },
         { id: 'orange', background: 'orange-color', class: 'theme-color-orange' },
+        { id: 'lemon', background: 'lemon-color', class: 'theme-color-lemon' },
+        { id: 'lime', background: 'lime-color', class: 'theme-color-lime' },
+        { id: 'seafoam', background: 'seafoam-color', class: 'theme-color-seafoam' },
+        { id: 'teal', background: 'teal-color', class: 'theme-color-teal' },
     ];
 
     const handleCategory = () => {

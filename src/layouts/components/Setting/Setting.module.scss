@@ -7,6 +7,7 @@
     height: 100vh;
     padding: 0 20px;
     background-color: var(--second-bg);
+    border-left: 1px solid var(--gray-alpha-20);
     box-shadow: var(--box-shadow);
     overflow: overlay;
 }
@@ -118,6 +119,7 @@
 }
 
 .icon-check {
+    color: var(--text-black);
     transform: scale(0);
     transition: transform 0.5s var(--transition-cubic);
 }

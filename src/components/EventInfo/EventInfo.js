@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 import EditForm from '../EditForm';
+import { motion } from 'framer-motion';
 
 import styles from './EventInfo.module.scss';
 
@@ -37,7 +38,12 @@ function EventInfo() {
     }
 
     return (
-        <div className={cx('wrapper')}>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
+            className={cx('wrapper')}
+        >
             <header className={cx('header')}>
                 <span className={cx('type')}>{selectedEvent.type}</span>
                 <div className={cx('header-action-btn')}>
@@ -87,7 +93,7 @@ function EventInfo() {
                     Mark {completed}
                 </button>
             </footer>
-        </div>
+        </motion.div>
     );
 }
 

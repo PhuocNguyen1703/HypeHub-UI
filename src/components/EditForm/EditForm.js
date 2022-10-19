@@ -9,6 +9,7 @@ import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 import { BsTrash, BsXLg } from 'react-icons/bs';
 import EventForm from '../Modal/CreateCalendar/EventForm';
 import Tippy from '@tippyjs/react';
+import { motion } from 'framer-motion';
 
 const cx = classNames.bind(styles);
 
@@ -23,7 +24,12 @@ function EditForm() {
     };
 
     return (
-        <div className={cx('wrapper')}>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
+            className={cx('wrapper')}
+        >
             <header className={cx('header')}>
                 <div className={cx('header-action-btn')}>
                     <div>
@@ -58,7 +64,7 @@ function EditForm() {
                 {/* <TaskForm /> */}
                 <EventForm />
             </div>
-        </div>
+        </motion.div>
     );
 }
 

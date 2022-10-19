@@ -4,44 +4,24 @@
     --red: #e41e3f;
     --white: #ffffff;
     --text-primary: #161823;
-    // --text-secondary: #041e49;
     --button-primary: #ff6a00;
     --text-linear-gradient-color: linear-gradient(98.63deg, #f9a225 0%, #ff6a00 100%);
     --secondary-button-background: linear-gradient(177.34deg, #21a2ff, #8951ff 73.36%);
-    --input-outline: #dedfe1;
 
-    --orangeRed: #ff543d;
-    --orangeRed-alpha-80: rgba(255, 84, 61, 0.8);
-    --orangeRed-alpha-60: rgba(255, 84, 61, 0.6);
-    --orangeRed-alpha-40: rgba(255, 84, 61, 0.4);
-    --orangeRed-alpha-20: rgba(255, 84, 61, 0.2);
-
-    --blue: #015ec2;
-    --blue-alpha-90: rgba(1, 94, 194, 0.9);
-    --blue-alpha-80: rgba(1, 94, 194, 0.8);
-    --blue-alpha-60: rgba(1, 94, 194, 0.6);
-    --blue-alpha-40: rgba(1, 94, 194, 0.4);
-    --blue-alpha-20: rgba(1, 94, 194, 0.2);
-    --blue-alpha-10: rgba(1, 94, 194, 0.1);
-    --blue-alpha-05: rgba(1, 94, 194, 0.05);
-
-    --mediumSlateBlue: #878cff;
-    --mediumSlateBlue-alpha-80: rgba(135, 140, 255, 0.8);
-    --mediumSlateBlue-alpha-60: rgba(135, 140, 255, 0.6);
-    --mediumSlateBlue-alpha-40: rgba(135, 140, 255, 0.4);
-    --mediumSlateBlue-alpha-20: rgba(135, 140, 255, 0.2);
-
-    --orange: #ffaf4e;
-    --orange-alpha-80: rgba(255, 175, 78, 0.8);
-    --orange-alpha-60: rgba(255, 175, 78, 0.6);
-    --orange-alpha-40: rgba(255, 175, 78, 0.4);
-    --orange-alpha-20: rgba(255, 175, 78, 0.2);
+    --blue: rgb(24, 119, 242);
+    --blue-alpha-90: rgba(24, 119, 242, 0.9);
+    --blue-alpha-80: rgba(24, 119, 242, 0.8);
+    --blue-alpha-60: rgba(24, 119, 242, 0.6);
+    --blue-alpha-40: rgba(24, 119, 242, 0.4);
+    --blue-alpha-20: rgba(24, 119, 242, 0.2);
+    --blue-alpha-10: rgba(24, 119, 242, 0.1);
+    --blue-alpha-05: rgba(24, 119, 242, 0.05);
 
     --skyBlue: #a4cde3;
     --skyBlue-alpha-80: rgba(164, 205, 227, 0.8);
     --skyBlue-alpha-60: rgba(164, 205, 227, 0.6);
     --skyBlue-alpha-40: rgba(164, 205, 227, 0.4);
-    --skyBlue-alpha-20: rgba(164, 205, 227, 0.2);
+    --skyBlue-alpha-20: rgba(165, 206, 227, 0.2);
 
     --black: #141416;
     --black-alpha-80: rgba(20, 20, 22, 0.8);
@@ -57,12 +37,6 @@
     --gray-alpha-10: rgba(142, 148, 163, 0.1);
     --gray-alpha-05: rgba(142, 148, 163, 0.05);
 
-    --yellow: #ffd166;
-    --yellow-alpha-80: #ffda85;
-    --yellow-alpha-60: #ffe3a3;
-    --yellow-alpha-40: #ffedc2;
-    --yellow-alpha-20: #fff6e0;
-
     // DefaultLayout
     --default-background-color: rgb(1, 94, 194);
     --main-overlay-color: rgba(255, 255, 255, 0.91);
@@ -76,40 +50,17 @@
     --box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
     --box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.075);
 
-    //Calendar tag color
-    --radicchio-rgb: 204, 166, 172;
-    --tangerine-rgb: 250, 87, 60;
-    --citron-rgb: 251, 233, 131;
-    --basil-rgb: 22, 167, 101;
-    --blueBerry-rgb: 73, 134, 231;
-    --grape-rgb: 205, 116, 230;
-    --cherryBlossom-rgb: 246, 145, 178;
-    --pumpkin-rgb: 255, 117, 55;
-    --avocado-rgb: 179, 220, 108;
-    --eucalyptus-rgb: 66, 214, 146;
-    --lavender-rgb: 154, 156, 255;
-    --cocoa-rgb: 172, 114, 94;
-    --tomato-rgb: 248, 58, 34;
-    --mango-rgb: 255, 173, 70;
-    --pistachio-rgb: 123, 209, 72;
-    --peacock-rgb: 159, 225, 231;
-    --wisteria-rgb: 185, 154, 255;
-    --graphite-rgb: 194, 194, 194;
-    --flamingo-rgb: 208, 107, 100;
-    --banana-rgb: 250, 209, 101;
-    --sage-rgb: 146, 225, 192;
-    --cobalt-rgb: 159, 198, 231;
-    --amethyst-rgb: 164, 122, 226;
-    --birch-rgb: 202, 189, 191;
-
     //////////////
     --saturation-factor: 1;
-    --main-bg: #a4cde333;
+
+    --main-bg: #e3f4ff;
     --second-bg: #ffffff;
     --text-color: #161823;
-
+    --text-black: #161823;
     --text-white: #ffffff;
-    --second-color: #62b4ff;
+
+    // --second-color: #62b4ff;
+
     --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
     --main-bg-light: #ffffff;
@@ -118,26 +69,20 @@
     --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
     --main-bg-dark: hsl(216, calc(var(--saturation-factor, 1) * 7.2%), 13.5%);
-    // --second-bg-dark: hsl(220, calc(var(--saturation-factor, 1) * 7.7%), 22.9%);
     --second-bg-dark: hsl(0, 0%, 18%);
-    // --text-color-dark: #bbbbbb;
     --text-color-dark: #b9bbbe;
     --box-shadow-dark: rgba(0, 0, 0, 0.2) 0px 5px 10px;
 
     // Main color
     --main-color-radicchio: #cca6ac;
-    --main-color-tangerine: #fa573c;
     --main-color-citron: #fbe983;
     --main-color-basil: #16a765;
     --main-color-blueBerry: #4986e7;
-    --main-color-grape: #cd74e6;
-    --main-color-cherryBlossom: #f691b2;
-    --main-color-pumpkin: #ff7537;
+    --main-color-grape: #9360f7;
     --main-color-avocado: #b3dc6c;
     --main-color-eucalyptus: #42d692;
     --main-color-lavender: #9a9cff;
     --main-color-cocoa: #ac725e;
-    --main-color-tomato: #f83a22;
     --main-color-mango: #ffad46;
     --main-color-pistachio: #7bd148;
     --main-color-peacock: #9fe1e7;
@@ -149,20 +94,22 @@
     --main-color-cobalt: #9fc6e7;
     --main-color-amethyst: #a47ae2;
     --main-color-birch: #cabdbf;
+    --main-color-cyan: #10d4d2;
+    --main-color-orange: #d68102;
+    --main-color-lemon: #f7b928;
+    --main-color-lime: #45bd62;
+    --main-color-seafoam: #54c7ec;
+    --main-color-teal: #2abba7;
 
     --main-color-blue: #349eff;
     --second-color-blue: #62b4ff;
 
     // --main-color-red: #fb0b12;
     // --second-color-red: #ff4a6b;
-
-    --main-color-cyan: #10d4d2;
     --second-color-cyan: #2ae9e6;
 
     // --main-color-green: #019707;
     // --second-color-green: #4caf50;
-
-    --main-color-orange: #d68102;
     --second-color-orange: #fca11a;
 
     --transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -205,7 +152,6 @@ input,
 }
 
 a {
-    color: var(--text-primary);
     text-decoration: none;
 }
 
@@ -241,12 +187,12 @@ li {
 
 body {
     font-family: var(--font-family);
+    color: var(--text-color);
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: var(--text-color-default);
     overflow-y: overlay;
 }
 
