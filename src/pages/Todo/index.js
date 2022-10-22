@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import { BsTrash, BsPlus, BsJournal, BsCheck2, BsExclamationLg, BsFillRecordFill } from 'react-icons/bs';
+import { BsTrash, BsPlus, BsJournal, BsCheck2, BsExclamationLg, BsFillRecordFill, BsRecord } from 'react-icons/bs';
 
 import styles from './Todo.module.scss';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
@@ -16,10 +16,10 @@ function Todo() {
     ];
 
     const tags = [
-        { icon: <BsFillRecordFill />, color: 'indigo', title: 'Team', path: '/company' },
-        { icon: <BsFillRecordFill />, color: 'forestgreen', title: 'Low', path: '/important' },
-        { icon: <BsFillRecordFill />, color: 'orange', title: 'Medium', path: '/important' },
-        { icon: <BsFillRecordFill />, color: 'red', title: 'Hight', path: '/important' },
+        { icon: <BsRecord />, color: 'indigo', title: 'Team', path: '/company' },
+        { icon: <BsRecord />, color: 'forestgreen', title: 'Low', path: '/important' },
+        { icon: <BsRecord />, color: 'orange', title: 'Medium', path: '/important' },
+        { icon: <BsRecord />, color: 'red', title: 'Hight', path: '/important' },
     ];
 
     const todo = [

@@ -52,22 +52,29 @@
 
     //////////////
     --saturation-factor: 1;
-
-    --main-bg: #e3f4ff;
-    --second-bg: #ffffff;
-    --text-color: #161823;
     --text-black: #161823;
     --text-white: #ffffff;
+
+    // mode default
+    --main-bg: #e3f4ff;
+    --second-bg: #ffffff;
+    --main-color: #e3f4ff;
+    --text-color: #161823;
+    --second-color: #455560;
+    --text-hover-color: var(--text-white);
+    --hover-color: linear-gradient(177.34deg, var(--hover-main-color), var(--hover-second-color) 73.36%);
 
     // --second-color: #62b4ff;
 
     --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
+    //light mode
     --main-bg-light: #ffffff;
     --second-bg-light: #fafafb;
     --text-color-light: #455560;
     --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
+    //dark mode
     --main-bg-dark: hsl(216, calc(var(--saturation-factor, 1) * 7.2%), 13.5%);
     --second-bg-dark: hsl(0, 0%, 18%);
     --text-color-dark: #b9bbbe;
@@ -101,8 +108,10 @@
     --main-color-seafoam: #54c7ec;
     --main-color-teal: #2abba7;
 
-    --main-color-blue: #349eff;
-    --second-color-blue: #62b4ff;
+    --hover-main-color: #349eff;
+    --hover-second-color: #62b4ff;
+    --active-main-color: #349eff;
+    --active-second-color: #62b4ff;
 
     // --main-color-red: #fb0b12;
     // --second-color-red: #ff4a6b;

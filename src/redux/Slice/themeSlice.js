@@ -4,8 +4,8 @@ const themeSlice = createSlice({
     name: 'theme',
     initialState: {
         themeMode: 'theme-mode-default',
-        sidebarColor: 'theme-color-default',
-        navbarColor: 'theme-color-default',
+        sidebarColor: null,
+        navbarColor: null,
     },
     reducers: {
         setThemeMode: (state, action) => {

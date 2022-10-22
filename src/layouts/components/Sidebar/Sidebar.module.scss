@@ -9,13 +9,13 @@
     padding: 10px 0 10px 10px;
     margin: 5px;
     border-radius: 5px;
-    transition: background-color 0.2s;
+    transition: background-color 0.3s;
     color: var(--second-color);
     cursor: pointer;
 
     &:hover {
-        background-color: var(--second-bg);
-        // color: var(--text-color);
+        background-image: var(--hover-color);
+        color: var(--text-hover-color);
         box-shadow: var(--box-shadow);
     }
 
@@ -29,8 +29,8 @@
     }
 
     &.active {
-        background-color: var(--second-bg);
-        // color: var(--default-background-color);
+        background-image: var(--hover-color);
+        color: var(--text-hover-color);
         box-shadow: var(--box-shadow);
     }
 }
@@ -58,10 +58,6 @@
 }
 
 .open {
-    &:hover {
-        background-color: var(--second-bg);
-        // background-color: transparent !important;
-    }
     .toggle-btn {
         transform: rotate(90deg);
     }
@@ -71,6 +67,19 @@
     height: 0;
     overflow: hidden;
     font-size: 1.6rem;
+}
+
+.item:hover .child-item {
+    color: var(--text-hover-color);
+}
+
+.item:hover .child-item:hover {
+    color: var(--text-color);
+}
+
+.item:hover .active {
+    background: var(--second-bg);
+    color: var(--text-color);
 }
 
 .child-item {
@@ -83,7 +92,7 @@
     transition: background-color 0.2s;
 
     &:hover {
-        background-color: var(--main-bg);
+        background-color: var(--second-bg);
         box-shadow: var(--box-shadow);
     }
 
@@ -96,121 +105,8 @@
     }
 
     &.active {
-        background-color: var(--second-bg);
-        // color: var(--default-background-color);
+        background-image: var(--hover-color);
+        color: var(--text-hover-color);
         box-shadow: var(--box-shadow);
-    }
-}
-
-// email sidebar
-.menu-item {
-    position: relative;
-    margin: 5px 0;
-    padding-left: 15px;
-
-    &::before {
-        position: absolute;
-        content: '';
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 80%;
-        border-radius: 5px;
-        background-color: var(--default-background-color);
-        transition: width 0.3s;
-    }
-
-    &:hover {
-        background-color: var(--skyBlue-alpha-20);
-
-        &::before {
-            width: 4px;
-        }
-    }
-
-    &.active {
-        background-color: var(--skyBlue-alpha-20);
-        color: var(--default-background-color);
-
-        &::before {
-            width: 4px;
-        }
-    }
-}
-
-.label-item {
-    position: relative;
-    margin: 5px 0;
-    padding-left: 15px;
-
-    &::before {
-        position: absolute;
-        content: '';
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 80%;
-        border-radius: 5px;
-        background-color: var(--default-background-color);
-        transition: width 0.3s;
-    }
-
-    &:hover {
-        color: var(--default-background-color);
-        background-color: var(--skyBlue-alpha-20);
-
-        &::before {
-            width: 4px;
-        }
-    }
-
-    &.active {
-        color: var(--default-background-color);
-        background-color: var(--skyBlue-alpha-20);
-
-        &::before {
-            width: 4px;
-        }
-    }
-}
-
-// todo sidebar
-
-.tags-item {
-    position: relative;
-    margin: 5px 0;
-    padding-left: 15px;
-
-    &::before {
-        position: absolute;
-        content: '';
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 80%;
-        border-radius: 5px;
-        background-color: var(--default-background-color);
-        transition: width 0.3s;
-    }
-
-    &:hover {
-        color: var(--default-background-color);
-        background-color: var(--skyBlue-alpha-20);
-
-        &::before {
-            width: 4px;
-        }
-    }
-
-    &.active {
-        color: var(--default-background-color);
-        background-color: var(--skyBlue-alpha-20);
-
-        &::before {
-            width: 4px;
-        }
     }
 }

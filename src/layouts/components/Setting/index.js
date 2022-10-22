@@ -9,18 +9,15 @@ import { setSettingModalIsOpen } from '~/redux/Slice/modalSlice';
 import { BsCheck, BsXLg } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { setNavbarColor, setSidebarColor, setThemeMode } from '~/redux/Slice/themeSlice';
-import { setContentWidth } from '~/redux/Slice/layoutSlice';
 
 const cx = classNames.bind(styles);
 
 function Setting() {
     const { settingModalIsOpen } = useSelector((state) => state.modal);
     const { themeMode, sidebarColor, navbarColor } = useSelector((state) => state.theme);
-    const { contentWidth } = useSelector((state) => state.layout);
     const [currentMode, setCurrentMode] = useState(themeMode);
-    const [currentWidth, setCurrentWidth] = useState(contentWidth);
-    const [currentSidebarColor, setCurrentSidebarColor] = useState(sidebarColor);
     const [currentNavbarColor, setCurrentNavbarColor] = useState(navbarColor);
+    const [currentSidebarColor, setCurrentSidebarColor] = useState(sidebarColor);
     const dispatch = useDispatch();
 
     const modeSettings = [
@@ -29,15 +26,9 @@ function Setting() {
         { id: 'dark', name: 'Dark', class: 'theme-mode-dark' },
     ];
 
-    const contentWidths = [
-        { id: 'full width', name: 'Full width', class: 'content-width-full' },
-        { id: 'boxed', name: 'Boxed', class: 'content-width-boxed' },
-    ];
-
     const menuLayouts = [{ id: 'menu collapsed', name: 'Menu collapsed' }];
 
     const colorData = [
-        { id: 'default', background: 'default-color', class: 'theme-color-default' },
         { id: 'radicchio', background: 'radicchio-color', class: 'theme-color-radicchio' },
         { id: 'citron', background: 'citron-color', class: 'theme-color-citron' },
         { id: 'basil', background: 'basil-color', class: 'theme-color-basil' },
@@ -73,11 +64,8 @@ function Setting() {
     const handleSetMode = (item) => {
         setCurrentMode(item.class);
         dispatch(setThemeMode(item.class));
-    };
-
-    const handleSetContentWidth = (item) => {
-        setCurrentWidth(item.class);
-        dispatch(setContentWidth(item.class));
+        dispatch(setSidebarColor(null));
+        dispatch(setNavbarColor(null));
     };
 
     const handleSetSidebarColor = (item) => {
@@ -113,23 +101,6 @@ function Setting() {
                                 value={item.name}
                                 checked={item.class === currentMode ? true : false}
                                 onClick={() => handleSetMode(item)}
-                                readOnly
-                            />
-                            {item.name}
-                        </label>
-                    ))}
-                </div>
-                <span className={cx('title')}>Content Width</span>
-                <div className={cx('input-field')}>
-                    {contentWidths.map((item, idx) => (
-                        <label htmlFor={item.id} key={idx}>
-                            <input
-                                id={item.id}
-                                type="radio"
-                                name="content-width"
-                                value={item.name}
-                                checked={item.class === currentWidth ? true : false}
-                                onClick={() => handleSetContentWidth(item)}
                                 readOnly
                             />
                             {item.name}

@@ -385,11 +385,11 @@ function Email() {
                         Compose
                     </button>
                     {menu.map((item, index) => (
-                        <SidebarItem key={index} item={item} className={'menu-item'} />
+                        <SidebarItem key={index} item={item} />
                     ))}
                     <span className={cx('label')}>Labels</span>
                     {label.map((item, index) => (
-                        <SidebarItem key={index} item={item} className={'label-item'} />
+                        <SidebarItem key={index} item={item} />
                     ))}
                 </motion.div>
                 <div className={cx('content')}>

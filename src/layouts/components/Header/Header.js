@@ -47,7 +47,7 @@ function Header() {
     const { currentUser } = useSelector((state) => state.auth.login);
     const { sidebarCollapsed } = useSelector((state) => state.layout);
     const { isFullscreen } = useSelector((state) => state.screen);
-    const { navbarColor } = useSelector((state) => state.theme);
+    const { themeMode, navbarColor } = useSelector((state) => state.theme);
     const {
         createUserModalIsOpen,
         notificationModalIsOpen,
