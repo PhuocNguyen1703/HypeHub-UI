@@ -8,6 +8,7 @@ import {
     BsEnvelope,
     BsPerson,
     BsAlarm,
+    BsClipboardData,
 } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import config from '~/config';
@@ -25,19 +26,19 @@ function Sidebar() {
             title: 'Dashboards',
             children: [
                 {
-                    icon: <BsColumnsGap />,
-                    title: 'HRM',
-                    path: config.routes.email,
+                    icon: <BsClipboardData />,
+                    title: 'Overview',
+                    path: config.routes.home,
                 },
                 {
                     icon: <BsColumnsGap />,
                     title: 'FI',
-                    path: '/setting',
+                    path: config.routes.profile,
                 },
                 {
                     icon: <BsColumnsGap />,
                     title: 'SD',
-                    path: '/setting',
+                    path: config.routes.profile,
                 },
             ],
         },
@@ -77,7 +78,7 @@ function Sidebar() {
         {
             icon: <BsAlarm />,
             title: 'Check in',
-            path: '/checkin',
+            path: config.routes.checkin,
         },
     ];
 

@@ -1,5 +1,5 @@
 import { HeaderOnly } from '~/layouts';
-import Home from '~/pages/Home';
+import Home from '~/pages/Overview';
 import Profile from '~/pages/Profile';
 import Auth from '~/pages/Auth/Login';
 import config from '~/config';
