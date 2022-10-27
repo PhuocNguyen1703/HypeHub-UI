@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import images from '~/assets/images';
 import { Link } from 'react-router-dom';
 import routes from '~/config/routes';
+import Image from '~/components/Image';
+import { BsLayers } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);
 
@@ -340,6 +342,71 @@ function Home() {
         },
     ];
 
+    const notificationData = [
+        {
+            avatar: 'https://images.unsplash.com/photo-1641894252843-9794796577be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGF2YXRhciUyMGF2ZW50ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+            fullName: 'Victoria Secret',
+            content: 'sent a messagesent a messagesent a messagesent a messagesent a messagesent a message',
+            createAt: '2022-10-11',
+        },
+        {
+            avatar: 'https://images.unsplash.com/photo-1641894252843-9794796577be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGF2YXRhciUyMGF2ZW50ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+            fullName: 'Victoria Secret',
+            content:
+                'sent a message sent a message sent a message sent a message sent a message sent a message sent a message ',
+            createAt: '2022-10-11',
+        },
+        {
+            avatar: 'https://images.unsplash.com/photo-1641894252843-9794796577be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGF2YXRhciUyMGF2ZW50ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+            fullName: 'Victoria Secret',
+            content: 'sent a message',
+            createAt: '2022-10-11',
+        },
+        {
+            avatar: 'https://images.unsplash.com/photo-1641894252843-9794796577be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGF2YXRhciUyMGF2ZW50ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+            fullName: 'Victoria Secret',
+            content: 'sent a message',
+            createAt: '2022-10-11',
+        },
+        {
+            avatar: 'https://images.unsplash.com/photo-1641894252843-9794796577be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGF2YXRhciUyMGF2ZW50ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+            fullName: 'Victoria Secret',
+            content: 'sent a message',
+            createAt: '2022-10-11',
+        },
+        {
+            avatar: 'https://images.unsplash.com/photo-1641894252843-9794796577be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGF2YXRhciUyMGF2ZW50ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+            fullName: 'Victoria Secret',
+            content:
+                'sent a message sent a message sent a message sent a message sent a message sent a message sent a message',
+            createAt: '2022-10-11',
+        },
+        {
+            avatar: 'https://images.unsplash.com/photo-1641894252843-9794796577be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGF2YXRhciUyMGF2ZW50ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+            fullName: 'Victoria Secret',
+            content: 'sent a message',
+            createAt: '2022-10-11',
+        },
+        {
+            avatar: 'https://images.unsplash.com/photo-1641894252843-9794796577be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGF2YXRhciUyMGF2ZW50ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+            fullName: 'Victoria Secret',
+            content: 'sent a message',
+            createAt: '2022-10-11',
+        },
+        {
+            avatar: 'https://images.unsplash.com/photo-1641894252843-9794796577be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGF2YXRhciUyMGF2ZW50ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+            fullName: 'Victoria Secret',
+            content: 'sent a message',
+            createAt: '2022-10-11',
+        },
+        {
+            avatar: 'https://images.unsplash.com/photo-1641894252843-9794796577be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGF2YXRhciUyMGF2ZW50ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+            fullName: 'Victoria Secret',
+            content: 'sent a message sent a message sent a message sent a message sent a message sent a message',
+            createAt: '2022-10-11',
+        },
+    ];
+
     return (
         <div className={cx('wrapper')}>
             <h1 className={cx('title')}>Overview</h1>
@@ -392,19 +459,52 @@ function Home() {
                         <div className={cx('calendar-container')}>
                             {calendarData.map((item, idx) => (
                                 <div key={idx} className={cx('calendar-item')}>
-                                    <span className={cx('calendar-tag', item.tagColor)}></span>
                                     <input className={cx('checkbox')} type="checkbox" />
                                     <div className={cx('calendar-content')}>
                                         <span>{item.title}</span>
                                         <p>{item.description}</p>
                                     </div>
-                                    <span className={cx('calendar-type')}>{item.type}</span>
+                                    <span className={cx('calendar-type', item.tagColor)}>{item.type}</span>
                                 </div>
                             ))}
                         </div>
                     </div>
-                    <div className={cx('notifications')}>when</div>
-                    <div className={cx('email')}>todo</div>
+                    <div className={cx('notification')}>
+                        <span className={cx('notification-title')}>Notifications</span>
+                        <div className={cx('notification-container')}>
+                            {notificationData.map((item, idx) => (
+                                <div key={idx} className={cx('notification-item')}>
+                                    <Image src={item.avatar} alt="avatar" className={cx('avatar')} />
+                                    <div className={cx('notification-content')}>
+                                        <p>
+                                            <strong>{item.fullName} </strong>
+                                            {item.content}
+                                        </p>
+                                        <span>{item.createAt}</span>
+                                    </div>
+                                    <span className={cx('icon-layer')}>
+                                        <BsLayers />
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className={cx('email')}>
+                        <span className={cx('email-title')}>Email</span>
+                        <div className={cx('email-container')}>
+                            {notificationData.map((item, idx) => (
+                                <div key={idx} className={cx('email-item')}>
+                                    <div className={cx('email-content')}>
+                                        <p>
+                                            <strong>{item.fullName} </strong>
+                                            {item.content}
+                                        </p>
+                                        <span>{item.createAt}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

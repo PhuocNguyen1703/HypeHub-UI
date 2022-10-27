@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .header-grid {
@@ -32,7 +32,7 @@
 .todo-list,
 .item9,
 .calendar,
-.notifications,
+.notification,
 .email {
     padding: 10px;
     border-radius: 10px;
@@ -211,6 +211,7 @@
         display: none;
     }
 }
+
 .calendar-item {
     display: flex;
     align-items: center;
@@ -218,11 +219,7 @@
     height: 40px;
     width: 100%;
 }
-.calendar-tag {
-    width: 6px;
-    height: 100%;
-    border-radius: 4px;
-}
+
 .calendar-content {
     flex: 1;
 
@@ -248,19 +245,80 @@
         word-break: break-word;
     }
 }
+
 .calendar-type {
     font-size: 1.2rem;
     font-weight: 700;
     padding: 2px 6px;
-    color: green;
-    background-color: rgb(186, 226, 186);
+    color: var(--text-white);
     border: 1px solid var(--gray-alpha-20);
     border-radius: 6px;
     box-shadow: var(--box-shadow);
 }
 
-.notifications {
+.notification {
+    height: 500px;
     width: calc(100% / 3);
+}
+
+.notification-title {
+    font-size: 2rem;
+    font-weight: 600;
+    height: 50px;
+}
+
+.notification-container {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    width: 100%;
+    height: calc(100% - 50px);
+    margin-top: 20px;
+    overflow: overlay;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--gray-alpha-20);
+    border-radius: 4px;
+    object-fit: cover;
+    box-shadow: var(--box-shadow);
+    flex-shrink: 0;
+}
+
+.notification-content {
+    flex: 1;
+
+    p {
+        font-size: 1.4rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+    }
+
+    span {
+        font-size: 1rem;
+    }
+}
+
+.icon-layer {
+    font-size: 2.5rem;
+    opacity: 0.5;
+    color: var(--gray);
 }
 
 .email {
