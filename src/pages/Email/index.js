@@ -21,13 +21,14 @@ import ComposeEmail from '~/components/Modal/ComposeEmail';
 import Modal from '~/components/Modal';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setComposeEmailModalIsOpen } from '~/redux/Slice/modalSlice';
+import { setComposeEmailModalIsOpen, setEmailInfoModalIsOpen } from '~/redux/Slice/modalSlice';
 import { motion } from 'framer-motion';
+import EmailInfo from '~/components/Modal/EmailInfo';
 
 const cx = classNames.bind(styles);
 
 function Email() {
-    const { composeEmailModalIsOpen } = useSelector((state) => state.modal);
+    const { composeEmailModalIsOpen, emailInfoModalIsOpen } = useSelector((state) => state.modal);
     const [isHidden, setIsHidden] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const dispatch = useDispatch();
@@ -349,6 +350,10 @@ function Email() {
 
     const handleCheckedOnChange = () => {};
 
+    const handleOpenEmailInfoModal = () => {
+        dispatch(setEmailInfoModalIsOpen(true));
+    };
+
     return (
         <div className={cx('wrapper')}>
             <header className={cx('heading')}>
@@ -396,7 +401,7 @@ function Email() {
                 </motion.div>
                 <div className={cx('content')}>
                     {email.map((item, index) => (
-                        <div key={index} className={cx('email-item')}>
+                        <div key={index} className={cx('email-item')} onClick={handleOpenEmailInfoModal}>
                             <div className={cx('item-content')}>
                                 <div className={cx('content-left')}>
                                     <input
@@ -441,6 +446,12 @@ function Email() {
             {composeEmailModalIsOpen && (
                 <Modal>
                     <ComposeEmail />
+                </Modal>
+            )}
+
+            {emailInfoModalIsOpen && (
+                <Modal>
+                    <EmailInfo />
                 </Modal>
             )}
         </div>
