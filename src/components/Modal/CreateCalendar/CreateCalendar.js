@@ -17,7 +17,7 @@ function CreateCalendar() {
     const { selectedEvent } = useSelector((state) => state.calendar);
     const dispatch = useDispatch();
 
-    const closeModal = () => {
+    const handleCloseModal = () => {
         dispatch(setDaySelected(dayjs().format('MMM DD, YYYY')));
         dispatch(setCalendarEventModalIsOpen(false));
         dispatch(setSelectedEvent(null));
@@ -43,7 +43,7 @@ function CreateCalendar() {
                 <header className={cx('header')}>
                     <div>
                         <Tippy delay={[0, 50]} interactive content="Close">
-                            <button className={cx('close-btn')} onClick={closeModal}>
+                            <button className={cx('close-btn')} onClick={handleCloseModal}>
                                 <BsXLg />
                             </button>
                         </Tippy>
