@@ -143,10 +143,10 @@
     width: 90%;
     margin: 40px 0;
     padding: 12px;
-    border: 1px solid var(--gray-alpha-20);
     box-shadow: var(--box-shadow);
-    background-color: var(--main-bg);
+    background: linear-gradient(var(--main-bg), var(--main-bg)) padding-box, var(--button-primary) border-box;
     border-radius: 20px;
+    border: 2px solid transparent;
 }
 
 .about-header {

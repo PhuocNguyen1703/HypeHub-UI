@@ -4,7 +4,6 @@
     --red: #e41e3f;
     --white: #ffffff;
     --text-primary: #161823;
-    --button-primary: #ff6a00;
     --text-linear-gradient-color: linear-gradient(98.63deg, #f9a225 0%, #ff6a00 100%);
     --secondary-button-background: linear-gradient(177.34deg, #21a2ff, #8951ff 73.36%);
 
@@ -62,7 +61,22 @@
     --text-color: #161823;
     --second-color: #455560;
     --text-hover-color: var(--text-white);
-    --hover-color: linear-gradient(177.34deg, var(--hover-main-color), var(--hover-second-color) 73.36%);
+    --button-primary: linear-gradient(
+        90deg,
+        hsl(269, calc(var(--saturation-factor, 1) * 52.7%), 52.7%),
+        hsl(325, calc(var(--saturation-factor, 1) * 31.7%), 51.8%)
+    );
+    --button-secondary: linear-gradient(
+        90deg,
+        hsl(235, calc(var(--saturation-factor, 1) * 85.6%), 64.7%),
+        hsl(202, calc(var(--saturation-factor, 1) * 100%), 38%)
+    );
+    // --sidebar-item-color: linear-gradient(177.34deg, var(--hover-main-color), var(--hover-second-color) 73.36%);
+    --sidebar-item-color: linear-gradient(
+        90deg,
+        hsl(235, calc(var(--saturation-factor, 1) * 85.6%), 64.7%),
+        hsl(202, calc(var(--saturation-factor, 1) * 100%), 38%)
+    );
 
     // --second-color: #62b4ff;
 

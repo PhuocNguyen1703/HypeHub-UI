@@ -4,6 +4,7 @@
     --second-bg: var(--second-bg-light);
     --main-color: var(--main-bg);
     --text-color: var(--text-color-light);
+    --text-second: var(--text-color-light);
     --second-color: var(--text-color-light);
     --box-shadow: var(--box-shadow-light);
 }
@@ -13,6 +14,7 @@
     --second-bg: var(--second-bg-dark);
     --main-color: var(--main-bg);
     --text-color: var(--text-color-dark);
+    --text-second: var(--text-white);
     --second-color: var(--text-color-dark);
     --text-hover-color: var(--text-white);
     --box-shadow: var(--box-shadow-dark);
