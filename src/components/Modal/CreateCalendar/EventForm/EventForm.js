@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './EventForm.module.scss';
-import { BsCheck, BsClipboard, BsClock, BsFillRecordFill, BsJustifyLeft, BsTags } from 'react-icons/bs';
+import {  BsClipboard, BsClock, BsJustifyLeft, BsTags } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
-import { MdTag } from 'react-icons/md';
 
 const cx = classNames.bind(styles);
 

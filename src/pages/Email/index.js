@@ -45,9 +45,9 @@ function Email() {
 
     const label = [
         { icon: <BsRecord />, color: 'forestgreen', title: 'Personal', path: '/personal' },
-        { icon: <BsRecord />, color: 'indigo', title: 'Company', path: '/company' },
-        { icon: <BsRecord />, color: 'orange', title: 'Important', path: '/important' },
-        { icon: <BsRecord />, color: 'red', title: 'Private', path: '/private' },
+        { icon: <BsRecord />, color: '#349eff', title: 'Company', path: '/company' },
+        { icon: <BsRecord />, color: 'red', title: 'Important', path: '/important' },
+        { icon: <BsRecord />, color: 'orange', title: 'Private', path: '/private' },
     ];
 
     const email = [
@@ -55,16 +55,21 @@ function Email() {
             sender: 'Victoria secret',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ? How are you today ?How are you today ? How are you today ? How are you today ? How are you today ? How are you today ? How are you today ?How are you today ? How are you today ? How are you today ?',
+            subject:
+                'How are you today ? How are you today ?How are you today ? How are you today ? How are you today ? How are you today ? How are you today ? How are you today ?How are you today ? How are you today ? How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: true, spam: false },
-            type: ['important'],
+            type: ['important', 'company', 'personal'],
             createdAt: 'Feb 22',
         },
         {
             sender: 'John Thomson',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'Meeting now ?',
+            subject: 'Meeting now ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: false, spam: true },
             type: ['company'],
             createdAt: 'Feb 22',
@@ -73,7 +78,9 @@ function Email() {
             sender: 'Fujiwara Daiki',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'What are you doing ?',
+            subject: 'What are you doing ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: true, spam: true },
             type: ['private'],
             createdAt: 'Feb 22',
@@ -82,7 +89,9 @@ function Email() {
             sender: 'Yamamoto Fuji',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'What are you doing ?',
+            subject: 'What are you doing ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: true, spam: false },
             type: null,
             createdAt: 'Feb 22',
@@ -91,7 +100,9 @@ function Email() {
             sender: 'Maria Tom',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: false },
             type: ['personal'],
             createdAt: 'Feb 22',
@@ -100,7 +111,9 @@ function Email() {
             sender: 'Nguyễn Văn Huy',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: true },
             type: ['private'],
             createdAt: 'Feb 22',
@@ -109,7 +122,9 @@ function Email() {
             sender: 'Nguyễn Thị Hồng Vân',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: true },
             type: null,
             createdAt: 'Feb 22',
@@ -118,7 +133,9 @@ function Email() {
             sender: 'Donal Switch',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: true, spam: true },
             type: ['company'],
             createdAt: 'Feb 22',
@@ -127,7 +144,9 @@ function Email() {
             sender: 'Lê Thị Bảo Nhi',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: false },
             type: ['personal'],
             createdAt: 'Feb 22',
@@ -136,7 +155,9 @@ function Email() {
             sender: 'Trần Quốc Toản',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: true },
             type: ['company'],
             createdAt: 'Feb 22',
@@ -145,7 +166,9 @@ function Email() {
             sender: 'Victoria secret',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: true, spam: false },
             type: ['important'],
             createdAt: 'Feb 22',
@@ -154,7 +177,9 @@ function Email() {
             sender: 'John Thomson',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'Meeting now ?',
+            subject: 'Meeting now ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: false, spam: true },
             type: ['company'],
             createdAt: 'Feb 22',
@@ -163,7 +188,9 @@ function Email() {
             sender: 'Fujiwara Daiki',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'What are you doing ?',
+            subject: 'What are you doing ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: true, spam: true },
             type: ['private'],
             createdAt: 'Feb 22',
@@ -172,7 +199,9 @@ function Email() {
             sender: 'Yamamoto Fuji',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'asdasdasdasd',
+            subject: 'asdasdasdasd',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: true, spam: false },
             type: null,
             createdAt: 'Feb 22',
@@ -181,7 +210,9 @@ function Email() {
             sender: 'Maria Tom',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: false },
             type: ['personal'],
             createdAt: 'Feb 22',
@@ -190,7 +221,9 @@ function Email() {
             sender: 'Nguyễn Văn Huy',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: true },
             type: ['private'],
             createdAt: 'Feb 22',
@@ -199,7 +232,9 @@ function Email() {
             sender: 'Nguyễn Thị Hồng Vân',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: false, spam: true },
             type: null,
             createdAt: 'Feb 22',
@@ -208,7 +243,9 @@ function Email() {
             sender: 'Donal Switch',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: true, spam: true },
             type: ['company'],
             createdAt: 'Feb 22',
@@ -217,7 +254,9 @@ function Email() {
             sender: 'Lê Thị Bảo Nhi',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: false, spam: false },
             type: ['personal'],
             createdAt: 'Feb 22',
@@ -226,7 +265,9 @@ function Email() {
             sender: 'Trần Quốc Toản',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: true },
             type: ['company'],
             createdAt: 'Feb 22',
@@ -235,7 +276,9 @@ function Email() {
             sender: 'Victoria secret',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: true, spam: false },
             type: ['important'],
             createdAt: 'Feb 22',
@@ -244,7 +287,9 @@ function Email() {
             sender: 'John Thomson',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'Meeting now ?',
+            subject: 'Meeting now ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: false, spam: true },
             type: ['company'],
             createdAt: 'Feb 22',
@@ -253,7 +298,9 @@ function Email() {
             sender: 'Fujiwara Daiki',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'What are you doing ?',
+            subject: 'What are you doing ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: true, spam: true },
             type: ['private'],
             createdAt: 'Feb 22',
@@ -262,7 +309,9 @@ function Email() {
             sender: 'Yamamoto Fuji',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'asdasdasdasdasd',
+            subject: 'asdasdasdasdasd',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: true, spam: false },
             type: null,
             createdAt: 'Feb 22',
@@ -271,7 +320,9 @@ function Email() {
             sender: 'Maria Tom',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: false },
             type: ['personal'],
             createdAt: 'Feb 22',
@@ -280,7 +331,9 @@ function Email() {
             sender: 'Nguyễn Văn Huy',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: false, spam: true },
             type: ['private'],
             createdAt: 'Feb 22',
@@ -289,7 +342,9 @@ function Email() {
             sender: 'Nguyễn Thị Hồng Vân',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: true },
             type: null,
             createdAt: 'Feb 22',
@@ -298,7 +353,9 @@ function Email() {
             sender: 'Donal Switch',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: true, spam: true },
             type: ['company'],
             createdAt: 'Feb 22',
@@ -307,7 +364,9 @@ function Email() {
             sender: 'Lê Thị Bảo Nhi',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: false, spam: false },
             type: ['personal'],
             createdAt: 'Feb 22',
@@ -316,7 +375,9 @@ function Email() {
             sender: 'Trần Quốc Toản',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: true },
             type: ['company'],
             createdAt: 'Feb 22',
@@ -325,7 +386,9 @@ function Email() {
             sender: 'Victoria secret',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: true, spam: false },
             type: ['important'],
             createdAt: 'Feb 22',
@@ -334,7 +397,9 @@ function Email() {
             sender: 'John Thomson',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'Meeting now ?',
+            subject: 'Meeting now ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: false, spam: true },
             type: ['company'],
             createdAt: 'Feb 22',
@@ -343,7 +408,9 @@ function Email() {
             sender: 'Fujiwara Daiki',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'What are you doing ?',
+            subject: 'What are you doing ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: true, spam: true },
             type: ['private'],
             createdAt: 'Feb 22',
@@ -352,7 +419,9 @@ function Email() {
             sender: 'Yamamoto Fuji',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'asdasdasds',
+            subject: 'asdasdasds',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: true, spam: false },
             type: null,
             createdAt: 'Feb 22',
@@ -361,7 +430,9 @@ function Email() {
             sender: 'Maria Tom',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: false, spam: false },
             type: ['personal'],
             createdAt: 'Feb 22',
@@ -370,7 +441,9 @@ function Email() {
             sender: 'Nguyễn Văn Huy',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: true },
             type: ['private'],
             createdAt: 'Feb 22',
@@ -379,7 +452,9 @@ function Email() {
             sender: 'Nguyễn Thị Hồng Vân',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: true },
             type: null,
             createdAt: 'Feb 22',
@@ -388,7 +463,9 @@ function Email() {
             sender: 'Donal Switch',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: true, spam: true },
             type: ['company'],
             createdAt: 'Feb 22',
@@ -397,7 +474,9 @@ function Email() {
             sender: 'Lê Thị Bảo Nhi',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: true, star: false, spam: false },
             type: ['personal'],
             createdAt: 'Feb 22',
@@ -406,7 +485,9 @@ function Email() {
             sender: 'Trần Quốc Toản',
             email: 'admin@gmail.com',
             to: 'admin1@gmail.com',
-            title: 'How are you today ?',
+            subject: 'How are you today ?',
+            content:
+                'What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! What do you do! ',
             status: { watched: false, star: false, spam: true },
             type: ['company'],
             createdAt: 'Feb 22',
@@ -434,6 +515,13 @@ function Email() {
     const handleSelectedItem = (item) => {
         dispatch(setSelectedItem(item));
         dispatch(setEmailInfoModalIsOpen(true));
+    };
+
+    const getStyleColor = (type) => {
+        if (type === 'personal') return 'forestgreen';
+        if (type === 'company') return '#349eff';
+        if (type === 'important') return 'red';
+        return 'orange';
     };
 
     return (
@@ -502,22 +590,13 @@ function Email() {
                                 </div>
                                 <div className={cx('item-title')}>
                                     <span>{item.sender}</span>
-                                    <p>{item.title}</p>
+                                    <p>{item.subject}</p>
                                 </div>
                             </div>
                             <div className={cx('date')}>
-                                {item.type && (
-                                    <BsFillRecordFill
-                                        style={{
-                                            color: `${
-                                                (item.type === 'personal' && 'forestgreen') ||
-                                                (item.type === 'company' && 'indigo') ||
-                                                (item.type === 'important' && 'orange') ||
-                                                (item.type === 'private' && 'red')
-                                            }`,
-                                        }}
-                                    />
-                                )}
+                                {item.type?.map((type, idx) => (
+                                    <BsFillRecordFill key={idx} style={{ color: getStyleColor(type) }} />
+                                ))}
                                 <span>{item.createdAt}</span>
                             </div>
                         </div>

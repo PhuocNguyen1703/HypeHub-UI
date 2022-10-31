@@ -26,24 +26,37 @@ const cx = classNames.bind(styles);
 
 function EmailInfo() {
     const { selectedItem } = useSelector((state) => state.email);
-    const [isShowInfo, setIsShowInfo] = useState(false);
     const dispatch = useDispatch();
+
+    const getBackgroundColor = (type) => {
+        if (type === 'personal') return 'forestgreen';
+        if (type === 'company') return '#349eff';
+        if (type === 'important') return 'red';
+        return 'orange';
+    };
 
     const handleCloseModal = () => {
         dispatch(setSelectedItem(null));
         dispatch(setEmailInfoModalIsOpen(false));
     };
 
-    const handleShowInfo = () => {
-        setIsShowInfo((prevState) => !prevState);
-    };
-
     return (
         <AnimatePresence>
             <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
                 <header className={cx('header')}>
-                    <span></span>
+                    <div className={cx('header-left')}>
+                        {selectedItem.type?.map((type, idx) => (
+                            <span
+                                key={idx}
+                                style={{ backgroundColor: getBackgroundColor(type) }}
+                                className={cx('type')}
+                            >
+                                {type.charAt(0).toUpperCase() + type.slice(1)}
+                            </span>
+                        ))}
+                    </div>
                     <div className={cx('action-btn')}>
+                        <span className={cx('createdAt')}>{selectedItem.createdAt}</span>
                         <span className={cx('delete-btn')}>
                             <BsTrash />
                         </span>
@@ -69,12 +82,11 @@ function EmailInfo() {
                                 <p className={cx('sender-info')}>
                                     <strong>{selectedItem.sender}</strong> &#60;{selectedItem.email}&#62;
                                 </p>
-                                <span className={cx('to-me')} onClick={handleShowInfo}>
-                                    to me <BsFillCaretDownFill />
-                                </span>
-
-                                {isShowInfo && (
-                                    <div className={cx('info-wrapper')}>
+                                <div className={cx('info-wrapper')}>
+                                    <span className={cx('to-me')}>
+                                        to me <BsFillCaretDownFill />
+                                    </span>
+                                    <div className={cx('email-desc')}>
                                         <div className={cx('label')}>
                                             <span>from:</span>
                                             <span>to:</span>
@@ -95,16 +107,20 @@ function EmailInfo() {
                                             </span>
                                         </div>
                                     </div>
-                                )}
+                                </div>
                             </div>
                         </div>
                         <div className={cx('action-group')}>
-                            <span className={cx('star-icon')}>
-                                <BsFillStarFill />
-                            </span>
-                            <span className={cx('spam-icon')}>
-                                <BsPatchExclamation />
-                            </span>
+                            {selectedItem.status.star && (
+                                <span className={cx('star-icon')}>
+                                    <BsFillStarFill />
+                                </span>
+                            )}
+                            {selectedItem.status.spam && (
+                                <span className={cx('spam-icon')}>
+                                    <BsPatchExclamation />
+                                </span>
+                            )}
                             <button className={cx('reply-btn')}>
                                 <BsArrowBarLeft />
                                 Reply
@@ -115,6 +131,8 @@ function EmailInfo() {
                             </button>
                         </div>
                     </div>
+                    <p className={cx('subject')}>{selectedItem.subject}</p>
+                    <p className={cx('content')}>{selectedItem.content}</p>
                 </div>
             </motion.div>
         </AnimatePresence>

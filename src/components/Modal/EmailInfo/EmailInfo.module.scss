@@ -2,10 +2,10 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 90%;
-    height: 600px;
+    width: 80vw;
+    min-height: 80vh;
     background-color: var(--main-bg);
-    border: 1px solid var(--gray-alpha-20);
+    border: 1px solid var(--gray-alpha-40);
     border-radius: 10px;
     box-shadow: var(--box-shadow);
     color: var(--text-color);
@@ -22,9 +22,35 @@
     border-top-right-radius: 10px;
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.type {
+    padding: 4px 8px;
+    color: var(--text-white);
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid var(--gray-alpha-10);
+    border-radius: 4px;
+    box-shadow: var(--box-shadow);
+}
+
 .action-btn {
     display: flex;
     gap: 4px;
+}
+
+.createdAt {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1;
+    margin-right: 20px;
 }
 
 .delete-btn,
@@ -72,7 +98,6 @@
 }
 
 .info {
-    position: relative;
     display: flex;
     flex-direction: column;
 }
@@ -86,6 +111,16 @@
     }
 }
 
+.info-wrapper {
+    position: relative;
+    width: fit-content;
+
+    &:hover .email-desc {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
 .to-me {
     display: flex;
     align-items: center;
@@ -95,23 +130,28 @@
     cursor: pointer;
 }
 
-.info-wrapper {
+.email-desc {
     position: absolute;
     display: flex;
-    gap: 10px;
-    top: 100%;
-    left: 0;
-    min-width: 400px;
+    gap: 16px;
     padding: 10px;
+    top: 105%;
+    left: 70%;
+    width: max-content;
     border: 1px solid var(--gray-alpha-20);
     border-radius: 4px;
     box-shadow: var(--box-shadow);
     background-color: var(--second-bg);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s linear, visibility 0.2s linear;
+    z-index: 10;
 }
 
 .label {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 
     span {
         display: flex;
@@ -124,6 +164,7 @@
 .label-info {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 
     span {
         display: flex;
@@ -170,4 +211,16 @@
     border-radius: 999px;
     background: linear-gradient(var(--second-bg), var(--second-bg)) padding-box, var(--button-secondary) border-box;
     cursor: pointer;
+    user-select: none;
+}
+
+.subject {
+    margin: 12px 40px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.content {
+    width: 80%;
+    margin: 0 auto;
 }
