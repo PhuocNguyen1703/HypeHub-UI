@@ -5,16 +5,17 @@ import { BsTrash, BsPlus, BsJournal, BsCheck2, BsExclamationLg, BsFillRecordFill
 import styles from './Todo.module.scss';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
 import { useDispatch } from 'react-redux';
-import { setTodoInfoModalIsOpen } from '~/redux/Slice/modalSlice';
+import { setCreateTaskModalIsOpen, setTodoInfoModalIsOpen } from '~/redux/Slice/modalSlice';
 import { useSelector } from 'react-redux';
 import TodoInfo from '~/components/Modal/TodoInfo';
 import Modal from '~/components/Modal';
 import { setSelectedTodoItem } from '~/redux/Slice/todoSlice';
+import CreateTask from '~/components/Modal/CreateTask';
 
 const cx = classNames.bind(styles);
 
 function Todo() {
-    const { todoInfoModalIsOpen } = useSelector((state) => state.modal);
+    const { createTaskModalIsOpen, todoInfoModalIsOpen } = useSelector((state) => state.modal);
     const dispatch = useDispatch();
 
     const menu = [
@@ -169,6 +170,10 @@ function Todo() {
         return 'red';
     };
 
+    const handleCreateTask = () => {
+        dispatch(setCreateTaskModalIsOpen(true));
+    };
+
     const handleSelectedTodoItem = (item) => {
         dispatch(setSelectedTodoItem(item));
         dispatch(setTodoInfoModalIsOpen(true));
@@ -177,7 +182,7 @@ function Todo() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('sidebar')}>
-                <button className={cx('create-task')}>
+                <button className={cx('create-task')} onClick={handleCreateTask}>
                     <BsPlus />
                     Create Task
                 </button>
@@ -205,6 +210,12 @@ function Todo() {
                     </div>
                 ))}
             </div>
+
+            {createTaskModalIsOpen && (
+                <Modal>
+                    <CreateTask />
+                </Modal>
+            )}
 
             {todoInfoModalIsOpen && (
                 <Modal>
