@@ -4,10 +4,18 @@ import { BsTrash, BsPlus, BsJournal, BsCheck2, BsExclamationLg, BsFillRecordFill
 
 import styles from './Todo.module.scss';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
+import { useDispatch } from 'react-redux';
+import { setTodoInfoModalIsOpen } from '~/redux/Slice/modalSlice';
+import { useSelector } from 'react-redux';
+import TodoInfo from '~/components/Modal/TodoInfo';
+import Modal from '~/components/Modal';
 
 const cx = classNames.bind(styles);
 
 function Todo() {
+    const { todoInfoModalIsOpen } = useSelector((state) => state.modal);
+    const dispatch = useDispatch();
+
     const menu = [
         { icon: <BsJournal />, title: 'My Tasks', path: '/todo' },
         { icon: <BsExclamationLg />, title: 'Important', path: '/sent' },
@@ -16,7 +24,7 @@ function Todo() {
     ];
 
     const tags = [
-        { icon: <BsRecord />, color: 'indigo', title: 'Team', path: '/company' },
+        { icon: <BsRecord />, color: '#349eff', title: 'Team', path: '/company' },
         { icon: <BsRecord />, color: 'forestgreen', title: 'Low', path: '/important' },
         { icon: <BsRecord />, color: 'orange', title: 'Medium', path: '/important' },
         { icon: <BsRecord />, color: 'red', title: 'Hight', path: '/important' },
@@ -200,6 +208,18 @@ function Todo() {
         },
     ];
 
+    const getStyleColor = (type) => {
+        if (type === 'team') return '#349eff';
+        if (type === 'low') return 'forestgreen';
+        if (type === 'medium') return 'orange';
+        return 'red';
+    };
+
+    const handleSelectedTodoItem = (item) => {
+        // dispatch(setSelectedItem(item));
+        dispatch(setTodoInfoModalIsOpen(true));
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('sidebar')}>
@@ -217,30 +237,26 @@ function Todo() {
             </div>
             <div className={cx('content')}>
                 {todo.map((item, index) => (
-                    <div key={index} className={cx('todo-item')}>
+                    <div key={index} className={cx('todo-item')} onClick={() => handleSelectedTodoItem(item)}>
                         <div className={cx('item-content')}>
                             <input type="checkbox" />
                             <span className={cx('item-title')}>{item.title}</span>
                         </div>
                         <div className={cx('date')}>
-                            {item.type?.map((value, index) => (
-                                <BsFillRecordFill
-                                    key={index}
-                                    style={{
-                                        color: `${
-                                            (value === 'team' && 'indigo') ||
-                                            (value === 'low' && 'forestgreen') ||
-                                            (value === 'medium' && 'orange') ||
-                                            (value === 'hight' && 'red')
-                                        }`,
-                                    }}
-                                />
+                            {item.type?.map((type, idx) => (
+                                <BsFillRecordFill key={idx} style={{ color: getStyleColor(type) }} />
                             ))}
                             <span>{item.createdAt}</span>
                         </div>
                     </div>
                 ))}
             </div>
+
+            {todoInfoModalIsOpen && (
+                <Modal>
+                    <TodoInfo />
+                </Modal>
+            )}
         </div>
     );
 }

@@ -8,12 +8,13 @@ import screenReducer from '../Slice/screenSlice';
 import layoutReducer from '../Slice/layoutSlice';
 import themeReducer from '../Slice/themeSlice';
 import emailReducer from '../Slice/emailSlice';
+import todoReducer from '../Slice/todoSlice';
 
 const persistConfig = {
     key: 'root',
     version: 1,
     storage,
-    blacklist: ['calendar', 'modal', 'screen', 'email'],
+    blacklist: ['calendar', 'modal', 'screen', 'email', 'todo'],
 };
 
 const rootReducer = combineReducers({
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
     layout: layoutReducer,
     theme: themeReducer,
     email: emailReducer,
+    todo: todoReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

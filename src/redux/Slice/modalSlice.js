@@ -10,6 +10,7 @@ const modalSlice = createSlice({
         faceRecognitionTitle: '',
         composeEmailModalIsOpen: false,
         emailInfoModalIsOpen: false,
+        todoInfoModalIsOpen: false,
         contactManagementModalIsOpen: false,
         calendarEventModalIsOpen: false,
         editProfileModalIsOpen: false,
@@ -36,6 +37,9 @@ const modalSlice = createSlice({
         setEmailInfoModalIsOpen: (state, action) => {
             state.emailInfoModalIsOpen = action.payload;
         },
+        setTodoInfoModalIsOpen: (state, action) => {
+            state.todoInfoModalIsOpen = action.payload;
+        },
         setContactManagementModalIsOpen: (state, action) => {
             state.contactManagementModalIsOpen = action.payload;
         },
@@ -56,6 +60,7 @@ export const {
     setFaceRecognitionTitle,
     setComposeEmailModalIsOpen,
     setEmailInfoModalIsOpen,
+    setTodoInfoModalIsOpen,
     setCalendarEventModalIsOpen,
     setContactManagementModalIsOpen,
     setEditProfileModalIsOpen,
