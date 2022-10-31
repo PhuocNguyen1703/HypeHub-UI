@@ -1,5 +1,7 @@
 .wrapper {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     top: 50%;
     left: 50%;
     width: 80vw;
@@ -54,7 +56,6 @@
 }
 
 .delete-btn,
-.print-btn,
 .close-btn {
     display: flex;
     align-items: center;
@@ -68,4 +69,48 @@
     &:hover {
         background-color: var(--gray-alpha-10);
     }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
+    padding: 20px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.content {
+    width: 80%;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mark-btn {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-color);
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.completed {
+    background-color: rgba($color: green, $alpha: 0.1);
+    border: 1px solid green;
+}
+
+.uncompleted {
+    background-color: rgba($color: red, $alpha: 0.1);
+    border: 1px solid var(--red);
 }

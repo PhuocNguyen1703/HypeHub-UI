@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -7,15 +7,35 @@ import { BsTrash, BsXLg } from 'react-icons/bs';
 import Tippy from '@tippyjs/react';
 import { useDispatch } from 'react-redux';
 import { setTodoInfoModalIsOpen } from '~/redux/Slice/modalSlice';
+import { useSelector } from 'react-redux';
+import { setSelectedTodoItem } from '~/redux/Slice/todoSlice';
 
 const cx = classNames.bind(styles);
 
 function TodoInfo() {
+    const { selectedTodoItem } = useSelector((state) => state.todo);
+    const [isCompleted, setIsCompleted] = useState(selectedTodoItem.completed);
     const dispatch = useDispatch();
 
+    const getBackgroundColor = (type) => {
+        if (type === 'team') return '#349eff';
+        if (type === 'low') return 'forestgreen';
+        if (type === 'medium') return 'orange';
+        return 'red';
+    };
+
     const handleCloseModal = () => {
-        // dispatch(setSelectedItem(null));
+        dispatch(setSelectedTodoItem(null));
         dispatch(setTodoInfoModalIsOpen(false));
+    };
+
+    const handleCompleted = () => {
+        setIsCompleted((prevState) => !prevState);
+    };
+
+    const getStyleClass = () => {
+        if (isCompleted) return 'completed';
+        return 'uncompleted';
     };
 
     return (
@@ -23,7 +43,7 @@ function TodoInfo() {
             <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
                 <header className={cx('header')}>
                     <div className={cx('header-left')}>
-                        {/* {selectedItem.type?.map((type, idx) => (
+                        {selectedTodoItem.type?.map((type, idx) => (
                             <span
                                 key={idx}
                                 style={{ backgroundColor: getBackgroundColor(type) }}
@@ -31,10 +51,10 @@ function TodoInfo() {
                             >
                                 {type.charAt(0).toUpperCase() + type.slice(1)}
                             </span>
-                        ))} */}
+                        ))}
                     </div>
                     <div className={cx('action-btn')}>
-                        <span className={cx('createdAt')}></span>
+                        <span className={cx('createdAt')}>{selectedTodoItem.createdAt}</span>
                         <span className={cx('delete-btn')}>
                             <BsTrash />
                         </span>
@@ -45,6 +65,15 @@ function TodoInfo() {
                         </Tippy>
                     </div>
                 </header>
+                <div className={cx('container')}>
+                    <p className={cx('title')}>{selectedTodoItem.title}</p>
+                    <p className={cx('content')}>{selectedTodoItem.content}</p>
+                </div>
+                <div className={cx('footer')}>
+                    <button className={cx('mark-btn', getStyleClass())} onClick={handleCompleted}>
+                        {isCompleted ? 'Mark completed' : 'Mark uncompleted'}
+                    </button>
+                </div>
             </motion.div>
         </AnimatePresence>
     );
