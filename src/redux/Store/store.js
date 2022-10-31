@@ -4,7 +4,6 @@ import storage from 'redux-persist/lib/storage';
 import authReducer from '../Slice/authSlice';
 import calendarReducer from '../Slice/calendarSlice';
 import modalReducer from '../Slice/modalSlice';
-import screenReducer from '../Slice/screenSlice';
 import layoutReducer from '../Slice/layoutSlice';
 import themeReducer from '../Slice/themeSlice';
 import emailReducer from '../Slice/emailSlice';
@@ -14,12 +13,11 @@ const persistConfig = {
     key: 'root',
     version: 1,
     storage,
-    blacklist: ['calendar', 'modal', 'screen', 'email', 'todo'],
+    blacklist: ['calendar', 'modal', 'email', 'todo'],
 };
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    screen: screenReducer,
     calendar: calendarReducer,
     modal: modalReducer,
     layout: layoutReducer,

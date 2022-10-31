@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
@@ -34,7 +34,6 @@ import {
     setNotificationModalIsOpen,
     setSettingModalIsOpen,
 } from '~/redux/Slice/modalSlice';
-import { setIsFullscreen } from '~/redux/Slice/screenSlice';
 import Checkin from '~/components/Modal/TimeKeeping/FaceRecognition';
 import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
 import ContactManagement from '~/components/Modal/ContactManagement';
@@ -46,8 +45,8 @@ const cx = classNames.bind(styles);
 function Header() {
     const { currentUser } = useSelector((state) => state.auth.login);
     const { sidebarCollapsed } = useSelector((state) => state.layout);
-    const { isFullscreen } = useSelector((state) => state.screen);
-    const { themeMode, navbarColor } = useSelector((state) => state.theme);
+    const [isFullScreen, setIsFullScreen] = useState(false);
+    const { navbarColor } = useSelector((state) => state.theme);
     const {
         createUserModalIsOpen,
         notificationModalIsOpen,
@@ -108,36 +107,24 @@ function Header() {
     ];
 
     const handleFullscreen = () => {
-        const maxHeight = window.screen.height;
-        const maxWidth = window.screen.width;
-        const curHeight = window.innerHeight;
-        const curWidth = window.innerWidth;
-
-        if (maxWidth === curWidth && maxHeight === curHeight) {
-            dispatch(setIsFullscreen(false));
-            document.exitFullscreen();
-        } else {
-            dispatch(setIsFullscreen(true));
-            document.documentElement.requestFullscreen().catch((e) => console.log(e));
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch((err) => console.log(err));
+        } else if (document.exitFullscreen) {
+            document.exitFullscreen().catch((err) => console.log(err));
         }
     };
 
     document.addEventListener('fullscreenchange', () => {
-        const maxHeight = window.screen.height;
-        const maxWidth = window.screen.width;
-        const curHeight = window.innerHeight;
-        const curWidth = window.innerWidth;
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'F11') {
+                e.preventDefault();
+            }
+        });
 
-        if (maxWidth === curWidth && maxHeight === curHeight) {
-            dispatch(setIsFullscreen(true));
-        } else {
-            dispatch(setIsFullscreen(false));
-        }
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'F11') {
-            e.preventDefault();
+        if (!document.fullscreenElement) {
+            setIsFullScreen(false);
+        } else if (document.exitFullscreen) {
+            setIsFullScreen(true);
         }
     });
 
@@ -211,10 +198,10 @@ function Header() {
                             <Tippy
                                 delay={[0, 50]}
                                 interactive
-                                content={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+                                content={isFullScreen ? 'Exit fullscreen' : 'Fullscreen'}
                             >
                                 <button className={cx('action-btn')} onClick={handleFullscreen}>
-                                    {isFullscreen ? (
+                                    {isFullScreen ? (
                                         <BsFullscreenExit className={cx('icon')} />
                                     ) : (
                                         <BsFullscreen className={cx('icon')} />
