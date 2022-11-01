@@ -4,10 +4,11 @@ import { motion } from 'framer-motion';
 
 import styles from './CreateTask.module.scss';
 import Tippy from '@tippyjs/react';
-import { BsXLg } from 'react-icons/bs';
+import { BsJustifyLeft, BsXLg } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { setCreateTaskModalIsOpen } from '~/redux/Slice/modalSlice';
 import { AnimatePresence } from 'framer-motion';
+import DatePicker from '~/components/DatePicker';
 
 const cx = classNames.bind(styles);
 
@@ -35,6 +36,20 @@ function CreateTask() {
                         <input className={cx('title-ipt')} type="text" name="title" required autoFocus />
                         <span className={cx('underline-title-ipt')}></span>
                         <label className={cx('label')}>Title</label>
+                    </div>
+                    <div className={cx('calendar-tag')}>
+                        <div className={cx('calendar')}>
+                            <DatePicker />
+                        </div>
+                    </div>
+                    <div className={cx('desc')}>
+                        <span className={cx('icon')}>
+                            <BsJustifyLeft />
+                        </span>
+                        <div className={cx('desc-ipt')}>
+                            <textarea className={cx('textarea')} placeholder="Add description"></textarea>
+                            <span className={cx('underline-desc')}></span>
+                        </div>
                     </div>
                 </div>
             </motion.div>

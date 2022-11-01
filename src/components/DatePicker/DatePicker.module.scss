@@ -1,0 +1,24 @@
+.wrapper {
+    position: relative;
+}
+
+.date-picker {
+    color: var(--text-color);
+    display: flex;
+    gap: 10px;
+}
+
+.date-ipt {
+    font-weight: 600;
+    color: var(--text-color);
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--gray-alpha-20);
+}
+
+.calendar-picker {
+    position: absolute;
+    border-radius: 4px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--gray-alpha-20);
+    z-index: 2;
+}
