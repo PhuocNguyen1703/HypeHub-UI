@@ -17,10 +17,10 @@ function TodoInfo() {
     const [isCompleted, setIsCompleted] = useState(selectedTodoItem.completed);
     const dispatch = useDispatch();
 
-    const getBackgroundColor = (type) => {
-        if (type === 'team') return '#349eff';
-        if (type === 'low') return 'forestgreen';
-        if (type === 'medium') return 'orange';
+    const getBackgroundColor = (status) => {
+        if (status === 'team') return '#349eff';
+        if (status === 'low') return 'forestgreen';
+        if (status === 'medium') return 'orange';
         return 'red';
     };
 
@@ -43,13 +43,13 @@ function TodoInfo() {
             <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
                 <header className={cx('header')}>
                     <div className={cx('header-left')}>
-                        {selectedTodoItem.type?.map((type, idx) => (
+                        {selectedTodoItem.status?.map((status, idx) => (
                             <span
                                 key={idx}
-                                style={{ backgroundColor: getBackgroundColor(type) }}
-                                className={cx('type')}
+                                style={{ backgroundColor: getBackgroundColor(status) }}
+                                className={cx('status')}
                             >
-                                {type.charAt(0).toUpperCase() + type.slice(1)}
+                                {status.charAt(0).toUpperCase() + status.slice(1)}
                             </span>
                         ))}
                     </div>

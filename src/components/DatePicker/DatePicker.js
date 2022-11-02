@@ -31,8 +31,6 @@ function DatePicker() {
 
     // Hide on outside click
     const hideOnClickOutside = (e) => {
-        // console.log(refOne.current)
-        // console.log(e.target)
         if (calendarRef.current && !calendarRef.current.contains(e.target)) {
             setShowDateRangePicker(false);
         }

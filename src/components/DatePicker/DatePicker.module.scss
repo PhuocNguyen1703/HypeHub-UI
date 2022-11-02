@@ -5,11 +5,14 @@
 .date-picker {
     color: var(--text-color);
     display: flex;
+    width: fit-content;
     gap: 10px;
 }
 
 .date-ipt {
+    font-size: 1.4rem;
     font-weight: 600;
+    text-align: center;
     color: var(--text-color);
     padding-bottom: 5px;
     border-bottom: 2px solid var(--gray-alpha-20);

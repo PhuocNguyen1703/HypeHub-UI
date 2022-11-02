@@ -37,7 +37,7 @@ function Todo() {
             title: 'How are you today ? How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: ['hight', 'team'],
+            status: ['hight', 'team'],
             completed: false,
             createdAt: 'Feb 22',
         },
@@ -45,7 +45,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: [],
+            status: null,
             completed: false,
             createdAt: 'Feb 22',
         },
@@ -53,7 +53,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: ['low'],
+            status: ['low'],
             completed: true,
             createdAt: 'Feb 22',
         },
@@ -61,7 +61,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: ['medium', 'team'],
+            status: ['medium', 'team'],
             completed: true,
             createdAt: 'Feb 22',
         },
@@ -69,7 +69,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: [],
+            status: null,
             completed: false,
             createdAt: 'Feb 22',
         },
@@ -77,7 +77,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: ['hight'],
+            status: ['hight'],
             completed: false,
             createdAt: 'Feb 22',
         },
@@ -85,7 +85,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: ['team'],
+            status: ['team'],
             completed: true,
             createdAt: 'Feb 22',
         },
@@ -93,7 +93,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: ['hight', 'team'],
+            status: ['hight', 'team'],
             completed: true,
             createdAt: 'Feb 22',
         },
@@ -101,7 +101,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: [],
+            status: null,
             completed: true,
             createdAt: 'Feb 22',
         },
@@ -109,7 +109,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: ['low'],
+            status: ['low'],
             completed: true,
             createdAt: 'Feb 22',
         },
@@ -117,7 +117,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: ['medium', 'team'],
+            status: ['medium', 'team'],
             completed: true,
             createdAt: 'Feb 22',
         },
@@ -125,7 +125,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: [],
+            status: null,
             completed: true,
             createdAt: 'Feb 22',
         },
@@ -133,7 +133,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: ['hight'],
+            status: ['hight'],
             completed: true,
             createdAt: 'Feb 22',
         },
@@ -141,7 +141,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: ['team'],
+            status: ['team'],
             completed: true,
             createdAt: 'Feb 22',
         },
@@ -149,7 +149,7 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: ['hight', 'team'],
+            status: ['hight', 'team'],
             completed: false,
             createdAt: 'Feb 22',
         },
@@ -157,16 +157,16 @@ function Todo() {
             title: 'How are you today ?',
             content:
                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            type: [],
+            status: null,
             completed: true,
             createdAt: 'Feb 22',
         },
     ];
 
-    const getStyleColor = (type) => {
-        if (type === 'team') return '#349eff';
-        if (type === 'low') return 'forestgreen';
-        if (type === 'medium') return 'orange';
+    const getStyleColor = (status) => {
+        if (status === 'team') return '#349eff';
+        if (status === 'low') return 'forestgreen';
+        if (status === 'medium') return 'orange';
         return 'red';
     };
 
@@ -202,8 +202,8 @@ function Todo() {
                             <span className={cx('item-title')}>{item.title}</span>
                         </div>
                         <div className={cx('date')}>
-                            {item.type?.map((type, idx) => (
-                                <BsFillRecordFill key={idx} style={{ color: getStyleColor(type) }} />
+                            {item.status?.map((status, idx) => (
+                                <BsFillRecordFill key={idx} style={{ color: getStyleColor(status) }} />
                             ))}
                             <span>{item.createdAt}</span>
                         </div>
