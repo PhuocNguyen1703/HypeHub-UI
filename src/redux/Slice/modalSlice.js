@@ -14,6 +14,7 @@ const modalSlice = createSlice({
         todoInfoModalIsOpen: false,
         contactManagementModalIsOpen: false,
         calendarEventModalIsOpen: false,
+        createKanbanItemModalIsOpen: false,
         editProfileModalIsOpen: false,
     },
     reducers: {
@@ -50,6 +51,9 @@ const modalSlice = createSlice({
         setCalendarEventModalIsOpen: (state, action) => {
             state.calendarEventModalIsOpen = action.payload;
         },
+        setCreateKanbanItemModalIsOpen: (state, action) => {
+            state.createKanbanItemModalIsOpen = action.payload;
+        },
         setEditProfileModalIsOpen: (state, action) => {
             state.editProfileModalIsOpen = action.payload;
         },
@@ -68,6 +72,7 @@ export const {
     setTodoInfoModalIsOpen,
     setCalendarEventModalIsOpen,
     setContactManagementModalIsOpen,
+    setCreateKanbanItemModalIsOpen,
     setEditProfileModalIsOpen,
 } = modalSlice.actions;
 

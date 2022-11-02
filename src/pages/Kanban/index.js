@@ -4,8 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './Kanban.module.scss';
 import Column from '~/layouts/components/Column';
 import { isEmpty } from 'lodash-es';
-import { mapOrder } from '~/utils/sort';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 const cx = classNames.bind(styles);
 

@@ -1,8 +1,48 @@
 .wrapper {
     flex: 0 0 auto;
-    margin-left: 10px;
+    margin-left: 30px;
     width: 308px;
     height: 100%;
+}
+
+.column-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 46px;
+    padding: 6px 10px;
+    margin-bottom: 18px;
+    margin-right: 8px;
+    color: var(--text-color);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: linear-gradient(var(--second-bg), var(--second-bg)) padding-box, var(--button-primary) border-box;
+    box-shadow: var(--box-shadow);
+}
+
+.column-title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    padding: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--gray-alpha-20);
+    }
 }
 
 .column-content {
@@ -20,18 +60,4 @@
     &::-webkit-scrollbar:vertical {
         width: 5px;
     }
-}
-
-.column-header {
-    height: 46px;
-    padding: 6px 0 6px 10px;
-    margin-bottom: 18px;
-    margin-right: 8px;
-    color: var(--text-color);
-    font-size: 2rem;
-    font-weight: 700;
-    border: 2px solid transparent;
-    border-radius: 8px;
-    background: linear-gradient(var(--main-bg), var(--main-bg)) padding-box, var(--button-primary) border-box;
-    box-shadow: var(--box-shadow);
 }
