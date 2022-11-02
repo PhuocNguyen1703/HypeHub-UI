@@ -13,7 +13,7 @@ const persistConfig = {
     key: 'root',
     version: 1,
     storage,
-    blacklist: ['calendar', 'modal', 'email', 'todo'],
+    blacklist: ['calendar', 'modal', 'email', 'todo', 'kanban'],
 };
 
 const rootReducer = combineReducers({
