@@ -28,13 +28,6 @@ function EmailInfo() {
     const { selectedItem } = useSelector((state) => state.email);
     const dispatch = useDispatch();
 
-    const getBackgroundColor = (type) => {
-        if (type === 'personal') return 'forestgreen';
-        if (type === 'company') return '#349eff';
-        if (type === 'important') return 'red';
-        return 'orange';
-    };
-
     const handleCloseModal = () => {
         dispatch(setSelectedItem(null));
         dispatch(setEmailInfoModalIsOpen(false));
@@ -44,17 +37,6 @@ function EmailInfo() {
         <AnimatePresence>
             <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
                 <header className={cx('header')}>
-                    <div className={cx('header-left')}>
-                        {selectedItem.type?.map((type, idx) => (
-                            <span
-                                key={idx}
-                                style={{ backgroundColor: getBackgroundColor(type) }}
-                                className={cx('type')}
-                            >
-                                {type.charAt(0).toUpperCase() + type.slice(1)}
-                            </span>
-                        ))}
-                    </div>
                     <div className={cx('action-btn')}>
                         <span className={cx('createdAt')}>{selectedItem.createdAt}</span>
                         <span className={cx('delete-btn')}>

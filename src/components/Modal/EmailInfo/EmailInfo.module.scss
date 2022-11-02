@@ -14,29 +14,12 @@
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     height: 46px;
     padding: 0 14px;
     background-color: var(--gray-alpha-10);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-}
-
-.header-left {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.type {
-    padding: 4px 8px;
-    color: var(--text-white);
-    font-size: 1.2rem;
-    font-weight: 600;
-    line-height: 1;
-    border: 1px solid var(--gray-alpha-10);
-    border-radius: 4px;
-    box-shadow: var(--box-shadow);
 }
 
 .action-btn {
