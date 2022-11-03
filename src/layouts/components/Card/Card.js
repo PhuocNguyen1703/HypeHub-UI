@@ -16,7 +16,7 @@ function Card({ card }) {
                 </header>
                 <span className={cx('title')}>{card.title}</span>
                 {card.picture && <img src={card.picture} alt="Cover" className={cx('picture')} />}
-                <p className={cx('desc')}>{card.description}</p>
+                <p className={cx('desc')}>{card.content}</p>
             </div>
         </div>
     );

@@ -8,6 +8,7 @@ import layoutReducer from '../Slice/layoutSlice';
 import themeReducer from '../Slice/themeSlice';
 import emailReducer from '../Slice/emailSlice';
 import todoReducer from '../Slice/todoSlice';
+import kanbanReducer from '../Slice/kanbanSlice';
 
 const persistConfig = {
     key: 'root',
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
     theme: themeReducer,
     email: emailReducer,
     todo: todoReducer,
+    kanban: kanbanReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

@@ -11,6 +11,7 @@ import Modal from '~/components/Modal';
 import CreateKanbanItem from '~/components/Modal/CreateKanbanItem';
 import { useDispatch } from 'react-redux';
 import { setCreateKanbanItemModalIsOpen } from '~/redux/Slice/modalSlice';
+import { setSelectedItem } from '~/redux/Slice/kanbanSlice';
 
 const cx = classNames.bind(styles);
 
@@ -19,8 +20,9 @@ function BoardContent({ column }) {
     const { createKanbanItemModalIsOpen } = useSelector((state) => state.modal);
     const dispatch = useDispatch();
 
-    const handleAddItem = (column) => {
+    const handleAddItem = () => {
         dispatch(setCreateKanbanItemModalIsOpen(true));
+        dispatch(setSelectedItem(column));
     };
 
     return (
@@ -28,7 +30,7 @@ function BoardContent({ column }) {
             <header className={cx('column-header')}>
                 <span className={cx('column-title')}>{column.title}</span>
                 <div className={cx('action-btn')}>
-                    <button className={cx('icon')} onClick={() => handleAddItem(column)}>
+                    <button className={cx('icon')} onClick={handleAddItem}>
                         <FaPlus />
                     </button>
                     <button className={cx('icon')}>

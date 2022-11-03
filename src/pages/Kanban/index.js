@@ -20,7 +20,7 @@ function Kanban() {
                     tagColor: 'radicchio-color',
                     createdAt: 'Sep 05, 2022',
                     title: 'title card 1',
-                    description:
+                    content:
                         'HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?',
                     picture:
                         'https://images.unsplash.com/photo-1617654112329-c446806d40e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aHlwZXIlMjBjYXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
@@ -31,7 +31,7 @@ function Kanban() {
                     label: 'UI Team',
                     tagColor: 'pistachio-color',
                     createdAt: 'Sep 22, 2023',
-                    description: 'HOw old are you ?',
+                    content: 'HOw old are you ?',
                     picture: null,
                 },
                 {
@@ -40,7 +40,7 @@ function Kanban() {
                     label: 'UX Team',
                     tagColor: 'grape-color',
                     createdAt: 'Jan 13, 2022',
-                    description: 'HOw old are you ?',
+                    content: 'HOw old are you ?',
                     picture: null,
                 },
                 {
@@ -49,7 +49,7 @@ function Kanban() {
                     label: 'Design Team',
                     tagColor: null,
                     createdAt: 'Oct 05, 2022',
-                    description: 'HOw old are you ?',
+                    content: 'HOw old are you ?',
                     picture: null,
                 },
                 {
@@ -58,7 +58,7 @@ function Kanban() {
                     label: 'UI Team',
                     tagColor: 'mango-color',
                     createdAt: 'Sep 05, 2022',
-                    description: 'HOw old are you ?',
+                    content: 'HOw old are you ?',
                     picture:
                         'https://images.unsplash.com/photo-1525498128493-380d1990a112?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fCVFNSVCNyVBNSVFNSVBMCVCNHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
                 },
@@ -68,7 +68,7 @@ function Kanban() {
                     label: 'Developer',
                     tagColor: 'cherryBlossom-color',
                     createdAt: 'Sep 05, 2022',
-                    description:
+                    content:
                         'HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?',
                     picture: null,
                 },
@@ -84,7 +84,7 @@ function Kanban() {
                     label: 'Marketing',
                     tagColor: null,
                     createdAt: 'Dec 05, 2022',
-                    description: 'HOw old are you ?',
+                    content: 'HOw old are you ?',
                     picture: null,
                 },
                 {
@@ -93,7 +93,7 @@ function Kanban() {
                     label: 'UI',
                     tagColor: 'cyan-color',
                     createdAt: 'Sep 05, 2022',
-                    description:
+                    content:
                         'HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?',
                     picture: null,
                 },
@@ -103,7 +103,7 @@ function Kanban() {
                     label: 'UI',
                     tagColor: 'orange-color',
                     createdAt: 'Sep 05, 2022',
-                    description: 'HOw old are you ?',
+                    content: 'HOw old are you ?',
                     picture:
                         'https://images.unsplash.com/photo-1584902645120-f86567d892b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGh5cGVyJTIwY2FyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
                 },
@@ -113,7 +113,7 @@ function Kanban() {
                     label: 'UI',
                     tagColor: 'tomato-color',
                     createdAt: 'Sep 05, 2022',
-                    description: 'HOw old are you ?',
+                    content: 'HOw old are you ?',
                     picture: null,
                 },
                 {
@@ -122,7 +122,7 @@ function Kanban() {
                     label: 'UI',
                     tagColor: null,
                     createdAt: 'Sep 05, 2022',
-                    description:
+                    content:
                         'HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?HOw old are you ?',
                     picture: null,
                 },
@@ -132,7 +132,7 @@ function Kanban() {
                     label: 'UI',
                     tagColor: 'default-color',
                     createdAt: 'Sep 05, 2022',
-                    description: 'HOw old are you ?',
+                    content: 'HOw old are you ?',
                     picture:
                         'https://images.unsplash.com/photo-1632441730372-d8509de481d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGh5cGVyJTIwY2FyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
                 },
@@ -148,7 +148,7 @@ function Kanban() {
                     label: 'UI',
                     tagColor: 'avocado-color',
                     createdAt: 'Sep 05, 2022',
-                    description: 'HOw old are you ?',
+                    content: 'HOw old are you ?',
                     picture: null,
                 },
                 {
@@ -157,7 +157,7 @@ function Kanban() {
                     label: 'UI',
                     tagColor: 'peacock-color',
                     createdAt: 'Sep 05, 2022',
-                    description: 'HOw old are you ?',
+                    content: 'HOw old are you ?',
                     picture:
                         'https://images.unsplash.com/photo-1562234246-ca4e88982724?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDJ8fGh5cGVyJTIwY2FyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
                 },
@@ -167,7 +167,7 @@ function Kanban() {
                     label: 'UI',
                     tagColor: 'cobalt-color',
                     createdAt: 'Sep 05, 2022',
-                    description: 'HOw old are you ?',
+                    content: 'HOw old are you ?',
                     picture:
                         'https://images.unsplash.com/photo-1663529628961-80aa6ebcd157?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
                 },
