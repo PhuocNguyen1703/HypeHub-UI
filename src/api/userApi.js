@@ -31,3 +31,16 @@ export const updateUser = async (data, id, dispatch, accessToken, axiosJWT) => {
         dispatch(updateFailed());
     }
 };
+
+export const updateUserFaceId = async (data, id, dispatch, accessToken, axiosJWT) => {
+    dispatch(updateStart());
+
+    try {
+        const updatedUser = await axiosJWT.patch(`/user/${id}`, data, {
+            headers: { token: `Bearer ${accessToken}` },
+        });
+        dispatch(updateSuccess(updatedUser.data));
+    } catch (error) {
+        dispatch(updateFailed());
+    }
+};

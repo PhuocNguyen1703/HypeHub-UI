@@ -11,13 +11,19 @@ import { setFaceRecognitionModalIsOpen } from '~/redux/Slice/modalSlice';
 import { BsXLg } from 'react-icons/bs';
 import images from '~/assets/images';
 import { useSelector } from 'react-redux';
+import { updateUserFaceId } from '~/api/userApi';
+import { createAxios } from '~/api/axiosClient';
+import { updateSuccess } from '~/redux/Slice/authSlice';
 
 const cx = classNames.bind(styles);
 
 function Checkin() {
     let faceioInstance = null;
     const { faceRecognitionTitle } = useSelector((state) => state.modal);
+    const { currentUser } = useSelector((state) => state.auth.login);
+    const { _id, accessToken, faceId } = currentUser;
     const dispatch = useDispatch();
+    let axiosJWT = createAxios(currentUser, dispatch, updateSuccess);
 
     useEffect(() => {
         const faceIoScript = document.createElement('script');
@@ -33,7 +39,7 @@ function Checkin() {
 
     const faceIoScriptLoaded = () => {
         if (faceIO && !faceioInstance) {
-            faceioInstance = new faceIO('fioa1b33');
+            faceioInstance = new faceIO('fioadeb7');
         }
     };
 
@@ -47,12 +53,12 @@ function Checkin() {
             const userInfo = await faceioInstance.enroll({
                 locate: 'auto',
                 payload: {
-                    email: 'nguyenquocphuocit@gmail.com',
-                    username: 'phuoc',
-                    age: 27,
+                    company: 'minato corporation',
+                    desc: 'faceRecognition',
                 },
             });
-            console.log(userInfo);
+            const data = { _id: _id, faceId: userInfo.facialId };
+            updateUserFaceId(data, _id, dispatch, accessToken, axiosJWT);
             dispatch(setFaceRecognitionModalIsOpen(false));
             window.location.reload();
         } catch (errorCode) {
@@ -64,11 +70,13 @@ function Checkin() {
 
     const faceRecognition = async () => {
         try {
-            console.log(faceioInstance);
+            // console.log(faceioInstance);
             const userData = await faceioInstance.authenticate({
                 locate: 'auto',
             });
-            console.log(userData);
+            if (faceId) {
+                if (userData.facialId === faceId) return console.log('ok');
+            }
             dispatch(setFaceRecognitionModalIsOpen(false));
             window.location.reload();
         } catch (errorCode) {

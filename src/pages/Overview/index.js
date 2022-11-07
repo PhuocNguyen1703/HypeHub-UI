@@ -415,7 +415,7 @@ function Home() {
                     <div className={cx('welcome')}>
                         <div className={cx('info')}>
                             <div>
-                                <h3>Welcome {currentUser.fullName} !!</h3>
+                                <h3>Welcome {currentUser?.fullName} !!</h3>
                                 <p>
                                     Wishing everyone a smooth new day and a hard working day. Check your work in your
                                     todo list.

@@ -232,13 +232,15 @@ function Header() {
                                 </button>
                             </Tippy>
                         </div>
-                        <div>
-                            <Tippy delay={[0, 50]} interactive content="Sign up">
-                                <button className={cx('action-btn')} onClick={handleOpenFaceModal}>
-                                    <BsPersonBoundingBox className={cx('icon')} />
-                                </button>
-                            </Tippy>
-                        </div>
+                        {currentUser?.faceId ? null : (
+                            <div>
+                                <Tippy delay={[0, 50]} interactive content="Sign up">
+                                    <button className={cx('action-btn')} onClick={handleOpenFaceModal}>
+                                        <BsPersonBoundingBox className={cx('icon')} />
+                                    </button>
+                                </Tippy>
+                            </div>
+                        )}
                     </div>
                     <CgMoreVerticalAlt className={cx('more-icon')} />
 
