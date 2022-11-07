@@ -7,31 +7,43 @@ import styles from './CreateKanbanItem.module.scss';
 import {
     BsArrowBarUp,
     BsBookmarks,
-    BsCalendarWeek,
     BsCardImage,
     BsFillCloudArrowUpFill,
     BsJustifyLeft,
     BsPalette,
-    BsX,
     BsXLg,
 } from 'react-icons/bs';
 import { setCreateKanbanItemModalIsOpen } from '~/redux/Slice/modalSlice';
 import { useDispatch } from 'react-redux';
 import { FaChevronDown, FaTimes } from 'react-icons/fa';
 import DatePicker from '~/components/DatePicker';
-import Image from '~/components/Image';
+import { setSelectedItem } from '~/redux/Slice/kanbanSlice';
+import { useForm } from 'react-hook-form';
+import { createTask, getAllTask } from '~/api/kanbanApi';
 
 const cx = classNames.bind(styles);
 
-function CreateKanbanItem() {
+function CreateKanbanItem({ sections, setSections }) {
     const { createKanbanItemModalIsOpen } = useSelector((state) => state.modal);
     const { selectedItem } = useSelector((state) => state.kanban);
+    const [tasks, setTasks] = useState([]);
     const [showColorList, setShowColorList] = useState(false);
     const [color, setColor] = useState();
     const [previewSourcePhoto, setPreviewSourcePhoto] = useState('');
     const dispatch = useDispatch();
     const colorRef = useRef(null);
-    console.log(previewSourcePhoto);
+    const { register, handleSubmit } = useForm({
+        defaultValues: {
+            sectionId: selectedItem.sectionId,
+            label: '',
+            labelColor: 'default-color',
+            title: '',
+            description: '',
+            photoUrl: '',
+            startDate: '',
+            endDate: '',
+        },
+    });
 
     const colorData = [
         { id: 'default', background: 'default-color', class: 'theme-color-default' },
@@ -76,8 +88,19 @@ function CreateKanbanItem() {
         }
     };
 
+    useEffect(() => {
+        const getTasks = async () => {
+            try {
+                const res = await getAllTask(selectedItem.sectionId);
+                setTasks(res.data);
+            } catch (error) {}
+        };
+        getTasks();
+    }, []);
+
     const handleCloseModal = () => {
         dispatch(setCreateKanbanItemModalIsOpen(false));
+        dispatch(setSelectedItem(null));
     };
 
     const handleShowColorList = () => {
@@ -95,8 +118,6 @@ function CreateKanbanItem() {
     };
 
     const previewFileUpload = (file) => {
-        // const objectUrl = URL.createObjectURL(file);
-        // setPreviewSourcePhoto(objectUrl);
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
@@ -109,6 +130,21 @@ function CreateKanbanItem() {
 
     const handleCancel = () => {
         dispatch(setCreateKanbanItemModalIsOpen(false));
+        dispatch(setSelectedItem(null));
+    };
+
+    const onSubmit = async (data) => {
+        try {
+            const task = await createTask(data);
+            const newSections = [...sections];
+            const index = newSections.findIndex((e) => e.sectionId === selectedItem.sectionId);
+            newSections[index].tasks.unshift(task);
+            console.log(newSections);
+            // setSections(newSections);
+            // dispatch(setCreateKanbanItemModalIsOpen(false));
+        } catch (err) {
+            alert(err);
+        }
     };
 
     return (
@@ -116,7 +152,7 @@ function CreateKanbanItem() {
             <motion.div animate={{ width: createKanbanItemModalIsOpen ? '400px' : '0' }} className={cx('wrapper')}>
                 <header className={cx('header')}>
                     <span className={cx('heading')}>
-                        {selectedItem.title}
+                        <span>{selectedItem.title}</span>
                         <button className={cx('close-btn')} onClick={handleCloseModal}>
                             <BsXLg />
                         </button>
@@ -125,9 +161,16 @@ function CreateKanbanItem() {
                         Add item to the <strong>{selectedItem.title}</strong> board
                     </p>
                 </header>
-                <div className={cx('container')}>
+                <form className={cx('container')} onSubmit={handleSubmit(onSubmit)}>
                     <div className={cx('title')}>
-                        <input className={cx('title-ipt')} type="text" name="title" required autoFocus />
+                        <input
+                            className={cx('title-ipt')}
+                            type="text"
+                            name="title"
+                            required
+                            autoFocus
+                            {...register('title', { required: true })}
+                        />
                         <span className={cx('underline-title-ipt')}></span>
                         <label className={cx('title-label')}>Title</label>
                     </div>
@@ -136,7 +179,13 @@ function CreateKanbanItem() {
                             <BsBookmarks />
                         </span>
                         <div className={cx('label-input')}>
-                            <input className={cx('input')} type="text" placeholder="Enter label......" />
+                            <input
+                                className={cx('input')}
+                                type="text"
+                                name="label"
+                                placeholder="Enter label......"
+                                {...register('label')}
+                            />
                         </div>
                     </div>
                     <div className={cx('label-color')}>
@@ -182,6 +231,8 @@ function CreateKanbanItem() {
                             <textarea
                                 className={cx('textarea')}
                                 placeholder="Add description"
+                                name="description"
+                                {...register('description')}
                                 // defaultValue={desc}
                             ></textarea>
                             <span className={cx('underline-desc')}></span>
@@ -196,13 +247,7 @@ function CreateKanbanItem() {
                                 <BsArrowBarUp />
                                 Choose a photo
                             </label>
-                            <input
-                                id="choose-img"
-                                type="file"
-                                onChange={handleFileUpload}
-                                hidden
-                                // disabled={disabledAvatarInput}
-                            />
+                            <input id="choose-img" type="file" onChange={handleFileUpload} hidden />
                         </div>
                     </div>
                     <div className={cx('preview')}>
@@ -226,7 +271,7 @@ function CreateKanbanItem() {
                             Save
                         </button>
                     </div>
-                </div>
+                </form>
             </motion.div>
         </AnimatePresence>
     );

@@ -5,18 +5,18 @@ import styles from './Card.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Card({ card }) {
+function Card({ task }) {
     return (
         <div className={cx('wrapper')}>
             <span className={cx('tag')}></span>
             <div className={cx('container')}>
                 <header className={cx('header')}>
-                    <span className={cx('label', card.tagColor)}>{card.label}</span>
-                    <span className={cx('date')}>{card.createdAt}</span>
+                    <span className={cx('label', task?.labelColor)}>{task?.label}</span>
+                    <span className={cx('date')}>{task?.startDate}</span>
                 </header>
-                <span className={cx('title')}>{card.title}</span>
-                {card.picture && <img src={card.picture} alt="Cover" className={cx('picture')} />}
-                <p className={cx('desc')}>{card.content}</p>
+                <span className={cx('title')}>{task?.title}</span>
+                {task?.photoUrl && <img src={task?.photoUrl} alt="Cover" className={cx('picture')} />}
+                <p className={cx('desc')}>{task?.description}</p>
             </div>
         </div>
     );

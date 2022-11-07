@@ -26,6 +26,7 @@
 .logo {
     width: 90px;
     height: 90px;
+    object-fit: cover;
 }
 
 .header {
@@ -122,7 +123,7 @@
     align-self: center;
     border-radius: 8px;
     color: #fff;
-    background: var(--primary);
+    background: var(--text-linear-gradient-color);
     box-shadow: var(--box-shadow);
     opacity: 0.9;
     cursor: pointer;
