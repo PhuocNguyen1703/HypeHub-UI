@@ -183,47 +183,12 @@ function Profile() {
 
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('banner')}>
-                {/* {currentUser?.banner && (
-                    <Image className={cx('banner-img')} src={`${currentUser?.banner}`} alt="banner" />
-                )} */}
-                {previewSourceBanner ? (
-                    <Image className={cx('banner-img')} src={previewSourceBanner} alt="banner" />
-                ) : (
-                    <Image className={cx('banner-img')} src={`${currentUser?.banner}`} alt="banner" />
-                )}
-                <form className={cx('add-banner-btn')} onSubmit={handleSubmitBanner}>
-                    {!previewSourceBanner && (
-                        <label htmlFor="upload-banner">
-                            <BsCameraFill className={cx('icon-change-banner')} />
-                            Add Cover Photo
-                        </label>
-                    )}
-                    <input
-                        id="upload-banner"
-                        type="file"
-                        className={cx('upload-banner')}
-                        onChange={handleFileBannerInputChange}
-                        hidden
-                        disabled={disabledBannerInput}
-                    />
-                    {previewSourceBanner && (
-                        <div className={cx('banner-btn')}>
-                            <button className={cx('cancel-btn')} onClick={handleCancelBanner}>
-                                Cancel
-                            </button>
-                            <button type="submit" className={cx('save-btn')}>
-                                Save
-                            </button>
-                        </div>
-                    )}
-                </form>
-            </div>
-            <div className={cx('header')}>
+            <div className={cx('user-info')}>
                 <div className={cx('avatar')}>
-                    <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="Nguyen  van A" />
-                    {previewSourceAvatar && (
-                        <Image className={cx('user-avatar')} src={`${previewSourceAvatar}`} alt="Nguyen  van A" />
+                    {previewSourceAvatar ? (
+                        <Image className={cx('user-avatar')} src={`${previewSourceAvatar}`} alt="avatar" />
+                    ) : (
+                        <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="avatar" />
                     )}
                     <form onSubmit={handleSubmitAvatar}>
                         <label htmlFor="upload-avatar" className={cx('icon-camera')}>
@@ -237,23 +202,23 @@ function Profile() {
                             hidden
                             disabled={disabledAvatarInput}
                         />
-                        {previewSourceAvatar && (
-                            <div className={cx('avatar-btn')}>
-                                <button className={cx('cancel-btn')} onClick={handleCancelAvatar}>
-                                    Cancel
-                                </button>
-                                <button type="submit" className={cx('save-btn')}>
-                                    Save
-                                </button>
-                            </div>
-                        )}
                     </form>
                 </div>
                 <div className={cx('info')}>
-                    <span className={cx('username')}>{fullName}</span>
+                    <span className={cx('username')}>nguyen thi hong van</span>
                     <span className={cx('position')}>{position}</span>
                     <span className={cx('hashtag')}>{hashtag && `#${hashtag}`}</span>
                 </div>
+                {previewSourceAvatar && (
+                    <div className={cx('avatar-btn')}>
+                        <button className={cx('cancel-btn')} onClick={handleCancelAvatar}>
+                            Cancel
+                        </button>
+                        <button type="submit" className={cx('save-btn')}>
+                            Save
+                        </button>
+                    </div>
+                )}
             </div>
 
             <div className={cx('about')}>
