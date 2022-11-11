@@ -23,6 +23,7 @@ const publicRoutes = [
     { path: config.routes.todo, component: Todo },
     { path: config.routes.calendar, component: Calendar },
     { path: config.routes.kanban, component: Kanban },
+    { path: config.routes.checkin, component: CheckIn },
 ];
 
 const privateRoutes = [...publicRoutes, { path: config.routes.checkin, component: CheckIn }];

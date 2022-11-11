@@ -72,6 +72,11 @@ function Sidebar() {
             title: 'Profile',
             path: config.routes.profile,
         },
+        {
+            icon: <BsAlarm />,
+            title: 'Check in',
+            path: config.routes.checkin,
+        },
     ];
 
     const adminMenu = [

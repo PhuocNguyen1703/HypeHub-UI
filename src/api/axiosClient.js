@@ -2,7 +2,8 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://minato-corp.herokuapp.com';
+// http://localhost:5000
 const refreshToken = async () => {
     try {
         const res = await axios.post('/auth/refresh');
