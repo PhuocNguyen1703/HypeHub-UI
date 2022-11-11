@@ -13,7 +13,8 @@ import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 const cx = classNames.bind(styles);
 
 function Login() {
-    const { error } = useSelector((state) => state.auth.login);
+    const [error, setError] = useState(false);
+    const [errText, setErrText] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showIcon, setShowIcon] = useState(false);
     const { register, handleSubmit } = useForm();
@@ -41,8 +42,12 @@ function Login() {
         }
     };
 
-    const onSubmit = (data) => {
-        loginUser(data, dispatch, navigate);
+    const onSubmit = async (data) => {
+        const errorStatus = await loginUser(data, dispatch, navigate);
+        if (errorStatus) {
+            setErrText(error);
+            setError(true);
+        }
     };
 
     return (
@@ -77,7 +82,7 @@ function Login() {
                             </div>
                         )}
                     </div>
-                    {error && <span className={cx('error')}>* Incorrect email or password</span>}
+                    {error && <span className={cx('error')}>* {errText}</span>}
                     <button className={cx('login-btn')} type="submit">
                         Login
                     </button>

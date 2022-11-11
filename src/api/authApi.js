@@ -20,6 +20,7 @@ export const loginUser = async (user, dispatch, navigate) => {
         navigate('/');
     } catch (error) {
         dispatch(loginFailed());
+        return error.response.data;
     }
 };
 
