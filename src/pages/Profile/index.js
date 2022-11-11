@@ -17,7 +17,6 @@ import {
 } from 'react-icons/bs';
 import Image from '~/components/Image';
 import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
 import { updateUser } from '~/api/userApi';
 import { createAxios } from '~/api/axiosClient';
 import { updateSuccess } from '~/redux/Slice/authSlice';
@@ -30,14 +29,8 @@ const cx = classNames.bind(styles);
 
 function Profile() {
     const { currentUser } = useSelector((state) => state.auth.login);
-    const { _id, accessToken, email, fullName, livesIn, streetAddress, birth, gender, hashtag, position, phone } =
-        currentUser;
+    const { _id, accessToken, email, fullName, streetAddress, birth, gender, hashtag, position, phone } = currentUser;
     const { editProfileModalIsOpen } = useSelector((state) => state.modal);
-
-    const [disabledBannerInput, setDisabledBannerInput] = useState(false);
-    const [disabledAvatarInput, setDisabledAvatarInput] = useState(false);
-    const [previewSourceBanner, setPreviewSourceBanner] = useState('');
-    const [selectedFileBanner, setSelectedFileBanner] = useState();
     const [previewSourceAvatar, setPreviewSourceAvatar] = useState('');
     const [selectedFileAvatar, setSelectedFileAvatar] = useState();
 
@@ -55,70 +48,10 @@ function Profile() {
         { id: 'Phone', icon: <BsTelephone />, desc: phone },
     ];
 
-    const { register, handleSubmit, reset } = useForm({
-        defaultValues: {
-            email: email,
-            fullName: fullName,
-            livesIn: livesIn,
-            streetAddress: streetAddress,
-            birth: birth,
-            gender: gender,
-            hashtag: hashtag,
-            position: position,
-            phone: phone,
-        },
-    });
-
-    const handleFileBannerInputChange = (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        setDisabledAvatarInput(true);
-        previewFileBanner(file);
-        setSelectedFileBanner(file);
-    };
-
-    const previewFileBanner = (file) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setPreviewSourceBanner(reader.result);
-        };
-        reader.onerror = () => {
-            console.error('something went wrong!');
-        };
-    };
-
-    const handleCancelBanner = () => {
-        setPreviewSourceBanner('');
-        setDisabledAvatarInput(false);
-    };
-
-    const handleSubmitBanner = (e) => {
-        e.preventDefault();
-        setDisabledAvatarInput(false);
-        if (!previewSourceBanner) return;
-        const reader = new FileReader();
-        reader.readAsDataURL(selectedFileBanner);
-        reader.onloadend = () => {
-            uploadImageBanner(reader.result);
-        };
-        reader.onerror = () => {
-            console.error('something went wrong!');
-        };
-    };
-
-    const uploadImageBanner = async (base64EncodedImage) => {
-        const imgUrl = await uploadImages(base64EncodedImage);
-        await updateUser({ banner: imgUrl }, _id, dispatch, accessToken, axiosJWT);
-        setPreviewSourceBanner('');
-        setDisabledAvatarInput(false);
-    };
-
     const handleFileAvatarInputChange = (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
-        setDisabledBannerInput(true);
         previewFileAvatar(file);
         setSelectedFileAvatar(file);
     };
@@ -136,12 +69,11 @@ function Profile() {
 
     const handleCancelAvatar = () => {
         setPreviewSourceAvatar('');
-        setDisabledBannerInput(false);
     };
 
     const handleSubmitAvatar = (e) => {
         e.preventDefault();
-        setDisabledBannerInput(false);
+
         if (!previewSourceAvatar) return;
         const reader = new FileReader();
         reader.readAsDataURL(selectedFileAvatar);
@@ -156,29 +88,12 @@ function Profile() {
     const uploadImageAvatar = async (base64EncodedImage) => {
         const imgUrl = await uploadImages(base64EncodedImage);
         await updateUser({ avatar: imgUrl }, _id, dispatch, accessToken, axiosJWT);
+
         setPreviewSourceAvatar('');
-        setDisabledBannerInput(false);
     };
 
     const handleEditProfileBtn = () => {
         dispatch(setEditProfileModalIsOpen(true));
-    };
-
-    const handleCancel = () => {
-        reset({
-            fullName: fullName,
-            livesIn: livesIn,
-            streetAddress: streetAddress,
-            birth: birth,
-            gender: gender,
-            hashtag: hashtag,
-            position: position,
-            phone: phone,
-        });
-    };
-
-    const onSubmit = (formData) => {
-        updateUser(formData, _id, dispatch, accessToken, axiosJWT);
     };
 
     return (
@@ -190,31 +105,28 @@ function Profile() {
                     ) : (
                         <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="avatar" />
                     )}
-                    <form onSubmit={handleSubmitAvatar}>
-                        <label htmlFor="upload-avatar" className={cx('icon-camera')}>
-                            <BsCameraFill />
-                        </label>
-                        <input
-                            id="upload-avatar"
-                            type="file"
-                            className={cx('upload-avatar')}
-                            onChange={handleFileAvatarInputChange}
-                            hidden
-                            disabled={disabledAvatarInput}
-                        />
-                    </form>
+                    <label htmlFor="upload-avatar" className={cx('icon-camera')}>
+                        <BsCameraFill />
+                    </label>
+                    <input
+                        id="upload-avatar"
+                        type="file"
+                        className={cx('upload-avatar')}
+                        onChange={handleFileAvatarInputChange}
+                        hidden
+                    />
                 </div>
                 <div className={cx('info')}>
-                    <span className={cx('username')}>nguyen thi hong van</span>
-                    <span className={cx('position')}>{position}</span>
-                    <span className={cx('hashtag')}>{hashtag && `#${hashtag}`}</span>
+                    <span className={cx('username')}>{currentUser?.fullName}</span>
+                    <span className={cx('position')}>{currentUser?.position}</span>
+                    <span className={cx('hashtag')}>{currentUser?.hashtag ? `#${hashtag}` : ''}</span>
                 </div>
                 {previewSourceAvatar && (
                     <div className={cx('avatar-btn')}>
                         <button className={cx('cancel-btn')} onClick={handleCancelAvatar}>
                             Cancel
                         </button>
-                        <button type="submit" className={cx('save-btn')}>
+                        <button type="button" className={cx('save-btn')} onClick={handleSubmitAvatar}>
                             Save
                         </button>
                     </div>
@@ -229,7 +141,7 @@ function Profile() {
                         </span>
                         <div className={cx('title')}>
                             <h6>About</h6>
-                            <p>{hashtag && `#${hashtag}`}</p>
+                            <p>{currentUser?.hashtag ? `#${hashtag}` : ''}</p>
                         </div>
                     </div>
                     <button className={cx('edit-profile-btn')} onClick={handleEditProfileBtn}>

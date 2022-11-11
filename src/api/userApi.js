@@ -23,7 +23,7 @@ export const updateUser = async (data, id, dispatch, accessToken, axiosJWT) => {
     dispatch(updateStart());
 
     try {
-        const updatedUser = await axiosJWT.put(`/user/${id}`, data, {
+        const updatedUser = await axiosJWT.patch(`/user/${id}`, data, {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(updateSuccess(updatedUser.data));
