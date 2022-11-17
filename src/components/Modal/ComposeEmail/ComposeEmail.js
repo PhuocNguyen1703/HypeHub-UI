@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './ComposeEmail.module.scss';
@@ -11,21 +11,20 @@ import 'react-quill/dist/quill.snow.css';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { createEmail } from '~/api/emailApi';
 
 const cx = classNames.bind(styles);
 
 function ComposeEmail() {
-    const currentUser = useSelector((state) => state.auth.login);
+    const { _id } = useSelector((state) => state.auth.login.currentUser);
     const [isMinimize, setMinimize] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
-    const [content, setContent] = useState();
     const dispatch = useDispatch();
-    const { register, handleSubmit } = useForm({
+    const { register, handleSubmit, setValue, watch } = useForm({
         defaultValues: {
-            senderId: currentUser._id,
+            senderId: _id,
             receiverId: '',
             subject: '',
-            content: content,
         },
     });
 
@@ -58,12 +57,18 @@ function ComposeEmail() {
         }
     };
 
+    useEffect(() => {
+        register('emailContent');
+    }, [register]);
+
     const onEditorStateChange = (editorState) => {
-        setContent(editorState);
+        setValue('content', editorState);
     };
 
+    const editorContent = watch('content');
+
     const onSubmit = (data) => {
-        
+        createEmail(data);
     };
 
     return (
@@ -104,7 +109,7 @@ function ComposeEmail() {
                     <input className={cx('subject')} placeholder="Subject" name="subject" {...register('subject')} />
                 </div>
                 <div className={cx('content')}>
-                    <ReactQuill onChange={onEditorStateChange} />
+                    <ReactQuill value={editorContent} onChange={onEditorStateChange} />
                 </div>
                 <div className={cx('footer')}>
                     <div>
