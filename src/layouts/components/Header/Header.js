@@ -73,7 +73,11 @@ function Header() {
                     },
                     {
                         code: 'vi',
-                        title: 'VietNam',
+                        title: 'Tiếng Việt (Việt Nam)',
+                    },
+                    {
+                        code: 'ja',
+                        title: '日本語 (日本)',
                     },
                 ],
             },

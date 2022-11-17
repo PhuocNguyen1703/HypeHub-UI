@@ -10,9 +10,7 @@ import {
     BsFileEarmarkMinus,
     BsStar,
     BsPatchExclamation,
-    BsFillRecordFill,
     BsFillStarFill,
-    BsRecord,
 } from 'react-icons/bs';
 
 import styles from './Email.module.scss';
@@ -216,7 +214,6 @@ function Email() {
                     <h5>Email Inbox</h5>
                     <p>Send receive emails.</p>
                 </div>
-                <div>picker day</div>
             </header>
             <div className={cx('header')}>
                 <div className={cx('nav')}>

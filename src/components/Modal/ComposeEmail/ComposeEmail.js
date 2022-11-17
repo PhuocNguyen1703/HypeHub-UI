@@ -9,13 +9,25 @@ import { setComposeEmailModalIsOpen } from '~/redux/Slice/modalSlice';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { motion } from 'framer-motion';
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function ComposeEmail() {
+    const currentUser = useSelector((state) => state.auth.login);
     const [isMinimize, setMinimize] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const [content, setContent] = useState();
     const dispatch = useDispatch();
+    const { register, handleSubmit } = useForm({
+        defaultValues: {
+            senderId: currentUser._id,
+            receiverId: '',
+            subject: '',
+            content: content,
+        },
+    });
 
     const handleMinimize = () => {
         setMinimize((prevState) => !prevState);
@@ -46,6 +58,14 @@ function ComposeEmail() {
         }
     };
 
+    const onEditorStateChange = (editorState) => {
+        setContent(editorState);
+    };
+
+    const onSubmit = (data) => {
+        
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -69,33 +89,34 @@ function ComposeEmail() {
                     </button>
                 </div>
             </header>
-            <div className={cx('container')}>
+            <form className={cx('container')} onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <div className={cx('input-group')}>
                         <label className={cx('to-ipt')}>
                             To :
-                            <input />
+                            <input type="text" name="receiverId" {...register('receiverId')} />
                         </label>
                         <div className={cx('input-btn')}>
                             <button className={cx('cc-btn')}>Cc</button>
                             <button className={cx('bcc-btn')}>Bcc</button>
                         </div>
                     </div>
-                    <input className={cx('subject')} placeholder="Subject" />
+                    <input className={cx('subject')} placeholder="Subject" name="subject" {...register('subject')} />
                 </div>
                 <div className={cx('content')}>
-                    {/* <textarea /> */}
-                    <ReactQuill />
+                    <ReactQuill onChange={onEditorStateChange} />
                 </div>
                 <div className={cx('footer')}>
                     <div>
-                        <button className={cx('send-btn')}>Send</button>
+                        <button type="submit" className={cx('send-btn')}>
+                            Send
+                        </button>
                     </div>
                     <button className={cx('delete-btn')}>
                         <BsTrash />
                     </button>
                 </div>
-            </div>
+            </form>
         </motion.div>
     );
 }
