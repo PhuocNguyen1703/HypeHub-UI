@@ -1,10 +1,10 @@
 const routes = {
     home: '/',
+    sales: '/sales',
     profile: '/profile',
     login: '/login',
     chat: '/chat',
     employee: '/employee',
-    candidates: '/candidates',
     email: '/email',
     todo: '/todo',
     calendar: '/calendar',

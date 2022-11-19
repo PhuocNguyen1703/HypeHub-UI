@@ -11,10 +11,12 @@ import Todo from '~/pages/Todo';
 import Calendar from '~/pages/Calendar';
 import Kanban from '~/pages/Kanban';
 import CheckIn from '~/pages/CheckIn';
+import Sales from '~/pages/Sales';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
     { path: config.routes.home, component: Home },
+    { path: config.routes.sales, component: Sales },
     { path: config.routes.profile, component: Profile },
     { path: config.routes.chat, component: Chat },
     { path: config.routes.employee, component: Employee },

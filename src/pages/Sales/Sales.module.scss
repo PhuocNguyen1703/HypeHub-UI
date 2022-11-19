@@ -1,0 +1,151 @@
+.wrapper {
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.customers,
+.revenue,
+.profit,
+.invoices {
+    width: 25%;
+    padding: 10px;
+    border: 1px solid var(--gray-alpha-10);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--main-bg);
+}
+
+.top {
+    display: flex;
+    gap: 16px;
+}
+
+.purple,
+.blue,
+.orange,
+.yellow {
+    width: 4px;
+    background-color: purple;
+    border-radius: 10px;
+}
+
+.blue {
+    background-color: #66ccff;
+}
+
+.orange {
+    background-color: #ff9999;
+}
+
+.yellow {
+    background-color: #ffcc33;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-alpha-60);
+}
+
+.value {
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--text-color);
+}
+
+.icon-customer,
+.icon-revenue,
+.icon-profit,
+.icon-invoices {
+    font-size: 3rem;
+    margin-right: 10px;
+    color: purple;
+}
+
+.icon-revenue {
+    color: #66ccff;
+}
+
+.icon-profit {
+    color: #ff9999;
+}
+
+.icon-invoices {
+    color: #ffcc33;
+}
+
+.bottom {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 10px;
+    font-weight: 600;
+    color: var(--gray-alpha-60);
+}
+
+.up,
+.down {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: green;
+}
+
+.down {
+    color: red;
+}
+
+.graph {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+.statistic {
+    width: 35%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--gray-alpha-60);
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        font-size: 1.8rem;
+        padding: 2px 6px;
+        cursor: pointer;
+    }
+}
+
+.analytic {
+    width: 65%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}

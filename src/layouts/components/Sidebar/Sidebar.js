@@ -32,8 +32,8 @@ function Sidebar() {
                 },
                 {
                     icon: <BsColumnsGap />,
-                    title: 'FI',
-                    path: config.routes.profile,
+                    title: 'Sales',
+                    path: config.routes.sales,
                 },
                 {
                     icon: <BsColumnsGap />,
