@@ -1,49 +1,67 @@
 import React from 'react';
-import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 function Linechart() {
     const data = [
         {
-            name: 'Page A',
-            uv: 4000,
-            pv: 2400,
-            amt: 2400,
+            name: 'Jan',
+            uv: 1130,
+            pv: 1360,
         },
         {
-            name: 'Page B',
-            uv: 3000,
-            pv: 1398,
-            amt: 2210,
+            name: 'Feb',
+            uv: 1570,
+            pv: 1320,
         },
         {
-            name: 'Page C',
-            uv: 2000,
-            pv: 9800,
-            amt: 2290,
+            name: 'Mar',
+            uv: 2450,
+            pv: 1690,
         },
         {
-            name: 'Page D',
-            uv: 2780,
-            pv: 3908,
-            amt: 2000,
+            name: 'Apr',
+            uv: 2760,
+            pv: 2350,
         },
         {
-            name: 'Page E',
+            name: 'May',
             uv: 1890,
-            pv: 4800,
-            amt: 2181,
+            pv: 2180,
         },
         {
-            name: 'Page F',
-            uv: 2390,
-            pv: 3800,
-            amt: 2500,
+            name: 'Jun',
+            uv: 976,
+            pv: 1470,
         },
         {
-            name: 'Page G',
+            name: 'Jul',
+            uv: 1347,
+            pv: 1580,
+        },
+        {
+            name: 'Aug',
+            uv: 2670,
+            pv: 1890,
+        },
+        {
+            name: 'Sep',
             uv: 3490,
-            pv: 4300,
-            amt: 2100,
+            pv: 2840,
+        },
+        {
+            name: 'Oct',
+            uv: 2372,
+            pv: 1670,
+        },
+        {
+            name: 'Nov',
+            uv: 2270,
+            pv: 1690,
+        },
+        {
+            name: 'Dec',
+            uv: 2560,
+            pv: 2190,
         },
     ];
     return (
@@ -57,7 +75,7 @@ function Linechart() {
                     bottom: 5,
                 }}
             >
-                <CartesianGrid strokeDasharray="3 3" />
+                {/* <CartesianGrid strokeDasharray="3 3" /> */}
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
