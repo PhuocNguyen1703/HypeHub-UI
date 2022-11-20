@@ -11,17 +11,12 @@ import {
     BsStack,
     BsThreeDots,
 } from 'react-icons/bs';
-import { PieChart } from 'react-minimal-pie-chart';
+import PieChart from '~/components/Chart/Pie';
+import Piechart from '~/components/Chart/Pie';
 
 const cx = classNames.bind(styles);
 
 function Sales() {
-    const pieChartData = [
-        { title: 'One', value: 10, color: '#E38627' },
-        { title: 'Two', value: 15, color: '#C13C37' },
-        { title: 'Three', value: 20, color: '#6A2135' },
-    ];
-
     return (
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
@@ -111,9 +106,19 @@ function Sales() {
                             <BsThreeDots />
                         </button>
                     </div>
-                    <PieChart data={pieChartData} paddingAngle={2}/>
+                    <div className={cx('pie-chart')}>
+                        <Piechart/>
+                    </div>
                 </div>
-                <div className={cx('analytic')}></div>
+                <div className={cx('analytic')}>
+                    <div className={cx('heading')}>
+                        <span>Sales Analytics</span>
+                        <button>
+                            <BsThreeDots />
+                        </button>
+                    </div>
+                    <div className={cx('pie-chart')}></div>
+                </div>
             </div>
 
             <div></div>
