@@ -120,6 +120,7 @@
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: var(--box-shadow);
+    z-index: 1;
 }
 
 .heading {
@@ -154,4 +155,8 @@
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: var(--box-shadow);
+}
+
+.line-chart {
+    width: 100%;
 }

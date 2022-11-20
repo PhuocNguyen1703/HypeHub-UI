@@ -4,11 +4,12 @@
     width: auto;
     padding: 8px 0;
     margin: -6px -6px 0 0;
-    z-index: 2;
+    z-index: 10;
 }
 
 //Menu item
 .menu-item {
+    position: relative;
     display: flex;
     align-items: center;
     min-width: 225px;

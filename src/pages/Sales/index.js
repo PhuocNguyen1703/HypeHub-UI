@@ -13,6 +13,7 @@ import {
 } from 'react-icons/bs';
 import PieChart from '~/components/Chart/Pie';
 import Piechart from '~/components/Chart/Pie';
+import Linechart from '~/components/Chart/Line';
 
 const cx = classNames.bind(styles);
 
@@ -99,6 +100,17 @@ function Sales() {
             </header>
 
             <div className={cx('graph')}>
+                <div className={cx('analytic')}>
+                    <div className={cx('heading')}>
+                        <span>Sales Analytics</span>
+                        <button>
+                            <BsThreeDots />
+                        </button>
+                    </div>
+                    <div className={cx('line-chart')}>
+                        <Linechart />
+                    </div>
+                </div>
                 <div className={cx('statistic')}>
                     <div className={cx('heading')}>
                         <span>Invoice Statistics</span>
@@ -107,17 +119,8 @@ function Sales() {
                         </button>
                     </div>
                     <div className={cx('pie-chart')}>
-                        <Piechart/>
+                        <Piechart />
                     </div>
-                </div>
-                <div className={cx('analytic')}>
-                    <div className={cx('heading')}>
-                        <span>Sales Analytics</span>
-                        <button>
-                            <BsThreeDots />
-                        </button>
-                    </div>
-                    <div className={cx('pie-chart')}></div>
                 </div>
             </div>
 
