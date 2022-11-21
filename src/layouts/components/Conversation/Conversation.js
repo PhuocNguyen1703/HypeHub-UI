@@ -50,7 +50,6 @@ function Conversation({ data, currentUserId, online, chatId }) {
                     <p className={cx('preview-message')}>{lastMessage?.content}</p>
                 </div>
             </div>
-            <span className={cx('time')}>a few ago</span>
         </div>
     );
 }

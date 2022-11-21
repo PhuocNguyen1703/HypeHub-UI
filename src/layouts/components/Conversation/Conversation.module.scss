@@ -1,7 +1,6 @@
 .wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
 }
 
@@ -43,7 +42,7 @@
 .name {
     font-size: 1.8rem;
     font-weight: 600;
-    color: var(--black-alpha-80);
+    color: var(--text-color);
 }
 
 .preview-message {
@@ -52,8 +51,4 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.time {
-    font-size: 1.4rem;
 }

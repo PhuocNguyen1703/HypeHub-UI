@@ -13,20 +13,25 @@ import Image from '~/components/Image';
 import { BsCardImage, BsCursor, BsEmojiSmile } from 'react-icons/bs';
 import Lightbox from 'react-18-image-lightbox';
 import { useSelector } from 'react-redux';
+import { uploadImages } from '~/api/uploadImagesApi';
+import { result } from 'lodash-es';
 
 const cx = classNames.bind(styles);
 dayjs.extend(relativeTime);
 
 function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
     const { currentUser } = useSelector((state) => state.auth.login);
+    const { themeMode } = useSelector((state) => state.theme);
     const [userData, setUserData] = useState(null);
     const [showEmojis, setShowEmojis] = useState(false);
     const [previewImg, setPreviewImg] = useState(null);
     const [isOpenLightBox, setIsOpenLightBox] = useState(false);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
-    const scroll = useRef();
-    const imageRef = useRef();
+    const [uploadImg, setUploadImg] = useState();
+    const scroll = useRef(null);
+    const imageRef = useRef(null);
+    const emojiRef = useRef(null);
 
     //Fetching data for header
     useEffect(() => {
@@ -56,6 +61,20 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
         if (chat !== null) MessagesData();
     }, [chat]);
 
+    const handleUploadImg = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setUploadImg(reader.result);
+        };
+        reader.onerror = () => {
+            console.error('something went wrong!');
+        };
+    };
+
     const handleChange = (e) => {
         e.preventDefault();
         setNewMessage(e.target.value);
@@ -69,11 +88,13 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
 
     //Send message
     const handleSend = async (e) => {
-        // e.preventDefault();
+        const url = await uploadImages(uploadImg);
+
         const message = {
             senderId: currentUserId,
             content: newMessage,
             chatId: chat._id,
+            fileUrl: url,
         };
         //Send message to socket server
         // const receiverId = chat.members.find((id) => id !== currentUserId);
@@ -118,15 +139,23 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
         setNewMessage(newMessage + emoji);
     };
 
+    useEffect(() => {
+        document.addEventListener('click', hideOnClickOutside, true);
+    }, []);
+
+    // Hide on outside click
+    const hideOnClickOutside = (e) => {
+        if (emojiRef.current && !emojiRef.current.contains(e.target)) {
+            setShowEmojis(false);
+        }
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <div>
                     <span className={cx('to')}>To:</span>
-                    <span className={cx('name')}>Me Me</span>
-                </div>
-                <div>
-                    <div></div>
+                    <span className={cx('name')}>{userData?.fullName}</span>
                 </div>
             </div>
 
@@ -145,58 +174,29 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
                             />
                             <div className={cx('message-content')}>
                                 <p>{message.content}</p>
+                                {message.fileUrl ? (
+                                    <img
+                                        className={cx('image')}
+                                        src={message?.fileUrl}
+                                        alt="img"
+                                        onClick={handleClickImage}
+                                    />
+                                ) : null}
                                 <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span>
                             </div>
                         </div>
                     ))}
-                    <div className={cx('message')}>
-                        <Image
-                            className={cx('avatar')}
-                            src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="avatar"
-                        />
-                        <div className={cx('message-content')}>
-                            <p>
-                                helloooas asd asd asd asd asd ad asd ad asd as dasd asd asd asd asd asd as das das as
-                                dsdas dasd as dasdasd s dasdasdasdas asd asd sad asd asd asd asd asd asd asd asd
-                            </p>
-                            <img
-                                className={cx('image')}
-                                src="https://images.unsplash.com/photo-1665510394335-a6453ce125c7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60"
-                                alt="img"
-                                onClick={handleClickImage}
-                            />
-                            <span className={cx('chat-time')}>2022-12</span>
-                        </div>
-                    </div>
-                    <div className={cx('message', 'owner')}>
-                        <Image
-                            className={cx('avatar')}
-                            src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="avatar"
-                        />
-                        <div className={cx('message-content')}>
-                            <p>helloooas asd asd asd asd</p>
-                            <img
-                                className={cx('image')}
-                                src="https://images.unsplash.com/photo-1664574654578-d5a6a4f447bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60"
-                                alt="img"
-                                onClick={handleClickImage}
-                            />
-                            <span className={cx('chat-time')}>2022-12</span>
-                        </div>
-                    </div>
                 </div>
 
                 <div className={cx('footer')}>
                     <label className={cx('icon-image')} onClick={() => imageRef.current.click()}>
                         <BsCardImage />
                     </label>
-                    <input id="send-file" type="file" ref={imageRef} hidden />
+                    <input id="send-file" type="file" ref={imageRef} hidden onChange={handleUploadImg} />
                     <input
                         className={cx('input-message')}
                         type="text"
-                        placeholder="emoji picker demo"
+                        placeholder="Enter message..."
                         value={newMessage}
                         onChange={handleChange}
                         onKeyDown={handleEnter}
@@ -206,12 +206,12 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
                             <BsEmojiSmile />
                         </button>
                         {showEmojis && (
-                            <div className={cx('picker-emoji')}>
+                            <div ref={emojiRef} className={cx('picker-emoji')}>
                                 <Picker
                                     data={data}
                                     onEmojiSelect={handleSelectEmoji}
                                     previewPosition="none"
-                                    theme="light"
+                                    theme={themeMode === 'theme-mode-dark' ? 'dark' : 'light'}
                                 />
                             </div>
                         )}
