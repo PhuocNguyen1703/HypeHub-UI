@@ -18,10 +18,10 @@ function EventForm() {
     const [showTime, setShowTime] = useState(false);
     const [startTime, setStartTime] = useState('Start Time');
     const [endTime, setEndTime] = useState('End Time');
-    const [desc] = useState(selectedEvent ? selectedEvent.description : '');
-    const [type, setType] = useState(selectedEvent ? selectedEvent.type : 'Event');
+    const [desc] = useState(selectedEvent ? selectedEvent?.content : '');
+    const [type, setType] = useState(selectedEvent ? selectedEvent?.calendarType : 'Event');
     const [tagName, setTagName] = useState('Select Tag');
-    const [tagColor, setTagColor] = useState('default-color');
+    const [tagColor, setTagColor] = useState(selectedEvent ? selectedEvent?.theme : 'default-color');
     const dispatch = useDispatch();
     const { register, handleSubmit } = useForm();
 

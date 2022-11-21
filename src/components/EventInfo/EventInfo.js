@@ -45,7 +45,7 @@ function EventInfo() {
             className={cx('wrapper')}
         >
             <header className={cx('header')}>
-                <span className={cx('type')}>{selectedEvent.type}</span>
+                <span className={cx('type')}>{selectedEvent.calendarType}</span>
                 <div className={cx('header-action-btn')}>
                     <div>
                         <Tippy delay={[0, 50]} interactive content="Edit">
@@ -76,13 +76,13 @@ function EventInfo() {
                     <span className={cx('icon')}>
                         <BsClock />
                     </span>
-                    <span>{selectedEvent.calendar}</span>
+                    <span>{selectedEvent.date}</span>
                 </div>
                 <div className={cx('note')}>
                     <span className={cx('icon')}>
                         <BsJustifyLeft />
                     </span>
-                    <span>{selectedEvent.description}</span>
+                    <span>{selectedEvent.content}</span>
                 </div>
             </div>
             <footer className={cx('footer')}>

@@ -27,14 +27,17 @@ import {
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 import PickerCalendar from '~/components/PickerCalendar';
 import Menu from '~/components/Popper/Menu';
+import { getAllCalendar } from '~/api/calendarApi';
 
 const cx = classNames.bind(styles);
 
 function Calendar() {
-    const [buttonTitle, setButtonTitle] = useState('Month');
-    const [currentMonth, setCurrentMonth] = useState(getMonth());
+    const { currentUser } = useSelector((state) => state.auth.login);
     const { monthIndex } = useSelector((state) => state.calendar);
     const { calendarEventModalIsOpen } = useSelector((state) => state.modal);
+    const [buttonTitle, setButtonTitle] = useState('Month');
+    const [currentMonth, setCurrentMonth] = useState(getMonth());
+    const [calendars, setCalendars] = useState([]);
     const dispatch = useDispatch();
 
     const menu = [
@@ -43,6 +46,19 @@ function Calendar() {
         { icon: <BsCheck2 />, title: 'Completed', path: '/calendar/completed' },
         { icon: <BsTrash />, title: 'Deleted', path: '/calendar/deleted' },
     ];
+
+    useEffect(() => {
+        const getCalendars = async () => {
+            try {
+                const result = await getAllCalendar(currentUser?._id);
+                setCalendars(result.data);
+                console.log(result.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getCalendars();
+    }, []);
 
     const events = [
         {
@@ -402,9 +418,9 @@ function Calendar() {
                                         </p>
                                     </header>
                                     <div className={cx('note-schedule')}>
-                                        {events.map(
+                                        {calendars.map(
                                             (evt, idx) =>
-                                                evt.calendar === day.format('MMM DD, YYYY') && (
+                                                evt.date === day.format('MMM DD, YYYY') && (
                                                     <React.Fragment key={idx}>
                                                         <div
                                                             className={cx('event')}
