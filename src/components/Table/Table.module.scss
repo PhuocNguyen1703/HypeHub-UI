@@ -21,7 +21,7 @@ table {
 }
 
 thead {
-    background-color: var(--gray-alpha-20);
+    background-color: var(--gray-alpha-10);
 }
 
 tr {
@@ -35,7 +35,7 @@ td {
 }
 
 tbody > tr:hover {
-    background-color: var(--gray-alpha-10);
+    background-color: var(--gray-alpha-05);
     color: var(--gray);
 }
 
