@@ -33,15 +33,15 @@ const cx = classNames.bind(styles);
 function Calendar() {
     const [buttonTitle, setButtonTitle] = useState('Month');
     const [currentMonth, setCurrentMonth] = useState(getMonth());
-    const { monthIndex, selectedEvent } = useSelector((state) => state.calendar);
+    const { monthIndex } = useSelector((state) => state.calendar);
     const { calendarEventModalIsOpen } = useSelector((state) => state.modal);
     const dispatch = useDispatch();
 
     const menu = [
-        { icon: <BsJournal />, title: 'My Tasks', path: '/calendar' },
-        { icon: <BsExclamationLg />, title: 'Important', path: '/sent' },
-        { icon: <BsCheck2 />, title: 'Completed', path: '/title' },
-        { icon: <BsTrash />, title: 'Deleted', path: '/calendar' },
+        { icon: <BsJournal />, title: 'My Calendar', path: '/calendar' },
+        { icon: <BsExclamationLg />, title: 'Important', path: '/calendar/important' },
+        { icon: <BsCheck2 />, title: 'Completed', path: '/calendar/completed' },
+        { icon: <BsTrash />, title: 'Deleted', path: '/calendar/deleted' },
     ];
 
     const events = [

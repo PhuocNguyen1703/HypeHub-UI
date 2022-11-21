@@ -2,24 +2,27 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './EventForm.module.scss';
-import {  BsClipboard, BsClock, BsJustifyLeft, BsTags } from 'react-icons/bs';
+import { BsClipboard, BsClock, BsJustifyLeft, BsTags } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
+import { useForm } from 'react-hook-form';
 
 const cx = classNames.bind(styles);
 
-function TaskForm() {
+function EventForm() {
     const { daySelected, smallCalendarSelectedDay, selectedEvent } = useSelector((state) => state.calendar);
+    const { currentUser } = useSelector((state) => state.auth.login);
     const [showTime, setShowTime] = useState(false);
     const [startTime, setStartTime] = useState('Start Time');
     const [endTime, setEndTime] = useState('End Time');
     const [desc] = useState(selectedEvent ? selectedEvent.description : '');
     const [type, setType] = useState(selectedEvent ? selectedEvent.type : 'Event');
     const [tagName, setTagName] = useState('Select Tag');
-    const [tagColor, setTagColor] = useState('');
+    const [tagColor, setTagColor] = useState('default-color');
     const dispatch = useDispatch();
+    const { register, handleSubmit } = useForm();
 
     const timeList = [
         '12:00am',
@@ -154,10 +157,6 @@ function TaskForm() {
         setType(type === 'Event' ? 'Task' : 'Event');
     };
 
-    const handleShowPickerCalendar = () => {
-        console.log('calendar');
-    };
-
     const handleAddTime = () => {
         setShowTime(true);
     };
@@ -197,10 +196,33 @@ function TaskForm() {
         dispatch(setSelectedEvent(null));
     };
 
-    const onSubmit = () => {};
+    const onSubmit = (data) => {
+        console.log({
+            ...data,
+            userId: currentUser._id,
+            startTime: startTime,
+            endTime: endTime,
+            theme: tagColor,
+            type: type,
+            completed: false,
+        });
+    };
 
     return (
-        <form className={cx('wrapper')} onSubmit={onSubmit}>
+        <form className={cx('wrapper')} onSubmit={handleSubmit(onSubmit)}>
+            <div className={cx('title')}>
+                <input
+                    className={cx('title-ipt')}
+                    type="text"
+                    name="title"
+                    required
+                    autoFocus
+                    defaultValue={selectedEvent?.title}
+                    {...register('title')}
+                />
+                <span className={cx('underline-title-ipt')}></span>
+                <label className={cx('label')}>Title</label>
+            </div>
             <div className={cx('category')}>
                 <span className={cx('icon')}>
                     <BsClipboard />
@@ -219,7 +241,7 @@ function TaskForm() {
                         type="text"
                         value={getTime()}
                         readOnly={true}
-                        onClick={handleShowPickerCalendar}
+                        {...register('calendar')}
                     />
                 </div>
 
@@ -278,7 +300,13 @@ function TaskForm() {
                     <BsJustifyLeft />
                 </span>
                 <div className={cx('desc')}>
-                    <textarea className={cx('textarea')} placeholder="Add description" defaultValue={desc}></textarea>
+                    <textarea
+                        className={cx('textarea')}
+                        placeholder="Add description"
+                        defaultValue={desc}
+                        name="description"
+                        {...register('description')}
+                    ></textarea>
                     <span className={cx('underline-desc')}></span>
                 </div>
             </div>
@@ -314,4 +342,4 @@ function TaskForm() {
     );
 }
 
-export default TaskForm;
+export default EventForm;

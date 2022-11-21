@@ -10,6 +10,7 @@ import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import dayjs from 'dayjs';
 import Tippy from '@tippyjs/react';
 import EventInfo from '~/components/EventInfo';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -50,12 +51,6 @@ function CreateCalendar() {
                     </div>
                 </header>
                 <div className={cx('body')}>
-                    <div className={cx('title')}>
-                        <input className={cx('title-ipt')} type="text" name="title" required autoFocus />
-                        <span className={cx('underline-title-ipt')}></span>
-                        <label className={cx('label')}>Title</label>
-                    </div>
-                    {/* <TaskForm /> */}
                     <EventForm />
                 </div>
             </motion.div>

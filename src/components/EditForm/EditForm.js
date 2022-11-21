@@ -14,7 +14,6 @@ import { motion } from 'framer-motion';
 const cx = classNames.bind(styles);
 
 function EditForm() {
-    const { selectedEvent } = useSelector((state) => state.calendar);
     const dispatch = useDispatch();
 
     const closeModal = () => {
@@ -49,19 +48,6 @@ function EditForm() {
                 </div>
             </header>
             <div className={cx('body')}>
-                <div className={cx('title')}>
-                    <input
-                        className={cx('title-ipt')}
-                        type="text"
-                        name="title"
-                        defaultValue={selectedEvent.title}
-                        required
-                        autoFocus
-                    />
-                    <span className={cx('underline-title-ipt')}></span>
-                    <label className={cx('label')}>Title</label>
-                </div>
-                {/* <TaskForm /> */}
                 <EventForm />
             </div>
         </motion.div>
