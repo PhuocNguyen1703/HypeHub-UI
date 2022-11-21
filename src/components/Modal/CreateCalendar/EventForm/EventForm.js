@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 import { useForm } from 'react-hook-form';
+import { createCalendar } from '~/api/calendarApi';
 
 const cx = classNames.bind(styles);
 
@@ -196,16 +197,18 @@ function EventForm() {
         dispatch(setSelectedEvent(null));
     };
 
-    const onSubmit = (data) => {
-        console.log({
+    const onSubmit = async (data) => {
+        const formData = {
             ...data,
             userId: currentUser._id,
             startTime: startTime,
             endTime: endTime,
             theme: tagColor,
-            type: type,
+            calendarType: type,
             completed: false,
-        });
+        };
+        await createCalendar(formData);
+        handleCancel();
     };
 
     return (
@@ -241,7 +244,7 @@ function EventForm() {
                         type="text"
                         value={getTime()}
                         readOnly={true}
-                        {...register('calendar')}
+                        {...register('date')}
                     />
                 </div>
 
@@ -304,8 +307,8 @@ function EventForm() {
                         className={cx('textarea')}
                         placeholder="Add description"
                         defaultValue={desc}
-                        name="description"
-                        {...register('description')}
+                        name="content"
+                        {...register('content')}
                     ></textarea>
                     <span className={cx('underline-desc')}></span>
                 </div>
