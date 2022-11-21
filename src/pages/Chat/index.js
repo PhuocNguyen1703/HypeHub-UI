@@ -11,6 +11,7 @@ import { userChats } from '~/api/chatApi';
 import Conversation from '~/layouts/components/Conversation/Conversation';
 import Message from '~/components/Search/Message';
 import { BsFunnel } from 'react-icons/bs';
+import NotFound from '~/layouts/components/ChatBox/NotFound';
 
 const cx = classNames.bind(styles);
 
@@ -218,12 +219,16 @@ function PrivateChat() {
                 </div>
             </div>
 
-            <ChatBox
-                chat={currentChat}
-                currentUserId={currentUser?._id}
-                setSendMessage={setSendMessage}
-                receiveMessage={receiveMessage}
-            />
+            {currentChat ? (
+                <ChatBox
+                    chat={currentChat}
+                    currentUserId={currentUser?._id}
+                    setSendMessage={setSendMessage}
+                    receiveMessage={receiveMessage}
+                />
+            ) : (
+                <NotFound />
+            )}
         </div>
     );
 }
