@@ -22,15 +22,15 @@ function Column({ column, sections, setSections }) {
     const [tasks, setTasks] = useState([]);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const getTasks = async () => {
-            try {
-                const res = await getAllTask(column.sectionId);
-                setTasks(res.data);
-            } catch (error) {}
-        };
-        getTasks();
-    }, [column]);
+    // useEffect(() => {
+    //     const getTasks = async () => {
+    //         try {
+    //             const res = await getAllTask(column.sectionId);
+    //             setTasks(res.data);
+    //         } catch (error) {}
+    //     };
+    //     getTasks();
+    // }, [column]);
 
     const handleUpdateTitle = async (e) => {
         console.log('updateTitle');
@@ -86,8 +86,8 @@ function Column({ column, sections, setSections }) {
                 </div>
             </header>
             <div className={cx('column-content')}>
-                {tasks?.map((task, idx) => (
-                    <Draggable key={task._id} draggableId={task._id} index={idx}>
+                {column.cards.map((task, idx) => (
+                    <Draggable key={task.id} draggableId={task.id} index={idx}>
                         {(provided, snapshot) => (
                             <div
                                 {...provided.draggableProps}

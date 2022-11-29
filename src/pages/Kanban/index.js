@@ -14,20 +14,89 @@ import { v4 as uuid } from 'uuid';
 const cx = classNames.bind(styles);
 
 function Kanban() {
+    const boards = [
+        {
+            id: 'board-1',
+            columnOrder: ['column-1', 'column-2', 'column-3'],
+            columns: [
+                {
+                    id: 'column-1',
+                    boardId: 'board-1',
+                    title: 'To do column',
+                    cardOrder: ['card-1', 'card-2', 'card-3'],
+                    cards: [
+                        {
+                            id: 'card-1',
+                            boardId: 'board-1',
+                            columnId: 'column-1',
+                            title: 'title card 1',
+                            cover: null,
+                        },
+                        {
+                            id: 'card-2',
+                            boardId: 'board-1',
+                            columnId: 'column-1',
+                            title: 'title card 2',
+                            cover: null,
+                        },
+                        {
+                            id: 'card-3',
+                            boardId: 'board-1',
+                            columnId: 'column-1',
+                            title: 'title card 3',
+                            cover: null,
+                        },
+                    ],
+                },
+                {
+                    id: 'column-2',
+                    boardId: 'board-1',
+                    title: 'press column',
+                    cardOrder: ['card-4', 'card-5', 'card-6'],
+                    cards: [
+                        {
+                            id: 'card-4',
+                            boardId: 'board-1',
+                            columnId: 'column-2',
+                            title: 'title card 4',
+                            cover: null,
+                        },
+                        {
+                            id: 'card-5',
+                            boardId: 'board-1',
+                            columnId: 'column-2',
+                            title: 'title card 5',
+                            cover: null,
+                        },
+                        {
+                            id: 'card-6',
+                            boardId: 'board-1',
+                            columnId: 'column-2',
+                            title: 'title card 6',
+                            cover: null,
+                        },
+                    ],
+                },
+            ],
+        },
+    ];
+
     const userId = useSelector((state) => state.auth.login.currentUser._id);
     const { createKanbanItemModalIsOpen } = useSelector((state) => state.modal);
-    const [sections, setSections] = useState([]);
+    const [sections, setSections] = useState(boards[0].columns);
+    const [board, setBoard] = useState(boards[0]);
+    const [columns, setColumns] = useState(board.columns);
 
-    useEffect(() => {
-        const getSections = async () => {
-            try {
-                const res = await getAllSection(userId);
-                setSections(res.data);
-                console.log(res);
-            } catch (error) {}
-        };
-        getSections();
-    }, []);
+    // useEffect(() => {
+    //     const getSections = async () => {
+    //         try {
+    //             const res = await getAllSection(userId);
+    //             setSections(res.data);
+    //             console.log(res);
+    //         } catch (error) {}
+    //     };
+    //     getSections();
+    // }, []);
 
     const handleAddSection = async () => {
         const data = {
@@ -44,36 +113,36 @@ function Kanban() {
 
     const onDragEnd = (result) => {
         console.log(result);
-        if (!result.destination) return;
+        // if (!result.destination) return;
 
-        const { source, destination } = result;
+        // const { source, destination } = result;
 
-        const sourceColIdx = sections.findIndex((e) => e._id === source.droppableId);
-        const destinationColIdx = sections.findIndex((e) => e._id === destination.droppableId);
+        // const sourceColIdx = sections.findIndex((e) => e._id === source.droppableId);
+        // const destinationColIdx = sections.findIndex((e) => e._id === destination.droppableId);
 
-        const sourceCol = sections[sourceColIdx];
-        const destinationCol = sections[destinationColIdx];
-        console.log(sourceCol);
+        // const sourceCol = sections[sourceColIdx];
+        // const destinationCol = sections[destinationColIdx];
+        // console.log(sourceCol);
 
-        const sourceSectionId = sourceCol.sectionId;
-        const destinationSectionId = destinationCol.sectionId;
+        // const sourceSectionId = sourceCol.sectionId;
+        // const destinationSectionId = destinationCol.sectionId;
 
-        // const sourceCard = [...sourceCol.cards];
-        const sourceTasks = [...sourceCol.tasks];
-        // const destinationCard = [...destinationCol.cards];
-        const destinationCard = [...destinationCol];
+        // // const sourceCard = [...sourceCol.cards];
+        // const sourceTasks = [...sourceCol.tasks];
+        // // const destinationCard = [...destinationCol.cards];
+        // const destinationCard = [...destinationCol];
 
-        if (source.droppableId !== destination.droppableId) {
-            const [removed] = sourceTasks.splice(source.index, 1);
-            destinationCard.splice(destination.index, 0, removed);
+        // if (source.droppableId !== destination.droppableId) {
+        //     const [removed] = sourceTasks.splice(source.index, 1);
+        //     destinationCard.splice(destination.index, 0, removed);
 
-            // boards[sourceColIdx].cards = sourceCard;
-            // boards[destinationColIdx].cards = destinationCard;
-        } else {
-            // const [removed] = sourceCard.splice(source.index, 1);
-            // destinationCard.splice(destination.index, 0, removed);
-            // boards[destinationColIdx].cards = destinationCard;
-        }
+        //     // boards[sourceColIdx].cards = sourceCard;
+        //     // boards[destinationColIdx].cards = destinationCard;
+        // } else {
+        //     // const [removed] = sourceCard.splice(source.index, 1);
+        //     // destinationCard.splice(destination.index, 0, removed);
+        //     // boards[destinationColIdx].cards = destinationCard;
+        // }
     };
 
     return (
@@ -86,8 +155,8 @@ function Kanban() {
             </div>
             <DragDropContext onDragEnd={onDragEnd}>
                 <div className={cx('board-columns')}>
-                    {sections.map((col) => (
-                        <Droppable key={col._id} droppableId={col._id}>
+                    {columns.map((col) => (
+                        <Droppable key={col.id} droppableId={col.id}>
                             {(provided) => (
                                 <div ref={provided.innerRef} {...provided.droppableProps}>
                                     <Column column={col} sections={sections} setSections={setSections} />

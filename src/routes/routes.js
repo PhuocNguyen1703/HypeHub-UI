@@ -28,6 +28,6 @@ const publicRoutes = [
     { path: config.routes.checkin, component: CheckIn },
 ];
 
-const privateRoutes = [...publicRoutes, { path: config.routes.checkin, component: CheckIn }];
+const privateRoutes = [...publicRoutes];
 
 export { publicRoutes, privateRoutes };

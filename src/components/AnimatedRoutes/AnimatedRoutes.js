@@ -13,60 +13,59 @@ function AnimatedRoutes() {
     return (
         <AnimatePresence>
             <Routes location={location} key={location.pathname}>
-                {publicRoutes.map((routes, index) => {
-                    const Page = routes.component;
+                {user?.isAdmin
+                    ? privateRoutes.map((routes, index) => {
+                          const Page = routes.component;
 
-                    let Layout = DefaultLayout;
+                          let Layout = DefaultLayout;
 
-                    if (routes.layout) {
-                        Layout = routes.layout;
-                    }
-                    if (routes.layout === null) {
-                        Layout = Fragment;
-                    }
+                          if (routes.layout) {
+                              Layout = routes.layout;
+                          }
+                          if (routes.layout === null) {
+                              Layout = Fragment;
+                          }
 
-                    return (
-                        <Route
-                            key={index}
-                            path={routes.path}
-                            element={
-                                user ? (
-                                    <Layout>
-                                        <Page />
-                                    </Layout>
-                                ) : (
-                                    <Login />
-                                )
-                            }
-                        />
-                    );
-                })}
+                          return (
+                              <Route
+                                  key={index}
+                                  path={routes.path}
+                                  element={
+                                      <Layout>
+                                          <Page />
+                                      </Layout>
+                                  }
+                              />
+                          );
+                      })
+                    : publicRoutes.map((routes, index) => {
+                          const Page = routes.component;
 
-                {user?.isAdmin &&
-                    privateRoutes.map((routes, index) => {
-                        const Page = routes.component;
+                          let Layout = DefaultLayout;
 
-                        let Layout = DefaultLayout;
+                          if (routes.layout) {
+                              Layout = routes.layout;
+                          }
+                          if (routes.layout === null) {
+                              Layout = Fragment;
+                          }
 
-                        if (routes.layout) {
-                            Layout = routes.layout;
-                        }
-                        if (routes.layout === null) {
-                            Layout = Fragment;
-                        }
-
-                        return (
-                            <Route
-                                key={index}
-                                path={routes.path}
-                                element={
-                                    <Layout>
-                                        <Page />
-                                    </Layout>
-                                }
-                            />
-                        );
-                    })}
+                          return (
+                              <Route
+                                  key={index}
+                                  path={routes.path}
+                                  element={
+                                      user ? (
+                                          <Layout>
+                                              <Page />
+                                          </Layout>
+                                      ) : (
+                                          <Login />
+                                      )
+                                  }
+                              />
+                          );
+                      })}
             </Routes>
         </AnimatePresence>
     );
