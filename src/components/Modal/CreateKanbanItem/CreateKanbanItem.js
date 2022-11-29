@@ -19,30 +19,19 @@ import { FaChevronDown, FaTimes } from 'react-icons/fa';
 import DatePicker from '~/components/DatePicker';
 import { setSelectedItem } from '~/redux/Slice/kanbanSlice';
 import { useForm } from 'react-hook-form';
-import { createTask, getAllTask } from '~/api/kanbanApi';
 
 const cx = classNames.bind(styles);
 
-function CreateKanbanItem({ sections, setSections }) {
+function CreateKanbanItem() {
     const { createKanbanItemModalIsOpen } = useSelector((state) => state.modal);
     const { selectedItem } = useSelector((state) => state.kanban);
-    const [tasks, setTasks] = useState([]);
     const [showColorList, setShowColorList] = useState(false);
     const [color, setColor] = useState();
     const [previewSourcePhoto, setPreviewSourcePhoto] = useState('');
     const dispatch = useDispatch();
     const colorRef = useRef(null);
     const { register, handleSubmit } = useForm({
-        defaultValues: {
-            sectionId: selectedItem.sectionId,
-            label: '',
-            labelColor: 'default-color',
-            title: '',
-            description: '',
-            photoUrl: '',
-            startDate: '',
-            endDate: '',
-        },
+        defaultValues: {},
     });
 
     const colorData = [
@@ -88,80 +77,80 @@ function CreateKanbanItem({ sections, setSections }) {
         }
     };
 
-    useEffect(() => {
-        const getTasks = async () => {
-            try {
-                const res = await getAllTask(selectedItem.sectionId);
-                setTasks(res.data);
-            } catch (error) {}
-        };
-        getTasks();
-    }, []);
+    // useEffect(() => {
+    //     const getTasks = async () => {
+    //         try {
+    //             const res = await getAllTask(selectedItem.sectionId);
+    //             setTasks(res.data);
+    //         } catch (error) {}
+    //     };
+    //     getTasks();
+    // }, []);
 
     const handleCloseModal = () => {
         dispatch(setCreateKanbanItemModalIsOpen(false));
         dispatch(setSelectedItem(null));
     };
 
-    const handleShowColorList = () => {
-        setShowColorList((prevState) => !prevState);
-    };
+    // const handleShowColorList = () => {
+    //     setShowColorList((prevState) => !prevState);
+    // };
 
-    const handleSelectColor = (item) => {
-        setColor(item);
-    };
+    // const handleSelectColor = (item) => {
+    //     setColor(item);
+    // };
 
-    const handleFileUpload = (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        previewFileUpload(file);
-    };
+    // const handleFileUpload = (e) => {
+    //     const file = e.target.files[0];
+    //     if (!file) return;
+    //     previewFileUpload(file);
+    // };
 
-    const previewFileUpload = (file) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setPreviewSourcePhoto(reader.result);
-        };
-        reader.onerror = () => {
-            console.error('something went wrong!');
-        };
-    };
+    // const previewFileUpload = (file) => {
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onloadend = () => {
+    //         setPreviewSourcePhoto(reader.result);
+    //     };
+    //     reader.onerror = () => {
+    //         console.error('something went wrong!');
+    //     };
+    // };
 
     const handleCancel = () => {
         dispatch(setCreateKanbanItemModalIsOpen(false));
         dispatch(setSelectedItem(null));
     };
 
-    const onSubmit = async (data) => {
-        try {
-            const task = await createTask(data);
-            const newSections = [...sections];
-            const index = newSections.findIndex((e) => e.sectionId === selectedItem.sectionId);
-            newSections[index].tasks.unshift(task);
-            console.log(newSections);
-            // setSections(newSections);
-            // dispatch(setCreateKanbanItemModalIsOpen(false));
-        } catch (err) {
-            alert(err);
-        }
-    };
+    // const onSubmit = async (data) => {
+    //     try {
+    //         const task = await createTask(data);
+    //         const newSections = [...sections];
+    //         const index = newSections.findIndex((e) => e.sectionId === selectedItem.sectionId);
+    //         newSections[index].tasks.unshift(task);
+    //         console.log(newSections);
+    //         // setSections(newSections);
+    //         // dispatch(setCreateKanbanItemModalIsOpen(false));
+    //     } catch (err) {
+    //         alert(err);
+    //     }
+    // };
 
     return (
         <AnimatePresence>
             <motion.div animate={{ width: createKanbanItemModalIsOpen ? '400px' : '0' }} className={cx('wrapper')}>
                 <header className={cx('header')}>
                     <span className={cx('heading')}>
-                        <span>{selectedItem.title}</span>
+                        <span>{selectedItem?.title}</span>
                         <button className={cx('close-btn')} onClick={handleCloseModal}>
                             <BsXLg />
                         </button>
                     </span>
                     <p className={cx('desc')}>
-                        Add item to the <strong>{selectedItem.title}</strong> board
+                        Add item to the <strong>{selectedItem?.title}</strong> board
                     </p>
                 </header>
-                <form className={cx('container')} onSubmit={handleSubmit(onSubmit)}>
+                <form className={cx('container')}>
                     <div className={cx('title')}>
                         <input
                             className={cx('title-ipt')}
@@ -193,7 +182,7 @@ function CreateKanbanItem({ sections, setSections }) {
                             <BsPalette />
                         </span>
                         <div className={cx('color')}>
-                            <div className={cx('color-select')} onClick={handleShowColorList}>
+                            <div className={cx('color-select')}>
                                 <span
                                     className={cx(
                                         'color-selected',
@@ -210,11 +199,7 @@ function CreateKanbanItem({ sections, setSections }) {
                             {showColorList && (
                                 <ul ref={colorRef} className={cx('color-list')}>
                                     {colorData.map((item, idx) => (
-                                        <li
-                                            key={idx}
-                                            className={cx('color-item', `${item.background}`)}
-                                            onClick={() => handleSelectColor(item)}
-                                        ></li>
+                                        <li key={idx} className={cx('color-item', `${item.background}`)}></li>
                                     ))}
                                 </ul>
                             )}
@@ -247,7 +232,7 @@ function CreateKanbanItem({ sections, setSections }) {
                                 <BsArrowBarUp />
                                 Choose a photo
                             </label>
-                            <input id="choose-img" type="file" onChange={handleFileUpload} hidden />
+                            <input id="choose-img" type="file" hidden />
                         </div>
                     </div>
                     <div className={cx('preview')}>

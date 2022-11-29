@@ -10,6 +10,7 @@ import { createSection, getAllSection } from '~/api/kanbanApi';
 import Modal from '~/components/Modal';
 import CreateKanbanItem from '~/components/Modal/CreateKanbanItem';
 import { v4 as uuid } from 'uuid';
+import { mapOrder } from '~/utils/sort';
 
 const cx = classNames.bind(styles);
 
@@ -77,81 +78,132 @@ function Kanban() {
                         },
                     ],
                 },
+                {
+                    id: 'column-3',
+                    boardId: 'board-1',
+                    title: 'home column',
+                    cardOrder: ['card-7', 'card-8'],
+                    cards: [
+                        {
+                            id: 'card-7',
+                            boardId: 'board-1',
+                            columnId: 'column-3',
+                            title: 'title card 7',
+                            cover: null,
+                        },
+                        {
+                            id: 'card-8',
+                            boardId: 'board-1',
+                            columnId: 'column-3',
+                            title: 'title card 8',
+                            cover: null,
+                        },
+                    ],
+                },
             ],
         },
     ];
 
     const userId = useSelector((state) => state.auth.login.currentUser._id);
     const { createKanbanItemModalIsOpen } = useSelector((state) => state.modal);
-    const [sections, setSections] = useState(boards[0].columns);
-    const [board, setBoard] = useState(boards[0]);
-    const [columns, setColumns] = useState(board.columns);
+    const [board, setBoard] = useState({});
+    const [columns, setColumns] = useState([]);
 
-    // useEffect(() => {
-    //     const getSections = async () => {
-    //         try {
-    //             const res = await getAllSection(userId);
-    //             setSections(res.data);
-    //             console.log(res);
-    //         } catch (error) {}
-    //     };
-    //     getSections();
-    // }, []);
+    useEffect(() => {
+        const boardData = boards.find((board) => board.id === 'board-1');
+        if (boardData) {
+            setBoard(boardData);
+            setColumns(mapOrder(boardData.columns, boardData.columnOrder, 'id'));
+        }
+    }, []);
 
-    const handleAddSection = async () => {
-        const data = {
-            userId: userId,
-            sectionId: uuid(),
-        };
-        try {
-            const section = await createSection(data);
-            setSections([...sections, section.data]);
-        } catch (error) {
-            console.log(error);
+    const onDragEnd = (result) => {
+        const { source, destination } = result;
+        let newColumns = [...columns];
+        if (!result.destination) return;
+
+        const sourceCol = newColumns.find((col) => col.id === source.droppableId);
+        const destinationCol = newColumns.find((col) => col.id === destination.droppableId);
+        // console.log(sourceCol);
+        // console.log(destinationCol);
+
+        const sourceCards = [...sourceCol.cards];
+        const destinationCards = [...destinationCol.cards];
+        // console.log(sourceCards);
+        // console.log(destinationCards);
+
+        if (source.droppableId !== destination.droppableId) {
+            const [removedCard] = sourceCards.splice(source.index, 1);
+            // console.log(removedCard);
+            destinationCards.splice(destination.index, 0, removedCard);
+            // console.log(destinationCards);
+
+            sourceCol.cards = sourceCards;
+            destinationCol.cards = destinationCards;
+
+            sourceCol.cardOrder = sourceCol.cards.map((i) => i.id);
+            destinationCol.cardOrder = destinationCol.cards.map((i) => i.id);
+            // console.log(sourceCol);
+            // console.log(destinationCol);
+            setColumns(newColumns);
+        } else {
+            const [removedCard] = sourceCards.splice(source.index, 1);
+            sourceCards.splice(destination.index, 0, removedCard);
+            // console.log(sourceCards);
+
+            sourceCol.cards = sourceCards;
+            sourceCol.cardOrder = sourceCol.cards.map((i) => i.id);
+            // console.log(sourceCol);
+            setColumns(newColumns);
         }
     };
 
-    const onDragEnd = (result) => {
-        console.log(result);
-        // if (!result.destination) return;
+    const handleAddNewColumn = () => {
+        const newColumn = {
+            id: Math.random().toString(36).substring(2, 5),
+            boardId: board.id,
+            title: 'Untitled'.trim(),
+            cardOrder: [],
+            cards: [],
+        };
+        let newColumns = [...columns];
+        newColumns.push(newColumn);
 
-        // const { source, destination } = result;
+        let newBoard = { ...board };
+        newBoard.columnOrder = newColumns.map((col) => col.id);
+        newBoard.columns = newColumns;
 
-        // const sourceColIdx = sections.findIndex((e) => e._id === source.droppableId);
-        // const destinationColIdx = sections.findIndex((e) => e._id === destination.droppableId);
+        setBoard(newBoard);
+        setColumns(newColumns);
+    };
 
-        // const sourceCol = sections[sourceColIdx];
-        // const destinationCol = sections[destinationColIdx];
-        // console.log(sourceCol);
+    const onUpdateColumn = (columnUpdate) => {
+        let newColumns = [...columns];
+        const columnIdToUpdate = columnUpdate.id;
 
-        // const sourceSectionId = sourceCol.sectionId;
-        // const destinationSectionId = destinationCol.sectionId;
+        const columnIdxToUpdate = newColumns.findIndex((i) => i.id === columnIdToUpdate);
 
-        // // const sourceCard = [...sourceCol.cards];
-        // const sourceTasks = [...sourceCol.tasks];
-        // // const destinationCard = [...destinationCol.cards];
-        // const destinationCard = [...destinationCol];
+        if (columnUpdate._destroy) {
+            newColumns.splice(columnIdxToUpdate, 1);
+        } else {
+            newColumns.splice(columnIdxToUpdate, 1, columnUpdate);
+        }
 
-        // if (source.droppableId !== destination.droppableId) {
-        //     const [removed] = sourceTasks.splice(source.index, 1);
-        //     destinationCard.splice(destination.index, 0, removed);
+        let newBoard = { ...board };
+        newBoard.columnOrder = newColumns.map((col) => col.id);
+        newBoard.columns = newColumns;
 
-        //     // boards[sourceColIdx].cards = sourceCard;
-        //     // boards[destinationColIdx].cards = destinationCard;
-        // } else {
-        //     // const [removed] = sourceCard.splice(source.index, 1);
-        //     // destinationCard.splice(destination.index, 0, removed);
-        //     // boards[destinationColIdx].cards = destinationCard;
-        // }
+        setBoard(newBoard);
+        setColumns(newColumns);
     };
 
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <button className={cx('add-section-btn')} onClick={handleAddSection}>
-                    Add section
+                <button className={cx('add-section-btn')} onClick={handleAddNewColumn}>
+                    Add column
                 </button>
-                <span className={cx('total-section')}>{sections.length} section</span>
+                <span className={cx('total-section')}>{columns.length} column</span>
             </div>
             <DragDropContext onDragEnd={onDragEnd}>
                 <div className={cx('board-columns')}>
@@ -159,7 +211,7 @@ function Kanban() {
                         <Droppable key={col.id} droppableId={col.id}>
                             {(provided) => (
                                 <div ref={provided.innerRef} {...provided.droppableProps}>
-                                    <Column column={col} sections={sections} setSections={setSections} />
+                                    <Column column={col} onUpdateColumn={onUpdateColumn} />
                                     {provided.placeholder}
                                 </div>
                             )}
@@ -168,11 +220,7 @@ function Kanban() {
                 </div>
             </DragDropContext>
 
-            {createKanbanItemModalIsOpen && (
-                <Modal>
-                    <CreateKanbanItem sections={sections} setSections={setSections} />
-                </Modal>
-            )}
+            {createKanbanItemModalIsOpen && <Modal>{<CreateKanbanItem columns={columns} />}</Modal>}
         </div>
     );
 }
