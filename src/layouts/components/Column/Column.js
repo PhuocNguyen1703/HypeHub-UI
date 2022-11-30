@@ -45,10 +45,11 @@ function Column({ column, onUpdateColumnState }) {
     };
 
     const handleRemoveColumn = () => {
-        const newColumn = { ...column, _destroy: true };
-        updateColumn(newColumn._id, newColumn).then((updatedColumn) => {
-            onUpdateColumnState(updatedColumn);
-        });
+        
+        // const newColumn = { ...column, _destroy: true };
+        // updateColumn(newColumn._id, newColumn).then((updatedColumn) => {
+        //     onUpdateColumnState(updatedColumn);
+        // });
     };
 
     const handleAddNewCard = () => {

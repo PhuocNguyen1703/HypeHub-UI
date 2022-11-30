@@ -1,0 +1,85 @@
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    background-color: var(--main-bg);
+    border: 1px solid var(--gray-alpha-20);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    color: var(--text-color);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10px;
+    margin: 0 10px;
+    border-bottom: 2px solid var(--gray-alpha-20);
+}
+
+.title {
+    font-size: 2.6rem;
+    font-weight: 700;
+    user-select: none;
+}
+
+.close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    padding: 8px;
+    border-radius: 999px;
+    color: var(--text-color);
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--gray-alpha-10);
+    }
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    margin: 0 20px;
+}
+
+.content {
+    font-size: 1.8rem;
+    color: var(--gray);
+}
+
+.action-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.save-btn,
+.cancel-btn {
+    padding: 10px 18px;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--blue);
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0.85;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.cancel-btn {
+    color: var(--gray-alpha-60);
+    background-color: transparent;
+    margin-right: 4px;
+
+    &:hover {
+        color: var(--text-color);
+    }
+}
