@@ -3,10 +3,10 @@ import classNames from 'classnames/bind';
 
 import styles from './Kanban.module.scss';
 import Column from '~/layouts/components/Column';
-import { isEmpty } from 'lodash-es';
+import { cloneDeep, isEmpty } from 'lodash-es';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
-import { createSection, getAllSection } from '~/api/kanbanApi';
+import { createNewColumn, getBoardDetails, updateCard, updateColumn, updateTwoColumn } from '~/api/kanbanApi';
 import Modal from '~/components/Modal';
 import CreateKanbanItem from '~/components/Modal/CreateKanbanItem';
 import { v4 as uuid } from 'uuid';
@@ -110,20 +110,21 @@ function Kanban() {
     const [columns, setColumns] = useState([]);
 
     useEffect(() => {
-        const boardData = boards.find((board) => board.id === 'board-1');
-        if (boardData) {
-            setBoard(boardData);
-            setColumns(mapOrder(boardData.columns, boardData.columnOrder, 'id'));
-        }
+        // const boardData = boards.find((board) => board.id === 'board-1');
+        const boardId = '6384c275a4c4ecc29352cf68';
+        getBoardDetails(boardId).then((board) => {
+            setBoard(board);
+            setColumns(mapOrder(board.columns, board.columnOrder, '_id'));
+        });
     }, []);
 
     const onDragEnd = (result) => {
         const { source, destination } = result;
-        let newColumns = [...columns];
+        let newColumns = cloneDeep(columns);
         if (!result.destination) return;
 
-        const sourceCol = newColumns.find((col) => col.id === source.droppableId);
-        const destinationCol = newColumns.find((col) => col.id === destination.droppableId);
+        const sourceCol = newColumns.find((col) => col._id === source.droppableId);
+        const destinationCol = newColumns.find((col) => col._id === destination.droppableId);
         // console.log(sourceCol);
         // console.log(destinationCol);
 
@@ -141,47 +142,57 @@ function Kanban() {
             sourceCol.cards = sourceCards;
             destinationCol.cards = destinationCards;
 
-            sourceCol.cardOrder = sourceCol.cards.map((i) => i.id);
-            destinationCol.cardOrder = destinationCol.cards.map((i) => i.id);
+            sourceCol.cardOrder = sourceCol.cards.map((i) => i._id);
+            destinationCol.cardOrder = destinationCol.cards.map((i) => i._id);
             // console.log(sourceCol);
             // console.log(destinationCol);
             setColumns(newColumns);
+
+            //Update columns when drag ang drop
+            const dataColumns = { sourceCol, destinationCol };
+            updateTwoColumn(sourceCol._id, destinationCol._id, dataColumns).catch(() => setColumns(columns));
+
+            let currentCard = cloneDeep(removedCard);
+            currentCard.columnId = destinationCol._id;
+            updateCard(currentCard._id, currentCard);
         } else {
             const [removedCard] = sourceCards.splice(source.index, 1);
             sourceCards.splice(destination.index, 0, removedCard);
             // console.log(sourceCards);
 
             sourceCol.cards = sourceCards;
-            sourceCol.cardOrder = sourceCol.cards.map((i) => i.id);
+            sourceCol.cardOrder = sourceCol.cards.map((i) => i._id);
             // console.log(sourceCol);
             setColumns(newColumns);
+
+            if (source.index === destination.index) return;
+            updateColumn(sourceCol._id, sourceCol).catch(() => setColumns(columns));
         }
     };
 
     const handleAddNewColumn = () => {
         const newColumn = {
-            id: Math.random().toString(36).substring(2, 5),
-            boardId: board.id,
+            boardId: board._id,
             title: 'Untitled'.trim(),
-            cardOrder: [],
-            cards: [],
         };
-        let newColumns = [...columns];
-        newColumns.push(newColumn);
+        createNewColumn(newColumn).then((column) => {
+            let newColumns = [...columns];
+            newColumns.push(column);
 
-        let newBoard = { ...board };
-        newBoard.columnOrder = newColumns.map((col) => col.id);
-        newBoard.columns = newColumns;
+            let newBoard = { ...board };
+            newBoard.columnOrder = newColumns.map((col) => col._id);
+            newBoard.columns = newColumns;
 
-        setBoard(newBoard);
-        setColumns(newColumns);
+            setBoard(newBoard);
+            setColumns(newColumns);
+        });
     };
 
-    const onUpdateColumn = (columnUpdate) => {
+    const onUpdateColumnState = (columnUpdate) => {
         let newColumns = [...columns];
-        const columnIdToUpdate = columnUpdate.id;
+        const columnIdToUpdate = columnUpdate._id;
 
-        const columnIdxToUpdate = newColumns.findIndex((i) => i.id === columnIdToUpdate);
+        const columnIdxToUpdate = newColumns.findIndex((i) => i._id === columnIdToUpdate);
 
         if (columnUpdate._destroy) {
             newColumns.splice(columnIdxToUpdate, 1);
@@ -190,7 +201,7 @@ function Kanban() {
         }
 
         let newBoard = { ...board };
-        newBoard.columnOrder = newColumns.map((col) => col.id);
+        newBoard.columnOrder = newColumns.map((col) => col._id);
         newBoard.columns = newColumns;
 
         setBoard(newBoard);
@@ -208,10 +219,10 @@ function Kanban() {
             <DragDropContext onDragEnd={onDragEnd}>
                 <div className={cx('board-columns')}>
                     {columns.map((col) => (
-                        <Droppable key={col.id} droppableId={col.id}>
+                        <Droppable key={col._id} droppableId={col._id}>
                             {(provided) => (
                                 <div ref={provided.innerRef} {...provided.droppableProps}>
-                                    <Column column={col} onUpdateColumn={onUpdateColumn} />
+                                    <Column column={col} onUpdateColumnState={onUpdateColumnState} />
                                     {provided.placeholder}
                                 </div>
                             )}

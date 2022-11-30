@@ -10,14 +10,15 @@ import { useDispatch } from 'react-redux';
 import { setCreateKanbanItemModalIsOpen } from '~/redux/Slice/modalSlice';
 import { setSelectedItem } from '~/redux/Slice/kanbanSlice';
 import { mapOrder } from '~/utils/sort';
+import { updateColumn } from '~/api/kanbanApi';
 
 const cx = classNames.bind(styles);
 
-function Column({ column, onUpdateColumn }) {
+function Column({ column, onUpdateColumnState }) {
     const [columnTitle, setColumnTitle] = useState('Untitled');
     const dispatch = useDispatch();
 
-    const cards = mapOrder(column.cards, column.cardOrder, 'id');
+    const cards = mapOrder(column.cards, column.cardOrder, '_id');
 
     useEffect(() => {
         setColumnTitle(column.title);
@@ -28,8 +29,13 @@ function Column({ column, onUpdateColumn }) {
     };
 
     const handleBlurColumnTitle = () => {
-        const newColumn = { ...column, title: columnTitle };
-        onUpdateColumn(newColumn);
+        if (column.title !== columnTitle) {
+            const newColumn = { ...column, title: columnTitle };
+            updateColumn(newColumn._id, newColumn).then((updatedColumn) => {
+                updatedColumn.cards = newColumn.cards;
+                onUpdateColumnState(updatedColumn);
+            });
+        }
     };
 
     const handleKeyDownColumnTitle = (e) => {
@@ -40,7 +46,9 @@ function Column({ column, onUpdateColumn }) {
 
     const handleRemoveColumn = () => {
         const newColumn = { ...column, _destroy: true };
-        onUpdateColumn(newColumn);
+        updateColumn(newColumn._id, newColumn).then((updatedColumn) => {
+            onUpdateColumnState(updatedColumn);
+        });
     };
 
     const handleAddNewCard = () => {
@@ -70,7 +78,7 @@ function Column({ column, onUpdateColumn }) {
             </header>
             <div className={cx('column-content')}>
                 {cards.map((card, idx) => (
-                    <Draggable key={card.id} draggableId={card.id} index={idx}>
+                    <Draggable key={card._id} draggableId={card._id} index={idx}>
                         {(provided, snapshot) => (
                             <div
                                 {...provided.draggableProps}
