@@ -4,27 +4,54 @@ import { motion } from 'framer-motion';
 
 import styles from './ConfirmModal.module.scss';
 import { BsXLg } from 'react-icons/bs';
+import Modal from '../Modal';
+import HTMLReactParser from 'html-react-parser';
+import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '~/utils/constants';
 
 const cx = classNames.bind(styles);
 
-function ConfirmModal() {
-    return (
-        <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
-            <header className={cx('header')}>
-                <span className={cx('title')}>title</span>
-                <span className={cx('close-btn')}>
-                    <BsXLg />
-                </span>
-            </header>
-            <div className={cx('body')}>
-                <p className={cx('content')}>delete columns</p>
-                <div className={cx('action-btn')}>
-                    <button className={cx('cancel-btn')}>Cancel</button>
-                    <button className={cx('save-btn')}>Save Changes</button>
-                </div>
-            </div>
-        </motion.div>
-    );
+function ConfirmModal({ show, title, content, onAction }) {
+    const handleClose = () => {
+        onAction(MODAL_ACTION_CLOSE);
+    };
+
+    const handleCancel = () => {
+        handleClose();
+    };
+
+    const handleSave = () => {
+        onAction(MODAL_ACTION_CONFIRM);
+    };
+
+    if (show) {
+        return (
+            <Modal>
+                <motion.div
+                    initial={{ x: '-50%', y: '-50%', scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className={cx('wrapper')}
+                >
+                    <header className={cx('header')}>
+                        <span className={cx('title')}>{title}</span>
+                        <span className={cx('close-btn')} onClick={handleClose}>
+                            <BsXLg />
+                        </span>
+                    </header>
+                    <div className={cx('body')}>
+                        <p className={cx('content')}>{HTMLReactParser(content)}</p>
+                        <div className={cx('action-btn')}>
+                            <button className={cx('cancel-btn')} onClick={handleCancel}>
+                                Cancel
+                            </button>
+                            <button className={cx('save-btn')} onClick={handleSave}>
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </motion.div>
+            </Modal>
+        );
+    }
 }
 
 export default ConfirmModal;

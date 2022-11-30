@@ -170,6 +170,7 @@
     border: 1px solid var(--gray-alpha-60);
     border-radius: 4px;
     box-shadow: var(--box-shadow);
+    cursor: pointer;
 }
 
 .color-select {
@@ -196,7 +197,6 @@
     padding: 4px;
     font-size: 1.4rem;
     margin-left: auto;
-    cursor: pointer;
 }
 
 .color-list {

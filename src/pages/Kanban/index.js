@@ -8,9 +8,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
 import { createNewColumn, getBoardDetails, updateCard, updateColumn, updateTwoColumn } from '~/api/kanbanApi';
 import Modal from '~/components/Modal';
-import CreateKanbanItem from '~/components/Modal/CreateKanbanItem';
-import ConfirmModal from '~/components/Modal/Confirm';
-import { v4 as uuid } from 'uuid';
+import CreateKanbanItem from '~/components/Modal/CreateCardModal';
 import { mapOrder } from '~/utils/sort';
 
 const cx = classNames.bind(styles);
@@ -106,19 +104,19 @@ function Kanban() {
     ];
 
     const userId = useSelector((state) => state.auth.login.currentUser._id);
-    const { createKanbanItemModalIsOpen, confirmModalIsOpen } = useSelector((state) => state.modal);
+    const { createKanbanItemModalIsOpen } = useSelector((state) => state.modal);
     const [board, setBoard] = useState({});
     const [columns, setColumns] = useState([]);
 
     useEffect(() => {
-        const boardData = boards.find((board) => board.id === 'board-1');
-        setBoard(boardData);
-        setColumns(boardData.columns);
-        // const boardId = '6384c275a4c4ecc29352cf68';
-        // getBoardDetails(boardId).then((board) => {
-        //     setBoard(board);
-        //     setColumns(mapOrder(board.columns, board.columnOrder, '_id'));
-        // });
+        // const boardData = boards.find((board) => board.id === 'board-1');
+        // setBoard(boardData);
+        // setColumns(boardData.columns);
+        const boardId = '6384c275a4c4ecc29352cf68';
+        getBoardDetails(boardId).then((board) => {
+            setBoard(board);
+            setColumns(mapOrder(board.columns, board.columnOrder, '_id'));
+        });
     }, []);
 
     const onDragEnd = (result) => {
@@ -234,16 +232,11 @@ function Kanban() {
                 </div>
             </DragDropContext>
 
-            {createKanbanItemModalIsOpen && (
+            {/* {createKanbanItemModalIsOpen && (
                 <Modal>
                     <CreateKanbanItem columns={columns} />
                 </Modal>
-            )}
-            {confirmModalIsOpen && (
-                <Modal>
-                    <ConfirmModal />
-                </Modal>
-            )}
+            )} */}
         </div>
     );
 }

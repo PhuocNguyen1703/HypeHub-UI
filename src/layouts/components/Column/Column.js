@@ -8,21 +8,32 @@ import { FaPlus } from 'react-icons/fa';
 import { BsTrash } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { setCreateKanbanItemModalIsOpen } from '~/redux/Slice/modalSlice';
-import { setSelectedItem } from '~/redux/Slice/kanbanSlice';
 import { mapOrder } from '~/utils/sort';
 import { updateColumn } from '~/api/kanbanApi';
+import ConfirmModal from '~/components/Modal/Confirm';
+import { MODAL_ACTION_CONFIRM } from '~/utils/constants';
+import CreateCardModal from '~/components/Modal/CreateCardModal';
 
 const cx = classNames.bind(styles);
 
 function Column({ column, onUpdateColumnState }) {
-    const [columnTitle, setColumnTitle] = useState('Untitled');
-    const dispatch = useDispatch();
-
     const cards = mapOrder(column.cards, column.cardOrder, '_id');
+    const [columnTitle, setColumnTitle] = useState('Untitled');
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [showCreateCardModal, setShowCreateCardModal] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setColumnTitle(column.title);
     }, [column.title]);
+
+    const toggleShowCreateCardModal = () => {
+        setShowCreateCardModal((prevState) => !prevState);
+    };
+
+    const toggleShowConfirmModal = () => {
+        setShowConfirmModal((prevState) => !prevState);
+    };
 
     const handleChangeColumnTitle = (e) => {
         setColumnTitle(e.target.value);
@@ -44,12 +55,20 @@ function Column({ column, onUpdateColumnState }) {
         }
     };
 
-    const handleRemoveColumn = () => {
-        
-        // const newColumn = { ...column, _destroy: true };
-        // updateColumn(newColumn._id, newColumn).then((updatedColumn) => {
-        //     onUpdateColumnState(updatedColumn);
-        // });
+    const handleActionCreateCardModal = (type) => {
+        //Add new card
+        toggleShowCreateCardModal();
+    };
+
+    const handleConfirmModalAction = (type) => {
+        //Remove column
+        if (type === MODAL_ACTION_CONFIRM) {
+            const newColumn = { ...column, _destroy: true };
+            updateColumn(newColumn._id, newColumn).then((updatedColumn) => {
+                onUpdateColumnState(updatedColumn);
+            });
+        }
+        toggleShowConfirmModal();
     };
 
     const handleAddNewCard = () => {
@@ -67,12 +86,11 @@ function Column({ column, onUpdateColumnState }) {
                     onBlur={handleBlurColumnTitle}
                     onKeyDown={handleKeyDownColumnTitle}
                 />
-                {/* <span className={cx('column-title')}>{column.title}</span> */}
                 <div className={cx('action-btn')}>
-                    <button className={cx('icon')} onClick={handleAddNewCard}>
+                    <button className={cx('icon')} onClick={toggleShowCreateCardModal}>
                         <FaPlus />
                     </button>
-                    <button className={cx('icon')} onClick={handleRemoveColumn}>
+                    <button className={cx('icon')} onClick={toggleShowConfirmModal}>
                         <BsTrash />
                     </button>
                 </div>
@@ -96,6 +114,20 @@ function Column({ column, onUpdateColumnState }) {
                     </Draggable>
                 ))}
             </div>
+            <ConfirmModal
+                show={showConfirmModal}
+                title={'Remove column'}
+                content={`Are you sure you want to remove <strong>${column.title}</strong>.</br>All related cards will also be removed`}
+                onAction={handleConfirmModalAction}
+            />
+            <CreateCardModal
+                show={showCreateCardModal}
+                title={`Create new card`}
+                subTitle={`Add card to the <strong>${column.title}</strong>.`}
+                column={column}
+                onUpdateColumnState={onUpdateColumnState}
+                onAction={handleActionCreateCardModal}
+            />
         </div>
     );
 }
