@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+export const getAllBoard = async (userId) => {
+    const result = await axios.get(`/api/kanban/boards/user/${userId}`);
+    return result.data;
+};
+
 export const getBoardDetails = async (id) => {
     const result = await axios.get(`/api/kanban/boards/${id}`);
     return result.data;
@@ -30,11 +35,3 @@ export const updateCard = async (id, data) => {
     const result = await axios.put(`/api/kanban/cards/${id}`, data);
     return result.data;
 };
-
-// export const createSection = (data) => axios.post('/kanban', data);
-// export const getAllSection = (userId) => axios.get(`/kanban/${userId}`);
-// export const updateSection = (sectionId, data) => axios.put(`/kanban/${sectionId}`, data);
-// export const deleteSection = (sectionId) => axios.delete(`/kanban/${sectionId}`);
-
-// export const createTask = (data) => axios.post('/kanban/task', data);
-// export const getAllTask = (sectionId) => axios.get(`/kanban/task/${sectionId}`);
