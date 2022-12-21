@@ -24,6 +24,7 @@ import { MODAL_ACTION_CLOSE } from '~/utils/constants';
 import HTMLReactParser from 'html-react-parser';
 import { createNewCard } from '~/api/kanbanApi';
 import { cloneDeep } from 'lodash-es';
+import { uploadImages } from '~/api/uploadImagesApi';
 
 const cx = classNames.bind(styles);
 
@@ -35,10 +36,7 @@ function CreateKanbanItem({ show, title, subTitle, column, onUpdateColumnState, 
     const [previewSourcePhoto, setPreviewSourcePhoto] = useState('');
     const dispatch = useDispatch();
     const colorRef = useRef(null);
-    const { register, reset, handleSubmit } = useForm({
-        defaultValues: {
-        },
-    });
+    const { register, reset, handleSubmit } = useForm();
 
     const colorData = [
         { id: 'default', background: 'default-color', class: 'theme-color-default' },
@@ -119,8 +117,21 @@ function CreateKanbanItem({ show, title, subTitle, column, onUpdateColumnState, 
     };
 
     const onSubmit = async (data) => {
-        // const imgUrl = await uploadImages(base64EncodedImage);
-        const newCard = { ...data, tagColor: color?.background, columnId: column._id, boardId: column.boardId };
+        // let coverUrl = '';
+        // if (previewSourcePhoto) {
+        //     //previewSourcePhoto encoded base64
+        // coverUrl = await uploadImages(previewSourcePhoto);
+        // }
+        // const coverUrl = await uploadImages(previewSourcePhoto);
+
+        const newCard = {
+            ...data,
+            columnId: column._id,
+            boardId: column.boardId,
+            tagColor: color?.background ? color?.background : 'default-color',
+            cover: previewSourcePhoto,
+        };
+
         createNewCard(newCard).then((card) => {
             console.log(card);
             let newColumn = cloneDeep(column);
