@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './Kanban.module.scss';
+import styles from './Board.module.scss';
 import Column from '~/layouts/components/Column';
 import { cloneDeep, isEmpty } from 'lodash-es';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
