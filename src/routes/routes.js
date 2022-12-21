@@ -9,7 +9,7 @@ import Email from '~/pages/Email';
 import Chat from '~/pages/Chat';
 import Todo from '~/pages/Todo';
 import Calendar from '~/pages/Calendar';
-import Kanban from '~/pages/Board';
+import Kanban from '~/pages/Kanban';
 import CheckIn from '~/pages/CheckIn';
 import Sales from '~/pages/Sales';
 
