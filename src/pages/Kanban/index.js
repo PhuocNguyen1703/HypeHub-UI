@@ -4,11 +4,13 @@ import CreateBoardModal from '~/components/Modal/CreateBoard/CreateBoardModal';
 
 import styles from './Kanban.module.scss';
 import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '~/utils/constants';
-import { getAllBoard } from '~/api/kanbanApi';
+import { createNewBoard, getAllBoard, updateBoard } from '~/api/kanbanApi';
 import { useSelector } from 'react-redux';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import EditBoardModal from '~/components/Modal/EditBoard/EditBoard';
 import ConfirmModal from '~/components/Modal/Confirm/ConfirmModal';
+import { useLocation, useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 const cx = classNames.bind(styles);
 
@@ -16,10 +18,12 @@ function Kanban() {
     const userId = useSelector((state) => state.auth.login.currentUser._id);
     const [showCreateBoardModal, setShowCreateBoardModal] = useState(false);
     const [showEditBoardModal, setShowEditBoardModal] = useState(false);
-    const [editTitle, setEditTitle] = useState('');
+    const [editBoard, setEditBoard] = useState({});
     const [showConfirmModal, setShowConfirmModal] = useState(false);
-    const [removeBoardId, setRemoveBoardId] = useState();
+    const [removeBoard, setRemoveBoard] = useState({});
     const [boards, setBoards] = useState([]);
+    const navigate = useNavigate();
+    const location = useLocation();
     const boardList = [
         {
             id: 'board-1',
@@ -65,41 +69,77 @@ function Kanban() {
         { id: 'board-1', title: 'board-1', createdAt: '2022' },
     ];
 
-    // useEffect(() => {
-    //     getAllBoard(userId).then((boards) => {
-    //         setBoards(boards);
-    //     });
-    // }, []);
+    useEffect(() => {
+        getAllBoard(userId).then((boards) => {
+            setBoards(boards);
+        });
+    }, []);
 
     const toggleShowCreateBoardModal = () => {
         setShowCreateBoardModal((prevState) => !prevState);
     };
 
-    const handleActionCreateBoardModal = (type) => {
+    const handleActionCreateBoardModal = (type, data) => {
         if (type === MODAL_ACTION_CLOSE) return toggleShowCreateBoardModal();
+
+        if (type === MODAL_ACTION_CONFIRM) {
+            const newBoard = {
+                ...data,
+                userId: userId,
+            };
+            createNewBoard(newBoard).then((board) => {
+                let newBoards = [...boards];
+                newBoards.push(board);
+
+                setBoards(newBoards);
+            });
+        }
     };
 
     const handleChoseBoard = (boardId) => {
-        console.log(boardId);
+        navigate(`${location.pathname}/board/${boardId}`);
     };
 
-    const toggleShowEditBoardModal = (title) => {
-        setEditTitle(title);
+    const toggleShowEditBoardModal = (board) => {
+        setEditBoard(board);
         setShowEditBoardModal((prevState) => !prevState);
     };
 
-    const handleActionEditBoardModal = (type) => {
-        if (type === MODAL_ACTION_CLOSE) return toggleShowEditBoardModal();
+    const handleActionEditBoardModal = (type, data, board) => {
+        if (type === MODAL_ACTION_CONFIRM) {
+            let newBoards = [...boards];
+            if (board.title !== data.title) {
+                const newBoard = { ...board, title: data.title };
+                updateBoard(newBoard._id, newBoard).then((updatedBoard) => {
+                    const boardIdxToUpdate = newBoards.findIndex((i) => i._id === updatedBoard._id);
+
+                    newBoards.splice(boardIdxToUpdate, 1, updatedBoard);
+                    setBoards(newBoards);
+                });
+            }
+        }
+
+        toggleShowEditBoardModal();
     };
 
-    const toggleShowConfirmModal = (boardId) => {
-        setRemoveBoardId(boardId);
+    const toggleShowConfirmModal = (board) => {
+        setRemoveBoard(board);
         setShowConfirmModal((prevState) => !prevState);
     };
 
-    const handleConfirmModalAction = (type) => {
-        if (type === MODAL_ACTION_CLOSE) return toggleShowConfirmModal();
-        if (type === MODAL_ACTION_CONFIRM) return console.log(removeBoardId);
+    const handleConfirmModalAction = (type, board) => {
+        if (type === MODAL_ACTION_CONFIRM) {
+            let newBoards = [...boards];
+            const removeBoard = { ...board, _destroy: true };
+            updateBoard(board._id, removeBoard).then((removedBoard) => {
+                const boardIdxToRemove = newBoards.findIndex((i) => i._id === removedBoard._id);
+
+                newBoards.splice(boardIdxToRemove, 1);
+                setBoards(newBoards);
+            });
+        }
+
+        toggleShowConfirmModal();
     };
 
     return (
@@ -108,22 +148,21 @@ function Kanban() {
                 <button className={cx('add-board-btn')} onClick={toggleShowCreateBoardModal}>
                     Create board
                 </button>
-                <span className={cx('total-board')}>{boardList.length} board</span>
+                <span className={cx('total-board')}>{boards.length} board</span>
             </div>
             <div className={cx('content')}>
-                {boardList.map((board, idx) => (
+                {boards.map((board, idx) => (
                     <div key={idx} className={cx('board')}>
-                        <span className={cx('title')} onClick={() => handleChoseBoard(board.id)}>{board.title}</span>
+                        <span className={cx('title')} onClick={() => handleChoseBoard(board._id)}>
+                            {board.title}
+                        </span>
                         <div className={cx('bottom')}>
-                            <span className={cx('createdAt')}>{board.createdAt}</span>
+                            <span className={cx('createdAt')}>{dayjs(board.createdAt).format('DD/MM/YYYY')}</span>
                             <div className={cx('action-btn')}>
-                                <button
-                                    className={cx('edit-btn')}
-                                    onClick={() => toggleShowEditBoardModal(board.title)}
-                                >
+                                <button className={cx('edit-btn')} onClick={() => toggleShowEditBoardModal(board)}>
                                     <BsPencil />
                                 </button>
-                                <button className={cx('delete-btn')} onClick={() => toggleShowConfirmModal(board.id)}>
+                                <button className={cx('delete-btn')} onClick={() => toggleShowConfirmModal(board)}>
                                     <BsTrash />
                                 </button>
                             </div>
@@ -132,9 +171,10 @@ function Kanban() {
                 ))}
             </div>
             <CreateBoardModal show={showCreateBoardModal} onAction={handleActionCreateBoardModal} />
-            <EditBoardModal show={showEditBoardModal} title={editTitle} onAction={handleActionEditBoardModal} />
+            <EditBoardModal show={showEditBoardModal} board={editBoard} onAction={handleActionEditBoardModal} />
             <ConfirmModal
                 show={showConfirmModal}
+                board={removeBoard}
                 title={'Remove board'}
                 content={`Are you sure you want to remove board !`}
                 onAction={handleConfirmModalAction}

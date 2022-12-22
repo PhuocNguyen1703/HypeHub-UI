@@ -9,6 +9,7 @@ const routes = {
     todo: '/todo',
     calendar: '/calendar',
     kanban: '/kanban',
+    board: '/kanban/board/:boardId',
     checkin: '/checkin',
 };
 

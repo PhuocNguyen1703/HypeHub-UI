@@ -1,7 +1,17 @@
 import axios from 'axios';
 
+export const createNewBoard = async (data) => {
+    const result = await axios.post('/api/kanban/boards', data);
+    return result.data;
+};
+
 export const getAllBoard = async (userId) => {
     const result = await axios.get(`/api/kanban/boards/user/${userId}`);
+    return result.data;
+};
+
+export const updateBoard = async (id, data) => {
+    const result = await axios.put(`/api/kanban/boards/${id}`, data);
     return result.data;
 };
 

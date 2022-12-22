@@ -10,7 +10,7 @@ import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '~/utils/constants';
 
 const cx = classNames.bind(styles);
 
-function ConfirmModal({ show, title, content, onAction }) {
+function ConfirmModal({ show, board, title, content, onAction }) {
     const handleClose = () => {
         onAction(MODAL_ACTION_CLOSE);
     };
@@ -20,8 +20,7 @@ function ConfirmModal({ show, title, content, onAction }) {
     };
 
     const handleSave = () => {
-        onAction(MODAL_ACTION_CONFIRM);
-        handleClose();
+        onAction(MODAL_ACTION_CONFIRM, board);
     };
 
     if (show) {

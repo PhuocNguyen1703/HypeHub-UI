@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import Modal from '../Modal';
 import { BsXLg } from 'react-icons/bs';
 import Tippy from '@tippyjs/react';
-import { MODAL_ACTION_CLOSE } from '~/utils/constants';
+import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '~/utils/constants';
 import { useForm } from 'react-hook-form';
 
 const cx = classNames.bind(styles);
@@ -25,7 +25,11 @@ function CreateBoardModal({ show, onAction }) {
         onAction(MODAL_ACTION_CLOSE);
     };
 
-    const onSubmit = (data) => {};
+    const onSubmit = (data) => {
+        reset();
+        onAction(MODAL_ACTION_CONFIRM, data);
+        onAction(MODAL_ACTION_CLOSE);
+    };
 
     if (show) {
         return (

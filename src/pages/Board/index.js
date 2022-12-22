@@ -10,10 +10,11 @@ import { createNewColumn, getBoardDetails, updateCard, updateColumn, updateTwoCo
 import Modal from '~/components/Modal';
 import CreateKanbanItem from '~/components/Modal/CreateCardModal';
 import { mapOrder } from '~/utils/sort';
+import { useParams } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function Kanban() {
+function Board() {
     const boards = [
         {
             id: 'board-1',
@@ -107,6 +108,7 @@ function Kanban() {
     const { createKanbanItemModalIsOpen } = useSelector((state) => state.modal);
     const [board, setBoard] = useState({});
     const [columns, setColumns] = useState([]);
+    // const { boardId } = useParams();
 
     useEffect(() => {
         // const boardData = boards.find((board) => board.id === 'board-1');
@@ -241,4 +243,4 @@ function Kanban() {
     );
 }
 
-export default Kanban;
+export default Board;

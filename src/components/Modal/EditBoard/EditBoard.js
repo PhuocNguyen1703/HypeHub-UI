@@ -7,12 +7,12 @@ import { motion } from 'framer-motion';
 import Modal from '../Modal';
 import { BsXLg } from 'react-icons/bs';
 import Tippy from '@tippyjs/react';
-import { MODAL_ACTION_CLOSE } from '~/utils/constants';
+import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '~/utils/constants';
 import { useForm } from 'react-hook-form';
 
 const cx = classNames.bind(styles);
 
-function EditBoardModal({ show, title, onAction }) {
+function EditBoardModal({ show, board, onAction }) {
     const { register, handleSubmit, reset } = useForm();
 
     const handleCloseModal = () => {
@@ -21,11 +21,13 @@ function EditBoardModal({ show, title, onAction }) {
     };
 
     const handleCancel = () => {
-        reset();
-        onAction(MODAL_ACTION_CLOSE);
+        handleCloseModal();
     };
 
-    const onSubmit = (data) => {};
+    const onSubmit = (data) => {
+        onAction(MODAL_ACTION_CONFIRM, data, board);
+        reset();
+    };
 
     if (show) {
         return (
@@ -53,7 +55,7 @@ function EditBoardModal({ show, title, onAction }) {
                                     name="title"
                                     required
                                     autoFocus
-                                    defaultValue={title}
+                                    defaultValue={board.title}
                                     {...register('title')}
                                 />
                                 <span className={cx('underline-title-ipt')}></span>
