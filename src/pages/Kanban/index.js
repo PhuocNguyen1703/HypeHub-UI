@@ -7,12 +7,15 @@ import { MODAL_ACTION_CLOSE } from '~/utils/constants';
 import { getAllBoard } from '~/api/kanbanApi';
 import { useSelector } from 'react-redux';
 import { BsPencil, BsTrash } from 'react-icons/bs';
+import EditBoardModal from '~/components/Modal/EditBoard/EditBoard';
 
 const cx = classNames.bind(styles);
 
 function Kanban() {
     const userId = useSelector((state) => state.auth.login.currentUser._id);
     const [showCreateBoardModal, setShowCreateBoardModal] = useState(false);
+    const [showEditBoardModal, setShowEditBoardModal] = useState(false);
+    const [editTitle, setEditTitle] = useState('');
     const [boards, setBoards] = useState([]);
     const boardList = [
         {
@@ -73,7 +76,14 @@ function Kanban() {
         if (type === MODAL_ACTION_CLOSE) return toggleShowCreateBoardModal();
     };
 
-    const handleEditBoard = () => {};
+    const toggleShowEditBoardModal = (title) => {
+        setEditTitle(title);
+        setShowEditBoardModal((prevState) => !prevState);
+    };
+
+    const handleActionEditBoardModal = (type) => {
+        if (type === MODAL_ACTION_CLOSE) return toggleShowEditBoardModal();
+    };
 
     const handleRemoveBoard = () => {};
 
@@ -92,7 +102,10 @@ function Kanban() {
                         <div className={cx('bottom')}>
                             <span className={cx('createdAt')}>{board.createdAt}</span>
                             <div className={cx('action-btn')}>
-                                <button className={cx('edit-btn')} onClick={handleEditBoard}>
+                                <button
+                                    className={cx('edit-btn')}
+                                    onClick={() => toggleShowEditBoardModal(board.title)}
+                                >
                                     <BsPencil />
                                 </button>
                                 <button className={cx('delete-btn')} onClick={handleRemoveBoard}>
@@ -104,6 +117,7 @@ function Kanban() {
                 ))}
             </div>
             <CreateBoardModal show={showCreateBoardModal} onAction={handleActionCreateBoardModal} />
+            <EditBoardModal show={showEditBoardModal} title={editTitle} onAction={handleActionEditBoardModal} />
         </div>
     );
 }
