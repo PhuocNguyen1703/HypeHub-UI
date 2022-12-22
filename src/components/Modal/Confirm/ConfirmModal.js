@@ -21,6 +21,7 @@ function ConfirmModal({ show, title, content, onAction }) {
 
     const handleSave = () => {
         onAction(MODAL_ACTION_CONFIRM);
+        handleClose();
     };
 
     if (show) {

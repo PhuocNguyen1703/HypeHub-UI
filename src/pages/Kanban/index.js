@@ -3,11 +3,12 @@ import classNames from 'classnames/bind';
 import CreateBoardModal from '~/components/Modal/CreateBoard/CreateBoardModal';
 
 import styles from './Kanban.module.scss';
-import { MODAL_ACTION_CLOSE } from '~/utils/constants';
+import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '~/utils/constants';
 import { getAllBoard } from '~/api/kanbanApi';
 import { useSelector } from 'react-redux';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import EditBoardModal from '~/components/Modal/EditBoard/EditBoard';
+import ConfirmModal from '~/components/Modal/Confirm/ConfirmModal';
 
 const cx = classNames.bind(styles);
 
@@ -16,6 +17,8 @@ function Kanban() {
     const [showCreateBoardModal, setShowCreateBoardModal] = useState(false);
     const [showEditBoardModal, setShowEditBoardModal] = useState(false);
     const [editTitle, setEditTitle] = useState('');
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [removeBoardId, setRemoveBoardId] = useState();
     const [boards, setBoards] = useState([]);
     const boardList = [
         {
@@ -76,6 +79,10 @@ function Kanban() {
         if (type === MODAL_ACTION_CLOSE) return toggleShowCreateBoardModal();
     };
 
+    const handleChoseBoard = (boardId) => {
+        console.log(boardId);
+    };
+
     const toggleShowEditBoardModal = (title) => {
         setEditTitle(title);
         setShowEditBoardModal((prevState) => !prevState);
@@ -85,7 +92,15 @@ function Kanban() {
         if (type === MODAL_ACTION_CLOSE) return toggleShowEditBoardModal();
     };
 
-    const handleRemoveBoard = () => {};
+    const toggleShowConfirmModal = (boardId) => {
+        setRemoveBoardId(boardId);
+        setShowConfirmModal((prevState) => !prevState);
+    };
+
+    const handleConfirmModalAction = (type) => {
+        if (type === MODAL_ACTION_CLOSE) return toggleShowConfirmModal();
+        if (type === MODAL_ACTION_CONFIRM) return console.log(removeBoardId);
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -98,7 +113,7 @@ function Kanban() {
             <div className={cx('content')}>
                 {boardList.map((board, idx) => (
                     <div key={idx} className={cx('board')}>
-                        <span className={cx('title')}>{board.title}</span>
+                        <span className={cx('title')} onClick={() => handleChoseBoard(board.id)}>{board.title}</span>
                         <div className={cx('bottom')}>
                             <span className={cx('createdAt')}>{board.createdAt}</span>
                             <div className={cx('action-btn')}>
@@ -108,7 +123,7 @@ function Kanban() {
                                 >
                                     <BsPencil />
                                 </button>
-                                <button className={cx('delete-btn')} onClick={handleRemoveBoard}>
+                                <button className={cx('delete-btn')} onClick={() => toggleShowConfirmModal(board.id)}>
                                     <BsTrash />
                                 </button>
                             </div>
@@ -118,6 +133,12 @@ function Kanban() {
             </div>
             <CreateBoardModal show={showCreateBoardModal} onAction={handleActionCreateBoardModal} />
             <EditBoardModal show={showEditBoardModal} title={editTitle} onAction={handleActionEditBoardModal} />
+            <ConfirmModal
+                show={showConfirmModal}
+                title={'Remove board'}
+                content={`Are you sure you want to remove board !`}
+                onAction={handleConfirmModalAction}
+            />
         </div>
     );
 }

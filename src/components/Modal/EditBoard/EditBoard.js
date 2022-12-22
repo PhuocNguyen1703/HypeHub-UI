@@ -64,7 +64,7 @@ function EditBoardModal({ show, title, onAction }) {
                                     Cancel
                                 </button>
                                 <button className={cx('save-btn')} type="submit">
-                                    Save changes
+                                    Save Changes
                                 </button>
                             </footer>
                         </form>
