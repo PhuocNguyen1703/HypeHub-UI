@@ -11,6 +11,7 @@ import EditBoardModal from '~/components/Modal/EditBoard/EditBoard';
 import ConfirmModal from '~/components/Modal/Confirm/ConfirmModal';
 import { useLocation, useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
+import KanbanSkeleton from '~/layouts/components/Skeleton/Kanban/KanbanSkeleton';
 
 const cx = classNames.bind(styles);
 
@@ -151,7 +152,7 @@ function Kanban() {
                 </button>
                 <span className={cx('total-board')}>{boards.length} board</span>
             </div>
-            <div className={cx('content')}>
+            {/* <div className={cx('content')}>
                 {boards.map((board, idx) => (
                     <div key={idx} className={cx('board')}>
                         <span className={cx('title')} onClick={() => handleChoseBoard(board._id)}>
@@ -170,7 +171,8 @@ function Kanban() {
                         </div>
                     </div>
                 ))}
-            </div>
+            </div> */}
+            <KanbanSkeleton length={10} />
             <CreateBoardModal show={showCreateBoardModal} onAction={handleActionCreateBoardModal} />
             <EditBoardModal show={showEditBoardModal} board={editBoard} onAction={handleActionEditBoardModal} />
             <ConfirmModal
