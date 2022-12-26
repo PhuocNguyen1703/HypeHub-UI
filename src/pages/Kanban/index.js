@@ -70,9 +70,10 @@ function Kanban() {
     ];
 
     useEffect(() => {
-        getAllBoard(userId).then((boards) => {
-            setBoards(boards);
-        });
+        // getAllBoard(userId).then((boards) => {
+        //     setBoards(boards);
+        // });
+        setBoards(boardList);
     }, []);
 
     const toggleShowCreateBoardModal = () => {

@@ -108,13 +108,13 @@ function Board() {
     const { createKanbanItemModalIsOpen } = useSelector((state) => state.modal);
     const [board, setBoard] = useState({});
     const [columns, setColumns] = useState([]);
-    // const { boardId } = useParams();
+    const { boardId } = useParams();
 
     useEffect(() => {
         // const boardData = boards.find((board) => board.id === 'board-1');
         // setBoard(boardData);
         // setColumns(boardData.columns);
-        const boardId = '6384c275a4c4ecc29352cf68';
+        // const boardId = '6384c275a4c4ecc29352cf68';
         getBoardDetails(boardId).then((board) => {
             setBoard(board);
             setColumns(mapOrder(board.columns, board.columnOrder, '_id'));
