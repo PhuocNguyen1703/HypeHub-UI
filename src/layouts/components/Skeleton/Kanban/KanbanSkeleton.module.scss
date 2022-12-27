@@ -51,9 +51,9 @@
     overflow: hidden;
 }
 
-.title::after,
-.createdAt::after,
-.action-btn::after {
+.title::before,
+.createdAt::before,
+.action-btn::before {
     content: '';
     position: absolute;
     width: 100%;
@@ -64,7 +64,6 @@
     left: 0;
     background: linear-gradient(to right, transparent, var(--gray-alpha-10) 50%, transparent);
     animation: loading 2s ease-in-out infinite alternate;
-    z-index: 1;
 }
 
 @keyframes loading {

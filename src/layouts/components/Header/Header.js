@@ -39,6 +39,7 @@ import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
 import ContactManagement from '~/components/Modal/ContactManagement';
 import Notification from '~/components/Notification';
 import Register from '~/components/Modal/Register';
+import UserMenu from '~/components/UserMenu';
 
 const cx = classNames.bind(styles);
 
@@ -248,13 +249,21 @@ function Header() {
                     </div>
                     <CgMoreVerticalAlt className={cx('more-icon')} />
 
-                    <Menu
+                    <UserMenu
                         items={currentUser?.isAdmin ? adminMenu : userMenu}
                         onChange={handleMenuChange}
                         viewProfile={true}
                     >
                         <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="Nguyen  van A" />
-                    </Menu>
+                    </UserMenu>
+
+                    {/* <Menu
+                        items={currentUser?.isAdmin ? adminMenu : userMenu}
+                        onChange={handleMenuChange}
+                        viewProfile={true}
+                    >
+                        <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="Nguyen  van A" />
+                    </Menu> */}
                 </div>
             </div>
 
