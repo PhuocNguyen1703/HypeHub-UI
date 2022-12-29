@@ -14,7 +14,9 @@ const cx = classNames.bind(styles);
 
 function Register() {
     const [showPassword, setShowPassword] = useState(false);
-    const [showIcon, setShowIcon] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [showIconPassword, setShowIconPassword] = useState(false);
+    const [showIconConfirm, setShowIconConfirm] = useState(false);
     const { register, handleSubmit } = useForm({});
     const dispatch = useDispatch();
 
@@ -22,24 +24,45 @@ function Register() {
         dispatch(setCreateUserModalIsOpen(false));
     };
 
-    const handleChange = (e) => {
+    const handleChangePassword = (e) => {
         const passwordValue = e.target.value;
         if (!!passwordValue) {
-            setShowIcon(true);
+            setShowIconPassword(true);
         } else {
-            setShowIcon(false);
+            setShowIconPassword(false);
+        }
+    };
+
+    const handleChangeConfirmPassword = (e) => {
+        const confirmPasswordValue = e.target.value;
+        if (!!confirmPasswordValue) {
+            setShowIconConfirm(true);
+        } else {
+            setShowIconConfirm(false);
         }
     };
 
     const handleShowPassword = () => {
-        const inputEl = document.getElementById('password');
+        const inputPassword = document.getElementById('password');
 
-        if (inputEl.type === 'password') {
-            inputEl.type = 'text';
+        if (inputPassword.type === 'password') {
+            inputPassword.type = 'text';
             setShowPassword(true);
         } else {
-            inputEl.type = 'password';
+            inputPassword.type = 'password';
             setShowPassword(false);
+        }
+    };
+
+    const handleShowConfirmPassword = () => {
+        const inputConfirm = document.getElementById('confirm-password');
+
+        if (inputConfirm.type === 'password') {
+            inputConfirm.type = 'text';
+            setShowConfirmPassword(true);
+        } else {
+            inputConfirm.type = 'password';
+            setShowConfirmPassword(false);
         }
     };
 
@@ -59,38 +82,81 @@ function Register() {
                         </button>
                     </div>
                     <h6>Do it your way!</h6>
+                    <h3>Create new account</h3>
                     <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
-                        <h3>Create new account</h3>
-
                         <div className={cx('username')}>
                             <div className={cx('firstname')}>
                                 <input
+                                    className={cx('firstname-ipt')}
                                     type="text"
-                                    placeholder="First name"
                                     name="firstname"
-                                    {...register('firstName', { required: true })}
+                                    placeholder=" "
+                                    {...register('firstName')}
+                                    required
                                 />
+                                <label>First Name</label>
                             </div>
                             <div className={cx('lastname')}>
-                                <input type="text" placeholder="Last name" name="lastname" {...register('lastName')} />
+                                <input
+                                    className={cx('lastname-ipt')}
+                                    type="text"
+                                    name="lastname"
+                                    placeholder=" "
+                                    {...register('lastName')}
+                                    required
+                                />
+                                <label>Last Name</label>
                             </div>
                         </div>
+
                         <div className={cx('email')}>
-                            <input type="text" placeholder="Email" name="email" {...register('email')} />
+                            <input
+                                className={cx('email-ipt')}
+                                type="text"
+                                name="email"
+                                {...register('email')}
+                                required
+                            />
+                            <label>Email address</label>
                         </div>
+                        {/* <span className={cx('error')}>* It should be a valid email address !</span> */}
+
                         <div className={cx('password')}>
                             <input
+                                className={cx('password-ipt')}
                                 id="password"
                                 type="password"
-                                placeholder="Password"
                                 name="password"
                                 {...register('password')}
-                                onChange={handleChange}
+                                onChange={handleChangePassword}
+                                required
                             />
-
-                            {showIcon && (
+                            <label>Password</label>
+                            {showIconPassword && (
                                 <div className={cx('icon')} onClick={handleShowPassword}>
                                     {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                                </div>
+                            )}
+                        </div>
+                        {/* <span className={cx('error')}>
+                            * Password should be 8-16 characters and include at least 1 letter, 1 number and special
+                            character !
+                        </span> */}
+                        <div className={cx('password')}>
+                            <input
+                                id="confirm-password"
+                                className={cx('password-ipt')}
+                                type="password"
+                                name="confirm-password"
+                                {...register('confirmPassword')}
+                                onChange={handleChangeConfirmPassword}
+                                required
+                            />
+                            <label>Confirm Password</label>
+
+                            {showIconConfirm && (
+                                <div className={cx('icon')} onClick={handleShowConfirmPassword}>
+                                    {showConfirmPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
                                 </div>
                             )}
                         </div>
