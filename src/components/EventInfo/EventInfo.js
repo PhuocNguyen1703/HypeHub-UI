@@ -31,6 +31,7 @@ function EventInfo() {
 
     const handleCompleted = () => {
         setCompleted(completed === 'completed' ? 'uncompleted' : 'completed');
+        console.log(completed);
     };
 
     if (showEditForm) {

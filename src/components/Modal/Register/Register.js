@@ -15,21 +15,7 @@ const cx = classNames.bind(styles);
 function Register() {
     const [showPassword, setShowPassword] = useState(false);
     const [showIcon, setShowIcon] = useState(false);
-    const { register, handleSubmit } = useForm({
-        defaultValues: {
-            profile: {
-                fullName: '',
-                livesIn: '',
-                streetAddress: '',
-                email: '',
-                birth: '',
-                gender: '',
-                hashtag: '',
-                position: '',
-                phone: '',
-            },
-        },
-    });
+    const { register, handleSubmit } = useForm({});
     const dispatch = useDispatch();
 
     const handleCloseModal = () => {

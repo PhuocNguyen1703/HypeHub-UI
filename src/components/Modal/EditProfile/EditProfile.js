@@ -30,18 +30,7 @@ function EditProfile() {
     const dispatch = useDispatch();
     let axiosJWT = createAxios(currentUser, dispatch, updateSuccess);
 
-    const { register, handleSubmit } = useForm({
-        defaultValues: {
-            fullName: currentUser.fullName,
-            livesIn: currentUser.livesIn,
-            streetAddress: currentUser.streetAddress,
-            birth: currentUser.birth,
-            gender: currentUser.gender,
-            hashtag: currentUser.hashtag,
-            position: currentUser.position,
-            phone: currentUser.phone,
-        },
-    });
+    const { register, handleSubmit } = useForm({});
 
     const handleCancel = () => {
         dispatch(setEditProfileModalIsOpen(false));
@@ -95,7 +84,7 @@ function EditProfile() {
                                 placeholder={currentUser?.fullName}
                                 className={cx('input-field')}
                                 name="full-name"
-                                {...register('full-name')}
+                                {...register('fullName')}
                             />
                         </div>
                     </label>
@@ -110,7 +99,7 @@ function EditProfile() {
                                 placeholder={currentUser?.streetAddress}
                                 className={cx('input-field')}
                                 name="address"
-                                {...register('address')}
+                                {...register('streetAddress')}
                             />
                         </div>
                     </label>

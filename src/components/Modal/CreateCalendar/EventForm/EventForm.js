@@ -207,8 +207,9 @@ function EventForm() {
             calendarType: type,
             completed: false,
         };
-        await createCalendar(formData);
-        handleCancel();
+        console.log(formData);
+        // await createCalendar(formData);
+        // handleCancel();
     };
 
     return (

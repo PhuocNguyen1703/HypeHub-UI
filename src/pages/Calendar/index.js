@@ -47,19 +47,6 @@ function Calendar() {
         { icon: <BsTrash />, title: 'Deleted', path: '/calendar/deleted' },
     ];
 
-    useEffect(() => {
-        const getCalendars = async () => {
-            try {
-                const result = await getAllCalendar(currentUser?._id);
-                setCalendars(result.data);
-                console.log(result.data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getCalendars();
-    }, []);
-
     const events = [
         {
             type: 'Event',
@@ -296,6 +283,19 @@ function Calendar() {
         { title: 'Schedule' },
         { title: '4 days' },
     ];
+
+    useEffect(() => {
+        const getCalendars = async () => {
+            try {
+                const result = await getAllCalendar(currentUser?._id);
+                setCalendars(result.data);
+                console.log(result.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getCalendars();
+    }, []);
 
     useEffect(() => {
         setCurrentMonth(getMonth(monthIndex));

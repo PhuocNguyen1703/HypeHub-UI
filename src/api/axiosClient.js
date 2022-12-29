@@ -7,7 +7,7 @@ axios.defaults.baseURL = 'http://localhost:5000';
 //https://minato-corp.herokuapp.com
 const refreshToken = async () => {
     try {
-        const res = await axios.post('/auth/refresh');
+        const res = await axios.post('/v1/api/auth/refresh');
         return res.data;
     } catch (error) {
         console.log(error);
