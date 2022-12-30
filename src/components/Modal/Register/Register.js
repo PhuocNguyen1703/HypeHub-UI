@@ -117,7 +117,7 @@ function Register() {
                         <div className={cx('username')}>
                             <div className={cx('firstname')}>
                                 <input
-                                    className={cx('firstname-ipt')}
+                                    className={cx('firstname-ipt', errors.firstName ? 'error-ipt' : null)}
                                     type="text"
                                     name="firstname"
                                     placeholder=" "
@@ -127,7 +127,7 @@ function Register() {
                             </div>
                             <div className={cx('lastname')}>
                                 <input
-                                    className={cx('lastname-ipt')}
+                                    className={cx('lastname-ipt', errors.lastName ? 'error-ipt' : null)}
                                     type="text"
                                     name="lastname"
                                     placeholder=" "
@@ -157,7 +157,7 @@ function Register() {
 
                         <div className={cx('email')}>
                             <input
-                                className={cx('email-ipt')}
+                                className={cx('email-ipt', errors.email ? 'error-ipt' : null)}
                                 placeholder=" "
                                 type="text"
                                 name="email"
@@ -178,7 +178,7 @@ function Register() {
 
                         <div className={cx('password')}>
                             <input
-                                className={cx('password-ipt')}
+                                className={cx('password-ipt', errors.password ? 'error-ipt' : null)}
                                 id="password"
                                 type="password"
                                 name="password"
@@ -207,7 +207,7 @@ function Register() {
                         <div className={cx('password')}>
                             <input
                                 id="confirm-password"
-                                className={cx('password-ipt')}
+                                className={cx('password-ipt', errors.confirmPassword ? 'error-ipt' : null)}
                                 type="password"
                                 name="confirm-password"
                                 placeholder=" "
