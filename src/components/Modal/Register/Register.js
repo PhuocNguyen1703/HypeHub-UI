@@ -3,11 +3,13 @@ import classNames from 'classnames/bind';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import styles from './Register.module.scss';
 import logo from '~/assets/images/logo.svg';
 import { registerUser } from '~/api/authApi';
-import { BsEyeFill, BsEyeSlashFill, BsXLg } from 'react-icons/bs';
+import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill, BsXLg } from 'react-icons/bs';
 import { setCreateUserModalIsOpen } from '~/redux/Slice/modalSlice';
 
 const cx = classNames.bind(styles);
@@ -17,8 +19,34 @@ function Register() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [showIconPassword, setShowIconPassword] = useState(false);
     const [showIconConfirm, setShowIconConfirm] = useState(false);
-    const { register, handleSubmit } = useForm({});
     const dispatch = useDispatch();
+
+    const formSchema = yup.object().shape({
+        firstName: yup.string().required('Please enter your first name.'),
+        lastName: yup.string().required('Please enter your last name.'),
+        email: yup.string().required('Please enter your email.').email('Please enter a valid email address.'),
+        password: yup
+            .string()
+            .required('Please enter your password.')
+            .min(6, 'Please enter at least 8 characters.')
+            .matches(
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+                'Password should be at least 8 characters and include at least 1 Lowercase, 1 Uppercase, 1 number and special character.',
+            )
+            .test('Password has spaces', 'Password without spaces.', (value) => !/\s+/.test(value)),
+        confirmPassword: yup
+            .string()
+            .required('Please enter confirm password')
+            .oneOf([yup.ref('password')], 'Password does not match.'),
+    });
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm({
+        mode: 'onBlur',
+        resolver: yupResolver(formSchema),
+    });
 
     const handleCloseModal = () => {
         dispatch(setCreateUserModalIsOpen(false));
@@ -67,7 +95,9 @@ function Register() {
     };
 
     const onSubmit = (data) => {
-        registerUser(data, dispatch);
+        const { confirmPassword, ...otherData } = data;
+        // registerUser(data, dispatch);
+        console.log(otherData);
     };
 
     return (
@@ -92,7 +122,6 @@ function Register() {
                                     name="firstname"
                                     placeholder=" "
                                     {...register('firstName')}
-                                    required
                                 />
                                 <label>First Name</label>
                             </div>
@@ -103,23 +132,49 @@ function Register() {
                                     name="lastname"
                                     placeholder=" "
                                     {...register('lastName')}
-                                    required
                                 />
                                 <label>Last Name</label>
                             </div>
+                        </div>
+                        <div className={cx('error')}>
+                            {errors.firstName && (
+                                <p>
+                                    <span className={cx('icon-warning')}>
+                                        <BsExclamationTriangle />
+                                    </span>
+                                    {errors.firstName?.message}
+                                </p>
+                            )}
+                            {errors.lastName && (
+                                <p>
+                                    <span className={cx('icon-warning')}>
+                                        <BsExclamationTriangle />
+                                    </span>
+                                    {errors.lastName?.message}
+                                </p>
+                            )}
                         </div>
 
                         <div className={cx('email')}>
                             <input
                                 className={cx('email-ipt')}
+                                placeholder=" "
                                 type="text"
                                 name="email"
                                 {...register('email')}
-                                required
                             />
                             <label>Email address</label>
                         </div>
-                        {/* <span className={cx('error')}>* It should be a valid email address !</span> */}
+                        <span className={cx('error')}>
+                            {errors.email && (
+                                <>
+                                    <span className={cx('icon-warning')}>
+                                        <BsExclamationTriangle />
+                                    </span>
+                                    {errors.email?.message}
+                                </>
+                            )}
+                        </span>
 
                         <div className={cx('password')}>
                             <input
@@ -127,9 +182,9 @@ function Register() {
                                 id="password"
                                 type="password"
                                 name="password"
+                                placeholder=" "
                                 {...register('password')}
                                 onChange={handleChangePassword}
-                                required
                             />
                             <label>Password</label>
                             {showIconPassword && (
@@ -138,19 +193,26 @@ function Register() {
                                 </div>
                             )}
                         </div>
-                        {/* <span className={cx('error')}>
-                            * Password should be 8-16 characters and include at least 1 letter, 1 number and special
-                            character !
-                        </span> */}
+                        <span className={cx('error')}>
+                            {errors.password && (
+                                <>
+                                    <span className={cx('icon-warning')}>
+                                        <BsExclamationTriangle />
+                                    </span>
+                                    {errors.password?.message}
+                                </>
+                            )}
+                        </span>
+
                         <div className={cx('password')}>
                             <input
                                 id="confirm-password"
                                 className={cx('password-ipt')}
                                 type="password"
                                 name="confirm-password"
+                                placeholder=" "
                                 {...register('confirmPassword')}
                                 onChange={handleChangeConfirmPassword}
-                                required
                             />
                             <label>Confirm Password</label>
 
@@ -160,6 +222,16 @@ function Register() {
                                 </div>
                             )}
                         </div>
+                        <span className={cx('error')}>
+                            {errors.confirmPassword && (
+                                <>
+                                    <span className={cx('icon-warning')}>
+                                        <BsExclamationTriangle />
+                                    </span>
+                                    {errors.confirmPassword?.message}
+                                </>
+                            )}
+                        </span>
                         <button type="submit" className={cx('register-btn')}>
                             Create account
                         </button>
