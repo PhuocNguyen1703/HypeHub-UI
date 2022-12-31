@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { RiLoader4Fill } from 'react-icons/ri';
 
 const cx = classNames.bind(styles);
 
@@ -109,7 +110,7 @@ function Login() {
                         />
                         <label>Password</label>
                         {showIcon && (
-                            <div className={cx('icon')} onClick={handleShowPassword}>
+                            <div className={cx('icon-eye')} onClick={handleShowPassword}>
                                 {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
                             </div>
                         )}
@@ -135,8 +136,8 @@ function Login() {
                         )}
                     </span>
 
-                    <button className={cx('login-btn')} type="submit">
-                        Login
+                    <button disabled={isSubmitting} className={cx('login-btn')} type="submit">
+                        {isSubmitting ? <RiLoader4Fill className={cx('icon-loading')} /> : 'Login'}
                     </button>
                 </form>
             </div>

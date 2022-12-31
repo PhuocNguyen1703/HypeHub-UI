@@ -80,6 +80,7 @@ h3 {
         left: 10px;
         top: 50%;
         font-weight: 600;
+        border-radius: 6px;
         transform: translateY(-50%);
         user-select: none;
         pointer-events: none;
@@ -122,7 +123,7 @@ h3 {
     border: 1px solid var(--red);
 }
 
-.icon {
+.icon-eye {
     position: absolute;
     top: 50%;
     right: 5px;
@@ -171,5 +172,16 @@ h3 {
 
     &:hover {
         opacity: 1;
+    }
+}
+
+.icon-loading {
+    font-size: 2rem;
+    animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(360deg);
     }
 }
