@@ -41,7 +41,7 @@ export const createAxios = (user, dispatch, stateSuccess) => {
     //Add a response interceptor
     axiosInstance.interceptors.response.use(
         function (response) {
-            return response;
+            return response.data;
         },
         function (error) {
             return Promise.reject(error);

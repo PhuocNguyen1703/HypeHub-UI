@@ -55,55 +55,83 @@
     }
 }
 
+h3 {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 3rem;
+    color: var(--black);
+    user-select: none;
+}
+
 .form {
     display: flex;
     flex-direction: column;
     width: 350px;
-    margin-top: 20px;
-    gap: 15px;
+}
 
-    h3 {
-        margin-bottom: 15px;
-        text-align: center;
-        font-size: 3rem;
-        color: var(--black);
+.email,
+.password {
+    position: relative;
+    width: 100%;
+    margin-top: 16px;
+
+    label {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        font-weight: 600;
+        transform: translateY(-50%);
         user-select: none;
+        pointer-events: none;
+        color: var(--gray);
+        transition: 0.25s ease;
     }
 }
 
-.input-email,
-.input-password {
-    display: flex;
-    align-items: center;
+.email-ipt,
+.password-ipt {
+    font-size: 1.6rem;
+    color: var(--text-color);
     width: 100%;
-    height: 50px;
-    padding: 0 10px;
+    height: 46px;
+    padding: 10px;
     border-radius: 8px;
-    border: 1px solid var(--gray-alpha-20);
-    background-color: var(--gray-alpha-10);
+    border: 1px solid var(--gray-alpha-40);
+    transition: 0.25s ease;
 
-    input {
-        flex: 1;
-        height: 100%;
-        font-size: 1.6rem;
-        color: var(--black);
-    }
-
-    &:focus-within {
+    &:focus {
         border: 1px solid var(--blue);
     }
 
-    &:focus {
-        border: 1px solid var(--gray-alpha-20);
+    &:not(:placeholder-shown) + label,
+    &:focus + label {
+        display: inline-block;
+        top: 0;
+        left: 10px;
+        padding: 0 10px;
+        background-color: var(--white);
+        color: var(--blue);
     }
 }
 
+.password-ipt {
+    padding-right: 40px;
+}
+
+.error-ipt {
+    border: 1px solid var(--red);
+}
+
 .icon {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
     padding: 5px;
-    margin-left: 10px;
     border-radius: 50%;
+    color: var(--gray);
     cursor: pointer;
 
     &:hover {
@@ -112,7 +140,16 @@
 }
 
 .error {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
     color: var(--red);
+}
+
+.icon-warning {
+    font-size: 1.2rem;
+    margin-right: 4px;
 }
 
 .login-btn {
@@ -135,8 +172,4 @@
     &:hover {
         opacity: 1;
     }
-}
-
-.error-input {
-    border: 1px solid var(--red);
 }

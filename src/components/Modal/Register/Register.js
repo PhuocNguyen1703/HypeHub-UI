@@ -97,6 +97,7 @@ function Register() {
 
     const onSubmit = async (data) => {
         const { confirmPassword, ...otherData } = data;
+
         await registerUser(data, dispatch);
         console.log(otherData);
     };
