@@ -11,6 +11,7 @@ import logo from '~/assets/images/logo.svg';
 import { registerUser } from '~/api/authApi';
 import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill, BsXLg } from 'react-icons/bs';
 import { setCreateUserModalIsOpen } from '~/redux/Slice/modalSlice';
+import { RiLoader4Fill } from 'react-icons/ri';
 
 const cx = classNames.bind(styles);
 
@@ -41,7 +42,7 @@ function Register() {
     });
     const {
         register,
-        formState: { errors },
+        formState: { errors, isSubmitting },
         handleSubmit,
     } = useForm({
         mode: 'onBlur',
@@ -94,9 +95,9 @@ function Register() {
         }
     };
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         const { confirmPassword, ...otherData } = data;
-        // registerUser(data, dispatch);
+        await registerUser(data, dispatch);
         console.log(otherData);
     };
 
@@ -232,8 +233,8 @@ function Register() {
                                 </>
                             )}
                         </span>
-                        <button type="submit" className={cx('register-btn')}>
-                            Create account
+                        <button disabled={isSubmitting} type="submit" className={cx('register-btn')}>
+                            {isSubmitting ? <RiLoader4Fill className={cx('icon-loading')} /> : 'Create account'}
                         </button>
                     </form>
                 </div>

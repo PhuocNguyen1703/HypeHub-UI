@@ -175,6 +175,9 @@ h3 {
 }
 
 .register-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 40px;
     width: 180px;
     margin-top: 20px;
@@ -191,5 +194,16 @@ h3 {
 
     &:hover {
         opacity: 1;
+    }
+}
+
+.icon-loading {
+    font-size: 2rem;
+    animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(360deg);
     }
 }
