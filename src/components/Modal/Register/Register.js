@@ -12,15 +12,20 @@ import { registerUser } from '~/api/authApi';
 import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill, BsXLg } from 'react-icons/bs';
 import { setCreateUserModalIsOpen } from '~/redux/Slice/modalSlice';
 import { RiLoader4Fill } from 'react-icons/ri';
+import { createAxios } from '~/api/axiosClient';
+import { useSelector } from 'react-redux';
+import { registerSuccess } from '~/redux/Slice/authSlice';
 
 const cx = classNames.bind(styles);
 
 function Register() {
+    const { currentUser } = useSelector((state) => state.auth.login);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [showIconPassword, setShowIconPassword] = useState(false);
     const [showIconConfirm, setShowIconConfirm] = useState(false);
     const dispatch = useDispatch();
+    let axiosJWT = createAxios(currentUser, dispatch, registerSuccess);
 
     const formSchema = yup.object().shape({
         firstName: yup.string().required('Please enter your first name.'),
@@ -98,8 +103,11 @@ function Register() {
     const onSubmit = async (data) => {
         const { confirmPassword, ...otherData } = data;
 
-        await registerUser(data, dispatch);
+        const result = await registerUser(otherData, dispatch, currentUser?.accessToken, axiosJWT);
         console.log(otherData);
+        if (result?.errors) {
+            console.log(result.errors);
+        }
     };
 
     return (

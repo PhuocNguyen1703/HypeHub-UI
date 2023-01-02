@@ -24,11 +24,13 @@ export const loginUser = async (user, dispatch, navigate) => {
     }
 };
 
-export const registerUser = async (user, dispatch) => {
+export const registerUser = async (user, dispatch, accessToken, axiosJWT) => {
     dispatch(registerStart());
 
     try {
-        await axios.post('v1/api/auth/register', user);
+        await axiosJWT.post('v1/api/users/register', user, {
+            headers: { token: `Bearer ${accessToken}` },
+        });
         dispatch(registerSuccess());
     } catch (error) {
         dispatch(registerFailed());
