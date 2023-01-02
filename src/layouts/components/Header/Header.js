@@ -26,20 +26,14 @@ import { logOutSuccess } from '~/redux/Slice/authSlice';
 import { createAxios } from '~/api/axiosClient';
 import Modal from '~/components/Modal';
 import Setting from '../Setting';
-import {
-    setContactManagementModalIsOpen,
-    setCreateUserModalIsOpen,
-    setFaceRecognitionModalIsOpen,
-    setFaceRecognitionTitle,
-    setNotificationModalIsOpen,
-    setSettingModalIsOpen,
-} from '~/redux/Slice/modalSlice';
+
 import Checkin from '~/components/Modal/TimeKeeping/FaceRecognition';
 import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
 import ContactManagement from '~/components/Modal/ContactManagement';
 import Notification from '~/components/Notification';
 import Register from '~/components/Modal/Register';
 import UserMenu from '~/components/UserMenu';
+import FaceRecognition from '~/components/Modal/TimeKeeping/FaceRecognition';
 
 const cx = classNames.bind(styles);
 
@@ -47,14 +41,13 @@ function Header() {
     const { currentUser } = useSelector((state) => state.auth.login);
     const { sidebarCollapsed } = useSelector((state) => state.layout);
     const [isFullScreen, setIsFullScreen] = useState(false);
+    const [showContactModal, setShowContactModal] = useState(false);
+    const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [showNotificationModal, setShowNotificationModal] = useState(false);
+    const [showSettingModal, setShowSettingModal] = useState(false);
+    const [showFaceRecognitionModal, setShowFaceRecognitionModal] = useState(false);
+    const [faceRecognitionTitle, setFaceRecognitionTitle] = useState('');
     const { navbarColor } = useSelector((state) => state.theme);
-    const {
-        createUserModalIsOpen,
-        notificationModalIsOpen,
-        settingModalIsOpen,
-        faceRecognitionModalIsOpen,
-        contactManagementModalIsOpen,
-    } = useSelector((state) => state.modal);
     const accessToken = currentUser?.accessToken;
     const id = currentUser?._id;
     const dispatch = useDispatch();
@@ -133,38 +126,35 @@ function Header() {
         }
     });
 
-    const handleMenuChange = (menuItem) => {
-        switch (menuItem.title) {
-            case 'Logout':
-                logOutUser(dispatch, id, navigate, accessToken, axiosJWT);
-                break;
-            case 'Settings':
-                dispatch(setSettingModalIsOpen(true));
-                break;
-            case 'Check in':
-                dispatch(setFaceRecognitionTitle('Check in'));
-                dispatch(setFaceRecognitionModalIsOpen(true));
-                break;
-            case 'Check out':
-                dispatch(setFaceRecognitionTitle('Check out'));
-                dispatch(setFaceRecognitionModalIsOpen(true));
-                break;
-            case 'Create user':
-                dispatch(setCreateUserModalIsOpen(true));
-                break;
-
-            default:
-                break;
-        }
+    const toggleShowRegisterModal = () => {
+        setShowRegisterModal(true);
     };
 
-    const handleNotification = () => {
-        dispatch(setNotificationModalIsOpen(true));
+    const handleMenuChange = (title) => {
+        if (title === 'Logout') logOutUser(dispatch, id, navigate, accessToken, axiosJWT);
+
+        if (title === 'Settings') setShowSettingModal(true);
+
+        if (title === 'Check in') {
+            setFaceRecognitionTitle('Check in');
+            setShowFaceRecognitionModal(true);
+        }
+
+        if (title === 'Check out') {
+            setFaceRecognitionTitle('Check out');
+            setShowFaceRecognitionModal(true);
+        }
+
+        if (title === 'Create user') toggleShowRegisterModal();
+    };
+
+    const handleShowNotificationModal = () => {
+        setShowNotificationModal(true);
     };
 
     const handleOpenFaceModal = () => {
-        dispatch(setFaceRecognitionTitle('Sign up'));
-        dispatch(setFaceRecognitionModalIsOpen(true));
+        setFaceRecognitionTitle('Sign up');
+        setShowFaceRecognitionModal(true);
     };
 
     const handleIsShowSidebar = () => {
@@ -172,7 +162,7 @@ function Header() {
     };
 
     const handleContactManagement = () => {
-        dispatch(setContactManagementModalIsOpen(true));
+        setShowContactModal(true);
     };
 
     return (
@@ -216,7 +206,7 @@ function Header() {
                         </div>
                         <div className={cx('notification')}>
                             <Tippy delay={[0, 50]} interactive content="Notification">
-                                <button className={cx('action-btn')} onClick={handleNotification}>
+                                <button className={cx('action-btn')} onClick={handleShowNotificationModal}>
                                     <BsBell className={cx('icon')} />
                                     <span className={cx('badge')}></span>
                                 </button>
@@ -256,44 +246,24 @@ function Header() {
                     >
                         <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="Nguyen  van A" />
                     </UserMenu>
-
-                    {/* <Menu
-                        items={currentUser?.isAdmin ? adminMenu : userMenu}
-                        onChange={handleMenuChange}
-                        viewProfile={true}
-                    >
-                        <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="Nguyen  van A" />
-                    </Menu> */}
                 </div>
             </div>
 
-            {createUserModalIsOpen && (
-                <Modal>
-                    <Register />
-                </Modal>
+            <Register show={showRegisterModal} setShowRegisterModal={setShowRegisterModal} />
+
+            <Notification show={showNotificationModal} setShowNotificationModal={setShowNotificationModal} />
+
+            <Setting show={showSettingModal} setShowSettingModal={setShowSettingModal} />
+
+            {showFaceRecognitionModal && (
+                <FaceRecognition
+                    show={showFaceRecognitionModal}
+                    title={faceRecognitionTitle}
+                    setShowFaceRecognitionModal={setShowFaceRecognitionModal}
+                />
             )}
 
-            {notificationModalIsOpen && (
-                <Modal>
-                    <Notification />
-                </Modal>
-            )}
-
-            {settingModalIsOpen && (
-                <Modal>
-                    <Setting />
-                </Modal>
-            )}
-            {faceRecognitionModalIsOpen && (
-                <Modal>
-                    <Checkin />
-                </Modal>
-            )}
-            {contactManagementModalIsOpen && (
-                <Modal>
-                    <ContactManagement />
-                </Modal>
-            )}
+            <ContactManagement show={showContactModal} setShowContactModal={setShowContactModal} />
         </div>
     );
 }

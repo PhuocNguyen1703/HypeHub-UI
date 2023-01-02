@@ -15,10 +15,11 @@ import { RiLoader4Fill } from 'react-icons/ri';
 import { createAxios } from '~/api/axiosClient';
 import { useSelector } from 'react-redux';
 import { registerSuccess } from '~/redux/Slice/authSlice';
+import Modal from '../Modal';
 
 const cx = classNames.bind(styles);
 
-function Register() {
+function Register({ show, setShowRegisterModal }) {
     const { currentUser } = useSelector((state) => state.auth.login);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -55,7 +56,8 @@ function Register() {
     });
 
     const handleCloseModal = () => {
-        dispatch(setCreateUserModalIsOpen(false));
+        // dispatch(setCreateUserModalIsOpen(false));
+        setShowRegisterModal(false);
     };
 
     const handleChangePassword = (e) => {
@@ -109,147 +111,154 @@ function Register() {
             console.log(result.errors);
         }
     };
-
-    return (
-        <AnimatePresence>
-            <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
-                <div className={cx('register-form')}>
-                    <div className={cx('header')}>
-                        <img className={cx('logo')} src={logo} alt="logo" />
-                        <h1>Minato</h1>
-                        <button className={cx('close-btn')} onClick={handleCloseModal}>
-                            <BsXLg />
-                        </button>
-                    </div>
-                    <h6>Do it your way!</h6>
-                    <h3>Create new account</h3>
-                    <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
-                        <div className={cx('username')}>
-                            <div className={cx('firstname')}>
-                                <input
-                                    className={cx('firstname-ipt', errors.firstName ? 'error-ipt' : null)}
-                                    type="text"
-                                    name="firstname"
-                                    placeholder=" "
-                                    {...register('firstName')}
-                                />
-                                <label>First Name</label>
+    if (show) {
+        return (
+            <AnimatePresence>
+                <Modal>
+                    <motion.div
+                        initial={{ x: '-50%', y: '-50%', scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className={cx('wrapper')}
+                    >
+                        <div className={cx('register-form')}>
+                            <div className={cx('header')}>
+                                <img className={cx('logo')} src={logo} alt="logo" />
+                                <h1>Minato</h1>
+                                <button className={cx('close-btn')} onClick={handleCloseModal}>
+                                    <BsXLg />
+                                </button>
                             </div>
-                            <div className={cx('lastname')}>
-                                <input
-                                    className={cx('lastname-ipt', errors.lastName ? 'error-ipt' : null)}
-                                    type="text"
-                                    name="lastname"
-                                    placeholder=" "
-                                    {...register('lastName')}
-                                />
-                                <label>Last Name</label>
-                            </div>
-                        </div>
-                        <div className={cx('error')}>
-                            {errors.firstName && (
-                                <p>
-                                    <span className={cx('icon-warning')}>
-                                        <BsExclamationTriangle />
-                                    </span>
-                                    {errors.firstName?.message}
-                                </p>
-                            )}
-                            {errors.lastName && (
-                                <p>
-                                    <span className={cx('icon-warning')}>
-                                        <BsExclamationTriangle />
-                                    </span>
-                                    {errors.lastName?.message}
-                                </p>
-                            )}
-                        </div>
-
-                        <div className={cx('email')}>
-                            <input
-                                className={cx('email-ipt', errors.email ? 'error-ipt' : null)}
-                                placeholder=" "
-                                type="text"
-                                name="email"
-                                {...register('email')}
-                            />
-                            <label>Email address</label>
-                        </div>
-                        <span className={cx('error')}>
-                            {errors.email && (
-                                <>
-                                    <span className={cx('icon-warning')}>
-                                        <BsExclamationTriangle />
-                                    </span>
-                                    {errors.email?.message}
-                                </>
-                            )}
-                        </span>
-
-                        <div className={cx('password')}>
-                            <input
-                                className={cx('password-ipt', errors.password ? 'error-ipt' : null)}
-                                id="password"
-                                type="password"
-                                name="password"
-                                placeholder=" "
-                                {...register('password')}
-                                onChange={handleChangePassword}
-                            />
-                            <label>Password</label>
-                            {showIconPassword && (
-                                <div className={cx('icon')} onClick={handleShowPassword}>
-                                    {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                            <h6>Do it your way!</h6>
+                            <h3>Create new account</h3>
+                            <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
+                                <div className={cx('username')}>
+                                    <div className={cx('firstname')}>
+                                        <input
+                                            className={cx('firstname-ipt', errors.firstName ? 'error-ipt' : null)}
+                                            type="text"
+                                            name="firstname"
+                                            placeholder=" "
+                                            {...register('firstName')}
+                                        />
+                                        <label>First Name</label>
+                                    </div>
+                                    <div className={cx('lastname')}>
+                                        <input
+                                            className={cx('lastname-ipt', errors.lastName ? 'error-ipt' : null)}
+                                            type="text"
+                                            name="lastname"
+                                            placeholder=" "
+                                            {...register('lastName')}
+                                        />
+                                        <label>Last Name</label>
+                                    </div>
                                 </div>
-                            )}
-                        </div>
-                        <span className={cx('error')}>
-                            {errors.password && (
-                                <>
-                                    <span className={cx('icon-warning')}>
-                                        <BsExclamationTriangle />
-                                    </span>
-                                    {errors.password?.message}
-                                </>
-                            )}
-                        </span>
-
-                        <div className={cx('password')}>
-                            <input
-                                id="confirm-password"
-                                className={cx('password-ipt', errors.confirmPassword ? 'error-ipt' : null)}
-                                type="password"
-                                name="confirm-password"
-                                placeholder=" "
-                                {...register('confirmPassword')}
-                                onChange={handleChangeConfirmPassword}
-                            />
-                            <label>Confirm Password</label>
-
-                            {showIconConfirm && (
-                                <div className={cx('icon')} onClick={handleShowConfirmPassword}>
-                                    {showConfirmPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                                <div className={cx('error')}>
+                                    {errors.firstName && (
+                                        <p>
+                                            <span className={cx('icon-warning')}>
+                                                <BsExclamationTriangle />
+                                            </span>
+                                            {errors.firstName?.message}
+                                        </p>
+                                    )}
+                                    {errors.lastName && (
+                                        <p>
+                                            <span className={cx('icon-warning')}>
+                                                <BsExclamationTriangle />
+                                            </span>
+                                            {errors.lastName?.message}
+                                        </p>
+                                    )}
                                 </div>
-                            )}
+
+                                <div className={cx('email')}>
+                                    <input
+                                        className={cx('email-ipt', errors.email ? 'error-ipt' : null)}
+                                        placeholder=" "
+                                        type="text"
+                                        name="email"
+                                        {...register('email')}
+                                    />
+                                    <label>Email address</label>
+                                </div>
+                                <span className={cx('error')}>
+                                    {errors.email && (
+                                        <>
+                                            <span className={cx('icon-warning')}>
+                                                <BsExclamationTriangle />
+                                            </span>
+                                            {errors.email?.message}
+                                        </>
+                                    )}
+                                </span>
+
+                                <div className={cx('password')}>
+                                    <input
+                                        className={cx('password-ipt', errors.password ? 'error-ipt' : null)}
+                                        id="password"
+                                        type="password"
+                                        name="password"
+                                        placeholder=" "
+                                        {...register('password')}
+                                        onChange={handleChangePassword}
+                                    />
+                                    <label>Password</label>
+                                    {showIconPassword && (
+                                        <div className={cx('icon')} onClick={handleShowPassword}>
+                                            {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                                        </div>
+                                    )}
+                                </div>
+                                <span className={cx('error')}>
+                                    {errors.password && (
+                                        <>
+                                            <span className={cx('icon-warning')}>
+                                                <BsExclamationTriangle />
+                                            </span>
+                                            {errors.password?.message}
+                                        </>
+                                    )}
+                                </span>
+
+                                <div className={cx('password')}>
+                                    <input
+                                        id="confirm-password"
+                                        className={cx('password-ipt', errors.confirmPassword ? 'error-ipt' : null)}
+                                        type="password"
+                                        name="confirm-password"
+                                        placeholder=" "
+                                        {...register('confirmPassword')}
+                                        onChange={handleChangeConfirmPassword}
+                                    />
+                                    <label>Confirm Password</label>
+
+                                    {showIconConfirm && (
+                                        <div className={cx('icon')} onClick={handleShowConfirmPassword}>
+                                            {showConfirmPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                                        </div>
+                                    )}
+                                </div>
+                                <span className={cx('error')}>
+                                    {errors.confirmPassword && (
+                                        <>
+                                            <span className={cx('icon-warning')}>
+                                                <BsExclamationTriangle />
+                                            </span>
+                                            {errors.confirmPassword?.message}
+                                        </>
+                                    )}
+                                </span>
+                                <button disabled={isSubmitting} type="submit" className={cx('register-btn')}>
+                                    {isSubmitting ? <RiLoader4Fill className={cx('icon-loading')} /> : 'Create account'}
+                                </button>
+                            </form>
                         </div>
-                        <span className={cx('error')}>
-                            {errors.confirmPassword && (
-                                <>
-                                    <span className={cx('icon-warning')}>
-                                        <BsExclamationTriangle />
-                                    </span>
-                                    {errors.confirmPassword?.message}
-                                </>
-                            )}
-                        </span>
-                        <button disabled={isSubmitting} type="submit" className={cx('register-btn')}>
-                            {isSubmitting ? <RiLoader4Fill className={cx('icon-loading')} /> : 'Create account'}
-                        </button>
-                    </form>
-                </div>
-            </motion.div>
-        </AnimatePresence>
-    );
+                    </motion.div>
+                </Modal>
+            </AnimatePresence>
+        );
+    }
 }
 
 export default Register;

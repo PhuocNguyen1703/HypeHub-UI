@@ -14,14 +14,14 @@ import { useSelector } from 'react-redux';
 import { updateUserFaceId } from '~/api/userApi';
 import { createAxios } from '~/api/axiosClient';
 import { updateSuccess } from '~/redux/Slice/authSlice';
+import Modal from '../../Modal';
 
 const cx = classNames.bind(styles);
 
-function Checkin() {
+function FaceRecognition({ show, title, setShowFaceRecognitionModal }) {
     let faceioInstance = null;
-    const { faceRecognitionTitle } = useSelector((state) => state.modal);
     const { currentUser } = useSelector((state) => state.auth.login);
-    const { _id, accessToken, faceId } = currentUser;
+    const { _id, accessToken } = currentUser;
     const dispatch = useDispatch();
     let axiosJWT = createAxios(currentUser, dispatch, updateSuccess);
 
@@ -39,17 +39,20 @@ function Checkin() {
 
     const faceIoScriptLoaded = () => {
         if (faceIO && !faceioInstance) {
-            faceioInstance = new faceIO('fioadeb7');
+            faceioInstance = new faceIO('fioad997');
         }
     };
 
     const closeModal = () => {
-        dispatch(setFaceRecognitionModalIsOpen(false));
+        // dispatch(setFaceRecognitionModalIsOpen(false));
+        setShowFaceRecognitionModal(false);
         window.location.reload();
     };
 
     const faceRegistration = async () => {
         try {
+            console.log('ok');
+
             const userInfo = await faceioInstance.enroll({
                 locate: 'auto',
                 payload: {
@@ -58,13 +61,14 @@ function Checkin() {
                 },
             });
             const data = { _id: _id, faceId: userInfo.facialId };
-            updateUserFaceId(data, _id, dispatch, accessToken, axiosJWT);
-            dispatch(setFaceRecognitionModalIsOpen(false));
-            window.location.reload();
+            console.log(data);
+            // updateUserFaceId(data, _id, dispatch, accessToken, axiosJWT);
+            // window.location.reload();
         } catch (errorCode) {
+            console.log('error');
             handleError(errorCode);
-            dispatch(setFaceRecognitionModalIsOpen(false));
-            window.location.reload();
+            // dispatch(setFaceRecognitionModalIsOpen(false));
+            // window.location.reload();
         }
     };
 
@@ -160,31 +164,39 @@ function Checkin() {
         }
     };
 
-    return (
-        <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
-            <header className={cx('header')}>
-                <span className={cx('title')}>{faceRecognitionTitle}</span>
-                <div>
-                    <Tippy delay={[0, 20]} interactive content="Close">
-                        <button className={cx('close-btn')} onClick={closeModal}>
-                            <BsXLg />
-                        </button>
-                    </Tippy>
-                </div>
-            </header>
-            <div className={cx('container')}>
-                <div className={cx('content')}>
-                    <img src={images.faceRecognition} alt="faceRecognition" />
-                </div>
-                <button
-                    className={cx('recognition-btn')}
-                    onClick={faceRecognitionTitle === 'Sign up' ? faceRegistration : faceRecognition}
+    if (show) {
+        return (
+            <Modal>
+                <motion.div
+                    initial={{ x: '-50%', y: '-50%', scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className={cx('wrapper')}
                 >
-                    Face Recognition
-                </button>
-            </div>
-        </motion.div>
-    );
+                    <header className={cx('header')}>
+                        <span className={cx('title')}>{title}</span>
+                        <div>
+                            <Tippy delay={[0, 20]} interactive content="Close">
+                                <button className={cx('close-btn')} onClick={closeModal}>
+                                    <BsXLg />
+                                </button>
+                            </Tippy>
+                        </div>
+                    </header>
+                    <div className={cx('container')}>
+                        <div className={cx('content')}>
+                            <img src={images.faceRecognition} alt="faceRecognition" />
+                        </div>
+                        <button
+                            className={cx('recognition-btn')}
+                            onClick={title === 'Sign up' ? faceRegistration : faceRecognition}
+                        >
+                            Face Recognition
+                        </button>
+                    </div>
+                </motion.div>
+            </Modal>
+        );
+    }
 }
 
-export default Checkin;
+export default FaceRecognition;

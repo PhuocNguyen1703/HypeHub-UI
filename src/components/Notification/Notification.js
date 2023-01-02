@@ -10,11 +10,12 @@ import { useSelector } from 'react-redux';
 import Image from '../Image';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import Modal from '../Modal';
 
 const cx = classNames.bind(styles);
 dayjs.extend(relativeTime);
 
-function Notification() {
+function Notification({ show, setShowNotificationModal }) {
     const { notificationModalIsOpen } = useSelector((state) => state.modal);
     const [isAll, setIsAll] = useState(true);
     const [isCompany, setIsCompany] = useState(false);
@@ -165,7 +166,7 @@ function Notification() {
     ];
 
     const handleCloseModal = () => {
-        dispatch(setNotificationModalIsOpen(false));
+        setShowNotificationModal(false);
     };
 
     const handleAll = () => {
@@ -186,42 +187,46 @@ function Notification() {
         setIsPersonal(true);
     };
 
-    return (
-        <motion.div animate={{ width: notificationModalIsOpen ? '400px' : '0' }} className={cx('wrapper')}>
-            <header className={cx('header')}>
-                <div className={cx('title')}>Notifications</div>
-                <button className={cx('close-btn')} onClick={handleCloseModal}>
-                    <BsXLg />
-                </button>
-                <span className={cx('mark-all-as-read')}>Mark all as read</span>
-            </header>
-            <nav className={cx('navbar')}>
-                <span className={cx('all', isAll && 'active')} onClick={handleAll}>
-                    All
-                </span>
-                <span className={cx('company', isCompany && 'active')} onClick={handleCompany}>
-                    Company
-                </span>
-                <span className={cx('personal', isPersonal && 'active')} onClick={handlePersonal}>
-                    Personal
-                </span>
-            </nav>
-            <div className={cx('container')}>
-                {notificationItem.map((item, idx) => (
-                    <div className={cx('item', item?.isWatch ? 'watched' : '')} key={idx}>
-                        <Image src={item?.avatar} className={cx('avatar')} alt="avatar" />
-                        <div className={cx('notification')}>
-                            <p className={cx('content')}>
-                                <strong className={cx('name')}>{item?.fullName}</strong>
-                                {item?.content}
-                            </p>
-                            <span className={cx('time')}>{dayjs(item?.createAt).fromNow()}</span>
-                        </div>
+    if (show) {
+        return (
+            <Modal>
+                <motion.div animate={{ width: show ? '400px' : '0' }} className={cx('wrapper')}>
+                    <header className={cx('header')}>
+                        <div className={cx('title')}>Notifications</div>
+                        <button className={cx('close-btn')} onClick={handleCloseModal}>
+                            <BsXLg />
+                        </button>
+                        <span className={cx('mark-all-as-read')}>Mark all as read</span>
+                    </header>
+                    <nav className={cx('navbar')}>
+                        <span className={cx('all', isAll && 'active')} onClick={handleAll}>
+                            All
+                        </span>
+                        <span className={cx('company', isCompany && 'active')} onClick={handleCompany}>
+                            Company
+                        </span>
+                        <span className={cx('personal', isPersonal && 'active')} onClick={handlePersonal}>
+                            Personal
+                        </span>
+                    </nav>
+                    <div className={cx('container')}>
+                        {notificationItem.map((item, idx) => (
+                            <div className={cx('item', item?.isWatch ? 'watched' : '')} key={idx}>
+                                <Image src={item?.avatar} className={cx('avatar')} alt="avatar" />
+                                <div className={cx('notification')}>
+                                    <p className={cx('content')}>
+                                        <strong className={cx('name')}>{item?.fullName}</strong>
+                                        {item?.content}
+                                    </p>
+                                    <span className={cx('time')}>{dayjs(item?.createAt).fromNow()}</span>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-        </motion.div>
-    );
+                </motion.div>
+            </Modal>
+        );
+    }
 }
 
 export default Notification;

@@ -46,7 +46,7 @@ function UserMenu({ children, items = [], onChange, viewProfile = false }) {
                 if (isParent) {
                     setHistory((prev) => [...prev, item.children]);
                 } else {
-                    onChange(item);
+                    onChange(item.title);
                 }
             };
             return <MenuItem key={idx} data={item} onClick={handleClick} />;

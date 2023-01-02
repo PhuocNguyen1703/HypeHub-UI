@@ -9,10 +9,11 @@ import { setSettingModalIsOpen } from '~/redux/Slice/modalSlice';
 import { BsCheck, BsXLg } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { setNavbarColor, setSidebarColor, setThemeMode } from '~/redux/Slice/themeSlice';
+import Modal from '~/components/Modal';
 
 const cx = classNames.bind(styles);
 
-function Setting() {
+function Setting({ show, setShowSettingModal }) {
     const { settingModalIsOpen } = useSelector((state) => state.modal);
     const { themeMode, sidebarColor, navbarColor } = useSelector((state) => state.theme);
     const [currentMode, setCurrentMode] = useState(themeMode);
@@ -58,7 +59,8 @@ function Setting() {
     ];
 
     const handleCloseModal = () => {
-        dispatch(setSettingModalIsOpen(false));
+        // dispatch(setSettingModalIsOpen(false));
+        setShowSettingModal(false);
     };
 
     const handleSetMode = (item) => {
@@ -78,80 +80,84 @@ function Setting() {
         dispatch(setNavbarColor(item.class));
     };
 
-    return (
-        <motion.div animate={{ width: settingModalIsOpen ? '400px' : '0' }} className={cx('wrapper')}>
-            <header className={cx('header')}>
-                <span className={cx('heading')}>
-                    Theme Customizer
-                    <button className={cx('close-btn')} onClick={handleCloseModal}>
-                        <BsXLg />
-                    </button>
-                </span>
-                <p className={cx('desc')}>Customize & Preview in Real Time</p>
-            </header>
-            <form className={cx('form')}>
-                <span className={cx('title')}>Mode</span>
-                <div className={cx('input-field')}>
-                    {modeSettings.map((item, idx) => (
-                        <label htmlFor={item.id} key={idx}>
-                            <input
-                                id={item.id}
-                                type="radio"
-                                name="mode"
-                                value={item.name}
-                                checked={item.class === currentMode ? true : false}
-                                onClick={() => handleSetMode(item)}
-                                readOnly
-                            />
-                            {item.name}
-                        </label>
-                    ))}
-                </div>
-                <span className={cx('title')}>Menu Layout</span>
-                {menuLayouts.map((item, idx) => (
-                    <div className={cx('input-field')} key={idx}>
-                        <ToggleSwitch item={item} />
-                    </div>
-                ))}
-                <span className={cx('title')}>Navbar Color</span>
-                <div className={cx('input-field')}>
-                    <ul className={cx('color-list')} id="nav-color">
-                        {colorData.map((item, idx) => (
-                            <li
-                                key={idx}
-                                className={cx(
-                                    'box-color',
-                                    `${item.background}`,
-                                    `${item.class === currentNavbarColor ? 'active' : ''}`,
-                                )}
-                                onClick={() => handleSetNavColor(item)}
-                            >
-                                <BsCheck className={cx('icon-check')} />
-                            </li>
+    if (show) {
+        return (
+            <Modal>
+                <motion.div animate={{ width: show ? '400px' : '0' }} className={cx('wrapper')}>
+                    <header className={cx('header')}>
+                        <span className={cx('heading')}>
+                            Theme Customizer
+                            <button className={cx('close-btn')} onClick={handleCloseModal}>
+                                <BsXLg />
+                            </button>
+                        </span>
+                        <p className={cx('desc')}>Customize & Preview in Real Time</p>
+                    </header>
+                    <form className={cx('form')}>
+                        <span className={cx('title')}>Mode</span>
+                        <div className={cx('input-field')}>
+                            {modeSettings.map((item, idx) => (
+                                <label htmlFor={item.id} key={idx}>
+                                    <input
+                                        id={item.id}
+                                        type="radio"
+                                        name="mode"
+                                        value={item.name}
+                                        checked={item.class === currentMode ? true : false}
+                                        onClick={() => handleSetMode(item)}
+                                        readOnly
+                                    />
+                                    {item.name}
+                                </label>
+                            ))}
+                        </div>
+                        <span className={cx('title')}>Menu Layout</span>
+                        {menuLayouts.map((item, idx) => (
+                            <div className={cx('input-field')} key={idx}>
+                                <ToggleSwitch item={item} />
+                            </div>
                         ))}
-                    </ul>
-                </div>
-                <span className={cx('title')}>Sidebar Color</span>
-                <div className={cx('input-field')}>
-                    <ul className={cx('color-list')} id="sidebar-color">
-                        {colorData.map((item, idx) => (
-                            <li
-                                key={idx}
-                                className={cx(
-                                    'box-color',
-                                    `${item.background}`,
-                                    `${item.class === currentSidebarColor ? 'active' : ''}`,
-                                )}
-                                onClick={() => handleSetSidebarColor(item)}
-                            >
-                                <BsCheck className={cx('icon-check')} />
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </form>
-        </motion.div>
-    );
+                        <span className={cx('title')}>Navbar Color</span>
+                        <div className={cx('input-field')}>
+                            <ul className={cx('color-list')} id="nav-color">
+                                {colorData.map((item, idx) => (
+                                    <li
+                                        key={idx}
+                                        className={cx(
+                                            'box-color',
+                                            `${item.background}`,
+                                            `${item.class === currentNavbarColor ? 'active' : ''}`,
+                                        )}
+                                        onClick={() => handleSetNavColor(item)}
+                                    >
+                                        <BsCheck className={cx('icon-check')} />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <span className={cx('title')}>Sidebar Color</span>
+                        <div className={cx('input-field')}>
+                            <ul className={cx('color-list')} id="sidebar-color">
+                                {colorData.map((item, idx) => (
+                                    <li
+                                        key={idx}
+                                        className={cx(
+                                            'box-color',
+                                            `${item.background}`,
+                                            `${item.class === currentSidebarColor ? 'active' : ''}`,
+                                        )}
+                                        onClick={() => handleSetSidebarColor(item)}
+                                    >
+                                        <BsCheck className={cx('icon-check')} />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </form>
+                </motion.div>
+            </Modal>
+        );
+    }
 }
 
 export default Setting;

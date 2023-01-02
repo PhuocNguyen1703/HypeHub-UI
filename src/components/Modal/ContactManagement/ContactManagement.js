@@ -11,10 +11,11 @@ import FriendRequest from '~/components/FriendRequest';
 import Confirm from '~/components/Confirm';
 import { useDispatch } from 'react-redux';
 import { setContactManagementModalIsOpen } from '~/redux/Slice/modalSlice';
+import Modal from '../Modal';
 
 const cx = classNames.bind(styles);
 
-function ContactManagement() {
+function ContactManagement({ show, setShowContactModal }) {
     const [isSearchContact, setIsSearchContact] = useState(true);
     const [isDirectory, setIsDirectory] = useState(false);
     const [isConfirm, setIsConfirm] = useState(false);
@@ -22,7 +23,8 @@ function ContactManagement() {
     const dispatch = useDispatch();
 
     const handleCloseModal = () => {
-        dispatch(setContactManagementModalIsOpen(false));
+        // dispatch(setContactManagementModalIsOpen(false));
+        setShowContactModal(false);
     };
 
     const handleOnSearchContact = () => {
@@ -53,55 +55,66 @@ function ContactManagement() {
         setIsRequest(true);
     };
 
-    return (
-        <AnimatePresence>
-            <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
-                <header className={cx('header')}>
-                    <span className={cx('title')}>Contact management</span>
-                    <button className={cx('close-btn')} onClick={handleCloseModal}>
-                        <BsXLg />
-                    </button>
-                </header>
-                <div className={cx('container')}>
-                    <div className={cx('navbar')}>
-                        <div className={cx('action-btn')}>
-                            <span
-                                className={cx('search-contact', isSearchContact && 'active')}
-                                onClick={handleOnSearchContact}
-                            >
-                                Search contact
-                            </span>
-                            <span className={cx('directory', isDirectory && 'active')} onClick={handleOnDirectory}>
-                                Directory
-                            </span>
-                            <span className={cx('request', isRequest && 'active')} onClick={handleOnRequest}>
-                                Friend request
-                            </span>
-                            <span className={cx('confirm', isConfirm && 'active')} onClick={handleOnConfirm}>
-                                Confirm
-                            </span>
-                        </div>
-                        {isSearchContact && (
-                            <div className={cx('search')}>
-                                <Account />
-                            </div>
-                        )}
-                    </div>
+    if (show) {
+        return (
+            <Modal>
+                <AnimatePresence>
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                        className={cx('content')}
+                        initial={{ x: '-50%', y: '-50%', scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className={cx('wrapper')}
                     >
-                        {isSearchContact && <Contact />}
-                        {isDirectory && <Directory />}
-                        {isRequest && <FriendRequest />}
-                        {isConfirm && <Confirm />}
+                        <header className={cx('header')}>
+                            <span className={cx('title')}>Contact management</span>
+                            <button className={cx('close-btn')} onClick={handleCloseModal}>
+                                <BsXLg />
+                            </button>
+                        </header>
+                        <div className={cx('container')}>
+                            <div className={cx('navbar')}>
+                                <div className={cx('action-btn')}>
+                                    <span
+                                        className={cx('search-contact', isSearchContact && 'active')}
+                                        onClick={handleOnSearchContact}
+                                    >
+                                        Search contact
+                                    </span>
+                                    <span
+                                        className={cx('directory', isDirectory && 'active')}
+                                        onClick={handleOnDirectory}
+                                    >
+                                        Directory
+                                    </span>
+                                    <span className={cx('request', isRequest && 'active')} onClick={handleOnRequest}>
+                                        Friend request
+                                    </span>
+                                    <span className={cx('confirm', isConfirm && 'active')} onClick={handleOnConfirm}>
+                                        Confirm
+                                    </span>
+                                </div>
+                                {isSearchContact && (
+                                    <div className={cx('search')}>
+                                        <Account />
+                                    </div>
+                                )}
+                            </div>
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                                className={cx('content')}
+                            >
+                                {isSearchContact && <Contact />}
+                                {isDirectory && <Directory />}
+                                {isRequest && <FriendRequest />}
+                                {isConfirm && <Confirm />}
+                            </motion.div>
+                        </div>
                     </motion.div>
-                </div>
-            </motion.div>
-        </AnimatePresence>
-    );
+                </AnimatePresence>
+            </Modal>
+        );
+    }
 }
 
 export default ContactManagement;
