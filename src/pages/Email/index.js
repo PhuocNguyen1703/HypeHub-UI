@@ -16,10 +16,8 @@ import {
 import styles from './Email.module.scss';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
 import ComposeEmail from '~/components/Modal/ComposeEmail';
-import Modal from '~/components/Modal';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setComposeEmailModalIsOpen, setEmailInfoModalIsOpen } from '~/redux/Slice/modalSlice';
 import { motion } from 'framer-motion';
 import EmailInfo from '~/components/Modal/EmailInfo';
 import { setSelectedItem } from '~/redux/Slice/emailSlice';
@@ -27,7 +25,8 @@ import { setSelectedItem } from '~/redux/Slice/emailSlice';
 const cx = classNames.bind(styles);
 
 function Email() {
-    const { composeEmailModalIsOpen, emailInfoModalIsOpen } = useSelector((state) => state.modal);
+    const [showComposeEmailModal, setShowComposeEmailModal] = useState(false);
+    const [showEmailInfoModal, setShowEmailInfoModal] = useState(false);
     const [isHidden, setIsHidden] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const dispatch = useDispatch();
@@ -188,23 +187,19 @@ function Email() {
         setIsHidden((prevState) => !prevState);
     };
 
-    const handleCheckAll = () => {
-        setIsChecked((prevState) => !prevState);
-    };
-
     const handleRefresh = () => {
         window.location.reload();
     };
 
     const handleComposeEmail = () => {
-        dispatch(setComposeEmailModalIsOpen(true));
+        setShowComposeEmailModal(true);
     };
 
     const handleCheckedOnChange = () => {};
 
     const handleSelectedItem = (item) => {
         dispatch(setSelectedItem(item));
-        dispatch(setEmailInfoModalIsOpen(true));
+        setShowEmailInfoModal(true);
     };
 
     return (
@@ -220,10 +215,6 @@ function Email() {
                     <span className={cx('icon')} onClick={handleHiddenSidebar}>
                         <BsLayoutSidebar />
                     </span>
-                    <label htmlFor="check" className={cx('check-all')}>
-                        <input id="check" type="checkbox" onClick={handleCheckAll} />
-                        All
-                    </label>
                     <span className={cx('icon')} onClick={handleRefresh}>
                         <BsArrowClockwise />
                     </span>
@@ -231,7 +222,7 @@ function Email() {
                         <BsTrash />
                     </span>
                 </div>
-                <div>15 of 12348</div>
+                <span>Total: {email.length}</span>
             </div>
             <div className={cx('container')}>
                 <motion.div
@@ -277,17 +268,9 @@ function Email() {
                 </div>
             </div>
 
-            {composeEmailModalIsOpen && (
-                <Modal>
-                    <ComposeEmail />
-                </Modal>
-            )}
+            <ComposeEmail show={showComposeEmailModal} setShowComposeEmailModal={setShowComposeEmailModal} />
 
-            {emailInfoModalIsOpen && (
-                <Modal>
-                    <EmailInfo />
-                </Modal>
-            )}
+            <EmailInfo show={showEmailInfoModal} setShowEmailInfoModal={setShowEmailInfoModal} />
         </div>
     );
 }

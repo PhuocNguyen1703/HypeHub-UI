@@ -245,12 +245,23 @@ body {
 //Custom quill
 body {
     .quill {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
         color: var(--text-color);
+        overflow: hidden;
     }
 
-    .ql-toolbar,
+    .ql-toolbar {
+        width: 100%;
+        border: 1px solid var(--gray-alpha-10) !important;
+        border-radius: 4px;
+    }
+
     .ql-container {
-        border: 1px solid var(--gray-alpha-20) !important;
+        flex: 1;
+        border: none !important;
+        overflow: overlay;
     }
 
     .ql-picker {

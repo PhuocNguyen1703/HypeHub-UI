@@ -12,10 +12,11 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { createEmail } from '~/api/emailApi';
+import Modal from '../Modal';
 
 const cx = classNames.bind(styles);
 
-function ComposeEmail() {
+function ComposeEmail({ show, setShowComposeEmailModal }) {
     const { _id } = useSelector((state) => state.auth.login.currentUser);
     const [isMinimize, setMinimize] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
@@ -38,7 +39,8 @@ function ComposeEmail() {
     };
 
     const handleClose = () => {
-        dispatch(setComposeEmailModalIsOpen(false));
+        // dispatch(setComposeEmailModalIsOpen(false));
+        setShowComposeEmailModal(false);
     };
 
     const getFullscreenClass = () => {
@@ -71,59 +73,68 @@ function ComposeEmail() {
         createEmail(data);
     };
 
-    return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className={cx('wrapper', getFullscreenClass(), getMinimizeClass())}
-            id="compose-email-modal"
-        >
-            <header className={cx('header')}>
-                <span className={cx('title')} onClick={handleMinimize}>
-                    New Message
-                </span>
-                <div className={cx('action-btn')}>
-                    <button className={cx('minimize-btn')} onClick={handleMinimize}>
-                        <BsDash />
-                    </button>
-                    <button className={cx('fullscreen-btn')} onClick={handleFullscreen}>
-                        {isFullscreen ? <BsArrowsAngleContract /> : <IoResizeSharp />}
-                    </button>
-                    <button className={cx('close-btn')} onClick={handleClose}>
-                        <BsX />
-                    </button>
-                </div>
-            </header>
-            <form className={cx('container')} onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <div className={cx('input-group')}>
-                        <label className={cx('to-ipt')}>
-                            To :
-                            <input type="text" name="receiverId" {...register('receiverId')} />
-                        </label>
-                        <div className={cx('input-btn')}>
-                            <button className={cx('cc-btn')}>Cc</button>
-                            <button className={cx('bcc-btn')}>Bcc</button>
+    if (show) {
+        return (
+            <Modal>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className={cx('wrapper', getFullscreenClass(), getMinimizeClass())}
+                    id="compose-email-modal"
+                >
+                    <header className={cx('header')}>
+                        <span className={cx('title')} onClick={handleMinimize}>
+                            New Message
+                        </span>
+                        <div className={cx('action-btn')}>
+                            <button className={cx('minimize-btn')} onClick={handleMinimize}>
+                                <BsDash />
+                            </button>
+                            <button className={cx('fullscreen-btn')} onClick={handleFullscreen}>
+                                {isFullscreen ? <BsArrowsAngleContract /> : <IoResizeSharp />}
+                            </button>
+                            <button className={cx('close-btn')} onClick={handleClose}>
+                                <BsX />
+                            </button>
                         </div>
-                    </div>
-                    <input className={cx('subject')} placeholder="Subject" name="subject" {...register('subject')} />
-                </div>
-                <div className={cx('content')}>
-                    <ReactQuill value={editorContent} onChange={onEditorStateChange} />
-                </div>
-                <div className={cx('footer')}>
-                    <div>
-                        <button type="submit" className={cx('send-btn')}>
-                            Send
-                        </button>
-                    </div>
-                    <button className={cx('delete-btn')}>
-                        <BsTrash />
-                    </button>
-                </div>
-            </form>
-        </motion.div>
-    );
+                    </header>
+                    <form className={cx('container')} onSubmit={handleSubmit(onSubmit)}>
+                        <div>
+                            <div className={cx('input-group')}>
+                                <label className={cx('to-ipt')}>
+                                    To :
+                                    <input type="text" name="receiverId" {...register('receiverId')} />
+                                </label>
+                                <div className={cx('input-btn')}>
+                                    <button className={cx('cc-btn')}>Cc</button>
+                                    <button className={cx('bcc-btn')}>Bcc</button>
+                                </div>
+                            </div>
+                            <input
+                                className={cx('subject')}
+                                placeholder="Subject"
+                                name="subject"
+                                {...register('subject')}
+                            />
+                        </div>
+                        <div className={cx('content')}>
+                            <ReactQuill value={editorContent} onChange={onEditorStateChange} />
+                        </div>
+                        <div className={cx('footer')}>
+                            <div>
+                                <button type="submit" className={cx('send-btn')}>
+                                    Send
+                                </button>
+                            </div>
+                            <button className={cx('delete-btn')}>
+                                <BsTrash />
+                            </button>
+                        </div>
+                    </form>
+                </motion.div>
+            </Modal>
+        );
+    }
 }
 
 export default ComposeEmail;
