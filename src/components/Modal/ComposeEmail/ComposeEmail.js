@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './ComposeEmail.module.scss';
 import { BsArrowsAngleContract, BsDash, BsTrash, BsX } from 'react-icons/bs';
 import { IoResizeSharp } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
-import { setComposeEmailModalIsOpen } from '~/redux/Slice/modalSlice';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { motion } from 'framer-motion';
@@ -13,21 +12,23 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { createEmail } from '~/api/emailApi';
 import Modal from '../Modal';
+import { RiLoader4Fill } from 'react-icons/ri';
 
 const cx = classNames.bind(styles);
 
 function ComposeEmail({ show, setShowComposeEmailModal }) {
-    const { _id } = useSelector((state) => state.auth.login.currentUser);
+    const { _id, email } = useSelector((state) => state.auth.login.currentUser);
     const [isMinimize, setMinimize] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const dispatch = useDispatch();
-    const { register, handleSubmit, setValue, watch } = useForm({
-        defaultValues: {
-            senderId: _id,
-            receiverId: '',
-            subject: '',
-        },
-    });
+
+    const {
+        register,
+        formState: { errors, isSubmitting },
+        handleSubmit,
+        setValue,
+        reset,
+    } = useForm({});
 
     const handleMinimize = () => {
         setMinimize((prevState) => !prevState);
@@ -39,38 +40,35 @@ function ComposeEmail({ show, setShowComposeEmailModal }) {
     };
 
     const handleClose = () => {
-        // dispatch(setComposeEmailModalIsOpen(false));
+        reset();
+        setMinimize(false);
+        setIsFullscreen(false);
         setShowComposeEmailModal(false);
     };
 
     const getFullscreenClass = () => {
         if (isFullscreen) {
             return 'fullscreen-compose-modal';
-        } else {
-            return '';
         }
     };
 
     const getMinimizeClass = () => {
         if (isMinimize) {
             return 'minimize-compose-modal';
-        } else {
-            return '';
         }
     };
-
-    useEffect(() => {
-        register('emailContent');
-    }, [register]);
 
     const onEditorStateChange = (editorState) => {
         setValue('content', editorState);
     };
 
-    const editorContent = watch('content');
+    // const editorContent = watch('content');
 
-    const onSubmit = (data) => {
-        createEmail(data);
+    const onSubmit = async (data) => {
+        const formData = { ...data, sender: email };
+        await createEmail(formData);
+        console.log(formData);
+        handleClose();
     };
 
     if (show) {
@@ -103,7 +101,7 @@ function ComposeEmail({ show, setShowComposeEmailModal }) {
                             <div className={cx('input-group')}>
                                 <label className={cx('to-ipt')}>
                                     To :
-                                    <input type="text" name="receiverId" {...register('receiverId')} />
+                                    <input type="text" name="receiver" {...register('receiver')} />
                                 </label>
                                 <div className={cx('input-btn')}>
                                     <button className={cx('cc-btn')}>Cc</button>
@@ -118,15 +116,13 @@ function ComposeEmail({ show, setShowComposeEmailModal }) {
                             />
                         </div>
                         <div className={cx('content')}>
-                            <ReactQuill value={editorContent} onChange={onEditorStateChange} />
+                            <ReactQuill onChange={onEditorStateChange} />
                         </div>
                         <div className={cx('footer')}>
-                            <div>
-                                <button type="submit" className={cx('send-btn')}>
-                                    Send
-                                </button>
-                            </div>
-                            <button className={cx('delete-btn')}>
+                            <button disabled={isSubmitting} type="submit" className={cx('send-btn')}>
+                                {isSubmitting ? <RiLoader4Fill className={cx('icon-loading')} /> : 'Send email'}
+                            </button>
+                            <button disabled={isSubmitting} className={cx('delete-btn')}>
                                 <BsTrash />
                             </button>
                         </div>

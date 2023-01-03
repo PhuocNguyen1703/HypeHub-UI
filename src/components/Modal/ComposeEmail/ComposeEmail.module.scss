@@ -192,3 +192,14 @@
         background-color: var(--gray-alpha-10);
     }
 }
+
+.icon-loading {
+    font-size: 2rem;
+    animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(360deg);
+    }
+}
