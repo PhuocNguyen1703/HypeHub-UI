@@ -22,22 +22,23 @@ import { useForm } from 'react-hook-form';
 import { updateUser } from '~/api/userApi';
 import { createAxios } from '~/api/axiosClient';
 import { updateSuccess } from '~/redux/Slice/authSlice';
+import Modal from '../Modal';
 
 const cx = classNames.bind(styles);
 
-function EditProfile() {
+function EditProfile({ show, setShowEditProfileModal }) {
     const { currentUser } = useSelector((state) => state.auth.login);
     const dispatch = useDispatch();
     let axiosJWT = createAxios(currentUser, dispatch, updateSuccess);
 
     const { register, handleSubmit } = useForm({});
 
-    const handleCancel = () => {
-        dispatch(setEditProfileModalIsOpen(false));
+    const closeModal = () => {
+        setShowEditProfileModal(false);
     };
 
-    const closeModal = () => {
-        dispatch(setEditProfileModalIsOpen(false));
+    const handleCancel = () => {
+        closeModal();
     };
 
     const onSubmit = (formData) => {
@@ -45,151 +46,159 @@ function EditProfile() {
         dispatch(setEditProfileModalIsOpen(false));
     };
 
-    return (
-        <AnimatePresence>
-            <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
-                <header className={cx('header')}>
-                    <span className={cx('title')}>Edit profile</span>
-                    <div>
-                        <Tippy delay={[0, 50]} interactive content="Close">
-                            <button className={cx('close-btn')} onClick={closeModal}>
-                                <BsXLg />
-                            </button>
-                        </Tippy>
-                    </div>
-                </header>
-                <form className={cx('container')} onSubmit={handleSubmit(onSubmit)}>
-                    <label className={cx('label')}>
-                        Email:
-                        <div className={cx('input-container')}>
-                            <span className={cx('icon')}>
-                                <BsEnvelope />
-                            </span>
-                            <input
-                                type="text"
-                                placeholder={currentUser?.email}
-                                className={cx('input-field')}
-                                disabled
-                            />
-                        </div>
-                    </label>
-                    <label className={cx('label')}>
-                        FullName:
-                        <div className={cx('input-container')}>
-                            <span className={cx('icon')}>
-                                <BsPerson />
-                            </span>
-                            <input
-                                type="text"
-                                placeholder={currentUser?.fullName}
-                                className={cx('input-field')}
-                                name="full-name"
-                                {...register('fullName')}
-                            />
-                        </div>
-                    </label>
-                    <label className={cx('label')}>
-                        Address:
-                        <div className={cx('input-container')}>
-                            <span className={cx('icon')}>
-                                <BsGeoAlt />
-                            </span>
-                            <input
-                                type="text"
-                                placeholder={currentUser?.streetAddress}
-                                className={cx('input-field')}
-                                name="address"
-                                {...register('streetAddress')}
-                            />
-                        </div>
-                    </label>
-                    <label className={cx('label')}>
-                        Birth:
-                        <div className={cx('input-container')}>
-                            <span className={cx('icon')}>
-                                <BsCalendarEvent />
-                            </span>
-                            <input
-                                type="text"
-                                placeholder={currentUser?.birth}
-                                className={cx('input-field')}
-                                name="birth"
-                                {...register('birth')}
-                            />
-                        </div>
-                    </label>
-                    <label className={cx('label')}>
-                        Gender:
-                        <div className={cx('input-container')}>
-                            <span className={cx('icon')}>
-                                <BsGenderAmbiguous />
-                            </span>
-                            <input
-                                type="text"
-                                placeholder={currentUser?.gender}
-                                className={cx('input-field')}
-                                name="gender"
-                                {...register('gender')}
-                            />
-                        </div>
-                    </label>
-                    <label className={cx('label')}>
-                        HashTag:
-                        <div className={cx('input-container')}>
-                            <span className={cx('icon')}>
-                                <BsHash />
-                            </span>
-                            <input
-                                type="text"
-                                placeholder={currentUser?.hashtag}
-                                className={cx('input-field')}
-                                name="hashtag"
-                                {...register('hashtag')}
-                            />
-                        </div>
-                    </label>
-                    <label className={cx('label')}>
-                        Work:
-                        <div className={cx('input-container')}>
-                            <span className={cx('icon')}>
-                                <BsBriefcase />
-                            </span>
-                            <input
-                                type="text"
-                                placeholder={currentUser?.position}
-                                className={cx('input-field')}
-                                name="position"
-                                {...register('position')}
-                            />
-                        </div>
-                    </label>
-                    <label className={cx('label')}>
-                        Phone:
-                        <div className={cx('input-container')}>
-                            <span className={cx('icon')}>
-                                <BsTelephone />
-                            </span>
-                            <input
-                                type="text"
-                                placeholder={currentUser?.phone}
-                                className={cx('input-field')}
-                                name="phone"
-                                {...register('phone')}
-                            />
-                        </div>
-                    </label>
-                    <footer className={cx('action-btn')}>
-                        <button type="button" className={cx('cancel-btn')} onClick={handleCancel}>
-                            Cancel
-                        </button>
-                        <button type="submit" className={cx('save-btn')}>
-                            Save
-                        </button>
-                    </footer>
-                </form>
-            </motion.div>
-        </AnimatePresence>
-    );
+    if (show) {
+        return (
+            <AnimatePresence>
+                <Modal>
+                    <motion.div
+                        initial={{ x: '-50%', y: '-50%', scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className={cx('wrapper')}
+                    >
+                        <header className={cx('header')}>
+                            <span className={cx('title')}>Edit profile</span>
+                            <div>
+                                <Tippy delay={[0, 50]} interactive content="Close">
+                                    <button className={cx('close-btn')} onClick={closeModal}>
+                                        <BsXLg />
+                                    </button>
+                                </Tippy>
+                            </div>
+                        </header>
+                        <form className={cx('container')} onSubmit={handleSubmit(onSubmit)}>
+                            <label className={cx('label')}>
+                                Email:
+                                <div className={cx('input-container')}>
+                                    <span className={cx('icon')}>
+                                        <BsEnvelope />
+                                    </span>
+                                    <input
+                                        type="text"
+                                        placeholder={currentUser?.email}
+                                        className={cx('input-field')}
+                                        disabled
+                                    />
+                                </div>
+                            </label>
+                            <label className={cx('label')}>
+                                FullName:
+                                <div className={cx('input-container')}>
+                                    <span className={cx('icon')}>
+                                        <BsPerson />
+                                    </span>
+                                    <input
+                                        type="text"
+                                        placeholder={currentUser?.fullName}
+                                        className={cx('input-field')}
+                                        name="full-name"
+                                        {...register('fullName')}
+                                    />
+                                </div>
+                            </label>
+                            <label className={cx('label')}>
+                                Address:
+                                <div className={cx('input-container')}>
+                                    <span className={cx('icon')}>
+                                        <BsGeoAlt />
+                                    </span>
+                                    <input
+                                        type="text"
+                                        placeholder={currentUser?.streetAddress}
+                                        className={cx('input-field')}
+                                        name="address"
+                                        {...register('streetAddress')}
+                                    />
+                                </div>
+                            </label>
+                            <label className={cx('label')}>
+                                Birth:
+                                <div className={cx('input-container')}>
+                                    <span className={cx('icon')}>
+                                        <BsCalendarEvent />
+                                    </span>
+                                    <input
+                                        type="text"
+                                        placeholder={currentUser?.birth}
+                                        className={cx('input-field')}
+                                        name="birth"
+                                        {...register('birth')}
+                                    />
+                                </div>
+                            </label>
+                            <label className={cx('label')}>
+                                Gender:
+                                <div className={cx('input-container')}>
+                                    <span className={cx('icon')}>
+                                        <BsGenderAmbiguous />
+                                    </span>
+                                    <input
+                                        type="text"
+                                        placeholder={currentUser?.gender}
+                                        className={cx('input-field')}
+                                        name="gender"
+                                        {...register('gender')}
+                                    />
+                                </div>
+                            </label>
+                            <label className={cx('label')}>
+                                HashTag:
+                                <div className={cx('input-container')}>
+                                    <span className={cx('icon')}>
+                                        <BsHash />
+                                    </span>
+                                    <input
+                                        type="text"
+                                        placeholder={currentUser?.hashtag}
+                                        className={cx('input-field')}
+                                        name="hashtag"
+                                        {...register('hashtag')}
+                                    />
+                                </div>
+                            </label>
+                            <label className={cx('label')}>
+                                Work:
+                                <div className={cx('input-container')}>
+                                    <span className={cx('icon')}>
+                                        <BsBriefcase />
+                                    </span>
+                                    <input
+                                        type="text"
+                                        placeholder={currentUser?.position}
+                                        className={cx('input-field')}
+                                        name="position"
+                                        {...register('position')}
+                                    />
+                                </div>
+                            </label>
+                            <label className={cx('label')}>
+                                Phone:
+                                <div className={cx('input-container')}>
+                                    <span className={cx('icon')}>
+                                        <BsTelephone />
+                                    </span>
+                                    <input
+                                        type="text"
+                                        placeholder={currentUser?.phone}
+                                        className={cx('input-field')}
+                                        name="phone"
+                                        {...register('phone')}
+                                    />
+                                </div>
+                            </label>
+                            <footer className={cx('action-btn')}>
+                                <button type="button" className={cx('cancel-btn')} onClick={handleCancel}>
+                                    Cancel
+                                </button>
+                                <button type="submit" className={cx('save-btn')}>
+                                    Save
+                                </button>
+                            </footer>
+                        </form>
+                    </motion.div>
+                </Modal>
+            </AnimatePresence>
+        );
+    }
 }
 
 export default EditProfile;

@@ -31,6 +31,7 @@ function Profile() {
     const { currentUser } = useSelector((state) => state.auth.login);
     const { _id, accessToken, email, fullName, streetAddress, birth, gender, hashtag, position, phone } = currentUser;
     const { editProfileModalIsOpen } = useSelector((state) => state.modal);
+    const [showEditProfileModal, setShowEditProfileModal] = useState(false);
     const [previewSourceAvatar, setPreviewSourceAvatar] = useState('');
     const [selectedFileAvatar, setSelectedFileAvatar] = useState();
 
@@ -93,7 +94,8 @@ function Profile() {
     };
 
     const handleEditProfileBtn = () => {
-        dispatch(setEditProfileModalIsOpen(true));
+        // dispatch(setEditProfileModalIsOpen(true));
+        setShowEditProfileModal(true);
     };
 
     return (
@@ -162,11 +164,7 @@ function Profile() {
                 </div>
             </div>
 
-            {editProfileModalIsOpen && (
-                <Modal>
-                    <EditProfile />
-                </Modal>
-            )}
+            <EditProfile show={showEditProfileModal} setShowEditProfileModal={setShowEditProfileModal} />
         </div>
     );
 }
