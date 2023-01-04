@@ -11,51 +11,63 @@ import dayjs from 'dayjs';
 import Tippy from '@tippyjs/react';
 import EventInfo from '~/components/EventInfo';
 import { useState } from 'react';
+import Modal from '../Modal';
 
 const cx = classNames.bind(styles);
 
-function CreateCalendar() {
+function CreateCalendar({ show, setShowCreateCalendarModal }) {
     const { selectedEvent } = useSelector((state) => state.calendar);
     const dispatch = useDispatch();
 
     const handleCloseModal = () => {
         dispatch(setDaySelected(dayjs().format('MMM DD, YYYY')));
-        dispatch(setCalendarEventModalIsOpen(false));
+        // dispatch(setCalendarEventModalIsOpen(false));
         dispatch(setSelectedEvent(null));
+        setShowCreateCalendarModal(false);
     };
 
     if (selectedEvent) {
         return (
             <AnimatePresence>
-                <motion.div
-                    initial={{ x: '-50%', y: '-50%', scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className={cx('wrapper')}
-                >
-                    <EventInfo />
-                </motion.div>
+                <Modal>
+                    <motion.div
+                        initial={{ x: '-50%', y: '-50%', scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className={cx('wrapper')}
+                    >
+                        <EventInfo />
+                    </motion.div>
+                </Modal>
             </AnimatePresence>
         );
     }
 
-    return (
-        <AnimatePresence>
-            <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
-                <header className={cx('header')}>
-                    <div>
-                        <Tippy delay={[0, 50]} interactive content="Close">
-                            <button className={cx('close-btn')} onClick={handleCloseModal}>
-                                <BsXLg />
-                            </button>
-                        </Tippy>
-                    </div>
-                </header>
-                <div className={cx('body')}>
-                    <EventForm />
-                </div>
-            </motion.div>
-        </AnimatePresence>
-    );
+    if (show) {
+        return (
+            <AnimatePresence>
+                <Modal>
+                    <motion.div
+                        initial={{ x: '-50%', y: '-50%', scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className={cx('wrapper')}
+                    >
+                        <header className={cx('header')}>
+                            <div>
+                                <Tippy delay={[0, 50]} interactive content="Close">
+                                    <button className={cx('close-btn')} onClick={handleCloseModal}>
+                                        <BsXLg />
+                                    </button>
+                                </Tippy>
+                            </div>
+                        </header>
+                        <div className={cx('body')}>
+                            <EventForm />
+                        </div>
+                    </motion.div>
+                </Modal>
+            </AnimatePresence>
+        );
+    }
 }
 
 export default CreateCalendar;

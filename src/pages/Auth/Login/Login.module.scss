@@ -21,6 +21,14 @@
     border-radius: 20px;
     box-shadow: var(--box-shadow-lg);
     background-color: var(--white);
+
+    h3 {
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 3rem;
+        color: var(--black);
+        user-select: none;
+    }
 }
 
 .logo {
@@ -53,14 +61,6 @@
         color: var(--black-alpha-40);
         user-select: none;
     }
-}
-
-h3 {
-    margin-bottom: 15px;
-    text-align: center;
-    font-size: 3rem;
-    color: var(--black);
-    user-select: none;
 }
 
 .form {

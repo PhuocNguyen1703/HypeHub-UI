@@ -34,6 +34,7 @@ const cx = classNames.bind(styles);
 function Calendar() {
     const { currentUser } = useSelector((state) => state.auth.login);
     const { monthIndex } = useSelector((state) => state.calendar);
+    const [showCreateCalendarModal, setShowCreateCalendarModal] = useState(false);
     const { calendarEventModalIsOpen } = useSelector((state) => state.modal);
     const [buttonTitle, setButtonTitle] = useState('Month');
     const [currentMonth, setCurrentMonth] = useState(getMonth());
@@ -356,12 +357,14 @@ function Calendar() {
 
     const handleCreateCalendar = () => {
         dispatch(setDaySelected(dayjs().format('MMM DD, YYYY')));
-        dispatch(setCalendarEventModalIsOpen(true));
+        // dispatch(setCalendarEventModalIsOpen(true));
+        setShowCreateCalendarModal(true);
     };
 
     const handleSelectedDay = (day) => {
         dispatch(setDaySelected(day.format('MMM DD, YYYY')));
-        dispatch(setCalendarEventModalIsOpen(true));
+        setShowCreateCalendarModal(true);
+        // dispatch(setCalendarEventModalIsOpen(true));
     };
 
     const handleClickEvent = (evt) => {
@@ -440,11 +443,7 @@ function Calendar() {
                 </div>
             </div>
 
-            {calendarEventModalIsOpen && (
-                <Modal>
-                    <CreateCalendar />
-                </Modal>
-            )}
+            <CreateCalendar show={showCreateCalendarModal} setShowCreateCalendarModal={setShowCreateCalendarModal} />
         </div>
     );
 }
