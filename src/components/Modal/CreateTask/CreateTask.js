@@ -14,6 +14,7 @@ import Modal from '../Modal';
 import { useForm } from 'react-hook-form';
 import { createTodo } from '~/api/todoApi';
 import { useSelector } from 'react-redux';
+import { RiLoader4Fill } from 'react-icons/ri';
 
 const cx = classNames.bind(styles);
 
@@ -25,7 +26,12 @@ function CreateTask({ show, setShowCreateTaskModal }) {
     const [time, setTime] = useState();
     const dispatch = useDispatch();
     const optionRef = useRef(null);
-    const { register, handleSubmit, reset } = useForm();
+    const {
+        register,
+        formState: { errors, isSubmitting },
+        handleSubmit,
+        reset,
+    } = useForm();
 
     useEffect(() => {
         document.addEventListener('click', hideOnClickOutside, true);
@@ -166,11 +172,16 @@ function CreateTask({ show, setShowCreateTaskModal }) {
                                 </div>
                             </div>
                             <div className={cx('action-btn')}>
-                                <button className={cx('cancel-btn')} type="button" onClick={handleCancel}>
+                                <button
+                                    disabled={isSubmitting}
+                                    className={cx('cancel-btn')}
+                                    type="button"
+                                    onClick={handleCancel}
+                                >
                                     Cancel
                                 </button>
-                                <button className={cx('save-btn')} type="submit">
-                                    Save
+                                <button disabled={isSubmitting} className={cx('save-btn')} type="submit">
+                                    {isSubmitting ? <RiLoader4Fill className={cx('icon-loading')} /> : 'Save'}
                                 </button>
                             </div>
                         </form>
