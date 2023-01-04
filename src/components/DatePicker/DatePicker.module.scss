@@ -3,19 +3,21 @@
 }
 
 .date-picker {
+    width: fit-content;
     color: var(--text-color);
     display: flex;
-    width: fit-content;
     gap: 10px;
 }
 
 .date-ipt {
+    width: 170px;
     font-size: 1.4rem;
     font-weight: 600;
     text-align: center;
     color: var(--text-color);
-    padding-bottom: 5px;
+    padding-bottom: 6px;
     border-bottom: 2px solid var(--gray-alpha-20);
+    cursor: pointer;
 }
 
 .calendar-picker {

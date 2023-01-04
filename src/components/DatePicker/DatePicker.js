@@ -13,11 +13,12 @@ import { useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
-function DatePicker() {
+function DatePicker({ setTime }) {
     const [showDateRangePicker, setShowDateRangePicker] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const calendarRef = useRef(null);
+    const inputRef = useRef(null);
 
     const selectionRange = {
         startDate: startDate,
@@ -33,6 +34,7 @@ function DatePicker() {
     const hideOnClickOutside = (e) => {
         if (calendarRef.current && !calendarRef.current.contains(e.target)) {
             setShowDateRangePicker(false);
+            setTime(inputRef.current.value);
         }
     };
 
@@ -50,6 +52,7 @@ function DatePicker() {
             <span className={cx('date-picker')} onClick={handleShowDatePicker}>
                 <BsCalendarWeek />
                 <input
+                    ref={inputRef}
                     value={`${dayjs(startDate).format('DD/MM/YYYY')} - ${dayjs(endDate).format('DD/MM/YYYY')}`}
                     className={cx('date-ipt')}
                     readOnly

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { BsTrash, BsPlus, BsJournal, BsCheck2, BsExclamationLg, BsFillRecordFill, BsRecord } from 'react-icons/bs';
 
@@ -16,6 +16,8 @@ const cx = classNames.bind(styles);
 
 function Todo() {
     const { createTaskModalIsOpen, todoInfoModalIsOpen } = useSelector((state) => state.modal);
+    const [showCreateTaskModal, setShowCreateTaskModal] = useState(false);
+    const [showTodoInfoModal, setShowTodoInfoModal] = useState(false);
     const dispatch = useDispatch();
 
     const menu = [
@@ -171,12 +173,13 @@ function Todo() {
     };
 
     const handleCreateTask = () => {
-        dispatch(setCreateTaskModalIsOpen(true));
+        setShowCreateTaskModal(true);
     };
 
     const handleSelectedTodoItem = (item) => {
         dispatch(setSelectedTodoItem(item));
-        dispatch(setTodoInfoModalIsOpen(true));
+        // dispatch(setTodoInfoModalIsOpen(true));
+        setShowTodoInfoModal(true);
     };
 
     return (
@@ -211,17 +214,8 @@ function Todo() {
                 ))}
             </div>
 
-            {createTaskModalIsOpen && (
-                <Modal>
-                    <CreateTask />
-                </Modal>
-            )}
-
-            {todoInfoModalIsOpen && (
-                <Modal>
-                    <TodoInfo />
-                </Modal>
-            )}
+            <CreateTask show={showCreateTaskModal} setShowCreateTaskModal={setShowCreateTaskModal} />
+            <TodoInfo show={showTodoInfoModal} setShowTodoInfoModal={setShowTodoInfoModal} />
         </div>
     );
 }

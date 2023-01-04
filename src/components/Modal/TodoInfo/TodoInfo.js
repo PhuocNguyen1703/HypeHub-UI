@@ -9,12 +9,13 @@ import { useDispatch } from 'react-redux';
 import { setTodoInfoModalIsOpen } from '~/redux/Slice/modalSlice';
 import { useSelector } from 'react-redux';
 import { setSelectedTodoItem } from '~/redux/Slice/todoSlice';
+import Modal from '../Modal';
 
 const cx = classNames.bind(styles);
 
-function TodoInfo() {
+function TodoInfo({ show, setShowTodoInfoModal }) {
     const { selectedTodoItem } = useSelector((state) => state.todo);
-    const [isCompleted, setIsCompleted] = useState(selectedTodoItem.completed);
+    const [isCompleted, setIsCompleted] = useState(selectedTodoItem?.completed);
     const dispatch = useDispatch();
 
     const getBackgroundColor = (status) => {
@@ -26,7 +27,8 @@ function TodoInfo() {
 
     const handleCloseModal = () => {
         dispatch(setSelectedTodoItem(null));
-        dispatch(setTodoInfoModalIsOpen(false));
+        // dispatch(setTodoInfoModalIsOpen(false));
+        setShowTodoInfoModal(false);
     };
 
     const handleCompleted = () => {
@@ -38,45 +40,53 @@ function TodoInfo() {
         return 'uncompleted';
     };
 
-    return (
-        <AnimatePresence>
-            <motion.div initial={{ x: '-50%', y: '-50%', scale: 0 }} animate={{ scale: 1 }} className={cx('wrapper')}>
-                <header className={cx('header')}>
-                    <div className={cx('header-left')}>
-                        {selectedTodoItem.status?.map((status, idx) => (
-                            <span
-                                key={idx}
-                                style={{ backgroundColor: getBackgroundColor(status) }}
-                                className={cx('status')}
-                            >
-                                {status.charAt(0).toUpperCase() + status.slice(1)}
-                            </span>
-                        ))}
-                    </div>
-                    <div className={cx('action-btn')}>
-                        <span className={cx('createdAt')}>{selectedTodoItem.createdAt}</span>
-                        <span className={cx('delete-btn')}>
-                            <BsTrash />
-                        </span>
-                        <Tippy delay={[0, 50]} interactive content="Close">
-                            <button className={cx('close-btn')} onClick={handleCloseModal}>
-                                <BsXLg />
+    if (show) {
+        return (
+            <AnimatePresence>
+                <Modal>
+                    <motion.div
+                        initial={{ x: '-50%', y: '-50%', scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className={cx('wrapper')}
+                    >
+                        <header className={cx('header')}>
+                            <div className={cx('header-left')}>
+                                {selectedTodoItem.status?.map((status, idx) => (
+                                    <span
+                                        key={idx}
+                                        style={{ backgroundColor: getBackgroundColor(status) }}
+                                        className={cx('status')}
+                                    >
+                                        {status.charAt(0).toUpperCase() + status.slice(1)}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className={cx('action-btn')}>
+                                <span className={cx('createdAt')}>{selectedTodoItem.createdAt}</span>
+                                <span className={cx('delete-btn')}>
+                                    <BsTrash />
+                                </span>
+                                <Tippy delay={[0, 50]} interactive content="Close">
+                                    <button className={cx('close-btn')} onClick={handleCloseModal}>
+                                        <BsXLg />
+                                    </button>
+                                </Tippy>
+                            </div>
+                        </header>
+                        <div className={cx('container')}>
+                            <p className={cx('title')}>{selectedTodoItem.title}</p>
+                            <p className={cx('content')}>{selectedTodoItem.content}</p>
+                        </div>
+                        <div className={cx('footer')}>
+                            <button className={cx('mark-btn', getStyleClass())} onClick={handleCompleted}>
+                                {isCompleted ? 'Mark completed' : 'Mark uncompleted'}
                             </button>
-                        </Tippy>
-                    </div>
-                </header>
-                <div className={cx('container')}>
-                    <p className={cx('title')}>{selectedTodoItem.title}</p>
-                    <p className={cx('content')}>{selectedTodoItem.content}</p>
-                </div>
-                <div className={cx('footer')}>
-                    <button className={cx('mark-btn', getStyleClass())} onClick={handleCompleted}>
-                        {isCompleted ? 'Mark completed' : 'Mark uncompleted'}
-                    </button>
-                </div>
-            </motion.div>
-        </AnimatePresence>
-    );
+                        </div>
+                    </motion.div>
+                </Modal>
+            </AnimatePresence>
+        );
+    }
 }
 
 export default TodoInfo;
