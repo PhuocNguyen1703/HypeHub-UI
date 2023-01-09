@@ -8,7 +8,7 @@ import styles from './Login.module.scss';
 import logo from '~/assets/images/logo.svg';
 import { loginUser } from '~/api/authApi';
 import { useSelector } from 'react-redux';
-import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
+import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill, BsFillLockFill, BsFillPersonFill } from 'react-icons/bs';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { RiLoader4Fill } from 'react-icons/ri';
@@ -78,6 +78,9 @@ function Login() {
                 <h3>Welcome back</h3>
                 <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
                     <div className={cx('email')}>
+                        <span className={cx('icon-person')}>
+                            <BsFillPersonFill />
+                        </span>
                         <input
                             className={cx('email-ipt', errors.email ? 'error-ipt' : null)}
                             type="text"
@@ -99,6 +102,9 @@ function Login() {
                     </span>
 
                     <div className={cx('password')}>
+                        <span className={cx('icon-lock')}>
+                            <BsFillLockFill />
+                        </span>
                         <input
                             className={cx('password-ipt', errors.password ? 'error-ipt' : null)}
                             id="password"
