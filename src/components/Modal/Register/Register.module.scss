@@ -90,14 +90,15 @@
 .firstname,
 .lastname,
 .email,
-.password {
+.password,
+.confirm-password {
     position: relative;
     width: 100%;
     margin-top: 16px;
 
     label {
         position: absolute;
-        left: 10px;
+        left: 26px;
         top: 50%;
         font-weight: 600;
         transform: translateY(-50%);
@@ -108,15 +109,29 @@
     }
 }
 
+.icon-person,
+.icon-mail,
+.icon-lock {
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+    pointer-events: none;
+    color: var(--text-color);
+}
+
 .firstname-ipt,
 .lastname-ipt,
 .email-ipt,
-.password-ipt {
+.password-ipt,
+.confirm-password-ipt {
     font-size: 1.6rem;
+    line-height: 1;
     color: var(--text-color);
     width: 100%;
     height: 46px;
-    padding: 10px;
+    padding: 10px 10px 10px 26px;
     border-radius: 8px;
     border: 1px solid var(--gray-alpha-40);
     transition: 0.25s ease;
@@ -129,7 +144,7 @@
     &:focus + label {
         display: inline-block;
         top: 0;
-        left: 10px;
+        left: 20px;
         padding: 0 10px;
         background-color: var(--main-bg);
         color: var(--blue);

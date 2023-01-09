@@ -9,13 +9,21 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './Register.module.scss';
 import logo from '~/assets/images/logo.svg';
 import { registerUser } from '~/api/authApi';
-import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill, BsXLg } from 'react-icons/bs';
+import {
+    BsExclamationTriangle,
+    BsEyeFill,
+    BsEyeSlashFill,
+    BsFillLockFill,
+    BsFillPersonFill,
+    BsXLg,
+} from 'react-icons/bs';
 import { setCreateUserModalIsOpen } from '~/redux/Slice/modalSlice';
 import { RiLoader4Fill } from 'react-icons/ri';
 import { createAxios } from '~/api/axiosClient';
 import { useSelector } from 'react-redux';
 import { registerSuccess } from '~/redux/Slice/authSlice';
 import Modal from '../Modal';
+import { MdEmail } from 'react-icons/md';
 
 const cx = classNames.bind(styles);
 
@@ -133,6 +141,9 @@ function Register({ show, setShowRegisterModal }) {
                             <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
                                 <div className={cx('username')}>
                                     <div className={cx('firstname')}>
+                                        <span className={cx('icon-person')}>
+                                            <BsFillPersonFill />
+                                        </span>
                                         <input
                                             className={cx('firstname-ipt', errors.firstName ? 'error-ipt' : null)}
                                             type="text"
@@ -143,6 +154,9 @@ function Register({ show, setShowRegisterModal }) {
                                         <label>First Name</label>
                                     </div>
                                     <div className={cx('lastname')}>
+                                        <span className={cx('icon-person')}>
+                                            <BsFillPersonFill />
+                                        </span>
                                         <input
                                             className={cx('lastname-ipt', errors.lastName ? 'error-ipt' : null)}
                                             type="text"
@@ -173,6 +187,9 @@ function Register({ show, setShowRegisterModal }) {
                                 </div>
 
                                 <div className={cx('email')}>
+                                    <span className={cx('icon-mail')}>
+                                        <MdEmail />
+                                    </span>
                                     <input
                                         className={cx('email-ipt', errors.email ? 'error-ipt' : null)}
                                         placeholder=" "
@@ -194,6 +211,9 @@ function Register({ show, setShowRegisterModal }) {
                                 </span>
 
                                 <div className={cx('password')}>
+                                    <span className={cx('icon-lock')}>
+                                        <BsFillLockFill />
+                                    </span>
                                     <input
                                         className={cx('password-ipt', errors.password ? 'error-ipt' : null)}
                                         id="password"
@@ -221,10 +241,13 @@ function Register({ show, setShowRegisterModal }) {
                                     )}
                                 </span>
 
-                                <div className={cx('password')}>
+                                <div className={cx('confirm-password')}>
+                                    <span className={cx('icon-lock')}>
+                                        <BsFillLockFill />
+                                    </span>
                                     <input
                                         id="confirm-password"
-                                        className={cx('password-ipt', errors.confirmPassword ? 'error-ipt' : null)}
+                                        className={cx('confirm-password-ipt', errors.confirmPassword ? 'error-ipt' : null)}
                                         type="password"
                                         name="confirm-password"
                                         placeholder=" "
