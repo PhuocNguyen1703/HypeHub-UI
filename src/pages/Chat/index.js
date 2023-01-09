@@ -40,18 +40,18 @@ function PrivateChat() {
     }, [currentUser?._id]);
 
     // Get all users in DB
-    useEffect(() => {
-        const getAllUsers = async () => {
-            try {
-                const { data } = await getAllUser();
-                const users = data.filter((user) => user._id !== currentUser._id);
-                setAllUsers(users);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getAllUsers();
-    }, []);
+    // useEffect(() => {
+    //     const getAllUsers = async () => {
+    //         try {
+    //             const { data } = await getAllUser();
+    //             const users = data.filter((user) => user._id !== currentUser._id);
+    //             setAllUsers(users);
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    //     getAllUsers();
+    // }, []);
 
     //Connect socket
     // useEffect(() => {

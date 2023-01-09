@@ -2,7 +2,8 @@ import 'react-18-image-lightbox/style.css';
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
 
@@ -14,10 +15,11 @@ import { BsCardImage, BsCursor, BsEmojiSmile } from 'react-icons/bs';
 import Lightbox from 'react-18-image-lightbox';
 import { useSelector } from 'react-redux';
 import { uploadImages } from '~/api/uploadImagesApi';
-import { result } from 'lodash-es';
 
 const cx = classNames.bind(styles);
-dayjs.extend(relativeTime);
+dayjs.extend(utc);
+// dayjs.extend(timezone);
+// dayjs.tz.setDefault('Asia/Tokyo');
 
 function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
     const { currentUser } = useSelector((state) => state.auth.login);
@@ -88,13 +90,17 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
 
     //Send message
     const handleSend = async (e) => {
-        const url = await uploadImages(uploadImg);
+        let url = '';
+        if (uploadImg) {
+            url = await uploadImages(uploadImg);
+        }
 
         const message = {
             senderId: currentUserId,
             content: newMessage,
             chatId: chat._id,
             fileUrl: url,
+            // createdAt: Date.now(),
         };
         //Send message to socket server
         // const receiverId = chat.members.find((id) => id !== currentUserId);
@@ -182,6 +188,7 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
                                         onClick={handleClickImage}
                                     />
                                 ) : null}
+                                {/* <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span> */}
                                 <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span>
                             </div>
                         </div>

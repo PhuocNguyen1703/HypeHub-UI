@@ -3,7 +3,7 @@ import { updateFailed, updateStart, updateSuccess } from '~/redux/Slice/authSlic
 
 export const getUser = async (userId) => {
     try {
-        const user = await axios.get(`/user/${userId}`);
+        const user = await axios.get(`/v1/api/users/${userId}`);
         return user;
     } catch (error) {
         console.log(error);

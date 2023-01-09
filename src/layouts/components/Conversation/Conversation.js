@@ -8,9 +8,9 @@ import { getMessages } from '~/api/messageApi';
 
 const cx = classNames.bind(styles);
 
-function Conversation({ data, currentUserId, online, chatId }) {
+function Conversation({ data, currentUserId, chatId, online }) {
     const [userData, setUserData] = useState(null);
-    const [lastMessage, setLastMessage] = useState('');
+    const [lastMessage, setLastMessage] = useState();
 
     useEffect(() => {
         const MessagesData = async () => {
