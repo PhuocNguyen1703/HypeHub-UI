@@ -13,9 +13,11 @@ import Kanban from '~/pages/Kanban';
 import CheckIn from '~/pages/CheckIn';
 import Sales from '~/pages/Sales';
 import Board from '~/pages/Board';
+import UserInformation from '~/layouts/components/UserInformation';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
+    { path: config.routes.user_information, component: UserInformation, layout: null },
     { path: config.routes.home, component: Home },
     { path: config.routes.sales, component: Sales },
     { path: config.routes.profile, component: Profile },

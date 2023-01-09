@@ -24,6 +24,7 @@ import { uploadImages } from '~/api/uploadImagesApi';
 import { setEditProfileModalIsOpen } from '~/redux/Slice/modalSlice';
 import Modal from '~/components/Modal';
 import EditProfile from '~/components/Modal/EditProfile';
+import images from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -102,11 +103,11 @@ function Profile() {
         <div className={cx('wrapper')}>
             <div className={cx('user-info')}>
                 <div className={cx('avatar')}>
-                    {previewSourceAvatar ? (
-                        <Image className={cx('user-avatar')} src={`${previewSourceAvatar}`} alt="avatar" />
-                    ) : (
-                        <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="avatar" />
-                    )}
+                    <Image
+                        className={cx('user-avatar')}
+                        src={previewSourceAvatar || currentUser?.avatar || images.coverAvatar}
+                        alt="avatar"
+                    />
                     <label htmlFor="upload-avatar" className={cx('icon-camera')}>
                         <BsCameraFill />
                     </label>

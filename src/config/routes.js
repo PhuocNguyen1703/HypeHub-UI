@@ -1,8 +1,9 @@
 const routes = {
+    login: '/login',
+    user_information: '/user_information',
     home: '/',
     sales: '/sales',
     profile: '/profile',
-    login: '/login',
     chat: '/chat',
     employee: '/employee',
     email: '/email',
