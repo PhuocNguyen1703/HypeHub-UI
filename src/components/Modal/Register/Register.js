@@ -58,6 +58,7 @@ function Register({ show, setShowRegisterModal }) {
         register,
         formState: { errors, isSubmitting },
         handleSubmit,
+        reset,
     } = useForm({
         mode: 'onBlur',
         resolver: yupResolver(formSchema),
@@ -65,6 +66,7 @@ function Register({ show, setShowRegisterModal }) {
 
     const handleCloseModal = () => {
         // dispatch(setCreateUserModalIsOpen(false));
+        reset();
         setShowRegisterModal(false);
     };
 
@@ -247,7 +249,10 @@ function Register({ show, setShowRegisterModal }) {
                                     </span>
                                     <input
                                         id="confirm-password"
-                                        className={cx('confirm-password-ipt', errors.confirmPassword ? 'error-ipt' : null)}
+                                        className={cx(
+                                            'confirm-password-ipt',
+                                            errors.confirmPassword ? 'error-ipt' : null,
+                                        )}
                                         type="password"
                                         name="confirm-password"
                                         placeholder=" "
