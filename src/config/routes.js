@@ -12,6 +12,7 @@ const routes = {
     kanban: '/kanban',
     board: '/kanban/board/:boardId',
     checkin: '/checkin',
+    user_management: '/user_management',
 };
 
 export default routes;

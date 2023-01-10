@@ -10,6 +10,7 @@ import {
     BsAlarm,
     BsClipboardData,
 } from 'react-icons/bs';
+import { HiOutlineUserGroup } from 'react-icons/hi';
 import { useSelector } from 'react-redux';
 import config from '~/config';
 
@@ -79,6 +80,11 @@ function Sidebar() {
             icon: <BsAlarm />,
             title: 'Check in',
             path: config.routes.checkin,
+        },
+        {
+            icon: <HiOutlineUserGroup />,
+            title: 'User',
+            path: config.routes.user_management,
         },
     ];
 

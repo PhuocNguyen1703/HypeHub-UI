@@ -14,6 +14,7 @@ import CheckIn from '~/pages/CheckIn';
 import Sales from '~/pages/Sales';
 import Board from '~/pages/Board';
 import UserInformation from '~/layouts/components/UserInformation';
+import UserManagement from '~/pages/UserManagement';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
@@ -32,6 +33,6 @@ const publicRoutes = [
     { path: config.routes.checkin, component: CheckIn },
 ];
 
-const privateRoutes = [...publicRoutes];
+const privateRoutes = [...publicRoutes, { path: config.routes.user_management, component: UserManagement }];
 
 export { publicRoutes, privateRoutes };

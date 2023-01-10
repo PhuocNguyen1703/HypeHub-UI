@@ -29,7 +29,7 @@ function Table({ limit, bodyData, headData, renderHead, renderBody }) {
     };
 
     return (
-        <div className={cx('wrapper')}>
+        <>
             <div className={cx('table-wrapper')}>
                 <table>
                     {headData && renderHead ? (
@@ -56,7 +56,7 @@ function Table({ limit, bodyData, headData, renderHead, renderBody }) {
                     ))}
                 </div>
             ) : null}
-        </div>
+        </>
     );
 }
 

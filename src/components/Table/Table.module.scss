@@ -1,16 +1,5 @@
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin: auto;
-    background-color: var(--main-color);
-    box-shadow: var(--box-shadow);
-    border: 1px solid var(--gray-alpha-20);
-    color: var(--text-color);
-    border-radius: 6px;
-}
-
 .table-wrapper {
+    flex: 1;
     overflow-y: auto;
 }
 
@@ -30,8 +19,11 @@ tr {
 
 th,
 td {
-    text-transform: capitalize;
     padding: 14px 10px;
+}
+
+td {
+    border-bottom: 1px solid var(--gray-alpha-20);
 }
 
 tbody > tr:hover {
@@ -41,10 +33,10 @@ tbody > tr:hover {
 
 .pagination {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 10px;
+    margin: 20px 0;
 }
 
 .item {
