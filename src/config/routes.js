@@ -11,7 +11,7 @@ const routes = {
     calendar: '/calendar',
     kanban: '/kanban',
     board: '/kanban/board/:boardId',
-    checkin: '/checkin',
+    timesheets: '/timesheets',
     user_management: '/user_management',
 };
 

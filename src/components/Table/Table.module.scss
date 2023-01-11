@@ -7,9 +7,11 @@ table {
     width: 100%;
     min-width: 500px;
     border-spacing: 0;
+    color: var(--text-color);
 }
 
 thead {
+    text-transform: capitalize;
     background-color: var(--gray-alpha-10);
 }
 

@@ -1,20 +1,31 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './CheckIn.module.scss';
+import styles from './Timesheets.module.scss';
 import Table from '~/components/Table';
 
 const cx = classNames.bind(styles);
 
-function CheckIn() {
-    const customerTableHead = ['date', 'name', 'check in', 'check out', 'total hrs', 'overtime hrs', 'status'];
+function Timesheets() {
+    const customerTableHead = [
+        'Date',
+        'Name',
+        'Email',
+        'Time In',
+        'Time Out',
+        'Total Hrs',
+        'Overtime Hrs',
+        'Status',
+        'Action',
+    ];
 
     const customerList = [
         {
             date: '2022/11/10',
             name: 'victoria',
-            checkIn: '2022/11/12',
-            checkOut: '2022/11/12',
+            email: 'admin@gmail.com',
+            timeIn: '12:15',
+            timeOut: '16:45',
             totalHrs: 12.15,
             overtimeHrs: 1.0,
             status: 'pending',
@@ -22,8 +33,9 @@ function CheckIn() {
         {
             date: '2022/11/10',
             name: 'victoria',
-            checkIn: '2022/11/12',
-            checkOut: '2022/11/12',
+            email: 'admin@gmail.com',
+            timeIn: '12:15',
+            timeOut: '16:45',
             totalHrs: 12.15,
             overtimeHrs: 1.0,
             status: 'pending',
@@ -31,8 +43,9 @@ function CheckIn() {
         {
             date: '2022/11/10',
             name: 'victoria',
-            checkIn: '2022/11/12',
-            checkOut: '2022/11/12',
+            email: 'admin@gmail.com',
+            timeIn: '12:15',
+            timeOut: '16:45',
             totalHrs: 12.15,
             overtimeHrs: 1.0,
             status: 'pending',
@@ -40,8 +53,9 @@ function CheckIn() {
         {
             date: '2022/11/10',
             name: 'victoria',
-            checkIn: '2022/11/12',
-            checkOut: '2022/11/12',
+            email: 'admin@gmail.com',
+            timeIn: '12:15',
+            timeOut: '16:45',
             totalHrs: 12.15,
             overtimeHrs: 1.0,
             status: 'pending',
@@ -49,8 +63,9 @@ function CheckIn() {
         {
             date: '2022/11/10',
             name: 'victoria',
-            checkIn: '2022/11/12',
-            checkOut: '2022/11/12',
+            email: 'admin@gmail.com',
+            timeIn: '12:15',
+            timeOut: '16:45',
             totalHrs: 12.15,
             overtimeHrs: 1.0,
             status: 'pending',
@@ -66,11 +81,13 @@ function CheckIn() {
             <tr key={idx}>
                 <td>{item.date}</td>
                 <td>{item.name}</td>
-                <td>{item.checkIn}</td>
-                <td>{item.checkOut}</td>
+                <td>{item.email}</td>
+                <td>{item.timeIn}</td>
+                <td>{item.timeOut}</td>
                 <td>{item.totalHrs}</td>
                 <td>{item.overtimeHrs}</td>
                 <td>{item.status}</td>
+                <td></td>
             </tr>
         );
     };
@@ -88,4 +105,4 @@ function CheckIn() {
     );
 }
 
-export default CheckIn;
+export default Timesheets;

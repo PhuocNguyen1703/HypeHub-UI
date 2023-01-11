@@ -77,14 +77,20 @@ function Sidebar() {
 
     const adminMenu = [
         {
-            icon: <BsAlarm />,
-            title: 'Check in',
-            path: config.routes.checkin,
-        },
-        {
             icon: <HiOutlineUserGroup />,
-            title: 'User',
-            path: config.routes.user_management,
+            title: 'Management',
+            children: [
+                {
+                    icon: <BsClipboardData />,
+                    title: 'User',
+                    path: config.routes.user_management,
+                },
+                {
+                    icon: <BsAlarm />,
+                    title: 'Timesheets',
+                    path: config.routes.timesheets,
+                },
+            ],
         },
     ];
 

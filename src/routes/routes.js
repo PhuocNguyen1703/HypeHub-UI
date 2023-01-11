@@ -10,11 +10,11 @@ import Chat from '~/pages/Chat';
 import Todo from '~/pages/Todo';
 import Calendar from '~/pages/Calendar';
 import Kanban from '~/pages/Kanban';
-import CheckIn from '~/pages/CheckIn';
 import Sales from '~/pages/Sales';
 import Board from '~/pages/Board';
 import UserInformation from '~/layouts/components/UserInformation';
 import UserManagement from '~/pages/UserManagement';
+import Timesheets from '~/pages/Timesheets';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
@@ -30,9 +30,12 @@ const publicRoutes = [
     { path: config.routes.calendar, component: Calendar },
     { path: config.routes.kanban, component: Kanban },
     { path: config.routes.board, component: Board },
-    { path: config.routes.checkin, component: CheckIn },
 ];
 
-const privateRoutes = [...publicRoutes, { path: config.routes.user_management, component: UserManagement }];
+const privateRoutes = [
+    ...publicRoutes,
+    { path: config.routes.user_management, component: UserManagement },
+    { path: config.routes.timesheets, component: Timesheets },
+];
 
 export { publicRoutes, privateRoutes };
