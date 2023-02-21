@@ -1,30 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import { BsTrash, BsJournalPlus, BsFileEarmarkPlus } from 'react-icons/bs';
+import { BsTrash, BsJournalPlus, BsFileEarmarkPlus, BsPencil } from 'react-icons/bs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import styles from './Todo.module.scss';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
 import TodoInfo from '~/components/Modal/TodoInfo';
 import CreateNotebook from '~/components/Modal/CreateNotebook';
-import { convertToRaw, EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
+
 import CreateNote from '~/components/Modal/CreateNote';
+import NoteInfo from '~/components/Modal/NoteInfo';
 
 const cx = classNames.bind(styles);
 
 function Todo() {
     const [showCreateNotebookModal, setShowCreateNotebookModal] = useState(false);
     const [showCreateNoteModal, setShowCreateNoteModal] = useState(false);
-    const [showTodoInfoModal, setShowTodoInfoModal] = useState(false);
-
-    const note = { id: '123', content: '' };
-
-    const [editorState, setEditorState] = useState(EditorState.createEmpty());
-    const [rawHTML, setRawHTML] = useState(note.content);
-
-    // const menu = [{ icon: <BsTrash />, title: 'Trash', path: '/deleted' }];
+    const [showNoteInfoModal, setShowNoteInfoModal] = useState(false);
 
     const notebooks = [
         { title: 'noteBooks1noteBooks1' },
@@ -40,19 +32,16 @@ function Todo() {
         { title: 'noteBooks1noteBooks4 1234' },
     ];
 
-    useEffect(() => {}, [note.id]);
-
-    const handleOnchangeEditor = (editorState) => {
-        setEditorState(editorState);
-        setRawHTML(draftToHtml(convertToRaw(editorState.getCurrentContent())));
-    };
-
     const handleCreateNotebook = () => {
         setShowCreateNotebookModal(true);
     };
 
     const handleCreateNote = () => {
         setShowCreateNoteModal(true);
+    };
+
+    const handleEditNote = () => {
+        setShowNoteInfoModal(true);
     };
 
     return (
@@ -92,19 +81,23 @@ function Todo() {
                 </div>
             </div>
             <div className={cx('note-content')}>
-                <Editor
-                    editorState={editorState}
-                    onEditorStateChange={handleOnchangeEditor}
-                    placeholder="Write something"
-                    wrapperClassName={cx('editor-wrapper')}
-                    editorClassName={cx('editor-textarea')}
-                    toolbarClassName={cx('editor-toolbar')}
-                />
+                <header className={cx('header')}>
+                    <span className={cx('title')}>This is title note</span>
+                    <div className={cx('action-btn')}>
+                        <button className={cx('edit-btn')} onClick={handleEditNote}>
+                            <BsPencil />
+                        </button>
+                        <button className={cx('delete-btn')}>
+                            <BsTrash />
+                        </button>
+                    </div>
+                </header>
+                <div className={cx('content')}></div>
             </div>
 
             <CreateNotebook show={showCreateNotebookModal} setShowCreateNotebookModal={setShowCreateNotebookModal} />
             <CreateNote show={showCreateNoteModal} setShowCreateNoteModal={setShowCreateNoteModal} />
-            {/* <TodoInfo show={showTodoInfoModal} setShowTodoInfoModal={setShowTodoInfoModal} /> */}
+            <NoteInfo show={showNoteInfoModal} setShowNoteInfoModal={setShowNoteInfoModal} />
         </div>
     );
 }

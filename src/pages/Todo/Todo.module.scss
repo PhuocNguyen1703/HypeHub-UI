@@ -95,10 +95,40 @@
 .note-content {
     flex: 1;
     padding: 10px;
-}
 
-.editor-wrapper {
-}
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid var(--gray-alpha-20);
 
-.editor-toolbar {
+        .title {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+
+            .edit-btn,
+            .delete-btn {
+                font-size: 1.6rem;
+                margin-left: 6px;
+                padding: 4px;
+                cursor: pointer;
+            }
+
+            .edit-btn:hover {
+                color: var(--blue);
+            }
+            .delete-btn:hover {
+                color: var(--red);
+            }
+        }
+    }
+
+    .content {
+    }
 }
