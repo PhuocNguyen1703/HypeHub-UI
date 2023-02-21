@@ -1,221 +1,110 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import { BsTrash, BsPlus, BsJournal, BsCheck2, BsExclamationLg, BsFillRecordFill, BsRecord } from 'react-icons/bs';
+import { BsTrash, BsJournalPlus, BsFileEarmarkPlus } from 'react-icons/bs';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import styles from './Todo.module.scss';
 import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
-import { useDispatch } from 'react-redux';
-import { setCreateTaskModalIsOpen, setTodoInfoModalIsOpen } from '~/redux/Slice/modalSlice';
-import { useSelector } from 'react-redux';
 import TodoInfo from '~/components/Modal/TodoInfo';
-import Modal from '~/components/Modal';
-import { setSelectedTodoItem } from '~/redux/Slice/todoSlice';
-import CreateTask from '~/components/Modal/CreateTask';
+import CreateNotebook from '~/components/Modal/CreateNotebook';
+import { convertToRaw, EditorState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import CreateNote from '~/components/Modal/CreateNote';
 
 const cx = classNames.bind(styles);
 
 function Todo() {
-    const { createTaskModalIsOpen, todoInfoModalIsOpen } = useSelector((state) => state.modal);
-    const [showCreateTaskModal, setShowCreateTaskModal] = useState(false);
+    const [showCreateNotebookModal, setShowCreateNotebookModal] = useState(false);
+    const [showCreateNoteModal, setShowCreateNoteModal] = useState(false);
     const [showTodoInfoModal, setShowTodoInfoModal] = useState(false);
-    const dispatch = useDispatch();
 
-    const menu = [
-        { icon: <BsJournal />, title: 'My Tasks', path: '/todo' },
-        { icon: <BsExclamationLg />, title: 'Important', path: '/sent' },
-        { icon: <BsCheck2 />, title: 'Completed', path: '/title' },
-        { icon: <BsTrash />, title: 'Deleted', path: '/deleted' },
+    const note = { id: '123', content: '' };
+
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
+    const [rawHTML, setRawHTML] = useState(note.content);
+
+    // const menu = [{ icon: <BsTrash />, title: 'Trash', path: '/deleted' }];
+
+    const notebooks = [
+        { title: 'noteBooks1noteBooks1' },
+        { title: 'noteBooks1noteBooks2' },
+        { title: 'noteBooks1noteBooks3' },
+        { title: 'noteBooks1noteBooks4 1234' },
     ];
 
-    const tags = [
-        { icon: <BsRecord />, color: '#349eff', title: 'Team', path: '/company' },
-        { icon: <BsRecord />, color: 'forestgreen', title: 'Low', path: '/important' },
-        { icon: <BsRecord />, color: 'orange', title: 'Medium', path: '/important' },
-        { icon: <BsRecord />, color: 'red', title: 'Hight', path: '/important' },
+    const notes = [
+        { title: 'noteBooks1noteBooks1' },
+        { title: 'noteBooks1noteBooks2' },
+        { title: 'noteBooks1noteBooks3' },
+        { title: 'noteBooks1noteBooks4 1234' },
     ];
 
-    const todo = [
-        {
-            title: 'How are you today ? How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: ['hight', 'team'],
-            completed: false,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: null,
-            completed: false,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: ['low'],
-            completed: true,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: ['medium', 'team'],
-            completed: true,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: null,
-            completed: false,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: ['hight'],
-            completed: false,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: ['team'],
-            completed: true,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: ['hight', 'team'],
-            completed: true,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: null,
-            completed: true,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: ['low'],
-            completed: true,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: ['medium', 'team'],
-            completed: true,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: null,
-            completed: true,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: ['hight'],
-            completed: true,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: ['team'],
-            completed: true,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: ['hight', 'team'],
-            completed: false,
-            createdAt: 'Feb 22',
-        },
-        {
-            title: 'How are you today ?',
-            content:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-            status: null,
-            completed: true,
-            createdAt: 'Feb 22',
-        },
-    ];
+    useEffect(() => {}, [note.id]);
 
-    const getStyleColor = (status) => {
-        if (status === 'team') return '#349eff';
-        if (status === 'low') return 'forestgreen';
-        if (status === 'medium') return 'orange';
-        return 'red';
+    const handleOnchangeEditor = (editorState) => {
+        setEditorState(editorState);
+        setRawHTML(draftToHtml(convertToRaw(editorState.getCurrentContent())));
     };
 
-    const handleCreateTask = () => {
-        setShowCreateTaskModal(true);
+    const handleCreateNotebook = () => {
+        setShowCreateNotebookModal(true);
     };
 
-    const handleSelectedTodoItem = (item) => {
-        dispatch(setSelectedTodoItem(item));
-        // dispatch(setTodoInfoModalIsOpen(true));
-        setShowTodoInfoModal(true);
+    const handleCreateNote = () => {
+        setShowCreateNoteModal(true);
     };
 
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('sidebar')}>
-                <button className={cx('create-task')} onClick={handleCreateTask}>
-                    <BsPlus />
-                    Create Task
-                </button>
-                {menu.map((item, index) => (
-                    <SidebarItem key={index} item={item} className={'menu-item'} />
-                ))}
-                <span className={cx('tags')}>Tags</span>
-                {tags.map((item, index) => (
-                    <SidebarItem key={index} item={item} className={'tags-item'} />
-                ))}
-            </div>
-            <div className={cx('content')}>
-                {todo.map((item, index) => (
-                    <div key={index} className={cx('todo-item')} onClick={() => handleSelectedTodoItem(item)}>
-                        <div className={cx('item-content')}>
-                            <input type="checkbox" />
-                            <span className={cx('item-title')}>{item.title}</span>
-                        </div>
-                        <div className={cx('date')}>
-                            {item.status?.map((status, idx) => (
-                                <BsFillRecordFill key={idx} style={{ color: getStyleColor(status) }} />
-                            ))}
-                            <span>{item.createdAt}</span>
-                        </div>
+            <div className={cx('notebook')}>
+                <div className={cx('header')}>
+                    <span className={cx('title')}>Notebooks</span>
+                    <div className={cx('action-btn')}>
+                        <button className={cx('add-btn')} onClick={handleCreateNotebook}>
+                            <BsJournalPlus />
+                        </button>
                     </div>
-                ))}
+                </div>
+                <div className={cx('notebook-items')}>
+                    {notebooks.map((item, idx) => (
+                        <span key={idx} className={cx('item')}>
+                            {item.title}
+                        </span>
+                    ))}
+                </div>
+            </div>
+            <div className={cx('note')}>
+                <div className={cx('header')}>
+                    <span className={cx('title')}>Notes</span>
+                    <div className={cx('action-btn')}>
+                        <button className={cx('add-btn')} onClick={handleCreateNote}>
+                            <BsFileEarmarkPlus />
+                        </button>
+                    </div>
+                </div>
+                <div className={cx('note-items')}>
+                    {notes.map((item, idx) => (
+                        <span key={idx} className={cx('item')}>
+                            {item.title}
+                        </span>
+                    ))}
+                </div>
+            </div>
+            <div className={cx('note-content')}>
+                <Editor
+                    editorState={editorState}
+                    onEditorStateChange={handleOnchangeEditor}
+                    placeholder="Write something"
+                    wrapperClassName={cx('editor-wrapper')}
+                    editorClassName={cx('editor-textarea')}
+                    toolbarClassName={cx('editor-toolbar')}
+                />
             </div>
 
-            <CreateTask show={showCreateTaskModal} setShowCreateTaskModal={setShowCreateTaskModal} />
-            <TodoInfo show={showTodoInfoModal} setShowTodoInfoModal={setShowTodoInfoModal} />
+            <CreateNotebook show={showCreateNotebookModal} setShowCreateNotebookModal={setShowCreateNotebookModal} />
+            <CreateNote show={showCreateNoteModal} setShowCreateNoteModal={setShowCreateNoteModal} />
+            {/* <TodoInfo show={showTodoInfoModal} setShowTodoInfoModal={setShowTodoInfoModal} /> */}
         </div>
     );
 }

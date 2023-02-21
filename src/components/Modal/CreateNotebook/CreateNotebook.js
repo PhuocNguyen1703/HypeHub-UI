@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { motion } from 'framer-motion';
 
-import styles from './CreateTask.module.scss';
+import styles from './CreateNotebook.module.scss';
 import Tippy from '@tippyjs/react';
 import { BsJustifyLeft, BsTags, BsXLg } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
@@ -18,7 +18,7 @@ import { RiLoader4Fill } from 'react-icons/ri';
 
 const cx = classNames.bind(styles);
 
-function CreateTask({ show, setShowCreateTaskModal }) {
+function CreateNotebook({ show, setShowCreateNotebookModal }) {
     const { _id } = useSelector((state) => state.auth.login.currentUser);
     const [isOpenOption, setIsOpenOption] = useState(false);
     const [tagOptions, setTagOptions] = useState(['Team', 'Low', 'Medium', 'Hight']);
@@ -46,7 +46,7 @@ function CreateTask({ show, setShowCreateTaskModal }) {
 
     const handleCloseModal = () => {
         reset();
-        setShowCreateTaskModal(false);
+        setShowCreateNotebookModal(false);
     };
 
     const handleShowOption = () => {
@@ -96,6 +96,7 @@ function CreateTask({ show, setShowCreateTaskModal }) {
                         className={cx('wrapper')}
                     >
                         <header className={cx('header')}>
+                            <span className={cx('header-title')}>Create new notebook</span>
                             <div>
                                 <Tippy delay={[0, 50]} interactive content="Close">
                                     <button className={cx('close-btn')} onClick={handleCloseModal}>
@@ -116,60 +117,6 @@ function CreateTask({ show, setShowCreateTaskModal }) {
                                 />
                                 <span className={cx('underline-title-ipt')}></span>
                                 <label className={cx('label')}>Title</label>
-                            </div>
-                            <div className={cx('calendar')}>
-                                <DatePicker setTime={setTime} />
-                            </div>
-                            <div className={cx('desc')}>
-                                <span className={cx('icon')}>
-                                    <BsJustifyLeft />
-                                </span>
-                                <div className={cx('desc-ipt')}>
-                                    <textarea
-                                        className={cx('textarea')}
-                                        placeholder="Add description"
-                                        {...register('content')}
-                                    />
-                                    <span className={cx('underline-desc')}></span>
-                                </div>
-                            </div>
-                            <div className={cx('tag')}>
-                                <span className={cx('icon')}>
-                                    <BsTags />
-                                </span>
-                                <div ref={optionRef} className={cx('tag-container')} onClick={handleShowOption}>
-                                    {tags.map((tag, idx) => (
-                                        <div
-                                            key={idx}
-                                            className={cx('tag-selected')}
-                                            style={{ backgroundColor: getBackgroundColor(tag) }}
-                                        >
-                                            <p>{tag}</p>
-                                            <span
-                                                className={cx('close-icon')}
-                                                onClick={() => handleRemoveTag(tag, idx)}
-                                            >
-                                                <FaTimes />
-                                            </span>
-                                        </div>
-                                    ))}
-                                    {tags.length < 1 && (
-                                        <input className={cx('tag-input')} placeholder="Select tag..." readOnly />
-                                    )}
-                                    <span className={cx('down-icon')}>
-                                        <FaChevronDown />
-                                    </span>
-                                    {isOpenOption && (
-                                        <div className={cx('tag-dropdown')}>
-                                            {tagOptions.map((option, idx) => (
-                                                <span key={idx} onClick={() => handleSelectTag(option)}>
-                                                    {option}
-                                                </span>
-                                            ))}
-                                            {tags.length >= 4 && <span className={cx('no-options')}>No options</span>}
-                                        </div>
-                                    )}
-                                </div>
                             </div>
                             <div className={cx('action-btn')}>
                                 <button
@@ -192,4 +139,4 @@ function CreateTask({ show, setShowCreateTaskModal }) {
     }
 }
 
-export default CreateTask;
+export default CreateNotebook;
