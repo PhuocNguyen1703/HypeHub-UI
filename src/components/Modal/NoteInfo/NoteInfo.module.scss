@@ -109,6 +109,13 @@
         flex-direction: column;
         height: 100%;
     }
+
+    .editor-toolbar {
+        color: var(--black);
+        border: 1px solid var(--gray-alpha-10);
+        background-color: var(--gray-alpha-05);
+    }
+
     .editor-textarea {
         flex: 1;
     }
