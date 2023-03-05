@@ -17,7 +17,6 @@ const cx = classNames.bind(styles);
 
 function PrivateChat() {
     const { currentUser } = useSelector((state) => state.auth.login);
-    const [isOpenFilter, setIsOpenFilter] = useState(true);
     const [allUsers, setAllUsers] = useState([]);
     const [chats, setChats] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
@@ -82,15 +81,6 @@ function PrivateChat() {
     //     return online ? true : false;
     // };
 
-    const handleOnFilter = () => {
-        setIsOpenFilter((prevState) => !prevState);
-    };
-
-    const getHiddenClass = () => {
-        if (isOpenFilter) return 'hidden';
-        return '';
-    };
-
     return (
         <div className={cx('wrapper')}>
             <div className={cx('sidebar')}>
@@ -99,16 +89,6 @@ function PrivateChat() {
                 </div>
                 <div className={cx('title')}>
                     <h5 className={cx('label')}>Messages</h5>
-                    <div className={cx('filter')}>
-                        <span className={cx('filter-icon')} onClick={handleOnFilter}>
-                            <BsFunnel />
-                        </span>
-                        <div className={cx('dropdown-filter-message', getHiddenClass())}>
-                            <span className={cx('filter-option')}>All message</span>
-                            <span className={cx('filter-option')}>Group message</span>
-                            <span className={cx('filter-option')}>Personal message</span>
-                        </div>
-                    </div>
                 </div>
                 <div className={cx('message-list')}>
                     {chats.map((item) => (

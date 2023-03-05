@@ -9,6 +9,7 @@ import {
     BsPerson,
     BsAlarm,
     BsClipboardData,
+    BsPeople,
 } from 'react-icons/bs';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import { useSelector } from 'react-redux';
@@ -51,7 +52,18 @@ function Sidebar() {
         {
             icon: <BsChatSquareDots />,
             title: 'Chat',
-            path: config.routes.chat,
+            children: [
+                {
+                    icon: <BsPeople />,
+                    title: 'Group',
+                    path: config.routes.user_management,
+                },
+                {
+                    icon: <BsPerson />,
+                    title: 'Private',
+                    path: config.routes.chat,
+                },
+            ],
         },
         {
             icon: <BsCheck2Square />,
