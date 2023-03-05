@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './Chat.module.scss';
+import styles from './PrivateChat.module.scss';
 import Image from '~/components/Image';
 import ChatBox from '~/layouts/components/ChatBox/ChatBox';
 import { useSelector } from 'react-redux';

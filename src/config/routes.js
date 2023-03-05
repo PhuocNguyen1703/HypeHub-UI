@@ -4,7 +4,7 @@ const routes = {
     home: '/',
     sales: '/sales',
     profile: '/profile',
-    chat: '/chat',
+    chat: { private: '/chat/private', group: '/chat/group' },
     employee: '/employee',
     email: '/email',
     todo: '/todo',

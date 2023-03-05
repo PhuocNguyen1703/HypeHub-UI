@@ -6,7 +6,8 @@ import config from '~/config';
 import Candidate from '~/pages/Candidate';
 import Employee from '~/pages/Employee';
 import Email from '~/pages/Email';
-import Chat from '~/pages/Chat';
+import PrivateChat from '~/pages/Chat/Private';
+import GroupChat from '~/pages/Chat/Group';
 import Todo from '~/pages/Todo';
 import Calendar from '~/pages/Calendar';
 import Kanban from '~/pages/Kanban';
@@ -22,7 +23,8 @@ const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.sales, component: Sales },
     { path: config.routes.profile, component: Profile },
-    { path: config.routes.chat, component: Chat },
+    { path: config.routes.chat.private, component: PrivateChat },
+    { path: config.routes.chat.group, component: GroupChat },
     { path: config.routes.employee, component: Employee },
     { path: config.routes.candidates, component: Candidate, layout: HeaderOnly },
     { path: config.routes.email, component: Email },

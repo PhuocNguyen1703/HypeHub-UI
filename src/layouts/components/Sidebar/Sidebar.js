@@ -56,12 +56,12 @@ function Sidebar() {
                 {
                     icon: <BsPeople />,
                     title: 'Group',
-                    path: config.routes.user_management,
+                    path: config.routes.chat.group,
                 },
                 {
                     icon: <BsPerson />,
                     title: 'Private',
-                    path: config.routes.chat,
+                    path: config.routes.chat.private,
                 },
             ],
         },
