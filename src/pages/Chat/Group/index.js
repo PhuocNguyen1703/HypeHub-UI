@@ -10,9 +10,10 @@ import { getAllUser } from '~/api/userApi';
 import { userChats } from '~/api/chatApi';
 import Conversation from '~/layouts/components/Conversation/Conversation';
 import Message from '~/components/Search/Message';
-import { BsFunnel, BsPatchPlus } from 'react-icons/bs';
+import { BsFunnel, BsPatchPlus, BsStack } from 'react-icons/bs';
 import NotFound from '~/layouts/components/ChatBox/NotFound';
 import AddChannelModal from '~/components/Modal/AddChannel/AddChannelModal';
+import GroupChatBox from './GroupChatBox';
 
 const cx = classNames.bind(styles);
 
@@ -34,6 +35,39 @@ function GroupChat() {
         { id: 3, title: 'channel 3 ' },
         { id: 4, title: 'channel 4 ' },
         { id: 5, title: 'channel 5 ' },
+    ];
+
+    const memberList = [
+        {
+            id: 1,
+            avatar: 'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+            name: 'Victoria',
+        },
+        {
+            id: 2,
+            avatar: 'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+            name: 'Victoria',
+        },
+        {
+            id: 3,
+            avatar: 'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+            name: 'Victoria',
+        },
+        {
+            id: 4,
+            avatar: 'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+            name: 'Victoria',
+        },
+        {
+            id: 5,
+            avatar: 'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+            name: 'Victoria',
+        },
+        {
+            id: 6,
+            avatar: 'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+            name: 'Victoria',
+        },
     ];
 
     const handleToggleAddChannelModal = () => {
@@ -99,7 +133,7 @@ function GroupChat() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('sidebar')}>
-                <div className={cx('title')}>
+                <div className={cx('header')}>
                     <h5 className={cx('label')}>Channels</h5>
                     <span className={cx('add-channel-btn')} onClick={handleToggleAddChannelModal}>
                         <BsPatchPlus />
@@ -118,6 +152,16 @@ function GroupChat() {
                         </div>
                     ))}
                 </div>
+            </div>
+            <GroupChatBox />
+            <div className={cx('member-list')}>
+                <span className={cx('label')}>Members</span>
+                {memberList.map((item) => (
+                    <div className={cx('member')}>
+                        <Image className={cx('avatar')} src={item.avatar} />
+                        <span className={cx('name')}>{item.name}</span>
+                    </div>
+                ))}
             </div>
 
             <AddChannelModal show={showAddChannelModal} setShowAddChannelModal={setShowAddChannelModal} />
