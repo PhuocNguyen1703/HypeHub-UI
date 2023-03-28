@@ -16,6 +16,7 @@ import Board from '~/pages/Board';
 import UserInformation from '~/layouts/components/UserInformation';
 import UserManagement from '~/pages/UserManagement';
 import Timesheets from '~/pages/Timesheets';
+import Support from '~/pages/Support';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
@@ -32,6 +33,7 @@ const publicRoutes = [
     { path: config.routes.calendar, component: Calendar },
     { path: config.routes.kanban, component: Kanban },
     { path: config.routes.board, component: Board },
+    { path: config.routes.support, component: Support },
 ];
 
 const privateRoutes = [

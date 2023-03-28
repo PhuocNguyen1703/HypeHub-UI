@@ -13,6 +13,7 @@ const routes = {
     board: '/kanban/board/:boardId',
     timesheets: '/timesheets',
     user_management: '/user_management',
+    support: '/support',
 };
 
 export default routes;

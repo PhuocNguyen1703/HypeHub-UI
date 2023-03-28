@@ -10,6 +10,7 @@ import {
     BsAlarm,
     BsClipboardData,
     BsPeople,
+    BsPatchQuestion,
 } from 'react-icons/bs';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import { useSelector } from 'react-redux';
@@ -84,6 +85,11 @@ function Sidebar() {
             icon: <BsPerson />,
             title: 'Profile',
             path: config.routes.profile,
+        },
+        {
+            icon: <BsPatchQuestion />,
+            title: 'Support Ticket',
+            path: config.routes.support,
         },
     ];
 
