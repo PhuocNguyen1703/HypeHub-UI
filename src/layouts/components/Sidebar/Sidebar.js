@@ -108,6 +108,11 @@ function Sidebar() {
                     title: 'Timesheets',
                     path: config.routes.timesheets,
                 },
+                {
+                    icon: <BsPatchQuestion />,
+                    title: 'Ticket',
+                    path: config.routes.support_center,
+                },
             ],
         },
     ];

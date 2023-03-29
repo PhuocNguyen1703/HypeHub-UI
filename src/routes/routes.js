@@ -17,6 +17,7 @@ import UserInformation from '~/layouts/components/UserInformation';
 import UserManagement from '~/pages/UserManagement';
 import Timesheets from '~/pages/Timesheets';
 import Support from '~/pages/Support';
+import SupportCenter from '~/pages/SupportCenter';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
@@ -40,6 +41,7 @@ const privateRoutes = [
     ...publicRoutes,
     { path: config.routes.user_management, component: UserManagement },
     { path: config.routes.timesheets, component: Timesheets },
+    { path: config.routes.support_center, component: SupportCenter },
 ];
 
 export { publicRoutes, privateRoutes };

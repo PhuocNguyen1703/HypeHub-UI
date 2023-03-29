@@ -14,6 +14,7 @@ const routes = {
     timesheets: '/timesheets',
     user_management: '/user_management',
     support: '/support',
+    support_center: '/support-center',
 };
 
 export default routes;
