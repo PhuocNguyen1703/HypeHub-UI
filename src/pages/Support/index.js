@@ -9,19 +9,62 @@ const cx = classNames.bind(styles);
 
 function Support() {
     const tableTicket = [
-        { id: 'SR#135267859', subject: 'Support password', image: 'asdadad', date: '20/01/2023', status: 'Inprocess' },
+        {
+            id: 'SR#135267859',
+            subject: 'Support password',
+            image: 'asdadad',
+            date: '20/01/2023',
+            time: '10:00 am',
+            status: 'In process',
+        },
         {
             id: 'SR#135216859',
             subject: 'Support password',
             image: 'sasd',
             date: '20/01/2023',
-            status: 'Inprocess',
+            time: '10:00 am',
+            status: 'In process',
         },
-        { id: 'SR#765267859', subject: 'Support password', image: '', date: '20/01/2023', status: 'Inprocess' },
-        { id: 'SR#135107859', subject: 'Support password', image: '', date: '20/01/2023', status: 'Inprocess' },
-        { id: 'SR#135224859', subject: 'Support password', image: 'dasdad', date: '20/01/2023', status: 'Inprocess' },
-        { id: 'SR#135767859', subject: 'Support password', image: '', date: '20/01/2023', status: 'Inprocess' },
-        { id: 'SR#130867859', subject: 'Support password', image: 'asdasd', date: '20/01/2023', status: 'Inprocess' },
+        {
+            id: 'SR#765267859',
+            subject: 'Support password',
+            image: '',
+            date: '20/01/2023',
+            time: '10:00 am',
+            status: 'Cancel',
+        },
+        {
+            id: 'SR#135107859',
+            subject: 'Support password',
+            image: '',
+            date: '20/01/2023',
+            time: '10:00 am',
+            status: 'Approve',
+        },
+        {
+            id: 'SR#135224859',
+            subject: 'Support password',
+            image: 'dasdad',
+            date: '20/01/2023',
+            time: '10:00 am',
+            status: 'Cancel',
+        },
+        {
+            id: 'SR#135767859',
+            subject: 'Support password',
+            image: '',
+            date: '20/01/2023',
+            time: '10:00 am',
+            status: 'Approve',
+        },
+        {
+            id: 'SR#130867859',
+            subject: 'Support password',
+            image: 'asdasd',
+            date: '20/01/2023',
+            time: '10:00 am',
+            status: 'In process',
+        },
     ];
 
     return (
@@ -89,7 +132,7 @@ function Support() {
                         <span className={cx('rq-id')}>Support ID</span>
                         <span className={cx('rq-subject')}>Subject</span>
                         <span className={cx('rq-img')}>Image</span>
-                        <span className={cx('rq-date')}>Date</span>
+                        <span className={cx('rq-date-time')}>Date/Time</span>
                         <span className={cx('rq-status')}>Support Status</span>
                         <span className={cx('rq-detail')}>Detail</span>
                     </div>
@@ -104,13 +147,16 @@ function Support() {
                                     </span>
                                 ) : null}
                             </span>
-                            <span className={cx('rq-date')}>{item.date}</span>
+                            <div className={cx('rq-date-time')}>
+                                <span className={cx('date')}>{item.date}</span>
+                                <span className={cx('time')}>{item.time}</span>
+                            </div>
                             <span className={cx('rq-status')}>{item.status}</span>
-                            <span className={cx('rq-detail')}>
+                            <div className={cx('rq-detail')}>
                                 <span className={cx('detail-icon')}>
                                     <BsClipboardMinus />
                                 </span>
-                            </span>
+                            </div>
                         </div>
                     ))}
                 </div>

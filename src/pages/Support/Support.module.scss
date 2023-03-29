@@ -216,9 +216,10 @@
             font-size: 2rem !important;
             font-weight: 700 !important;
             color: var(--text-color) !important;
+            user-select: none;
 
-            &:hover:disabled {
-                background-color: none !important;
+            &:hover {
+                background-color: transparent !important;
             }
         }
 
@@ -227,14 +228,14 @@
             display: flex;
             gap: 10px;
             width: 100%;
-            padding: 10px 6px 6px 6px;
-            font-size: 1.7rem;
             font-weight: 600;
+            padding: 10px 6px 6px 6px;
             color: var(--gray);
             border-bottom: 1px solid var(--gray-alpha-20);
 
             &:hover {
-                background-color: var(--gray-alpha-10);
+                background-color: var(--gray-alpha-05);
+                color: var(--text-color);
             }
 
             .rq-id {
@@ -254,9 +255,18 @@
                 }
             }
 
-            .rq-date {
+            .rq-date-time {
                 text-align: center;
                 width: 15%;
+
+                .date {
+                }
+
+                .time {
+                    font-size: 1.4rem;
+                    margin-left: 6px;
+                    color: var(--gray-alpha-80);
+                }
             }
 
             .rq-status {

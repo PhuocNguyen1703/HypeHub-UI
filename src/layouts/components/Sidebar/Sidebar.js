@@ -88,7 +88,7 @@ function Sidebar() {
         },
         {
             icon: <BsPatchQuestion />,
-            title: 'Support Ticket',
+            title: 'Support',
             path: config.routes.support,
         },
     ];
