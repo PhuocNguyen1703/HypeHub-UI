@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames/bind';
-import styles from './NoteInfo.module.scss';
+import styles from './TaskDetail.module.scss';
 import { convertToRaw, EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import { AnimatePresence } from 'framer-motion';
 import Modal from '../Modal';
 import { motion } from 'framer-motion';
-import { BsXLg } from 'react-icons/bs';
+import { BsPerson, BsXLg } from 'react-icons/bs';
 import { RiLoader4Fill } from 'react-icons/ri';
 import { useForm } from 'react-hook-form';
+import { HiOutlineUserGroup } from 'react-icons/hi';
 
 const cx = classNames.bind(styles);
 
-function NoteInfo({ show, setShowNoteInfoModal }) {
+function TaskDetail({ show, setShowTaskDetailModal }) {
     const note = { id: '123', content: '' };
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -33,7 +34,7 @@ function NoteInfo({ show, setShowNoteInfoModal }) {
     };
 
     const handleCloseModal = () => {
-        setShowNoteInfoModal(false);
+        setShowTaskDetailModal(false);
     };
 
     const onSubmit = async (data) => {};
@@ -56,7 +57,7 @@ function NoteInfo({ show, setShowNoteInfoModal }) {
                                 <BsXLg />
                             </button>
                         </header>
-                        <form className={cx('container')} onSubmit={handleSubmit(onSubmit)}>
+                        <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
                             <div className={cx('title')}>
                                 <input
                                     className={cx('title-ipt')}
@@ -69,16 +70,21 @@ function NoteInfo({ show, setShowNoteInfoModal }) {
                                 <span className={cx('underline-title-ipt')}></span>
                                 <label className={cx('label')}>Title</label>
                             </div>
-                            <div className={cx('content')}>
-                                <Editor
-                                    editorState={editorState}
-                                    onEditorStateChange={handleOnchangeEditor}
-                                    placeholder="Write something"
-                                    wrapperClassName={cx('editor-wrapper')}
-                                    toolbarClassName={cx('editor-toolbar')}
-                                    editorClassName={cx('editor-textarea')}
-                                />
+                            <div className={cx('category')}>
+                                <label className={cx('label-category')}>Category</label>
+                                <div className={cx('type')}>
+                                    <span className={cx('personal')}>
+                                        <BsPerson /> Personal
+                                    </span>
+                                    <span className={cx('team')}>
+                                        <HiOutlineUserGroup /> Teams
+                                    </span>
+                                </div>
                             </div>
+                            <label className={cx('description-container')}>
+                                Description
+                                <textarea className={cx('description')} placeholder="Write description..."></textarea>
+                            </label>
                             <div className={cx('action-btn')}>
                                 <button
                                     disabled={isSubmitting}
@@ -100,4 +106,4 @@ function NoteInfo({ show, setShowNoteInfoModal }) {
     }
 }
 
-export default NoteInfo;
+export default TaskDetail;
