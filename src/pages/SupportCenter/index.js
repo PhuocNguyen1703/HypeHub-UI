@@ -4,11 +4,14 @@ import classNames from 'classnames/bind';
 import styles from './SupportCenter.module.scss';
 import { BsCaretLeftFill, BsCaretRightFill, BsClipboardMinus, BsDownload, BsFillCaretDownFill } from 'react-icons/bs';
 import { FaCheck } from 'react-icons/fa';
+import ConfirmSupportTicket from '~/components/Modal/ConfirmSupportTicket';
 
 const cx = classNames.bind(styles);
 
 function SupportCenter() {
     const [isOpenOption, setIsOpenOption] = useState(false);
+    const [showConfirmTicketModal, setShowConfirmTicketModal] = useState(false);
+    const [ticket, setTicket] = useState({});
     const optionRef = useRef(null);
 
     useEffect(() => {
@@ -107,6 +110,11 @@ function SupportCenter() {
         },
     ];
 
+    const handleToggleConfirmTicketModal = (item) => {
+        setShowConfirmTicketModal(true);
+        setTicket(item);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
@@ -128,6 +136,7 @@ function SupportCenter() {
                 </div>
                 <div className={cx('table-container')}>
                     <div className={cx('table-head')}>
+                        <span className={cx('rq-type')}></span>
                         <span className={cx('rq-id')}>Ticket ID</span>
                         <span className={cx('rq-subject')}>Subject</span>
                         <span className={cx('rq-created-by')}>Created By</span>
@@ -138,6 +147,9 @@ function SupportCenter() {
                     </div>
                     {tableTicket.map((item) => (
                         <div key={item.id} className={cx('table-row')}>
+                            <span className={cx('rq-type')}>
+                                <span className={cx('rq-new')}>New</span>
+                            </span>
                             <span className={cx('rq-id')}>{item.id}</span>
                             <span className={cx('rq-subject')}>{item.subject}</span>
                             <span className={cx('rq-created-by')}>{item.createdBy}</span>
@@ -154,7 +166,10 @@ function SupportCenter() {
                             </div>
                             <span className={cx('rq-status')}>{item.status}</span>
                             <div className={cx('rq-detail')}>
-                                <span className={cx('detail-icon')}>
+                                <span
+                                    className={cx('detail-icon')}
+                                    onClick={() => handleToggleConfirmTicketModal(item)}
+                                >
                                     <BsClipboardMinus />
                                 </span>
                             </div>
@@ -197,6 +212,12 @@ function SupportCenter() {
                     </div>
                 </div>
             </div>
+
+            <ConfirmSupportTicket
+                show={showConfirmTicketModal}
+                setShowConfirmTicketModal={setShowConfirmTicketModal}
+                ticket={ticket}
+            />
         </div>
     );
 }

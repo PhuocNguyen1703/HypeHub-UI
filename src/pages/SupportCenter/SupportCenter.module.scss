@@ -89,6 +89,24 @@
                 color: var(--text-color);
             }
 
+            .rq-type {
+                width: 3%;
+            }
+
+            .rq-new {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2px 6px;
+                width: fit-content;
+                font-size: 1.2rem;
+                border-radius: 4px;
+                box-shadow: var(--box-shadow);
+                background-color: green;
+                color: var(--white);
+                user-select: none;
+            }
+
             .rq-id {
                 width: 12%;
             }
