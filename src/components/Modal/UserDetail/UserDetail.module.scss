@@ -1,0 +1,138 @@
+.wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    min-width: 700px;
+    background-color: var(--main-bg);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    color: var(--text-color);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    .title {
+        margin-left: 10px;
+        font-size: 3rem;
+        font-weight: 700;
+        user-select: none;
+    }
+
+    .close-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        padding: 8px;
+        border-radius: 999px;
+        color: var(--text-color);
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--gray-alpha-10);
+        }
+    }
+}
+
+.container {
+    display: flex;
+    padding: 20px;
+    margin-top: 20px;
+    gap: 20px;
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 0.45;
+
+        .avatar {
+            width: 160px;
+            height: 210px;
+            border-radius: 6px;
+            user-select: none;
+            object-fit: cover;
+            box-shadow: var(--box-shadow);
+        }
+
+        .full-name {
+            margin-top: 20px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .position {
+            font-weight: 600;
+            color: var(--gray);
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 30px;
+
+            .facebook-icon,
+            .instagram-icon,
+            .twitter-icon,
+            .line-icon {
+                font-size: 2.2rem;
+                user-select: none;
+                cursor: pointer;
+            }
+
+            .facebook-icon {
+                color: var(--blue);
+            }
+
+            .instagram-icon {
+                color: #fcaf45;
+            }
+
+            .twitter-icon {
+                color: #1d9bf0;
+            }
+
+            .line-icon {
+                color: green;
+            }
+        }
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        flex: 1;
+
+        .label {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gray);
+
+            .identify,
+            .email,
+            .birth,
+            .gender,
+            .address,
+            .phone,
+            .face-id,
+            .created-at,
+            .hashtag {
+                font-size: 1.7rem;
+                color: var(--text-color);
+                font-weight: normal;
+                margin-left: 10px;
+            }
+        }
+    }
+}

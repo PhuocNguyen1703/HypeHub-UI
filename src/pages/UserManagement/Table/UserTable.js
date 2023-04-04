@@ -15,13 +15,14 @@ import {
     BsTrash,
 } from 'react-icons/bs';
 import { FaCheck, FaMars, FaVenus } from 'react-icons/fa';
+import UserDetail from '~/components/Modal/UserDetail/UserDetail';
 
 const cx = classNames.bind(styles);
 
 function UserTable() {
     const [isOpenOption, setIsOpenOption] = useState(false);
-    const [showConfirmTicketModal, setShowConfirmTicketModal] = useState(false);
-    const [ticket, setTicket] = useState({});
+    const [showUserDetailModal, setShowUserDetailModal] = useState(false);
+    const [selectedUser, setSelectedUser] = useState({});
     const optionRef = useRef(null);
 
     useEffect(() => {
@@ -57,7 +58,7 @@ function UserTable() {
             updatedAt: '14/03/2022',
         },
         {
-            id: 'M#123108789',
+            id: 'M#161108789',
             avatar: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
             fullName: 'Yamamoto',
             email: 'admin2@gmail.com',
@@ -117,7 +118,7 @@ function UserTable() {
             updatedAt: null,
         },
         {
-            id: 'M#117956789',
+            id: 'M#113556789',
             avatar: 'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
             fullName: 'Victoria',
             email: 'admin@gmail.com',
@@ -222,6 +223,11 @@ function UserTable() {
         return null;
     };
 
+    const handleToggleUserDetailModal = (item) => {
+        setSelectedUser(item);
+        setShowUserDetailModal(true);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
@@ -257,7 +263,7 @@ function UserTable() {
                         <span className={cx('face-id')}>{checkFaceId(item.faceId)}</span>
                         <span className={cx('created-at')}>{item.createdAt}</span>
                         <div className={cx('action')}>
-                            <button className={cx('detail-icon')}>
+                            <button className={cx('detail-icon')} onClick={() => handleToggleUserDetailModal(item)}>
                                 <BsClipboardMinus />
                             </button>
                             <button className={cx('remove-icon')}>
@@ -301,6 +307,12 @@ function UserTable() {
                     </div>
                 </div>
             </div>
+
+            <UserDetail
+                show={showUserDetailModal}
+                setShowUserDetailModal={setShowUserDetailModal}
+                user={selectedUser}
+            />
         </div>
     );
 }
