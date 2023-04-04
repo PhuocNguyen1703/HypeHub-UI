@@ -14,10 +14,10 @@ import Kanban from '~/pages/Kanban';
 import Sales from '~/pages/Sales';
 import Board from '~/pages/Board';
 import UserInformation from '~/layouts/components/UserInformation';
-import UserManagement from '~/pages/UserManagement';
 import Timesheets from '~/pages/Timesheets';
 import Support from '~/pages/Support';
 import SupportCenter from '~/pages/SupportCenter';
+import UserTable from '~/pages/UserManagement/Table/UserTable';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
@@ -39,7 +39,8 @@ const publicRoutes = [
 
 const privateRoutes = [
     ...publicRoutes,
-    { path: config.routes.user_management, component: UserManagement },
+    { path: config.routes.user_management.user_table, component: UserTable },
+    { path: config.routes.user_management.user_card, component: UserTable },
     { path: config.routes.timesheets, component: Timesheets },
     { path: config.routes.support_center, component: SupportCenter },
 ];

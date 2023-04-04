@@ -12,7 +12,7 @@ const routes = {
     kanban: '/kanban',
     board: '/kanban/board/:boardId',
     timesheets: '/timesheets',
-    user_management: '/user_management',
+    user_management: { user_table: '/user-management/table', user_card: '/user-management/card' },
     support: '/support',
     support_center: '/support-center',
 };

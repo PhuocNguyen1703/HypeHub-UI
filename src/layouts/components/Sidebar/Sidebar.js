@@ -101,7 +101,7 @@ function Sidebar() {
                 {
                     icon: <BsClipboardData />,
                     title: 'User',
-                    path: config.routes.user_management,
+                    path: config.routes.user_management.user_table,
                 },
                 {
                     icon: <BsAlarm />,

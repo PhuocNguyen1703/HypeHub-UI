@@ -1,14 +1,14 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './UserManagement.module.scss';
+import styles from './UserTable.module.scss';
 import Table from '~/components/Table';
 import Image from '~/components/Image';
 import { BsFileEarmarkText, BsPencil, BsTrash } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);
 
-function UserManagement() {
+function UserTable() {
     const userTableHead = [
         'Avatar',
         'Full name',
@@ -147,4 +147,4 @@ function UserManagement() {
     );
 }
 
-export default UserManagement;
+export default UserTable;
