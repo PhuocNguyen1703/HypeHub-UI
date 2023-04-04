@@ -18,6 +18,7 @@ import CreateNotebook from '~/components/Modal/CreateNotebook';
 
 import CreateNote from '~/components/Modal/CreateNote';
 import TaskDetail from '~/components/Modal/TaskDetail';
+import { HiCheck } from 'react-icons/hi';
 
 const cx = classNames.bind(styles);
 
@@ -25,6 +26,7 @@ function Todo() {
     const [showCreateNotebookModal, setShowCreateNotebookModal] = useState(false);
     const [showCreateNoteModal, setShowCreateNoteModal] = useState(false);
     const [showAddNewTodo, setShowAddNewTodo] = useState(false);
+    const [completed, setCompleted] = useState(false);
     const [showTaskDetailModal, setShowTaskDetailModal] = useState(false);
 
     const notebooks = [
@@ -41,31 +43,35 @@ function Todo() {
         { title: 'noteBooks1noteBooks4 1234' },
     ];
 
-    const todoList = [
+    const todos = [
         {
+            id: 1,
             content:
                 'todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 ',
+            done: false,
         },
-        { content: 'todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2' },
-        { content: 'todo3 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2' },
-        { content: 'todo4 todo2 todo2 todo2 todo2' },
-        { content: 'todo5 todo2 todo2 todo2 todo2 todo2 todo2 todo2' },
-        { content: 'todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 ' },
-        { content: 'todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2' },
-        { content: 'todo3 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2' },
-        { content: 'todo4 todo2 todo2 todo2 todo2' },
-        { content: 'todo5 todo2 todo2 todo2 todo2 todo2 todo2 todo2' },
-        { content: 'todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 ' },
-        { content: 'todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2' },
-        { content: 'todo3 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2' },
-        { content: 'todo4 todo2 todo2 todo2 todo2' },
-        { content: 'todo5 todo2 todo2 todo2 todo2 todo2 todo2 todo2' },
-        { content: 'todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 ' },
-        { content: 'todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2' },
-        { content: 'todo3 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2' },
-        { content: 'todo4 todo2 todo2 todo2 todo2' },
-        { content: 'todo5 todo2 todo2 todo2 todo2 todo2 todo2 todo2' },
+        { id: 2, content: 'todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2', done: false },
+        { id: 3, content: 'todo3 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2', done: true },
+        { id: 4, content: 'todo4 todo2 todo2 todo2 todo2', done: false },
+        { id: 5, content: 'todo5 todo2 todo2 todo2 todo2 todo2 todo2 todo2', done: false },
+        { id: 6, content: 'todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 ', done: true },
+        { id: 7, content: 'todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2', done: false },
+        { id: 8, content: 'todo3 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2', done: true },
+        { id: 9, content: 'todo4 todo2 todo2 todo2 todo2', done: false },
+        { id: 10, content: 'todo5 todo2 todo2 todo2 todo2 todo2 todo2 todo2', done: false },
+        { id: 11, content: 'todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 ', done: true },
+        { id: 12, content: 'todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2', done: false },
+        { id: 13, content: 'todo3 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2', done: false },
+        { id: 14, content: 'todo4 todo2 todo2 todo2 todo2', done: false },
+        { id: 15, content: 'todo5 todo2 todo2 todo2 todo2 todo2 todo2 todo2', done: false },
+        { id: 16, content: 'todo1 todo1 todo1 todo1 todo1 todo1 todo1 todo1 ', done: false },
+        { id: 17, content: 'todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2', done: false },
+        { id: 18, content: 'todo3 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2 todo2', done: false },
+        { id: 19, content: 'todo4 todo2 todo2 todo2 todo2', done: false },
+        { id: 20, content: 'todo5 todo2 todo2 todo2 todo2 todo2 todo2 todo2', done: true },
     ];
+
+    const [todoList, setTodoList] = useState(todos);
 
     const handleCreateNotebook = () => {
         setShowCreateNotebookModal(true);
@@ -81,6 +87,12 @@ function Todo() {
 
     const handleToggleTodoDetail = () => {
         setShowTaskDetailModal(true);
+    };
+
+    const handleOnClickCheckBox = (idx) => {
+        const newTodoList = [...todoList];
+        newTodoList[idx].done = !newTodoList[idx].done;
+        setTodoList(newTodoList);
     };
 
     return (
@@ -141,9 +153,20 @@ function Todo() {
                 )}
                 <div className={cx('content')}>
                     {todoList.map((item, idx) => (
-                        <div key={idx} className={cx('todo')}>
-                            <input type="checkbox" className={cx('checkbox')} />
-                            <span className={cx('todo-content')}>{item.content}</span>
+                        <div key={item.id} className={cx('todo')}>
+                            <label className={cx('checkbox-container')}>
+                                <input
+                                    type="checkbox"
+                                    className={cx('checkbox-ipt')}
+                                    checked={item.done}
+                                    onClick={() => handleOnClickCheckBox(idx)}
+                                    readOnly
+                                />
+                                <span className={cx('icon-check')}>
+                                    <HiCheck />
+                                </span>
+                            </label>
+                            <span className={cx('todo-content', item.done && 'completed')}>{item.content}</span>
                             <div className={cx('todo-action-btn')}>
                                 <span className={cx('todo-detail-btn')} onClick={handleToggleTodoDetail}>
                                     <BsJournalText />

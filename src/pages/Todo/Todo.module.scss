@@ -172,13 +172,43 @@
             }
         }
 
-        .checkbox {
+        .checkbox-container {
+            position: relative;
+            width: 25px;
+            height: 25px;
+            border: 2px solid var(--gray-alpha-60);
+            border-radius: 4px;
+
+            .checkbox-ipt {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+
+                &:checked ~ .icon-check {
+                    transform: scale(1);
+                }
+            }
+
+            .icon-check {
+                position: absolute;
+                top: -10px;
+                font-size: 30px;
+                color: green;
+                transform: scale(0);
+                transition: transform 0.3s var(--transition-cubic);
+            }
         }
 
         .todo-content {
             flex: 1;
             margin-left: 20px;
             font-size: 1.8rem;
+        }
+
+        .completed {
+            text-decoration-line: line-through;
+            color: var(--gray);
         }
 
         .todo-action-btn {
@@ -190,6 +220,14 @@
                 margin-left: 10px;
                 font-size: 1.6rem;
                 cursor: pointer;
+            }
+
+            .todo-detail-btn:hover {
+                color: var(--blue);
+            }
+
+            .remove-todo-btn:hover {
+                color: var(--red);
             }
         }
     }
