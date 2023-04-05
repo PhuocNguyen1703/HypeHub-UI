@@ -8,6 +8,7 @@ import { BsXLg } from 'react-icons/bs';
 import Image from '~/components/Image/Image';
 import { FaFacebookSquare, FaInstagram, FaInstagramSquare, FaLine, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import CircleHeader from '~/components/CircleHeader/CircleHeader';
 
 const cx = classNames.bind(styles);
 
@@ -26,7 +27,7 @@ function UserDetail({ show, setShowUserDetailModal, user }) {
                         className={cx('wrapper')}
                     >
                         <header className={cx('header')}>
-                            <span className={cx('title')}>User detail</span>
+                            <CircleHeader wrapperClassName={cx('wrapperClassName')} />
                             <button className={cx('close-btn')} onClick={handleCloseModal}>
                                 <BsXLg />
                             </button>

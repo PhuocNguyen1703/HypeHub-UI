@@ -19,12 +19,11 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 
-    .title {
+    // Custom css CircleHeader
+    .wrapperClassName {
         margin-left: 10px;
-        font-size: 3rem;
-        font-weight: 700;
-        user-select: none;
     }
+    //////////////////////////
 
     .close-btn {
         display: flex;

@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.circle-red,
+.circle-yellow,
+.circle-green {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    box-shadow: var(--box-shadow);
+    user-select: none;
+}
+
+.circle-red {
+    background-color: #ff605c;
+}
+
+.circle-yellow {
+    background-color: #ffbd44;
+}
+
+.circle-green {
+    background-color: #00ca4e;
+}
