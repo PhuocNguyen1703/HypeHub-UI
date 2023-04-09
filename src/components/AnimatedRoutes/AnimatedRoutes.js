@@ -19,23 +19,22 @@ function AnimatedRoutes() {
 
                           let Layout = DefaultLayout;
 
-                          if (routes.layout) {
-                              Layout = routes.layout;
-                          }
                           if (routes.layout === null) {
                               Layout = Fragment;
+
+                              return (
+                                  <Route
+                                      key={index}
+                                      path={routes.path + '/*'} // If routes deep in the tree
+                                      element={<Page />}
+                                  />
+                              );
                           }
 
                           return (
-                              <Route
-                                  key={index}
-                                  path={routes.path}
-                                  element={
-                                      <Layout>
-                                          <Page />
-                                      </Layout>
-                                  }
-                              />
+                              <Route key={index} element={<Layout />}>
+                                  <Route path={routes.path + '/*'} element={<Page />} />
+                              </Route>
                           );
                       })
                     : publicRoutes.map((routes, index) => {
@@ -43,27 +42,16 @@ function AnimatedRoutes() {
 
                           let Layout = DefaultLayout;
 
-                          if (routes.layout) {
-                              Layout = routes.layout;
-                          }
                           if (routes.layout === null) {
                               Layout = Fragment;
+
+                              return <Route key={index} path={routes.path + '/*'} element={<Page />} />;
                           }
 
                           return (
-                              <Route
-                                  key={index}
-                                  path={routes.path}
-                                  element={
-                                      user ? (
-                                          <Layout>
-                                              <Page />
-                                          </Layout>
-                                      ) : (
-                                          <Login />
-                                      )
-                                  }
-                              />
+                              <Route key={index} element={<Layout />}>
+                                  <Route path={routes.path + '/*'} element={user ? <Page /> : <Login />} />
+                              </Route>
                           );
                       })}
             </Routes>

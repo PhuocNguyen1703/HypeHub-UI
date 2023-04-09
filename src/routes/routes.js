@@ -18,6 +18,7 @@ import Timesheets from '~/pages/Timesheets';
 import Support from '~/pages/Support';
 import SupportCenter from '~/pages/SupportCenter';
 import UserTable from '~/pages/UserManagement/Table/UserTable';
+import UserManagement from '~/pages/UserManagement';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
@@ -39,8 +40,7 @@ const publicRoutes = [
 
 const privateRoutes = [
     ...publicRoutes,
-    { path: config.routes.user_management.user_table, component: UserTable },
-    { path: config.routes.user_management.user_card, component: UserTable },
+    { path: config.routes.user_management.default, component: UserManagement },
     { path: config.routes.timesheets, component: Timesheets },
     { path: config.routes.support_center, component: SupportCenter },
 ];

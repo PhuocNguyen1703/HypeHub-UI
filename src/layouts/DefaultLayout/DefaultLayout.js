@@ -6,10 +6,11 @@ import Sidebar from '~/layouts/components/Sidebar';
 import styles from './DefaultLayout.module.scss';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function DefaultLayout({ children }) {
+function DefaultLayout() {
     const { sidebarCollapsed } = useSelector((state) => state.layout);
     const { themeMode, sidebarColor } = useSelector((state) => state.theme);
 
@@ -25,7 +26,7 @@ function DefaultLayout({ children }) {
                         transition: {
                             // duration: 0.5,
                             type: 'spring',
-                            damping: 15,
+                            damping: 16,
                         },
                     }}
                 >
@@ -37,15 +38,11 @@ function DefaultLayout({ children }) {
                     exit={{ opacity: 0, transition: { duration: 0.15 } }}
                     className={cx('content')}
                 >
-                    {children}
+                    <Outlet />
                 </motion.div>
             </div>
         </div>
     );
 }
-
-DefaultLayout.propTypes = {
-    children: PropTypes.node.isRequired,
-};
 
 export default DefaultLayout;

@@ -230,9 +230,6 @@ function UserTable() {
 
     return (
         <div className={cx('wrapper')}>
-            <header className={cx('header')}>
-                <span className={cx('heading')}>User Management</span>
-            </header>
             <div className={cx('table')}>
                 <div className={cx('table-head')}>
                     <span className={cx('identify')}>ID</span>
