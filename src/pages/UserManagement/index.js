@@ -17,14 +17,14 @@ function UserManagement() {
             <nav className={cx('nav')}>
                 <NavLink
                     to={routes.user_management.default}
-                    className={(nav) => cx('item', { active: nav.isActive })}
+                    className={(nav) => cx('link', { active: nav.isActive })}
                     end
                 >
                     Table
                 </NavLink>
                 <NavLink
                     to={routes.user_management.table}
-                    className={(nav) => cx('item', { active: nav.isActive })}
+                    className={(nav) => cx('link', { active: nav.isActive })}
                     end
                 >
                     Search User
