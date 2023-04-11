@@ -1,0 +1,93 @@
+.wrapper {
+    display: flex;
+    padding: 10px;
+}
+
+.left-container {
+    width: 300px;
+    padding-left: 20px;
+
+    .search {
+        --search-height: 32px;
+        --search-border-radius: 4px;
+        --search-top-spacer: 4px;
+        --search-button-width: 32px;
+
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: var(--search-height);
+        padding-left: 12px;
+        // background-color: rgba(22, 24, 35, 0.06);
+        background-color: var(--gray-alpha-10);
+        border: 1px solid var(--gray-alpha-20);
+        border-radius: var(--search-border-radius);
+
+        input {
+            flex: 1;
+            height: 100%;
+            padding-right: 28px;
+            font-family: var(--font-family);
+            font-size: 1.6rem;
+            color: var(--text-color);
+        }
+
+        input:not(:placeholder-shown) ~ .search-btn {
+            color: var(--text-color);
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: var(--search-top-spacer);
+            right: var(--search-button-width);
+            width: 1px;
+            height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+            background-color: var(--gray-alpha-20);
+        }
+
+        &:focus-within {
+            border: 1px solid var(--gray-alpha-60);
+        }
+    }
+
+    .clear-btn,
+    .loading {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: calc(var(--search-button-width) + 6px);
+        color: var(--gray-alpha-40);
+    }
+
+    .loading {
+        animation: spinner 0.7s linear infinite;
+    }
+
+    @keyframes spinner {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .search-btn {
+        width: var(--search-button-width);
+        height: 100%;
+        color: var(--gray-alpha-40);
+        border-top-right-radius: var(--search-border-radius);
+        border-bottom-right-radius: var(--search-border-radius);
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--gray-alpha-05);
+        }
+
+        &:active {
+            background-color: rgba(22, 24, 35, 0.06);
+        }
+    }
+}
+
+.right-container {
+    flex: 1;
+}

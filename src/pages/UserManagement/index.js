@@ -5,6 +5,7 @@ import styles from './UserManagement.module.scss';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import routes from '~/config/routes';
 import UserTable from './Table/UserTable';
+import UserSearch from './UserSearch';
 
 const cx = classNames.bind(styles);
 
@@ -23,7 +24,7 @@ function UserManagement() {
                     Table
                 </NavLink>
                 <NavLink
-                    to={routes.user_management.table}
+                    to={routes.user_management.search}
                     className={(nav) => cx('link', { active: nav.isActive })}
                     end
                 >
@@ -32,7 +33,7 @@ function UserManagement() {
             </nav>
             <Routes>
                 <Route index element={<UserTable />} />
-                <Route path="table" element={<h1>hello</h1>} />
+                <Route path="search-users" element={<UserSearch />} />
             </Routes>
         </div>
     );

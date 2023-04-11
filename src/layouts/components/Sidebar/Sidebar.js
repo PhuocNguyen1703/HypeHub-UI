@@ -104,11 +104,6 @@ function Sidebar() {
                     path: config.routes.user_management.default,
                 },
                 {
-                    icon: <BsAlarm />,
-                    title: 'Timesheets',
-                    path: config.routes.timesheets,
-                },
-                {
                     icon: <BsPatchQuestion />,
                     title: 'Ticket',
                     path: config.routes.support_center,
