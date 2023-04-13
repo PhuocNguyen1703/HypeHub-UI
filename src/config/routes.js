@@ -11,8 +11,7 @@ const routes = {
     calendar: '/calendar',
     kanban: '/kanban',
     board: '/kanban/board/:boardId',
-    timesheets: '/timesheets',
-    user_management: { default: '/user-management', search: 'search-users' },
+    user_management: { default: '/user-management', search: 'search-users', time_sheets: 'time-sheets' },
     support: '/support',
     support_center: '/support-center',
 };

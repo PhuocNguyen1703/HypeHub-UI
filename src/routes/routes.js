@@ -14,7 +14,7 @@ import Kanban from '~/pages/Kanban';
 import Sales from '~/pages/Sales';
 import Board from '~/pages/Board';
 import UserInformation from '~/layouts/components/UserInformation';
-import Timesheets from '~/pages/Timesheets';
+import Timesheets from '~/pages/TimeSheets';
 import Support from '~/pages/Support';
 import SupportCenter from '~/pages/SupportCenter';
 import UserTable from '~/pages/UserManagement/Table/UserTable';
@@ -41,7 +41,6 @@ const publicRoutes = [
 const privateRoutes = [
     ...publicRoutes,
     { path: config.routes.user_management.default, component: UserManagement },
-    { path: config.routes.timesheets, component: Timesheets },
     { path: config.routes.support_center, component: SupportCenter },
 ];
 
