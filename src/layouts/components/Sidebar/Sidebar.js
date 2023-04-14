@@ -7,7 +7,6 @@ import {
     BsClipboardCheck,
     BsEnvelope,
     BsPerson,
-    BsAlarm,
     BsClipboardData,
     BsPeople,
     BsPatchQuestion,
@@ -18,11 +17,15 @@ import config from '~/config';
 
 import styles from './Sidebar.module.scss';
 import SidebarItem from './SidebarItem';
+import { Link } from 'react-router-dom';
+import images from '~/assets/images';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
     const { currentUser } = useSelector((state) => state.auth.login);
+    const { sidebarCollapsed } = useSelector((state) => state.layout);
     const menu = [
         {
             icon: <BsColumnsGap />,
@@ -114,6 +117,38 @@ function Sidebar() {
 
     return (
         <div className={cx('wrapper')}>
+            <Link to={config.routes.home} className={cx('logo')}>
+                <img src={images.logo} alt="logo" />
+                <AnimatePresence>
+                    {!sidebarCollapsed && (
+                        <motion.h1
+                            initial={{
+                                width: 0,
+                                opacity: 0,
+                                transition: {
+                                    duration: 0.2,
+                                },
+                            }}
+                            animate={{
+                                width: '100%',
+                                opacity: 1,
+                                transition: {
+                                    duration: 0.2,
+                                },
+                            }}
+                            exit={{
+                                width: 0,
+                                opacity: 0,
+                                transition: {
+                                    duration: 0.2,
+                                },
+                            }}
+                        >
+                            Minato
+                        </motion.h1>
+                    )}
+                </AnimatePresence>
+            </Link>
             {menu.map((item, index) => (
                 <SidebarItem key={index} item={item} />
             ))}

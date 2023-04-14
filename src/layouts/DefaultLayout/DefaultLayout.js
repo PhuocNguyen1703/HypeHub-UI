@@ -12,26 +12,26 @@ const cx = classNames.bind(styles);
 
 function DefaultLayout() {
     const { sidebarCollapsed } = useSelector((state) => state.layout);
-    const { themeMode, sidebarColor } = useSelector((state) => state.theme);
+    const { themeMode, sidebarColor, navbarColor } = useSelector((state) => state.theme);
 
     return (
         <div className={cx('wrapper', themeMode)}>
-            <Header />
+            <motion.div
+                className={cx('sidebar', sidebarColor)}
+                animate={{
+                    width: sidebarCollapsed ? '60px' : '200px',
+                    transition: {
+                        type: 'spring',
+                        damping: 16,
+                    },
+                }}
+            >
+                <Sidebar />
+            </motion.div>
             <div className={cx('container')}>
-                <motion.div
-                    className={cx('sidebar', sidebarColor)}
-                    initial={{ width: '49px' }}
-                    animate={{
-                        width: sidebarCollapsed ? '49px' : '190px',
-                        transition: {
-                            // duration: 0.5,
-                            type: 'spring',
-                            damping: 16,
-                        },
-                    }}
-                >
-                    <Sidebar />
-                </motion.div>
+                <div className={cx('header', navbarColor)}>
+                    <Header />
+                </div>
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

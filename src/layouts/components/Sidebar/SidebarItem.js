@@ -16,6 +16,23 @@ function SidebarItem({ item, className = '' }) {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
 
+    const showAnimation = {
+        hidden: {
+            width: 0,
+            opacity: 0,
+            transition: {
+                duration: 0.2,
+            },
+        },
+        show: {
+            width: '100%',
+            opacity: 1,
+            transition: {
+                duration: 0.2,
+            },
+        },
+    };
+
     useEffect(() => {
         if (sidebarCollapsed) {
             setIsOpen(false);
@@ -31,40 +48,61 @@ function SidebarItem({ item, className = '' }) {
         return (
             <div className={cx('item', isOpen && 'open')} onClick={handleItemList}>
                 <div className={cx('item-title')}>
-                    <span>
-                        {item?.icon}
-                        {item.title}
-                    </span>
-                    <MdNavigateNext className={cx('toggle-btn')} />
-                </div>
-                <AnimatePresence>
-                    <motion.div
-                        animate={{ height: isOpen ? 'auto' : '0', transition: { duration: 0.4 } }}
-                        className={cx('child-list')}
-                    >
-                        {item.children.map((child, index) => (
-                            <NavLink
-                                to={child.path}
-                                key={index}
-                                className={(nav) => cx('child-item', { active: nav.isActive })}
+                    <span className={cx('icon')}>{item?.icon}</span>
+                    <AnimatePresence>
+                        {!sidebarCollapsed && (
+                            <motion.span
+                                variants={showAnimation}
+                                initial="hidden"
+                                animate="show"
+                                exit="hidden"
+                                className={cx('title')}
                             >
-                                <span>
-                                    {child?.icon}
-                                    {child.title}
-                                </span>
-                            </NavLink>
-                        ))}
-                    </motion.div>
-                </AnimatePresence>
+                                {item.title}
+                                <MdNavigateNext className={cx('toggle-btn')} />
+                            </motion.span>
+                        )}
+                    </AnimatePresence>
+                </div>
+                <motion.div
+                    animate={{
+                        height: isOpen ? 'auto' : '0',
+                        transition: { duration: 0.4 },
+                    }}
+                    className={cx('child-list')}
+                >
+                    {item.children.map((child, index) => (
+                        <NavLink
+                            to={child.path}
+                            key={index}
+                            className={(nav) => cx('child-item', { active: nav.isActive })}
+                        >
+                            <span className={cx('icon')}>{child?.icon}</span>
+                            <span className={cx('title')}>{child.title}</span>
+                        </NavLink>
+                    ))}
+                </motion.div>
             </div>
         );
     } else {
         return (
             <NavLink className={(nav) => cx('item', `${className}`, { active: nav.isActive })} to={item.path}>
-                <span>
-                    <span style={{ color: `${item?.color}` }}>{item?.icon}</span>
-                    {item.title}
-                </span>
+                <div className={cx('item-title')}>
+                    <span className={cx('icon')}> {item?.icon}</span>
+                    <AnimatePresence>
+                        {!sidebarCollapsed && (
+                            <motion.span
+                                variants={showAnimation}
+                                initial="hidden"
+                                animate="show"
+                                exit="hidden"
+                                className={cx('title')}
+                            >
+                                {item.title}
+                            </motion.span>
+                        )}
+                    </AnimatePresence>
+                </div>
             </NavLink>
         );
     }

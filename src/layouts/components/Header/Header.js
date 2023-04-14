@@ -17,17 +17,13 @@ import {
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
 import Search from '../Search';
 import config from '~/config';
 import { logOutUser } from '~/api/authApi';
 import { logOutSuccess } from '~/redux/Slice/authSlice';
 import { createAxios } from '~/api/axiosClient';
-import Modal from '~/components/Modal';
 import Setting from '../Setting';
-
-import Checkin from '~/components/Modal/TimeKeeping/FaceRecognition';
 import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
 import ContactManagement from '~/components/Modal/ContactManagement';
 import Notification from '~/components/Notification';
@@ -47,7 +43,6 @@ function Header() {
     const [showSettingModal, setShowSettingModal] = useState(false);
     const [showFaceRecognitionModal, setShowFaceRecognitionModal] = useState(false);
     const [faceRecognitionTitle, setFaceRecognitionTitle] = useState('');
-    const { navbarColor } = useSelector((state) => state.theme);
     const accessToken = currentUser?.accessToken;
     const id = currentUser?._id;
     const dispatch = useDispatch();
@@ -166,87 +161,77 @@ function Header() {
     };
 
     return (
-        <div className={cx('wrapper', navbarColor)}>
-            <div className={cx('inner')}>
-                <div className={cx('header-left')}>
-                    <CgMenu className={cx('menu-icon')} onClick={handleIsShowSidebar} />
-                    <Link to={config.routes.home} className={cx('logo')}>
-                        <img src={images.logo} alt="logo" />
-                        <h1>Minato</h1>
-                    </Link>
-                </div>
+        <div className={cx('wrapper')}>
+            <div className={cx('header-left')}>
+                <CgMenu onClick={handleIsShowSidebar} />
+            </div>
 
-                <Search />
+            <Search />
 
-                <div className={cx('header-right')}>
-                    <CgMoreVerticalAlt className={cx('more-icon')} />
-                    <div className={cx('actions')}>
-                        <div>
-                            <Tippy delay={[0, 50]} interactive content="Language">
-                                <button className={cx('action-btn')}>
-                                    <span>EN</span>
-                                    <IoLanguageOutline className={cx('icon')} />
-                                </button>
-                            </Tippy>
-                        </div>
-                        <div>
-                            <Tippy
-                                delay={[0, 50]}
-                                interactive
-                                content={isFullScreen ? 'Exit fullscreen' : 'Fullscreen'}
-                            >
-                                <button className={cx('action-btn')} onClick={handleFullscreen}>
-                                    {isFullScreen ? (
-                                        <BsFullscreenExit className={cx('icon')} />
-                                    ) : (
-                                        <BsFullscreen className={cx('icon')} />
-                                    )}
-                                </button>
-                            </Tippy>
-                        </div>
-                        <div className={cx('notification')}>
-                            <Tippy delay={[0, 50]} interactive content="Notification">
-                                <button className={cx('action-btn')} onClick={handleShowNotificationModal}>
-                                    <BsBell className={cx('icon')} />
-                                    <span className={cx('badge')}></span>
-                                </button>
-                            </Tippy>
-                        </div>
-                        <div>
-                            <Tippy delay={[0, 50]} interactive content="Message">
-                                <button className={cx('action-btn')}>
-                                    <BsChatSquareDots className={cx('icon')} />
-                                    <span className={cx('badge')}></span>
-                                </button>
-                            </Tippy>
-                        </div>
-                        <div>
-                            <Tippy delay={[0, 50]} interactive content="Contact management">
-                                <button className={cx('action-btn')} onClick={handleContactManagement}>
-                                    <BsFillPersonPlusFill className={cx('icon')} />
-                                </button>
-                            </Tippy>
-                        </div>
-                        {currentUser?.faceId ? null : (
-                            <div>
-                                <Tippy delay={[0, 50]} interactive content="Sign up">
-                                    <button className={cx('action-btn')} onClick={handleOpenFaceModal}>
-                                        <BsPersonBoundingBox className={cx('icon')} />
-                                    </button>
-                                </Tippy>
-                            </div>
-                        )}
+            <div className={cx('header-right')}>
+                <CgMoreVerticalAlt className={cx('more-icon')} />
+                <div className={cx('actions')}>
+                    <div>
+                        <Tippy delay={[0, 50]} interactive content="Language">
+                            <button className={cx('action-btn')}>
+                                <span>EN</span>
+                                <IoLanguageOutline className={cx('icon')} />
+                            </button>
+                        </Tippy>
                     </div>
-                    <CgMoreVerticalAlt className={cx('more-icon')} />
-
-                    <UserMenu
-                        items={currentUser?.isAdmin ? adminMenu : userMenu}
-                        onChange={handleMenuChange}
-                        viewProfile={true}
-                    >
-                        <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="Nguyen  van A" />
-                    </UserMenu>
+                    <div>
+                        <Tippy delay={[0, 50]} interactive content={isFullScreen ? 'Exit fullscreen' : 'Fullscreen'}>
+                            <button className={cx('action-btn')} onClick={handleFullscreen}>
+                                {isFullScreen ? (
+                                    <BsFullscreenExit className={cx('icon')} />
+                                ) : (
+                                    <BsFullscreen className={cx('icon')} />
+                                )}
+                            </button>
+                        </Tippy>
+                    </div>
+                    <div className={cx('notification')}>
+                        <Tippy delay={[0, 50]} interactive content="Notification">
+                            <button className={cx('action-btn')} onClick={handleShowNotificationModal}>
+                                <BsBell className={cx('icon')} />
+                                <span className={cx('badge')}></span>
+                            </button>
+                        </Tippy>
+                    </div>
+                    <div>
+                        <Tippy delay={[0, 50]} interactive content="Message">
+                            <button className={cx('action-btn')}>
+                                <BsChatSquareDots className={cx('icon')} />
+                                <span className={cx('badge')}></span>
+                            </button>
+                        </Tippy>
+                    </div>
+                    <div>
+                        <Tippy delay={[0, 50]} interactive content="Contact management">
+                            <button className={cx('action-btn')} onClick={handleContactManagement}>
+                                <BsFillPersonPlusFill className={cx('icon')} />
+                            </button>
+                        </Tippy>
+                    </div>
+                    {currentUser?.faceId ? null : (
+                        <div>
+                            <Tippy delay={[0, 50]} interactive content="Sign up">
+                                <button className={cx('action-btn')} onClick={handleOpenFaceModal}>
+                                    <BsPersonBoundingBox className={cx('icon')} />
+                                </button>
+                            </Tippy>
+                        </div>
+                    )}
                 </div>
+                <CgMoreVerticalAlt className={cx('more-icon')} />
+
+                <UserMenu
+                    items={currentUser?.isAdmin ? adminMenu : userMenu}
+                    onChange={handleMenuChange}
+                    viewProfile={true}
+                >
+                    <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="Nguyen  van A" />
+                </UserMenu>
             </div>
 
             <Register show={showRegisterModal} setShowRegisterModal={setShowRegisterModal} />
