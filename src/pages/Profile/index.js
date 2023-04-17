@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Profile.module.scss';
+import 'react-circular-progressbar/dist/styles.css';
 import {
     BsCameraFill,
     BsPersonCircle,
@@ -14,6 +15,10 @@ import {
     BsCalendarEvent,
     BsPerson,
     BsHash,
+    BsCamera,
+    BsLock,
+    BsClipboardCheck,
+    BsCreditCard2Back,
 } from 'react-icons/bs';
 import Image from '~/components/Image';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,10 +26,12 @@ import { updateUser } from '~/api/userApi';
 import { createAxios } from '~/api/axiosClient';
 import { updateSuccess } from '~/redux/Slice/authSlice';
 import { uploadImages } from '~/api/uploadImagesApi';
-import { setEditProfileModalIsOpen } from '~/redux/Slice/modalSlice';
-import Modal from '~/components/Modal';
 import EditProfile from '~/components/Modal/EditProfile';
 import images from '~/assets/images';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { FaFacebookSquare, FaInstagram, FaLinkedin, FaSprayCan, FaTwitter } from 'react-icons/fa';
+import { NavLink, Route, Routes } from 'react-router-dom';
+import routes from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -38,6 +45,15 @@ function Profile() {
 
     const dispatch = useDispatch();
     let axiosJWT = createAxios(currentUser, dispatch, updateSuccess);
+
+    const percentage = 15;
+
+    const sidebar = [
+        { path: '', icon: <BsPerson />, title: 'Personal Information' },
+        { path: routes.profile.payment, icon: <BsCreditCard2Back />, title: 'Payment' },
+        { path: routes.profile.change_password, icon: <BsLock />, title: 'Change Password' },
+        { path: routes.profile.time_sheets, icon: <BsClipboardCheck />, title: 'Time Sheets' },
+    ];
 
     const iconProfile = [
         { id: 'Email', icon: <BsEnvelope />, desc: email },
@@ -101,68 +117,133 @@ function Profile() {
 
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('user-info')}>
-                <div className={cx('avatar')}>
-                    <Image
-                        className={cx('user-avatar')}
-                        src={previewSourceAvatar || currentUser?.avatar || images.coverAvatar}
-                        alt="avatar"
-                    />
-                    <label htmlFor="upload-avatar" className={cx('icon-camera')}>
-                        <BsCameraFill />
-                    </label>
-                    <input
-                        id="upload-avatar"
-                        type="file"
-                        className={cx('upload-avatar')}
-                        onChange={handleFileAvatarInputChange}
-                        hidden
-                    />
-                </div>
-                <div className={cx('info')}>
-                    <span className={cx('username')}>{currentUser?.fullName}</span>
-                    <span className={cx('position')}>{currentUser?.position}</span>
-                    <span className={cx('hashtag')}>{currentUser?.hashtag ? `#${hashtag}` : ''}</span>
-                </div>
-                {previewSourceAvatar && (
-                    <div className={cx('avatar-btn')}>
-                        <button className={cx('cancel-btn')} onClick={handleCancelAvatar}>
-                            Cancel
-                        </button>
-                        <button type="button" className={cx('save-btn')} onClick={handleSubmitAvatar}>
-                            Save
-                        </button>
-                    </div>
-                )}
-            </div>
+            <div className={cx('header')}>
+                <div className={cx('header-left')}>
+                    <div className={cx('progress')}>
+                        <CircularProgressbar
+                            minValue={0}
+                            maxValue={100}
+                            value={percentage}
+                            text={`${percentage}%`}
+                            styles={buildStyles({
+                                rotation: 1,
+                                strokeLinecap: 'round',
+                                textSize: '2rem',
 
-            <div className={cx('about')}>
-                <div className={cx('about-header')}>
-                    <div className={cx('heading')}>
-                        <span className={cx('icon-person')}>
-                            <BsPersonCircle />
-                        </span>
-                        <div className={cx('title')}>
-                            <h6>About</h6>
-                            <p>{currentUser?.hashtag ? `#${hashtag}` : ''}</p>
-                        </div>
+                                // Colors
+                                textColor: 'var(--text-color)',
+                                pathColor: `var(--blue)`,
+                                trailColor: 'var(--gray-alpha-40)',
+                            })}
+                        />
                     </div>
-                    <button className={cx('edit-profile-btn')} onClick={handleEditProfileBtn}>
-                        <BsPencil />
-                        Edit Profile
+                    <div className={cx('heading')}>
+                        <span className={cx('title')}>Personal Information</span>
+                        <span className={cx('sub-title')}>Complete your profile.</span>
+                    </div>
+                </div>
+                <div className={cx('header-right')}>
+                    <button className={cx('edit-btn')}>
+                        <BsPencil /> Edit profile
                     </button>
                 </div>
-                <div className={cx('about-content')}>
-                    {iconProfile.map((item, idx) => (
-                        <div className={cx('about-item')} key={idx}>
-                            <span className={cx('icon')}>{item.icon}</span>
-                            <div>
-                                <span className={cx('label')}>{item.id}</span>
-                                <p className={cx('desc')}>{item.desc}</p>
+            </div>
+
+            <div className={cx('container')}>
+                <div className={cx('user-info')}>
+                    <div className={cx('avatar')}>
+                        <Image
+                            className={cx('user-avatar')}
+                            src={previewSourceAvatar || currentUser?.avatar || images.coverAvatar}
+                            alt="avatar"
+                        />
+                        <label htmlFor="upload-avatar" className={cx('icon-camera')}>
+                            <BsCamera />
+                        </label>
+                        <input
+                            id="upload-avatar"
+                            type="file"
+                            className={cx('upload-avatar')}
+                            onChange={handleFileAvatarInputChange}
+                            hidden
+                        />
+                    </div>
+                    <div className={cx('info')}>
+                        <span className={cx('username')}>{currentUser?.fullName}</span>
+                        <span className={cx('position')}>{currentUser?.position}</span>
+                        <span className={cx('hashtag')}>{currentUser?.hashtag ? `#${hashtag}` : ''}</span>
+                        <div className={cx('social')}>
+                            <span className={cx('facebook-icon')}>
+                                <FaFacebookSquare />
+                            </span>
+                            <span className={cx('instagram-icon')}>
+                                <FaInstagram />
+                            </span>
+                            <span className={cx('twitter-icon')}>
+                                <FaTwitter />
+                            </span>
+                            <span className={cx('linkedin-icon')}>
+                                <FaLinkedin />
+                            </span>
+                        </div>
+                    </div>
+                    {previewSourceAvatar && (
+                        <div className={cx('avatar-btn')}>
+                            <button className={cx('cancel-btn')} onClick={handleCancelAvatar}>
+                                Cancel
+                            </button>
+                            <button type="button" className={cx('save-btn')} onClick={handleSubmitAvatar}>
+                                Save
+                            </button>
+                        </div>
+                    )}
+                    <div className={cx('menu')}>
+                        {sidebar.map((item, idx) => (
+                            <NavLink
+                                key={idx}
+                                to={item.path}
+                                className={(nav) => cx('menu-item', { active: nav.isActive })}
+                                end
+                            >
+                                <span className={cx('icon')}>{item.icon}</span>
+                                <span className={cx('title')}>{item.title}</span>
+                            </NavLink>
+                        ))}
+                    </div>
+                </div>
+
+                <Routes>
+                    <Route />
+                </Routes>
+
+                {/* <div className={cx('about')}>
+                    <div className={cx('about-header')}>
+                        <div className={cx('heading')}>
+                            <span className={cx('icon-person')}>
+                                <BsPersonCircle />
+                            </span>
+                            <div className={cx('title')}>
+                                <h6>About</h6>
+                                <p>{currentUser?.hashtag ? `#${hashtag}` : ''}</p>
                             </div>
                         </div>
-                    ))}
-                </div>
+                        <button className={cx('edit-profile-btn')} onClick={handleEditProfileBtn}>
+                            <BsPencil />
+                            Edit Profile
+                        </button>
+                    </div>
+                    <div className={cx('about-content')}>
+                        {iconProfile.map((item, idx) => (
+                            <div className={cx('about-item')} key={idx}>
+                                <span className={cx('icon')}>{item.icon}</span>
+                                <div>
+                                    <span className={cx('label')}>{item.id}</span>
+                                    <p className={cx('desc')}>{item.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div> */}
             </div>
 
             <EditProfile show={showEditProfileModal} setShowEditProfileModal={setShowEditProfileModal} />

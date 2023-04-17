@@ -25,7 +25,7 @@ const publicRoutes = [
     { path: config.routes.user_information, component: UserInformation, layout: null },
     { path: config.routes.home, component: Home },
     { path: config.routes.sales, component: Sales },
-    { path: config.routes.profile, component: Profile },
+    { path: config.routes.profile.default, component: Profile },
     { path: config.routes.chat.private, component: PrivateChat },
     { path: config.routes.chat.group, component: GroupChat },
     { path: config.routes.employee, component: Employee },
