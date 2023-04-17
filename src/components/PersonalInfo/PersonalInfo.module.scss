@@ -1,0 +1,118 @@
+.wrapper {
+    flex: 1;
+    background-color: var(--main-bg);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    margin-left: 50px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 20px;
+    border-bottom: 1px solid var(--gray-alpha-20);
+
+    .identify {
+        font-size: 1.6rem;
+        color: var(--gray);
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    gap: 30px;
+
+    .label {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        width: 50%;
+        color: var(--text-color);
+        font-size: 1.7rem;
+    }
+
+    .input {
+        font-size: 1.6rem;
+        border: 1px solid var(--gray-alpha-80);
+        border-radius: 4px;
+        padding: 10px 12px;
+    }
+
+    .full-name,
+    .email-and-birth,
+    .phone-and-position,
+    .hashtag-and-gender,
+    .address,
+    .country-and-city {
+        display: flex;
+        gap: 30px;
+    }
+
+    .address-label,
+    .note-label {
+        padding-left: 10px;
+        padding-bottom: 10px;
+        font-size: 1.8rem;
+        font-weight: 600;
+        border-bottom: 1px dashed var(--gray);
+    }
+
+    .textarea {
+        min-height: 86px;
+        padding: 8px;
+        font-size: 1.6rem;
+        color: var(--text-color);
+        border: 1px solid var(--gray-alpha-80);
+        outline: none;
+        border-radius: 6px;
+        resize: none;
+    }
+
+    .textarea-note {
+        min-height: 120px;
+        padding: 8px;
+        font-size: 1.6rem;
+        color: var(--text-color);
+        border: 1px solid var(--gray-alpha-80);
+        outline: none;
+        border-radius: 6px;
+        resize: none;
+    }
+
+    .action-btn {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .save-btn,
+    .cancel-btn {
+        padding: 10px 18px;
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: var(--white);
+        background-color: var(--blue);
+        border-radius: 6px;
+        cursor: pointer;
+        opacity: 0.85;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .cancel-btn {
+        color: var(--gray-alpha-60);
+        background-color: transparent;
+        margin-right: 4px;
+
+        &:hover {
+            color: var(--text-color);
+        }
+    }
+}

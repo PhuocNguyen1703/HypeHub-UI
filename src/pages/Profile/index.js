@@ -32,6 +32,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { FaFacebookSquare, FaInstagram, FaLinkedin, FaSprayCan, FaTwitter } from 'react-icons/fa';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import routes from '~/config/routes';
+import PersonalInfo from '~/components/PersonalInfo/PersonalInfo';
 
 const cx = classNames.bind(styles);
 
@@ -171,7 +172,7 @@ function Profile() {
                     <div className={cx('info')}>
                         <span className={cx('username')}>{currentUser?.fullName}</span>
                         <span className={cx('position')}>{currentUser?.position}</span>
-                        <span className={cx('hashtag')}>{currentUser?.hashtag ? `#${hashtag}` : ''}</span>
+                        <span className={cx('hashtag')}>{currentUser?.hashtag ? `#${currentUser.hashtag}` : ''}</span>
                         <div className={cx('social')}>
                             <span className={cx('facebook-icon')}>
                                 <FaFacebookSquare />
@@ -213,37 +214,8 @@ function Profile() {
                 </div>
 
                 <Routes>
-                    <Route />
+                    <Route index element={<PersonalInfo />} />
                 </Routes>
-
-                {/* <div className={cx('about')}>
-                    <div className={cx('about-header')}>
-                        <div className={cx('heading')}>
-                            <span className={cx('icon-person')}>
-                                <BsPersonCircle />
-                            </span>
-                            <div className={cx('title')}>
-                                <h6>About</h6>
-                                <p>{currentUser?.hashtag ? `#${hashtag}` : ''}</p>
-                            </div>
-                        </div>
-                        <button className={cx('edit-profile-btn')} onClick={handleEditProfileBtn}>
-                            <BsPencil />
-                            Edit Profile
-                        </button>
-                    </div>
-                    <div className={cx('about-content')}>
-                        {iconProfile.map((item, idx) => (
-                            <div className={cx('about-item')} key={idx}>
-                                <span className={cx('icon')}>{item.icon}</span>
-                                <div>
-                                    <span className={cx('label')}>{item.id}</span>
-                                    <p className={cx('desc')}>{item.desc}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div> */}
             </div>
 
             <EditProfile show={showEditProfileModal} setShowEditProfileModal={setShowEditProfileModal} />

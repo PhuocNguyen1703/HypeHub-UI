@@ -87,7 +87,7 @@ function Sidebar() {
         {
             icon: <BsPerson />,
             title: 'Profile',
-            path: config.routes.profile,
+            path: config.routes.profile.default,
         },
         {
             icon: <BsPatchQuestion />,
