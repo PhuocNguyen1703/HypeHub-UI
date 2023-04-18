@@ -61,46 +61,27 @@ function Search() {
     const handleSubmit = () => {};
 
     return (
-        // Using a wrapper <div> tag around the reference element solves
-        // this by creating a new parentNode context.
-        <div>
-            <HeadlessTippy
-                visible={showResult && searchResult.length > 0}
-                interactive
-                render={(attrs) => (
-                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                        <PopperWrapper>
-                            {searchResult.map((result) => (
-                                <AccountItem key={result.id} data={result} />
-                            ))}
-                        </PopperWrapper>
-                    </div>
-                )}
-                onClickOutside={handleHideResult}
-            >
-                <div className={cx('search')}>
-                    <input
-                        ref={inputRef}
-                        value={searchValue}
-                        placeholder="Search value"
-                        spellCheck={false}
-                        onChange={handleChange}
-                        onFocus={() => setShowResult(true)}
-                    />
+        <div className={cx('search')}>
+            <input
+                ref={inputRef}
+                value={searchValue}
+                placeholder="Search value"
+                spellCheck={false}
+                onChange={handleChange}
+                onFocus={() => setShowResult(true)}
+            />
 
-                    {!!searchValue && !loading && (
-                        <button className={cx('clear-btn')} onClick={handleClear}>
-                            <IoCloseCircle />
-                        </button>
-                    )}
+            {!!searchValue && !loading && (
+                <button className={cx('clear-btn')} onClick={handleClear}>
+                    <IoCloseCircle />
+                </button>
+            )}
 
-                    {loading && <FaSpinner className={cx('loading')} />}
+            {loading && <FaSpinner className={cx('loading')} />}
 
-                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()} onClick={handleSubmit}>
-                        <SearchIcon />
-                    </button>
-                </div>
-            </HeadlessTippy>
+            <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()} onClick={handleSubmit}>
+                <SearchIcon />
+            </button>
         </div>
     );
 }

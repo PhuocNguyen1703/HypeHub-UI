@@ -30,11 +30,11 @@ function GroupChat() {
     const socket = useRef();
 
     const channels = [
-        { id: 1, title: 'channel 1 ' },
-        { id: 2, title: 'channel 2 ' },
-        { id: 3, title: 'channel 3 ' },
-        { id: 4, title: 'channel 4 ' },
-        { id: 5, title: 'channel 5 ' },
+        { id: 1, title: 'channel 1 ', description: 'room marketing' },
+        { id: 2, title: 'channel 2 ', description: 'room marketing' },
+        { id: 3, title: 'channel 3 ', description: 'room marketing' },
+        { id: 4, title: 'channel 4 ', description: 'room marketing' },
+        { id: 5, title: 'channel 5 ', description: 'room marketing' },
     ];
 
     const memberList = [
@@ -139,6 +139,9 @@ function GroupChat() {
                         <BsPatchPlus />
                     </span>
                 </div>
+                <div className={cx('search')}>
+                    <Message />
+                </div>
                 <div className={cx('channel-list')}>
                     {channels.map((item) => (
                         <div
@@ -148,7 +151,8 @@ function GroupChat() {
                                 setCurrentChat(item);
                             }}
                         >
-                            {item.title}
+                            <span className={cx('title')}>{item.title}</span>
+                            <span className={cx('desc')}>{item.description}</span>
                         </div>
                     ))}
                 </div>
@@ -157,7 +161,7 @@ function GroupChat() {
             <div className={cx('member-list')}>
                 <span className={cx('label')}>Members</span>
                 {memberList.map((item) => (
-                    <div className={cx('member')}>
+                    <div key={item.id} className={cx('member')}>
                         <Image className={cx('avatar')} src={item.avatar} />
                         <span className={cx('name')}>{item.name}</span>
                     </div>
