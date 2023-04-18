@@ -33,6 +33,7 @@ import { FaFacebookSquare, FaInstagram, FaLinkedin, FaSprayCan, FaTwitter } from
 import { NavLink, Route, Routes } from 'react-router-dom';
 import routes from '~/config/routes';
 import PersonalInfo from '~/components/PersonalInfo/PersonalInfo';
+import Payment from '~/components/Payment/Payment';
 
 const cx = classNames.bind(styles);
 
@@ -215,6 +216,7 @@ function Profile() {
 
                 <Routes>
                     <Route index element={<PersonalInfo />} />
+                    <Route path={routes.profile.payment} element={<Payment />} />
                 </Routes>
             </div>
 
