@@ -44,9 +44,9 @@
     gap: 10px;
 
     h1 {
-        font-size: 6rem;
+        font-size: 4.5rem;
+        background: var(--text-logo-gradient-color);
         line-height: 1;
-        background-image: var(--text-linear-gradient-color);
         background-size: 100%;
         background-repeat: repeat;
         -webkit-background-clip: text;

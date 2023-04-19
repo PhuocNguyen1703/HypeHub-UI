@@ -118,7 +118,7 @@ function Sidebar() {
     return (
         <div className={cx('wrapper')}>
             <Link to={config.routes.home} className={cx('logo')}>
-                <img src={images.logo} alt="logo" />
+                <img className={cx('logo-image')} src={images.logo} alt="logo" />
                 <AnimatePresence>
                     {!sidebarCollapsed && (
                         <motion.h1
@@ -144,7 +144,7 @@ function Sidebar() {
                                 },
                             }}
                         >
-                            Minato
+                            HypeHub
                         </motion.h1>
                     )}
                 </AnimatePresence>

@@ -35,13 +35,24 @@
         width: 50%;
         color: var(--text-color);
         font-size: 1.7rem;
-    }
 
-    .input {
-        font-size: 1.6rem;
-        border: 1px solid var(--gray-alpha-80);
-        border-radius: 4px;
-        padding: 10px 12px;
+        .input {
+            font-size: 1.6rem;
+            border: 1px solid var(--gray-alpha-60);
+            border-radius: 4px;
+            padding: 10px 12px;
+            transition: box-shadow 0.3s;
+
+            &:hover {
+                border-color: var(--blue-alpha-40) !important;
+                box-shadow: var(--box-shadow-input-hover);
+            }
+
+            &:focus {
+                border-color: var(--blue-alpha-40) !important;
+                box-shadow: var(--box-shadow-input-focus);
+            }
+        }
     }
 
     .full-name,
@@ -63,26 +74,50 @@
         border-bottom: 1px dashed var(--gray);
     }
 
-    .textarea {
+    .textarea,
+    .textarea-note {
         min-height: 86px;
         padding: 8px;
         font-size: 1.6rem;
         color: var(--text-color);
         border: 1px solid var(--gray-alpha-80);
+        background-color: transparent;
+        transition: box-shadow 0.3s;
         outline: none;
         border-radius: 6px;
         resize: none;
+
+        &:hover {
+            border-color: var(--blue-alpha-40) !important;
+            box-shadow: var(--box-shadow-input-hover);
+        }
+
+        &:focus {
+            border-color: var(--blue-alpha-40) !important;
+            box-shadow: var(--box-shadow-input-focus);
+        }
     }
 
     .textarea-note {
         min-height: 120px;
-        padding: 8px;
-        font-size: 1.6rem;
-        color: var(--text-color);
-        border: 1px solid var(--gray-alpha-80);
-        outline: none;
-        border-radius: 6px;
-        resize: none;
+    }
+
+    .error-ipt {
+        border: 1px solid var(--red) !important;
+    }
+
+    .error {
+        display: block;
+        margin-top: 10px;
+        margin-left: 4px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--red);
+
+        .icon-warning {
+            font-size: 1.2rem;
+            margin-right: 4px;
+        }
     }
 
     .action-btn {

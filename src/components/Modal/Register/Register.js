@@ -17,13 +17,13 @@ import {
     BsFillPersonFill,
     BsXLg,
 } from 'react-icons/bs';
-import { setCreateUserModalIsOpen } from '~/redux/Slice/modalSlice';
 import { RiLoader4Fill } from 'react-icons/ri';
 import { createAxios } from '~/api/axiosClient';
 import { useSelector } from 'react-redux';
 import { registerSuccess } from '~/redux/Slice/authSlice';
 import Modal from '../Modal';
 import { MdEmail } from 'react-icons/md';
+import images from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -43,7 +43,7 @@ function Register({ show, setShowRegisterModal }) {
         password: yup
             .string()
             .required('Please enter your password.')
-            .min(6, 'Please enter at least 8 characters.')
+            .min(8, 'Please enter at least 8 characters.')
             .matches(
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
                 'Password should be at least 8 characters and include at least 1 Lowercase, 1 Uppercase, 1 number and special character.',
@@ -132,8 +132,8 @@ function Register({ show, setShowRegisterModal }) {
                     >
                         <div className={cx('register-form')}>
                             <div className={cx('header')}>
-                                <img className={cx('logo')} src={logo} alt="logo" />
-                                <h1>Minato</h1>
+                                <img className={cx('logo')} src={images.logo} alt="logo" />
+                                <h1>HypeHub</h1>
                                 <button className={cx('close-btn')} onClick={handleCloseModal}>
                                     <BsXLg />
                                 </button>

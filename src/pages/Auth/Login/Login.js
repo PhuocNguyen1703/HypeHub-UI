@@ -5,13 +5,13 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './Login.module.scss';
-import logo from '~/assets/images/logo.svg';
 import { loginUser } from '~/api/authApi';
 import { useSelector } from 'react-redux';
 import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill, BsFillLockFill, BsFillPersonFill } from 'react-icons/bs';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { RiLoader4Fill } from 'react-icons/ri';
+import images from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -69,9 +69,9 @@ function Login() {
         <div className={cx('wrapper')}>
             <div className={cx('login-form')}>
                 <div className={cx('header')}>
-                    <img className={cx('logo')} src={logo} alt="logo" />
+                    <img className={cx('logo')} src={images.logo} alt="logo" />
                     <div>
-                        <h1>Minato</h1>
+                        <h1>HypeHub</h1>
                         <h6>Do it your way!</h6>
                     </div>
                 </div>
