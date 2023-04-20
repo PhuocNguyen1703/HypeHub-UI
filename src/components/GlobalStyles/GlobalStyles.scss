@@ -295,3 +295,29 @@ body {
         background-color: rgba(255, 255, 255, 0.5);
     }
 }
+
+//Custom style DatePicker
+.react-datepicker {
+    font-family: var(--font-family);
+    font-size: 1.6rem;
+    background-color: var(--main-bg);
+    color: var(--text-color);
+    border: 1px solid var(--gray-alpha-20);
+    border-radius: 4px;
+    box-shadow: var(--box-shadow);
+}
+
+.react-datepicker-year-header {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.6rem;
+    background-color: var(--second-bg);
+}
+
+.react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::before {
+    border-bottom-color: var(--gray-alpha-60);
+}
+
+.react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::after {
+    border-bottom-color: var(--second-bg);
+}

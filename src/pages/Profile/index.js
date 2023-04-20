@@ -35,6 +35,7 @@ import routes from '~/config/routes';
 import PersonalInfo from '~/components/PersonalInfo/PersonalInfo';
 import Payment from '~/components/Payment/Payment';
 import ChangePassword from '~/components/ChangePassword/ChangePassword';
+import TimeSheets from '~/components/TimeSheets/TimeSheets';
 
 const cx = classNames.bind(styles);
 
@@ -219,6 +220,7 @@ function Profile() {
                     <Route index element={<PersonalInfo />} />
                     <Route path={routes.profile.payment} element={<Payment />} />
                     <Route path={routes.profile.change_password} element={<ChangePassword />} />
+                    <Route path={routes.profile.time_sheets} element={<TimeSheets />} />
                 </Routes>
             </div>
 
