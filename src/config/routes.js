@@ -13,6 +13,7 @@ const routes = {
     employee: '/employee',
     email: '/email',
     todo: '/todo',
+    timeline: '/timeline',
     calendar: '/calendar',
     kanban: '/kanban',
     board: '/kanban/board/:boardId',

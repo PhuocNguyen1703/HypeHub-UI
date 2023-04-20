@@ -10,6 +10,7 @@ import {
     BsClipboardData,
     BsPeople,
     BsPatchQuestion,
+    BsClock,
 } from 'react-icons/bs';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import { useSelector } from 'react-redux';
@@ -73,6 +74,11 @@ function Sidebar() {
             icon: <BsCheck2Square />,
             title: 'Todo',
             path: config.routes.todo,
+        },
+        {
+            icon: <BsClock />,
+            title: 'Timeline',
+            path: config.routes.timeline,
         },
         {
             icon: <BsCalendar2Date />,

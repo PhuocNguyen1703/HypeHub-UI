@@ -14,11 +14,10 @@ import Kanban from '~/pages/Kanban';
 import Sales from '~/pages/Sales';
 import Board from '~/pages/Board';
 import UserInformation from '~/layouts/components/UserInformation';
-import Timesheets from '~/pages/TimeSheets';
 import Support from '~/pages/Support';
 import SupportCenter from '~/pages/SupportCenter';
-import UserTable from '~/pages/UserManagement/Table/UserTable';
 import UserManagement from '~/pages/UserManagement';
+import Timeline from '~/pages/Timeline';
 
 const publicRoutes = [
     { path: config.routes.login, component: Auth, layout: null },
@@ -32,6 +31,7 @@ const publicRoutes = [
     { path: config.routes.candidates, component: Candidate, layout: HeaderOnly },
     { path: config.routes.email, component: Email },
     { path: config.routes.todo, component: Todo },
+    { path: config.routes.timeline, component: Timeline },
     { path: config.routes.calendar, component: Calendar },
     { path: config.routes.kanban, component: Kanban },
     { path: config.routes.board, component: Board },
