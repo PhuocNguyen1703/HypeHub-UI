@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import DatePicker from 'react-datepicker';
 
-import 'react-datepicker/dist/react-datepicker.css';
-
 import styles from './TimeSheets.module.scss';
 import {
     BsCalendarEvent,

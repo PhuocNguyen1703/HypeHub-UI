@@ -173,6 +173,8 @@ input {
     border: none;
     font-family: var(--font-family);
     background-color: transparent;
+    color: var(--text-color);
+    font-size: 1.6rem;
 }
 
 a {
@@ -296,7 +298,7 @@ body {
     }
 }
 
-//Custom style DatePicker
+//Custom style DatePicker ( time sheet)
 .react-datepicker {
     font-family: var(--font-family);
     font-size: 1.6rem;
@@ -320,4 +322,48 @@ body {
 
 .react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::after {
     border-bottom-color: var(--second-bg);
+}
+
+//Custom style DatePicker ( Timeline)
+.react-datepicker__header {
+    background-color: var(--second-bg);
+    border-bottom: 1px solid var(--gray-alpha-60);
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.6rem;
+}
+
+.react-datepicker__day--selected {
+    background-color: var(--blue-alpha-40);
+}
+
+.react-datepicker__time-container {
+    border-left: 1px solid var(--gray-alpha-60);
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+    color: var(--text-color);
+    padding: 4px;
+    width: 24px;
+    line-height: 1;
+    margin: 1px;
+}
+
+.react-datepicker__time-box {
+    background-color: var(--main-bg);
+}
+
+.react-datepicker__time-list-item:hover {
+    background-color: var(--gray-alpha-20) !important;
+}
+
+.react-datepicker__day:hover {
+    background-color: var(--gray-alpha-20);
 }

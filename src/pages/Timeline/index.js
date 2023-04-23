@@ -3,11 +3,13 @@ import classNames from 'classnames/bind';
 
 import styles from './Timeline.module.scss';
 import { BsCheck, BsClock, BsLadder, BsPencil, BsPhone, BsPlus, BsThermometer } from 'react-icons/bs';
+import CreateTimeline from '~/components/Modal/CreateTimeline/CreateTimeline';
 
 const cx = classNames.bind(styles);
 
 function Timeline() {
     const [showDropdown, setShowDropdown] = useState(false);
+    const [showCreateTimelineModal, setShowCreateTimelineModal] = useState(false);
     const timelineRef = useRef(null);
 
     const timelineList = [
@@ -79,6 +81,10 @@ function Timeline() {
         }
     };
 
+    const handleToggleCreateNewTimeline = () => {
+        setShowCreateTimelineModal(true);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
@@ -97,7 +103,7 @@ function Timeline() {
                         )}
                     </div>
                 </div>
-                <button className={cx('create-new-timeline-btn')}>
+                <button className={cx('create-new-timeline-btn')} onClick={handleToggleCreateNewTimeline}>
                     <BsPlus />
                     Create timeline
                 </button>
@@ -124,6 +130,8 @@ function Timeline() {
                     ))}
                 </div>
             </div>
+
+            <CreateTimeline show={showCreateTimelineModal} setShowCreateTimelineModal={setShowCreateTimelineModal} />
         </div>
     );
 }
