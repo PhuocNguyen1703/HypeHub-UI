@@ -102,6 +102,23 @@ function Sidebar() {
         },
     ];
 
+    const showAnimation = {
+        hidden: {
+            width: 0,
+            opacity: 0,
+            transition: {
+                duration: 0.4,
+            },
+        },
+        show: {
+            width: '100%',
+            opacity: 1,
+            transition: {
+                duration: 0.4,
+            },
+        },
+    };
+
     const adminMenu = [
         {
             icon: <HiOutlineUserGroup />,
@@ -127,29 +144,7 @@ function Sidebar() {
                 <img className={cx('logo-image')} src={images.logo} alt="logo" />
                 <AnimatePresence>
                     {!sidebarCollapsed && (
-                        <motion.h1
-                            initial={{
-                                width: 0,
-                                opacity: 0,
-                                transition: {
-                                    duration: 0.2,
-                                },
-                            }}
-                            animate={{
-                                width: '100%',
-                                opacity: 1,
-                                transition: {
-                                    duration: 0.2,
-                                },
-                            }}
-                            exit={{
-                                width: 0,
-                                opacity: 0,
-                                transition: {
-                                    duration: 0.2,
-                                },
-                            }}
-                        >
+                        <motion.h1 variants={showAnimation} initial="show" animate="show" exit="hidden">
                             HypeHub
                         </motion.h1>
                     )}

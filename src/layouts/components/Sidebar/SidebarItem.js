@@ -28,7 +28,7 @@ function SidebarItem({ item, className = '' }) {
             width: '100%',
             opacity: 1,
             transition: {
-                duration: 0.2,
+                duration: 0.7,
             },
         },
     };

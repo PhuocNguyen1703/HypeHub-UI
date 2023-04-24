@@ -18,26 +18,27 @@ import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
 import ComposeEmail from '~/components/Modal/ComposeEmail';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import EmailInfo from '~/components/Modal/EmailInfo';
 import { setSelectedItem } from '~/redux/Slice/emailSlice';
+import SidebarEmail from '~/layouts/components/SidebarEmail/SidebarEmail';
 
 const cx = classNames.bind(styles);
 
 function Email() {
     const [showComposeEmailModal, setShowComposeEmailModal] = useState(false);
     const [showEmailInfoModal, setShowEmailInfoModal] = useState(false);
-    const [isHidden, setIsHidden] = useState(false);
+    const [toggleSidebar, setToggleSidebar] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const dispatch = useDispatch();
 
     const menu = [
-        { icon: <BsEnvelope />, title: 'Inbox', path: '/email' },
-        { icon: <BsCursor />, title: 'Sent', path: '/email/sent' },
-        { icon: <BsFileEarmarkMinus />, title: 'Draft', path: '/email/draft' },
-        { icon: <BsStar />, title: 'Starred', path: '/email/starred' },
-        { icon: <BsPatchExclamation />, title: 'Spam', path: '/email/spam' },
-        { icon: <BsTrash />, title: 'Deleted', path: '/email/deleted' },
+        { icon: <BsEnvelope />, title: 'Inbox', path: '' },
+        { icon: <BsCursor />, title: 'Sent', path: 'sent' },
+        { icon: <BsFileEarmarkMinus />, title: 'Draft', path: 'draft' },
+        { icon: <BsStar />, title: 'Starred', path: 'starred' },
+        { icon: <BsPatchExclamation />, title: 'Spam', path: 'spam' },
+        { icon: <BsTrash />, title: 'Deleted', path: 'deleted' },
     ];
 
     const email = [
@@ -184,7 +185,7 @@ function Email() {
     ];
 
     const handleHiddenSidebar = () => {
-        setIsHidden((prevState) => !prevState);
+        setToggleSidebar((prevState) => !prevState);
     };
 
     const handleRefresh = () => {
@@ -204,59 +205,48 @@ function Email() {
 
     return (
         <div className={cx('wrapper')}>
-            <header className={cx('heading')}>
+            <header className={cx('header')}>
                 <div className={cx('title')}>
                     <h5>Email Inbox</h5>
                     <p>Send receive emails.</p>
                 </div>
-            </header>
-            <div className={cx('header')}>
                 <div className={cx('nav')}>
-                    <span className={cx('icon')} onClick={handleHiddenSidebar}>
-                        <BsLayoutSidebar />
-                    </span>
-                    <span className={cx('icon')} onClick={handleRefresh}>
-                        <BsArrowClockwise />
-                    </span>
-                    <span className={cx('icon')}>
-                        <BsTrash />
-                    </span>
+                    <div className={cx('nav-left')}>
+                        <span className={cx('icon')} onClick={handleHiddenSidebar}>
+                            <BsLayoutSidebar />
+                        </span>
+                        <span className={cx('icon')} onClick={handleRefresh}>
+                            <BsArrowClockwise />
+                        </span>
+                        <span className={cx('icon')}>
+                            <BsTrash />
+                        </span>
+                    </div>
+                    <span className={cx('total-email')}>Total: {email.length}</span>
                 </div>
-                <span>Total: {email.length}</span>
-            </div>
+            </header>
             <div className={cx('container')}>
-                <motion.div
-                    initial={{ width: '250px' }}
-                    animate={{ width: isHidden ? '0' : '250px', transition: { duration: 0.8 } }}
-                    className={cx('sidebar')}
-                >
-                    <button className={cx('create-email')} onClick={handleComposeEmail}>
-                        <BsPlus />
-                        Compose
-                    </button>
-                    {menu.map((item, index) => (
-                        <SidebarItem key={index} item={item} />
-                    ))}
-                </motion.div>
+                <div className={cx('sidebar')}>
+                    <SidebarEmail
+                        menu={menu}
+                        show={toggleSidebar}
+                        setToggleSidebar={setToggleSidebar}
+                        onclick={handleComposeEmail}
+                    />
+                </div>
                 <div className={cx('content')}>
                     {email.map((item, index) => (
                         <div key={index} className={cx('email-item')} onClick={() => handleSelectedItem(item)}>
-                            <div className={cx('item-content')}>
-                                <div className={cx('content-left')}>
-                                    <input
-                                        type="checkbox"
-                                        checked={item.status.watched}
-                                        onChange={handleCheckedOnChange}
-                                    />
-                                    <BsFillStarFill
-                                        className={cx('icon-star')}
-                                        style={{ color: `${item.status.star && 'gold'}` }}
-                                    />
-                                    <BsPatchExclamation
-                                        className={cx('icon-spam')}
-                                        style={{ color: `${item.status.spam && 'red'}` }}
-                                    />
-                                </div>
+                            <div className={cx('content-left')}>
+                                <input type="checkbox" checked={item.status.watched} onChange={handleCheckedOnChange} />
+                                <BsFillStarFill
+                                    className={cx('icon-star')}
+                                    style={{ color: `${item.status.star && 'gold'}` }}
+                                />
+                                <BsPatchExclamation
+                                    className={cx('icon-spam')}
+                                    style={{ color: `${item.status.spam && 'red'}` }}
+                                />
                                 <div className={cx('item-title')}>
                                     <span>{item.sender}</span>
                                     <p>{item.subject}</p>

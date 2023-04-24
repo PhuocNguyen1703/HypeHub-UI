@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import Header from '~/layouts/components/Header';
 import Sidebar from '~/layouts/components/Sidebar';
 import styles from './DefaultLayout.module.scss';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
@@ -16,26 +16,29 @@ function DefaultLayout() {
 
     return (
         <div className={cx('wrapper', themeMode)}>
-            <motion.div
-                className={cx('sidebar', sidebarColor)}
-                animate={{
-                    width: sidebarCollapsed ? '60px' : '200px',
-                    transition: {
-                        type: 'spring',
-                        damping: 16,
-                    },
-                }}
-            >
-                <Sidebar />
-            </motion.div>
+            <AnimatePresence>
+                <motion.div
+                    className={cx('sidebar', sidebarColor)}
+                    animate={{
+                        width: sidebarCollapsed ? '60px' : '200px',
+                        transition: {
+                            type: 'spring',
+                            damping: 16,
+                            duration: 1,
+                        },
+                    }}
+                >
+                    <Sidebar />
+                </motion.div>
+            </AnimatePresence>
             <div className={cx('container')}>
                 <div className={cx('header', navbarColor)}>
                     <Header />
                 </div>
                 <motion.div
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                    animate={{ opacity: 1, transition: { duration: 0.15 } }}
+                    // exit={{ opacity: 0, transition: { duration: 0.15 } }}
                     className={cx('content')}
                 >
                     <Outlet />
