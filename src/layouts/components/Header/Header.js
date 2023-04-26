@@ -30,6 +30,7 @@ import Notification from '~/components/Notification';
 import Register from '~/components/Modal/Register';
 import UserMenu from '~/components/UserMenu';
 import FaceRecognition from '~/components/Modal/TimeKeeping/FaceRecognition';
+import Message from '~/components/Message/Message';
 
 const cx = classNames.bind(styles);
 
@@ -37,6 +38,7 @@ function Header() {
     const { currentUser } = useSelector((state) => state.auth.login);
     const { sidebarCollapsed } = useSelector((state) => state.layout);
     const [isFullScreen, setIsFullScreen] = useState(false);
+    const [showMessageModal, setShowMessageModal] = useState(false);
     const [showContactModal, setShowContactModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
     const [showNotificationModal, setShowNotificationModal] = useState(false);
@@ -147,6 +149,10 @@ function Header() {
         setShowNotificationModal(true);
     };
 
+    const handleToggleMessageModal = () => {
+        setShowMessageModal(true);
+    };
+
     const handleOpenFaceModal = () => {
         setFaceRecognitionTitle('Sign up');
         setShowFaceRecognitionModal(true);
@@ -200,7 +206,7 @@ function Header() {
                     </div>
                     <div>
                         <Tippy delay={[0, 50]} interactive content="Message">
-                            <button className={cx('action-btn')}>
+                            <button className={cx('action-btn')} onClick={handleToggleMessageModal}>
                                 <BsChatSquareDots className={cx('icon')} />
                                 <span className={cx('badge')}></span>
                             </button>
@@ -237,6 +243,7 @@ function Header() {
             <Register show={showRegisterModal} setShowRegisterModal={setShowRegisterModal} />
 
             <Notification show={showNotificationModal} setShowNotificationModal={setShowNotificationModal} />
+            <Message show={showMessageModal} setShowMessageModal={setShowMessageModal} />
 
             <Setting show={showSettingModal} setShowSettingModal={setShowSettingModal} />
 

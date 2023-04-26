@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 
 import { SearchIcon } from '~/components/Icons';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-import AccountItem from '~/components/AccountItem';
 import styles from './Message.module.scss';
 import { useDebounce } from '~/hooks';
 import * as searchServices from '~/api/searchApi';
@@ -65,7 +62,7 @@ function Search() {
             <input
                 ref={inputRef}
                 value={searchValue}
-                placeholder="Search value"
+                placeholder="Search message"
                 spellCheck={false}
                 onChange={handleChange}
                 onFocus={() => setShowResult(true)}
