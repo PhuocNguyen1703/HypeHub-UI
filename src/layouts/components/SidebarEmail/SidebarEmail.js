@@ -5,8 +5,6 @@ import classNames from 'classnames/bind';
 import styles from './SidebarEmail.module.scss';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import { BsPlus } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);

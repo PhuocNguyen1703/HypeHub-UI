@@ -69,8 +69,10 @@
 }
 
 .content {
+    position: relative;
     flex: 1;
     border-left: 1px solid var(--gray-alpha-20);
+    background-color: var(--main-bg);
     overflow-y: overlay;
 
     .email-item {
