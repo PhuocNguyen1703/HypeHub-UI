@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -7,12 +7,22 @@ import Modal from '../Modal/Modal';
 import { BsXLg } from 'react-icons/bs';
 import Search from '../Search/Message/Message';
 import Image from '../Image/Image';
+import MiniChat from '../MiniChat/MiniChat';
 
 const cx = classNames.bind(styles);
 
 function Message({ show, setShowMessageModal }) {
+    const [showMiniChatModal, setShowMiniChatModal] = useState(false);
+    const [selectedMessage, setSelectedMessage] = useState({});
+
     const handleCloseModal = () => {
         setShowMessageModal(false);
+    };
+
+    const handleToggleMiniChat = (message) => {
+        setShowMiniChatModal(true);
+        setSelectedMessage(message);
+        handleCloseModal();
     };
 
     const messageList = [
@@ -51,8 +61,12 @@ function Message({ show, setShowMessageModal }) {
                             <Search />
                         </div>
                         <div className={cx('message-list')}>
-                            {messageList.map((message) => (
-                                <div className={cx('message-item')} key={message.id}>
+                            {messageList.map((message, idx) => (
+                                <div
+                                    className={cx('message-item')}
+                                    key={idx}
+                                    onClick={() => handleToggleMiniChat(message)}
+                                >
                                     <Image className={cx('avatar')} src={message.avatar} alt="avatar" />
                                     <div className={cx('info')}>
                                         <span className={cx('user-name')}>{message.name}</span>
@@ -69,6 +83,8 @@ function Message({ show, setShowMessageModal }) {
             </AnimatePresence>
         );
     }
+
+    if (showMiniChatModal) return <MiniChat setShowMiniChatModal={setShowMiniChatModal} message={selectedMessage} />;
 }
 
 export default Message;

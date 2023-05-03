@@ -6,12 +6,12 @@ import styles from './Modal.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Modal({ children }) {
+function Modal({ children, overlay = true }) {
     const { themeMode, sidebarColor } = useSelector((state) => state.theme);
     return (
         <Portal>
             <div className={cx('wrapper', `${themeMode}`, `${sidebarColor}`)}>
-                <div className={cx('overlay')}></div>
+                {overlay && <div className={cx('overlay')}></div>}
                 {children}
             </div>
         </Portal>

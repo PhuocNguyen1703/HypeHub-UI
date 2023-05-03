@@ -95,5 +95,10 @@
     .see-all {
         font-weight: 600;
         cursor: pointer;
+
+        &:hover {
+            color: var(--blue);
+            text-decoration: underline;
+        }
     }
 }
