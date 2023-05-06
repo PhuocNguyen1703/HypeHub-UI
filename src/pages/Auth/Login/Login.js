@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './Login.module.scss';
 import { loginUser } from '~/api/authApi';
-import { useSelector } from 'react-redux';
 import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill, BsFillLockFill, BsFillPersonFill } from 'react-icons/bs';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -18,7 +17,6 @@ const cx = classNames.bind(styles);
 function Login() {
     const [errorMessage, setErrorMessage] = useState();
     const [showPassword, setShowPassword] = useState(false);
-    const [showIcon, setShowIcon] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -36,25 +34,12 @@ function Login() {
         resolver: yupResolver(formSchema),
     });
 
-    const handleChange = (e) => {
-        const passwordValue = e.target.value;
-        if (!!passwordValue) {
-            setShowIcon(true);
-        } else {
-            setShowIcon(false);
-        }
-    };
-
-    const handleShowPassword = () => {
+    const handleToggleShowPassword = () => {
         const inputEl = document.getElementById('password');
+        setShowPassword((prevState) => !prevState);
 
-        if (inputEl.type === 'password') {
-            inputEl.type = 'text';
-            setShowPassword(true);
-        } else {
-            inputEl.type = 'password';
-            setShowPassword(false);
-        }
+        if (inputEl.type === 'password') return (inputEl.type = 'text');
+        if (inputEl.type === 'text') return (inputEl.type = 'password');
     };
 
     const onSubmit = async (data) => {
@@ -77,18 +62,17 @@ function Login() {
                 </div>
                 <h3>Welcome back</h3>
                 <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
-                    <div className={cx('email')}>
+                    <div className={cx('email', errors.email && 'error-ipt')}>
                         <span className={cx('icon-person')}>
                             <BsFillPersonFill />
                         </span>
                         <input
-                            className={cx('email-ipt', errors.email ? 'error-ipt' : null)}
+                            className={cx('email-ipt')}
                             type="text"
-                            placeholder=" "
+                            placeholder="User email"
                             name="email"
                             {...register('email')}
                         />
-                        <label>User email</label>
                     </div>
                     <span className={cx('error')}>
                         {errors.email && (
@@ -101,25 +85,21 @@ function Login() {
                         )}
                     </span>
 
-                    <div className={cx('password')}>
+                    <div className={cx('password', errors.password && 'error-ipt')}>
                         <span className={cx('icon-lock')}>
                             <BsFillLockFill />
                         </span>
                         <input
-                            className={cx('password-ipt', errors.password ? 'error-ipt' : null)}
+                            className={cx('password-ipt')}
                             id="password"
                             type="password"
-                            placeholder=" "
+                            placeholder="Password"
                             name="password"
                             {...register('password')}
-                            onChange={handleChange}
                         />
-                        <label>Password</label>
-                        {showIcon && (
-                            <div className={cx('icon-eye')} onClick={handleShowPassword}>
-                                {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
-                            </div>
-                        )}
+                        <div className={cx('icon-eye')} onClick={handleToggleShowPassword}>
+                            {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                        </div>
                     </div>
                     <span className={cx('error')}>
                         {errors.password && (
