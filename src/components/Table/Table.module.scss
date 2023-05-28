@@ -1,6 +1,5 @@
 .table-wrapper {
     flex: 1;
-    overflow-y: auto;
 }
 
 table {
@@ -12,7 +11,6 @@ table {
 
 thead {
     text-transform: capitalize;
-    background-color: var(--gray-alpha-10);
 }
 
 tr {
@@ -21,7 +19,27 @@ tr {
 
 th,
 td {
-    padding: 14px 10px;
+    position: relative;
+    padding: 10px;
+}
+
+th {
+    border-bottom: 2px solid var(--gray-alpha-20);
+}
+
+th::after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    right: -1px;
+    transform: translateY(-50%);
+    height: 40%;
+    width: 2px;
+    background-color: var(--gray-alpha-10);
+}
+
+th:last-child::after {
+    display: none;
 }
 
 td {

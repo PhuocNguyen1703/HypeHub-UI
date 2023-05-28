@@ -39,7 +39,7 @@ function Table({ limit, bodyData, headData, renderHead, renderBody }) {
                     ) : null}
 
                     {bodyData && renderBody ? (
-                        <tbody>{dataShow.map((item, index) => renderBody(item, index))}</tbody>
+                        <tbody>{dataShow.map((item, idx) => renderBody(item, idx))}</tbody>
                     ) : null}
                 </table>
             </div>
