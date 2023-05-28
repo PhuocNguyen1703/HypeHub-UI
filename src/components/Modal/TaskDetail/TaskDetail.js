@@ -12,26 +12,17 @@ import { BsPerson, BsXLg } from 'react-icons/bs';
 import { RiLoader4Fill } from 'react-icons/ri';
 import { useForm } from 'react-hook-form';
 import { HiOutlineUserGroup } from 'react-icons/hi';
+import CircleHeader from '~/components/CircleHeader/CircleHeader';
 
 const cx = classNames.bind(styles);
 
-function TaskDetail({ show, setShowTaskDetailModal }) {
-    const note = { id: '123', content: '' };
-
-    const [editorState, setEditorState] = useState(EditorState.createEmpty());
-    const [rawHTML, setRawHTML] = useState(note.content);
-
+function TaskDetail({ show, setShowTaskDetailModal, item = {} }) {
     const {
         register,
         formState: { errors, isSubmitting },
         handleSubmit,
         reset,
     } = useForm();
-
-    const handleOnchangeEditor = (editorState) => {
-        setEditorState(editorState);
-        setRawHTML(draftToHtml(convertToRaw(editorState.getCurrentContent())));
-    };
 
     const handleCloseModal = () => {
         setShowTaskDetailModal(false);
@@ -53,6 +44,7 @@ function TaskDetail({ show, setShowTaskDetailModal }) {
                         className={cx('wrapper')}
                     >
                         <header className={cx('header')}>
+                            <CircleHeader />
                             <button className={cx('close-btn')} onClick={handleCloseModal}>
                                 <BsXLg />
                             </button>
@@ -63,9 +55,10 @@ function TaskDetail({ show, setShowTaskDetailModal }) {
                                     className={cx('title-ipt')}
                                     type="text"
                                     name="title"
+                                    defaultValue={item.title}
                                     required
                                     autoFocus
-                                    {...register('title')}
+                                    // {...register('title')}
                                 />
                                 <span className={cx('underline-title-ipt')}></span>
                                 <label className={cx('label')}>Title</label>
@@ -73,17 +66,21 @@ function TaskDetail({ show, setShowTaskDetailModal }) {
                             <div className={cx('category')}>
                                 <label className={cx('label-category')}>Category</label>
                                 <div className={cx('type')}>
-                                    <span className={cx('personal')}>
+                                    <span className={cx('personal', item.category === 'Personal' && 'active')}>
                                         <BsPerson /> Personal
                                     </span>
-                                    <span className={cx('team')}>
-                                        <HiOutlineUserGroup /> Teams
+                                    <span className={cx('team', item.category === 'Team' && 'active')}>
+                                        <HiOutlineUserGroup /> Team
                                     </span>
                                 </div>
                             </div>
                             <label className={cx('description-container')}>
                                 Description
-                                <textarea className={cx('description')} placeholder="Write description..."></textarea>
+                                <textarea
+                                    className={cx('description')}
+                                    placeholder="Write description..."
+                                    defaultValue={item.desc}
+                                ></textarea>
                             </label>
                             <div className={cx('action-btn')}>
                                 <button

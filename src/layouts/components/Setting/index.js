@@ -59,7 +59,6 @@ function Setting({ show, setShowSettingModal }) {
     ];
 
     const handleCloseModal = () => {
-        // dispatch(setSettingModalIsOpen(false));
         setShowSettingModal(false);
     };
 
