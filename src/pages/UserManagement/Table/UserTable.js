@@ -3,10 +3,21 @@ import classNames from 'classnames/bind';
 
 import styles from './UserTable.module.scss';
 import Image from '~/components/Image';
-import { BsCaretLeftFill, BsCaretRightFill, BsClipboardMinus, BsFillCaretDownFill, BsTrash } from 'react-icons/bs';
+import {
+    BsCaretLeftFill,
+    BsCaretRightFill,
+    BsClipboardMinus,
+    BsCloudUpload,
+    BsDownload,
+    BsFillCaretDownFill,
+    BsPersonPlus,
+    BsPrinter,
+    BsTrash,
+} from 'react-icons/bs';
 import { FaCheck, FaMars, FaSort, FaVenus } from 'react-icons/fa';
 import UserDetail from '~/components/Modal/UserDetail/UserDetail';
 import Table from '~/components/Table/Table';
+import Search from '~/components/Search/Message/Message';
 
 const cx = classNames.bind(styles);
 
@@ -295,6 +306,47 @@ function UserTable() {
 
     return (
         <div className={cx('wrapper')}>
+            <header className={cx('header-table')}>
+                <button className={cx('add-new-user-btn')}>
+                    <span className={cx('icon-person')}>
+                        <BsPersonPlus />
+                    </span>
+                    Add User
+                </button>
+                <button className={cx('filter-male-btn')}>
+                    <span className={cx('icon-male')}>
+                        <FaMars />
+                    </span>
+                    Male
+                </button>
+                <button className={cx('filter-female-btn')}>
+                    <span className={cx('icon-female')}>
+                        <FaVenus />
+                    </span>
+                    Female
+                </button>
+                <button className={cx('import-btn')}>
+                    <span className={cx('icon-import')}>
+                        <BsCloudUpload />
+                    </span>
+                    Import
+                </button>
+                <button className={cx('export-btn')}>
+                    <span className={cx('icon-export')}>
+                        <BsDownload />
+                    </span>
+                    Export
+                </button>
+                <button className={cx('print-btn')}>
+                    <span className={cx('icon-print')}>
+                        <BsPrinter />
+                    </span>
+                    Print
+                </button>
+                <div className={cx('search')}>
+                    <Search />
+                </div>
+            </header>
             <Table
                 limit={10}
                 headData={userTableHead}

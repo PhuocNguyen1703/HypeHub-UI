@@ -1,9 +1,60 @@
 .wrapper {
     margin: 10px;
-    padding: 10px;
-    border: 1px solid var(--gray-alpha-60);
-    border-radius: 10px;
-    box-shadow: var(--box-shadow);
+}
+
+.header-table {
+    display: flex;
+    margin: 20px;
+
+    .add-new-user-btn,
+    .filter-male-btn,
+    .filter-female-btn,
+    .import-btn,
+    .export-btn,
+    .print-btn {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        padding: 8px 16px;
+        margin-right: 20px;
+        border: 1px solid var(--gray-alpha-40);
+        border-radius: 20px;
+        background-color: var(--main-bg);
+        box-shadow: var(--box-shadow);
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--gray-alpha-05);
+        }
+    }
+
+    .icon-person,
+    .icon-male,
+    .icon-female,
+    .icon-import,
+    .icon-export,
+    .icon-print {
+        display: flex;
+        align-items: center;
+        font-size: 1.6rem;
+        margin-right: 10px;
+    }
+
+    .icon-person {
+        color: var(--blue);
+    }
+
+    .icon-male {
+        color: #21a2ff;
+    }
+
+    .icon-female {
+        color: #df099f;
+    }
+
+    .search {
+        margin-left: auto;
+    }
 }
 
 .text-center {
@@ -49,7 +100,7 @@
     .male-icon {
         font-size: 2.2rem;
         user-select: none;
-        color: rgb(223, 9, 159);
+        color: #df099f;
     }
 
     .male-icon {
