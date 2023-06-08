@@ -7,7 +7,21 @@
 }
 
 .text-center {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.icon-sort {
+    display: flex;
+    align-items: center;
+    margin-left: 6px;
+    color: #21a2ff;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.head-title {
+    display: flex;
 }
 
 .avatar-field {
@@ -22,6 +36,10 @@
         box-shadow: var(--box-shadow);
         object-fit: cover;
     }
+}
+
+.name-field {
+    font-weight: 700;
 }
 
 .gender-field {

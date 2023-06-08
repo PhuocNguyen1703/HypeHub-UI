@@ -24,6 +24,8 @@ td {
 }
 
 th {
+    justify-items: center;
+    align-items: center;
     border-bottom: 2px solid var(--gray-alpha-20);
 }
 
@@ -47,8 +49,7 @@ td {
 }
 
 tbody > tr:hover {
-    background-color: var(--gray-alpha-05);
-    color: var(--gray);
+    background-color: var(--gray-alpha-10);
 }
 
 .pagination {

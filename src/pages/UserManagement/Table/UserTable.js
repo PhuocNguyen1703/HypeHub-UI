@@ -3,18 +3,8 @@ import classNames from 'classnames/bind';
 
 import styles from './UserTable.module.scss';
 import Image from '~/components/Image';
-import {
-    BsCaretLeftFill,
-    BsCaretRightFill,
-    BsClipboardMinus,
-    BsFileEarmarkText,
-    BsFillCaretDownFill,
-    BsGenderFemale,
-    BsGenderMale,
-    BsPencil,
-    BsTrash,
-} from 'react-icons/bs';
-import { FaCheck, FaMars, FaVenus } from 'react-icons/fa';
+import { BsCaretLeftFill, BsCaretRightFill, BsClipboardMinus, BsFillCaretDownFill, BsTrash } from 'react-icons/bs';
+import { FaCheck, FaMars, FaSort, FaVenus } from 'react-icons/fa';
 import UserDetail from '~/components/Modal/UserDetail/UserDetail';
 import Table from '~/components/Table/Table';
 
@@ -43,18 +33,18 @@ function UserTable() {
     };
 
     const userTableHead = [
-        'Id',
-        'Avatar',
-        'Name',
-        'Email',
-        'Birth',
-        'Gender',
-        'Address',
-        'Position',
-        'Phone',
-        'FaceId',
-        'CreatedAt',
-        'Action',
+        'iD',
+        'avatar',
+        'name',
+        'email',
+        'birth',
+        'gender',
+        'address',
+        'position',
+        'phone',
+        'faceId',
+        'createdAt',
+        'action',
     ];
 
     const userData = [
@@ -213,8 +203,10 @@ function UserTable() {
     const renderHead = (item, idx) => {
         return (
             <th key={idx} className={cx(setTextCenter(item))}>
-                {item}
-                {setMenuIcon(item)}
+                <span className={cx('head-title')}>
+                    {item}
+                    {checkShowSortIcon(item)}
+                </span>
             </th>
         );
     };
@@ -226,7 +218,7 @@ function UserTable() {
                 <td className={cx('avatar-field')}>
                     <Image src={item.avatar} alt="avatar" className={cx('avatar')} />
                 </td>
-                <td>{item.fullName}</td>
+                <td className={cx('name-field')}>{item.fullName}</td>
                 <td>{item.email}</td>
                 <td>{item.birth}</td>
                 <td className={cx('gender-field')}>{checkGender(item.gender)}</td>
@@ -242,16 +234,30 @@ function UserTable() {
                     <button className={cx('remove-icon')}>
                         <BsTrash />
                     </button>
-            </td>
+                </td>
             </tr>
         );
     };
 
-    const setTextCenter = (item) => {
-        if (item === 'Avatar' || item === 'Gender' || item === 'FaceId' || item === 'Action') return 'text-center';
+    const setTextCenter = (headTitle) => {
+        if (headTitle === 'avatar' || headTitle === 'gender' || headTitle === 'faceId' || headTitle === 'action')
+            return 'text-center';
     };
 
-    const setMenuIcon = (item) => {};
+    const checkShowSortIcon = (headTitle) => {
+        if (
+            headTitle === 'iD' ||
+            headTitle === 'name' ||
+            headTitle === 'email' ||
+            headTitle === 'birth' ||
+            headTitle === 'createdAt'
+        )
+            return (
+                <span className={cx('icon-sort')}>
+                    <FaSort />
+                </span>
+            );
+    };
 
     const checkGender = (gender) => {
         if (gender === 'female')

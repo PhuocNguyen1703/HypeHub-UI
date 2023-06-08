@@ -19,9 +19,6 @@ function UserManagement() {
 
     return (
         <div className={cx('wrapper')}>
-            <header className={cx('header')}>
-                <span className={cx('heading')}>User Management</span>
-            </header>
             <nav className={cx('nav')}>
                 {navList.map((item, idx) => (
                     <NavLink key={idx} to={item.path} className={(nav) => cx('link', { active: nav.isActive })} end>
