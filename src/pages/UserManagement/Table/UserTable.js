@@ -16,6 +16,7 @@ import {
 } from 'react-icons/bs';
 import { FaCheck, FaMars, FaVenus } from 'react-icons/fa';
 import UserDetail from '~/components/Modal/UserDetail/UserDetail';
+import Table from '~/components/Table/Table';
 
 const cx = classNames.bind(styles);
 
@@ -41,7 +42,22 @@ function UserTable() {
         setIsOpenOption(true);
     };
 
-    const userList = [
+    const userTableHead = [
+        'Id',
+        'Avatar',
+        'Name',
+        'Email',
+        'Birth',
+        'Gender',
+        'Address',
+        'Position',
+        'Phone',
+        'FaceId',
+        'CreatedAt',
+        'Action',
+    ];
+
+    const userData = [
         {
             id: 'M#117956789',
             avatar: 'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
@@ -194,6 +210,49 @@ function UserTable() {
         },
     ];
 
+    const renderHead = (item, idx) => {
+        return (
+            <th key={idx} className={cx(setTextCenter(item))}>
+                {item}
+                {setMenuIcon(item)}
+            </th>
+        );
+    };
+
+    const renderBody = (item, idx) => {
+        return (
+            <tr key={idx}>
+                <td>{item.id}</td>
+                <td className={cx('avatar-field')}>
+                    <Image src={item.avatar} alt="avatar" className={cx('avatar')} />
+                </td>
+                <td>{item.fullName}</td>
+                <td>{item.email}</td>
+                <td>{item.birth}</td>
+                <td className={cx('gender-field')}>{checkGender(item.gender)}</td>
+                <td>{item.streetAddress}</td>
+                <td>{item.position}</td>
+                <td>{item.phone}</td>
+                <td className={cx('face-id-field')}>{checkFaceId(item.faceId)}</td>
+                <td>{item.createdAt}</td>
+                <td className={cx('action-field')}>
+                    <button className={cx('detail-icon')} onClick={() => handleToggleUserDetailModal(item)}>
+                        <BsClipboardMinus />
+                    </button>
+                    <button className={cx('remove-icon')}>
+                        <BsTrash />
+                    </button>
+            </td>
+            </tr>
+        );
+    };
+
+    const setTextCenter = (item) => {
+        if (item === 'Avatar' || item === 'Gender' || item === 'FaceId' || item === 'Action') return 'text-center';
+    };
+
+    const setMenuIcon = (item) => {};
+
     const checkGender = (gender) => {
         if (gender === 'female')
             return (
@@ -230,78 +289,45 @@ function UserTable() {
 
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('table')}>
-                <div className={cx('table-head')}>
-                    <span className={cx('identify')}>ID</span>
-                    <span className={cx('name')}>Name</span>
-                    <span className={cx('email')}>Email</span>
-                    <span className={cx('birth')}>Birth</span>
-                    <span className={cx('gender')}>Gender</span>
-                    <span className={cx('address')}>Address</span>
-                    <span className={cx('position')}>Position</span>
-                    <span className={cx('phone')}>Phone</span>
-                    <span className={cx('face-id')}>FaceId</span>
-                    <span className={cx('created-at')}>CreatedAt</span>
-                    <span className={cx('action')}>Action</span>
-                </div>
-                {userList.map((item) => (
-                    <div key={item.id} className={cx('table-row')}>
-                        <span className={cx('identify')}>{item.id}</span>
-                        <span className={cx('name')}>
-                            <Image className={cx('avatar')} src={item.avatar} alt="avatar" />
-                            <span className={cx('full-name')}>{item.fullName}</span>
-                        </span>
-                        <span className={cx('email')}>{item.email}</span>
-                        <span className={cx('birth')}>{item.birth}</span>
-                        <span className={cx('gender')}>{checkGender(item.gender)}</span>
-                        <span className={cx('address')}>{item.streetAddress}</span>
-                        <span className={cx('position')}>{item.position}</span>
-                        <span className={cx('phone')}>{item.phone}</span>
-                        <span className={cx('face-id')}>{checkFaceId(item.faceId)}</span>
-                        <span className={cx('created-at')}>{item.createdAt}</span>
-                        <div className={cx('action')}>
-                            <button className={cx('detail-icon')} onClick={() => handleToggleUserDetailModal(item)}>
-                                <BsClipboardMinus />
-                            </button>
-                            <button className={cx('remove-icon')}>
-                                <BsTrash />
-                            </button>
-                        </div>
-                    </div>
-                ))}
-                <div className={cx('pagination')}>
-                    <div className={cx('pagination-left')}>
-                        <div className={cx('select')}>
-                            <span className={cx('selected')} onClick={handleToggleOption}>
-                                10
-                                <span className={cx('dropdown-icon')}>
-                                    <BsFillCaretDownFill />
-                                </span>
+            <Table
+                limit={10}
+                headData={userTableHead}
+                renderHead={renderHead}
+                bodyData={userData}
+                renderBody={renderBody}
+            />
+            <div className={cx('pagination')}>
+                <div className={cx('pagination-left')}>
+                    <div className={cx('select')}>
+                        <span className={cx('selected')} onClick={handleToggleOption}>
+                            10
+                            <span className={cx('dropdown-icon')}>
+                                <BsFillCaretDownFill />
                             </span>
-                            <span className={cx('text-per-page')}>Entries per page</span>
-                            {isOpenOption && (
-                                <ul ref={optionRef} className={cx('option')}>
-                                    <li className={cx('select-option')}>10</li>
-                                    <li className={cx('select-option')}>15</li>
-                                    <li className={cx('select-option')}>20</li>
-                                </ul>
-                            )}
-                        </div>
+                        </span>
+                        <span className={cx('text-per-page')}>Entries per page</span>
+                        {isOpenOption && (
+                            <ul ref={optionRef} className={cx('option')}>
+                                <li className={cx('select-option')}>10</li>
+                                <li className={cx('select-option')}>15</li>
+                                <li className={cx('select-option')}>20</li>
+                            </ul>
+                        )}
                     </div>
+                </div>
 
-                    <div className={cx('pagination-right')}>
-                        <button className={cx('prev-btn')}>
-                            <BsCaretLeftFill />
-                        </button>
-                        <div className={cx('page')}>
-                            Page
-                            <span className={cx('number')}>1</span>
-                            of 12
-                        </div>
-                        <button className={cx('next-btn')}>
-                            <BsCaretRightFill />
-                        </button>
+                <div className={cx('pagination-right')}>
+                    <button className={cx('prev-btn')}>
+                        <BsCaretLeftFill />
+                    </button>
+                    <div className={cx('page')}>
+                        Page
+                        <span className={cx('number')}>1</span>
+                        of 12
                     </div>
+                    <button className={cx('next-btn')}>
+                        <BsCaretRightFill />
+                    </button>
                 </div>
             </div>
 

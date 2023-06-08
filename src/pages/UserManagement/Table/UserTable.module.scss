@@ -1,130 +1,67 @@
 .wrapper {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid var(--gray-alpha-60);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
 }
 
-.table {
+.text-center {
+    text-align: center;
+}
+
+.avatar-field {
     display: flex;
-    flex-direction: column;
-    padding: 20px 10px;
-    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
 
-    .table-head {
-        font-size: 2rem !important;
-        font-weight: 700 !important;
-        color: var(--text-color) !important;
+    .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        box-shadow: var(--box-shadow);
+        object-fit: cover;
+    }
+}
+
+.gender-field {
+    text-align: center;
+
+    .female-icon,
+    .male-icon {
+        font-size: 2.2rem;
         user-select: none;
-
-        &:hover {
-            background-color: transparent !important;
-        }
+        color: rgb(223, 9, 159);
     }
 
-    .table-head,
-    .table-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        width: 100%;
-        font-weight: 600;
-        padding: 10px 6px 6px 6px;
-        color: var(--gray);
-        border-bottom: 1px solid var(--gray-alpha-20);
+    .male-icon {
+        color: #21a2ff;
+    }
+}
 
-        &:hover {
-            background-color: var(--gray-alpha-05);
-            color: var(--text-color);
-        }
+.face-id-field {
+    text-align: center;
 
-        .identify {
-            width: 8%;
-        }
+    .check-icon {
+        font-size: 1.6rem;
+        color: green;
+        user-select: none;
+    }
+}
 
-        .name {
-            display: flex;
-            align-items: center;
-            flex: 1;
+.action-field {
+    text-align: center;
 
-            .avatar {
-                width: 40px;
-                height: 40px;
-                margin-right: 6px;
-                border-radius: 999px;
-                object-fit: cover;
-                box-shadow: var(--box-shadow);
-            }
+    .detail-icon,
+    .remove-icon {
+        font-size: 1.6rem;
+        color: var(--blue);
+        cursor: pointer;
+    }
 
-            .full-name {
-            }
-        }
-
-        .email {
-            width: 12%;
-        }
-
-        .birth {
-            width: 7%;
-        }
-
-        .gender {
-            width: 5%;
-            text-align: center;
-
-            .female-icon,
-            .male-icon {
-                font-size: 2.2rem;
-                user-select: none;
-                color: rgb(223, 9, 159);
-            }
-
-            .male-icon {
-                color: #21a2ff;
-            }
-        }
-
-        .address {
-            width: 6%;
-            text-align: center;
-        }
-
-        .position {
-            width: 7%;
-            text-align: center;
-        }
-
-        .phone {
-            width: 7%;
-        }
-
-        .face-id {
-            width: 5%;
-            text-align: center;
-
-            .check-icon {
-                font-size: 1.6rem;
-                color: green;
-                user-select: none;
-            }
-        }
-
-        .created-at {
-            width: 7%;
-        }
-
-        .action {
-            width: 5%;
-            text-align: center;
-
-            .detail-icon,
-            .remove-icon {
-                font-size: 1.6rem;
-                color: var(--blue);
-                cursor: pointer;
-            }
-
-            .remove-icon {
-                margin-left: 10px;
-                color: var(--red);
-            }
-        }
+    .remove-icon {
+        margin-left: 10px;
+        color: var(--red);
     }
 }
 
