@@ -1,7 +1,6 @@
 import { HeaderOnly } from '~/layouts';
 import Home from '~/pages/Overview';
 import Profile from '~/pages/Profile';
-import Auth from '~/pages/Auth/Login';
 import config from '~/config';
 import Candidate from '~/pages/Candidate';
 import Employee from '~/pages/Employee';
@@ -20,9 +19,8 @@ import UserManagement from '~/pages/UserManagement';
 import Timeline from '~/pages/Timeline';
 
 const publicRoutes = [
-    { path: config.routes.login, component: Auth, layout: null },
-    { path: config.routes.user_information, component: UserInformation, layout: null },
     { path: config.routes.home, component: Home },
+    { path: config.routes.user_information, component: UserInformation, layout: null },
     { path: config.routes.sales, component: Sales },
     { path: config.routes.profile.default, component: Profile },
     { path: config.routes.chat.private, component: PrivateChat },
@@ -39,7 +37,6 @@ const publicRoutes = [
 ];
 
 const privateRoutes = [
-    ...publicRoutes,
     { path: config.routes.user_management.default, component: UserManagement },
     { path: config.routes.support_center, component: SupportCenter },
 ];
