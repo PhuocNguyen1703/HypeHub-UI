@@ -2,9 +2,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './SupportCenter.module.scss';
-import { BsCaretLeftFill, BsCaretRightFill, BsClipboardMinus, BsDownload, BsFillCaretDownFill } from 'react-icons/bs';
+import {
+    BsCaretLeftFill,
+    BsCaretRightFill,
+    BsClipboardMinus,
+    BsDownload,
+    BsFillCaretDownFill,
+    BsTrash,
+} from 'react-icons/bs';
 import { FaCheck } from 'react-icons/fa';
 import ConfirmSupportTicket from '~/components/Modal/ConfirmSupportTicket';
+import Table from '~/components/Table/Table';
 
 const cx = classNames.bind(styles);
 
@@ -30,7 +38,7 @@ function SupportCenter() {
         setIsOpenOption(true);
     };
 
-    const tableTicket = [
+    const ticketData = [
         {
             id: 'SR#135267859',
             subject: 'Support password',
@@ -110,6 +118,55 @@ function SupportCenter() {
         },
     ];
 
+    const ticketTableHead = ['', 'ticket ID', 'subject', 'created By', 'image', 'date/Time', 'status', 'action'];
+
+    const renderHead = (item, idx) => {
+        return (
+            <th key={idx} className={cx(setHeadTitleCenter(item))}>
+                <span className={cx('head-title')}>{item}</span>
+            </th>
+        );
+    };
+
+    const renderBody = (item, idx) => {
+        return (
+            <tr key={idx}>
+                <td className={cx('new-tag-field')}>
+                    <span className={cx('tag-new')}>New</span>
+                </td>
+                <td>{item.id}</td>
+                <td>{item.subject}</td>
+                <td className={cx('name-field')}>{item.createdBy}</td>
+                <td>{checkImage(item.image)}</td>
+                <td>{item.date}</td>
+                <td className={cx('status-field')}>{item.status}</td>
+                <td>
+                    <div className={cx('action-field')}>
+                        <button className={cx('icon-detail')}>
+                            <BsClipboardMinus />
+                        </button>
+                        <button className={cx('icon-remove')}>
+                            <BsTrash />
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        );
+    };
+
+    const setHeadTitleCenter = (headTitle) => {
+        if (headTitle === 'image' || headTitle === 'status' || headTitle === 'action') return 'text-center';
+    };
+
+    const checkImage = (image) => {
+        if (image)
+            return (
+                <span className={cx('icon-check')}>
+                    <FaCheck />
+                </span>
+            );
+    };
+
     const handleToggleConfirmTicketModal = (item) => {
         setShowConfirmTicketModal(true);
         setTicket(item);
@@ -135,81 +192,13 @@ function SupportCenter() {
                     </div>
                 </div>
                 <div className={cx('table-container')}>
-                    <div className={cx('table-head')}>
-                        <span className={cx('rq-type')}></span>
-                        <span className={cx('rq-id')}>Ticket ID</span>
-                        <span className={cx('rq-subject')}>Subject</span>
-                        <span className={cx('rq-created-by')}>Created By</span>
-                        <span className={cx('rq-img')}>Image</span>
-                        <span className={cx('rq-date-time')}>Date/Time</span>
-                        <span className={cx('rq-status')}>Status</span>
-                        <span className={cx('rq-detail')}>Detail</span>
-                    </div>
-                    {tableTicket.map((item) => (
-                        <div key={item.id} className={cx('table-row')}>
-                            <span className={cx('rq-type')}>
-                                <span className={cx('rq-new')}>New</span>
-                            </span>
-                            <span className={cx('rq-id')}>{item.id}</span>
-                            <span className={cx('rq-subject')}>{item.subject}</span>
-                            <span className={cx('rq-created-by')}>{item.createdBy}</span>
-                            <span className={cx('rq-img')}>
-                                {item.image ? (
-                                    <span className={cx('icon-check')}>
-                                        <FaCheck />
-                                    </span>
-                                ) : null}
-                            </span>
-                            <div className={cx('rq-date-time')}>
-                                <span className={cx('date')}>{item.date}</span>
-                                <span className={cx('time')}>{item.time}</span>
-                            </div>
-                            <span className={cx('rq-status')}>{item.status}</span>
-                            <div className={cx('rq-detail')}>
-                                <span
-                                    className={cx('detail-icon')}
-                                    onClick={() => handleToggleConfirmTicketModal(item)}
-                                >
-                                    <BsClipboardMinus />
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-
-                    <div className={cx('pagination')}>
-                        <div className={cx('per-page')}>
-                            <div className={cx('select')}>
-                                <span className={cx('selected')} onClick={handleToggleOption}>
-                                    10
-                                    <span className={cx('dropdown-icon')}>
-                                        <BsFillCaretDownFill />
-                                    </span>
-                                </span>
-                                <span className={cx('text-per-page')}>Entries per page</span>
-                                {isOpenOption && (
-                                    <ul ref={optionRef} className={cx('option')}>
-                                        <li className={cx('select-option')}>10</li>
-                                        <li className={cx('select-option')}>15</li>
-                                        <li className={cx('select-option')}>20</li>
-                                    </ul>
-                                )}
-                            </div>
-                        </div>
-
-                        <div className={cx('pagination-right')}>
-                            <button className={cx('prev-btn')}>
-                                <BsCaretLeftFill />
-                            </button>
-                            <div className={cx('page')}>
-                                Page
-                                <span className={cx('number')}>1</span>
-                                of 12
-                            </div>
-                            <button className={cx('next-btn')}>
-                                <BsCaretRightFill />
-                            </button>
-                        </div>
-                    </div>
+                    <Table
+                        limit={10}
+                        headData={ticketTableHead}
+                        renderHead={renderHead}
+                        bodyData={ticketData}
+                        renderBody={renderBody}
+                    />
                 </div>
             </div>
 
