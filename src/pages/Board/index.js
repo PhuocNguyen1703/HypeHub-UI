@@ -6,7 +6,7 @@ import Column from '~/layouts/components/Column';
 import { cloneDeep, isEmpty } from 'lodash-es';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
-import { createNewColumn, getBoardDetails, updateCard, updateColumn, updateTwoColumn } from '~/api/kanbanApi';
+import { createNewColumn, getBoardDetails, updateCard, updateColumn, updateTwoColumn } from '~/services/kanbanApi';
 import Modal from '~/components/Modal';
 import CreateKanbanItem from '~/components/Modal/CreateCardModal';
 import { mapOrder } from '~/utils/sort';

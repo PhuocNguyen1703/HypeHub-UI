@@ -11,8 +11,8 @@ import { setFaceRecognitionModalIsOpen } from '~/redux/Slice/modalSlice';
 import { BsXLg } from 'react-icons/bs';
 import images from '~/assets/images';
 import { useSelector } from 'react-redux';
-import { updateUserFaceId } from '~/api/userApi';
-import { createAxios } from '~/api/axiosClient';
+import { updateUserFaceId } from '~/services/userApi';
+import { createAxios } from '~/services/axiosClient';
 import { updateSuccess } from '~/redux/Slice/authSlice';
 import Modal from '../../Modal';
 

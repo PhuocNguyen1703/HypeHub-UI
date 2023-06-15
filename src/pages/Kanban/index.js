@@ -4,7 +4,7 @@ import CreateBoardModal from '~/components/Modal/CreateBoard/CreateBoardModal';
 
 import styles from './Kanban.module.scss';
 import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '~/utils/constants';
-import { createNewBoard, getAllBoard, updateBoard } from '~/api/kanbanApi';
+import { createNewBoard, getAllBoard, updateBoard } from '~/services/kanbanApi';
 import { useSelector } from 'react-redux';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import EditBoardModal from '~/components/Modal/EditBoard/EditBoard';

@@ -22,10 +22,10 @@ import {
 } from 'react-icons/bs';
 import Image from '~/components/Image';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '~/api/userApi';
-import { createAxios } from '~/api/axiosClient';
+import { updateUser } from '~/services/userApi';
+import { createAxios } from '~/services/axiosClient';
 import { updateSuccess } from '~/redux/Slice/authSlice';
-import { uploadImages } from '~/api/uploadImagesApi';
+import { uploadImages } from '~/services/uploadImagesApi';
 import EditProfile from '~/components/Modal/EditProfile';
 import images from '~/assets/images';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';

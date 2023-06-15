@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { SearchIcon } from '~/components/Icons';
 import styles from './Message.module.scss';
 import { useDebounce } from '~/hooks';
-import * as searchServices from '~/api/searchApi';
+import * as searchServices from '~/services/searchApi';
 import { IoCloseCircle } from 'react-icons/io5';
 import { FaSpinner } from 'react-icons/fa';
 

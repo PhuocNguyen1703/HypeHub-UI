@@ -9,7 +9,7 @@ import { BsTrash } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { setCreateKanbanItemModalIsOpen } from '~/redux/Slice/modalSlice';
 import { mapOrder } from '~/utils/sort';
-import { updateColumn } from '~/api/kanbanApi';
+import { updateColumn } from '~/services/kanbanApi';
 import ConfirmModal from '~/components/Modal/Confirm';
 import { MODAL_ACTION_CONFIRM } from '~/utils/constants';
 import CreateCardModal from '~/components/Modal/CreateCardModal';

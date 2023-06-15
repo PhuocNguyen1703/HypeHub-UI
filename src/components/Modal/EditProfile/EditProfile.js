@@ -19,8 +19,8 @@ import { setEditProfileModalIsOpen } from '~/redux/Slice/modalSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { updateUser } from '~/api/userApi';
-import { createAxios } from '~/api/axiosClient';
+import { updateUser } from '~/services/userApi';
+import { createAxios } from '~/services/axiosClient';
 import { updateSuccess } from '~/redux/Slice/authSlice';
 import Modal from '../Modal';
 

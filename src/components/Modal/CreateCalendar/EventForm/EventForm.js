@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 import { useForm } from 'react-hook-form';
-import { createCalendar } from '~/api/calendarApi';
+import { createCalendar } from '~/services/calendarApi';
 
 const cx = classNames.bind(styles);
 

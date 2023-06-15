@@ -10,7 +10,7 @@ import 'react-quill/dist/quill.snow.css';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { createEmail } from '~/api/emailApi';
+import { createEmail } from '~/services/emailApi';
 import Modal from '../Modal';
 import { RiLoader4Fill } from 'react-icons/ri';
 

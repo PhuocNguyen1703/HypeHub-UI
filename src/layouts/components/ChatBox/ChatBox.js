@@ -8,13 +8,13 @@ import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
 
 import styles from './ChatBox.module.scss';
-import { getUser } from '~/api/userApi';
-import { addMessage, getMessages } from '~/api/messageApi';
+import { getUser } from '~/services/userApi';
+import { addMessage, getMessages } from '~/services/messageApi';
 import Image from '~/components/Image';
 import { BsCardImage, BsCursor, BsEmojiSmile } from 'react-icons/bs';
 import Lightbox from 'react-18-image-lightbox';
 import { useSelector } from 'react-redux';
-import { uploadImages } from '~/api/uploadImagesApi';
+import { uploadImages } from '~/services/uploadImagesApi';
 
 const cx = classNames.bind(styles);
 dayjs.extend(utc);

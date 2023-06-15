@@ -22,9 +22,9 @@ import { useForm } from 'react-hook-form';
 import Modal from '../Modal';
 import { MODAL_ACTION_CLOSE } from '~/utils/constants';
 import HTMLReactParser from 'html-react-parser';
-import { createNewCard } from '~/api/kanbanApi';
+import { createNewCard } from '~/services/kanbanApi';
 import { cloneDeep } from 'lodash-es';
-import { uploadImages } from '~/api/uploadImagesApi';
+import { uploadImages } from '~/services/uploadImagesApi';
 
 const cx = classNames.bind(styles);
 

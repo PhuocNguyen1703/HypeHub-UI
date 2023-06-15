@@ -27,7 +27,7 @@ import {
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 import PickerCalendar from '~/components/PickerCalendar';
 import Menu from '~/components/Popper/Menu';
-import { getAllCalendar } from '~/api/calendarApi';
+import { getAllCalendar } from '~/services/calendarApi';
 
 const cx = classNames.bind(styles);
 

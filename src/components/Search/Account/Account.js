@@ -7,7 +7,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import styles from './Account.module.scss';
 import { useDebounce } from '~/hooks';
-import * as searchServices from '~/api/searchApi';
+import * as searchServices from '~/services/searchApi';
 import { IoCloseCircle } from 'react-icons/io5';
 import { FaSpinner } from 'react-icons/fa';
 

@@ -8,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import styles from './Register.module.scss';
 import logo from '~/assets/images/logo.svg';
-import { registerUser } from '~/api/authApi';
+import { registerUser } from '~/services/authApi';
 import {
     BsExclamationTriangle,
     BsEyeFill,
@@ -18,7 +18,7 @@ import {
     BsXLg,
 } from 'react-icons/bs';
 import { RiLoader4Fill } from 'react-icons/ri';
-import { createAxios } from '~/api/axiosClient';
+import { createAxios } from '~/services/axiosClient';
 import { useSelector } from 'react-redux';
 import { registerSuccess } from '~/redux/Slice/authSlice';
 import Modal from '../Modal';

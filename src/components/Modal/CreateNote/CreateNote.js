@@ -12,7 +12,7 @@ import DatePicker from '~/components/DatePicker';
 import { FaChevronDown, FaTimes } from 'react-icons/fa';
 import Modal from '../Modal';
 import { useForm } from 'react-hook-form';
-import { createTodo } from '~/api/todoApi';
+import { createTodo } from '~/services/todoApi';
 import { useSelector } from 'react-redux';
 import { RiLoader4Fill } from 'react-icons/ri';
 
