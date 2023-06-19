@@ -4,8 +4,6 @@ import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import 'react-circular-progressbar/dist/styles.css';
 import {
-    BsCameraFill,
-    BsPersonCircle,
     BsPencil,
     BsTelephone,
     BsGenderAmbiguous,
@@ -29,7 +27,7 @@ import { uploadImages } from '~/services/uploadImagesApi';
 import EditProfile from '~/components/Modal/EditProfile';
 import images from '~/assets/images';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import { FaFacebookSquare, FaInstagram, FaLinkedin, FaSprayCan, FaTwitter } from 'react-icons/fa';
+import { FaFacebookSquare, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import routes from '~/config/routes';
 import PersonalInfo from '~/components/PersonalInfo/PersonalInfo';
@@ -53,7 +51,7 @@ function Profile() {
     const percentage = 15;
 
     const sidebar = [
-        { path: '', icon: <BsPerson />, title: 'Personal Information' },
+        { path: '', icon: <BsPerson />, title: 'Information' },
         { path: routes.profile.payment, icon: <BsCreditCard2Back />, title: 'Payment' },
         { path: routes.profile.change_password, icon: <BsLock />, title: 'Change Password' },
         { path: routes.profile.time_sheets, icon: <BsClipboardCheck />, title: 'Time Sheets' },

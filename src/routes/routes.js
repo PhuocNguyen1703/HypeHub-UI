@@ -15,14 +15,14 @@ import Board from '~/pages/Board';
 import UserInformation from '~/layouts/components/UserInformation';
 import Support from '~/pages/Support';
 import SupportCenter from '~/pages/SupportCenter';
-import UserManagement from '~/pages/UserManagement';
 import Timeline from '~/pages/Timeline';
+import Manage from '~/pages/Manage';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.user_information, component: UserInformation, layout: null },
     { path: config.routes.sales, component: Sales },
-    { path: config.routes.profile.default, component: Profile },
+    { path: `${config.routes.profile.info}/*`, component: Profile },
     { path: config.routes.chat.private, component: PrivateChat },
     { path: config.routes.chat.group, component: GroupChat },
     { path: config.routes.employee, component: Employee },
@@ -37,8 +37,8 @@ const publicRoutes = [
 ];
 
 const privateRoutes = [
-    { path: config.routes.user_management.default, component: UserManagement },
-    { path: config.routes.support_center, component: SupportCenter },
+    { path: `${config.routes.manage.user}/*`, component: Manage },
+    { path: config.routes.manage.support_center, component: SupportCenter },
 ];
 
 export { publicRoutes, privateRoutes };

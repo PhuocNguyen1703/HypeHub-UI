@@ -93,12 +93,31 @@ function Sidebar() {
         {
             icon: <BsPerson />,
             title: 'Profile',
-            path: config.routes.profile.default,
+            path: config.routes.profile.info,
         },
         {
             icon: <BsPatchQuestion />,
             title: 'Support',
             path: config.routes.support,
+        },
+    ];
+
+    const adminMenu = [
+        {
+            icon: <HiOutlineUserGroup />,
+            title: 'Manage',
+            children: [
+                {
+                    icon: <BsClipboardData />,
+                    title: 'User',
+                    path: config.routes.manage.user,
+                },
+                {
+                    icon: <BsPatchQuestion />,
+                    title: 'Ticket',
+                    path: config.routes.manage.support_center,
+                },
+            ],
         },
     ];
 
@@ -118,25 +137,6 @@ function Sidebar() {
             },
         },
     };
-
-    const adminMenu = [
-        {
-            icon: <HiOutlineUserGroup />,
-            title: 'Management',
-            children: [
-                {
-                    icon: <BsClipboardData />,
-                    title: 'User',
-                    path: config.routes.user_management.default,
-                },
-                {
-                    icon: <BsPatchQuestion />,
-                    title: 'Ticket',
-                    path: config.routes.support_center,
-                },
-            ],
-        },
-    ];
 
     return (
         <div className={cx('wrapper')}>

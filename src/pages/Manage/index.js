@@ -1,20 +1,19 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './UserManagement.module.scss';
+import styles from './Manage.module.scss';
 import { NavLink, Route, Routes } from 'react-router-dom';
-import routes from '~/config/routes';
 import UserTable from './Table/UserTable';
 import UserSearch from './UserSearch';
 import TimeSheets from '../TimeSheets';
 
 const cx = classNames.bind(styles);
 
-function UserManagement() {
+function Manage() {
     const navList = [
-        { path: routes.user_management.default, title: 'Table' },
-        { path: routes.user_management.search, title: 'Search' },
-        { path: routes.user_management.time_sheets, title: 'Time Sheets' },
+        { path: '', title: 'Table' },
+        { path: 'search', title: 'Search' },
+        { path: 'timesheet', title: 'Time Sheets' },
     ];
 
     return (
@@ -28,11 +27,12 @@ function UserManagement() {
             </nav>
             <Routes>
                 <Route index element={<UserTable />} />
-                <Route path={routes.user_management.search} element={<UserSearch />} />
-                <Route path={routes.user_management.time_sheets} element={<TimeSheets />} />
+                <Route path="search" element={<UserSearch />} />
+                <Route path="timesheet" element={<TimeSheets />} />
+                <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
         </div>
     );
 }
 
-export default UserManagement;
+export default Manage;
