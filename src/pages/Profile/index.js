@@ -119,38 +119,6 @@ function Profile() {
 
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('header')}>
-                <div className={cx('header-left')}>
-                    <div className={cx('progress')}>
-                        <CircularProgressbar
-                            minValue={0}
-                            maxValue={100}
-                            value={percentage}
-                            text={`${percentage}%`}
-                            styles={buildStyles({
-                                rotation: 1,
-                                strokeLinecap: 'round',
-                                textSize: '2rem',
-
-                                // Colors
-                                textColor: 'var(--text-color)',
-                                pathColor: `var(--blue)`,
-                                trailColor: 'var(--gray-alpha-40)',
-                            })}
-                        />
-                    </div>
-                    <div className={cx('heading')}>
-                        <span className={cx('title')}>Personal Information</span>
-                        <span className={cx('sub-title')}>Complete your profile.</span>
-                    </div>
-                </div>
-                <div className={cx('header-right')}>
-                    <button className={cx('edit-btn')}>
-                        <BsPencil /> Edit profile
-                    </button>
-                </div>
-            </div>
-
             <div className={cx('container')}>
                 <div className={cx('user-info')}>
                     <div className={cx('avatar')}>
