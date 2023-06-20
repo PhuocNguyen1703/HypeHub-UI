@@ -46,10 +46,10 @@ function SidebarItem({ item, className = '' }) {
 
     if (item.children) {
         return (
-            <div className={cx('item', isOpen && 'open')} onClick={handleItemList}>
-                <div className={cx('item-title')}>
-                    <span className={cx('icon')}>{item?.icon}</span>
-                    <AnimatePresence>
+            <AnimatePresence>
+                <div className={cx('item', isOpen && 'open')} onClick={handleItemList}>
+                    <div className={cx('item-title')}>
+                        <span className={cx('icon')}>{item?.icon}</span>
                         {!sidebarCollapsed && (
                             <motion.span
                                 variants={showAnimation}
@@ -62,27 +62,27 @@ function SidebarItem({ item, className = '' }) {
                                 <MdNavigateNext className={cx('toggle-btn')} />
                             </motion.span>
                         )}
-                    </AnimatePresence>
+                    </div>
+                    <motion.div
+                        animate={{
+                            height: isOpen ? 'auto' : '0',
+                            transition: { duration: 0.4 },
+                        }}
+                        className={cx('child-list')}
+                    >
+                        {item.children.map((child, index) => (
+                            <NavLink
+                                to={child.path}
+                                key={index}
+                                className={(nav) => cx('child-item', { active: nav.isActive })}
+                            >
+                                <span className={cx('icon')}>{child?.icon}</span>
+                                <span className={cx('title')}>{child.title}</span>
+                            </NavLink>
+                        ))}
+                    </motion.div>
                 </div>
-                <motion.div
-                    animate={{
-                        height: isOpen ? 'auto' : '0',
-                        transition: { duration: 0.4 },
-                    }}
-                    className={cx('child-list')}
-                >
-                    {item.children.map((child, index) => (
-                        <NavLink
-                            to={child.path}
-                            key={index}
-                            className={(nav) => cx('child-item', { active: nav.isActive })}
-                        >
-                            <span className={cx('icon')}>{child?.icon}</span>
-                            <span className={cx('title')}>{child.title}</span>
-                        </NavLink>
-                    ))}
-                </motion.div>
-            </div>
+            </AnimatePresence>
         );
     } else {
         return (

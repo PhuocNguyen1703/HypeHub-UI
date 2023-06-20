@@ -16,7 +16,7 @@ import UserInformation from '~/layouts/components/UserInformation';
 import Support from '~/pages/Support';
 import SupportCenter from '~/pages/SupportCenter';
 import Timeline from '~/pages/Timeline';
-import Manage from '~/pages/Manage';
+import ManageUser from '~/pages/Manage/User';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -37,8 +37,8 @@ const publicRoutes = [
 ];
 
 const privateRoutes = [
-    { path: `${config.routes.manage.user}/*`, component: Manage },
-    { path: config.routes.manage.support_center, component: SupportCenter },
+    { path: `${config.routes.manage.user}/*`, component: ManageUser },
+    { path: config.routes.manage.ticket, component: SupportCenter },
 ];
 
 export { publicRoutes, privateRoutes };

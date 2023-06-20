@@ -115,7 +115,7 @@ function Sidebar() {
                 {
                     icon: <BsPatchQuestion />,
                     title: 'Ticket',
-                    path: config.routes.manage.support_center,
+                    path: config.routes.manage.ticket,
                 },
             ],
         },

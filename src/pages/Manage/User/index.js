@@ -5,11 +5,11 @@ import styles from './Manage.module.scss';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import UserTable from './Table/UserTable';
 import UserSearch from './UserSearch';
-import TimeSheets from '../TimeSheets';
+import TimeSheets from '../../TimeSheets';
 
 const cx = classNames.bind(styles);
 
-function Manage() {
+function ManageUser() {
     const navList = [
         { path: '', title: 'Table' },
         { path: 'search', title: 'Search' },
@@ -35,4 +35,4 @@ function Manage() {
     );
 }
 
-export default Manage;
+export default ManageUser;

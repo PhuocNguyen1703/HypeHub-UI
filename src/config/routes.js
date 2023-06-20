@@ -18,7 +18,7 @@ const routes = {
     kanban: 'kanban',
     board: 'kanban/board/:boardId',
     support: 'support',
-    manage: { user: 'manage/users', support_center: 'manage/support-center' },
+    manage: { user: 'manage/users', ticket: 'manage/tickets' },
 };
 
 export default routes;

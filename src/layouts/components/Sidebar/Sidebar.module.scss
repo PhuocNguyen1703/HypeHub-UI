@@ -37,18 +37,17 @@
     padding: 10px 0 10px 14px;
     margin: 6px 0;
     border-radius: 6px;
-    transition: background-color 0.3s;
     color: var(--second-color);
     cursor: pointer;
 
     &:hover {
-        background-image: var(--sidebar-item-color);
+        background: var(--sidebar-item-color);
         color: var(--text-hover-color);
         box-shadow: var(--box-shadow);
     }
 
     &.active {
-        background-image: var(--sidebar-item-color);
+        background: var(--sidebar-item-color);
         color: var(--text-hover-color);
         box-shadow: var(--box-shadow);
     }
@@ -113,7 +112,7 @@
     margin-right: 6px;
     border-radius: 6px;
     color: var(--second-color);
-    transition: background-color 0.2s;
+    transition: background-color 0.3s;
     cursor: pointer;
     user-select: none;
 
