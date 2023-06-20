@@ -15,8 +15,8 @@ function DefaultLayout() {
     const { themeMode, sidebarColor, navbarColor } = useSelector((state) => state.theme);
 
     return (
-        <div className={cx('wrapper', themeMode)}>
-            <AnimatePresence>
+        <AnimatePresence>
+            <div className={cx('wrapper', themeMode)}>
                 <motion.div
                     className={cx('sidebar', sidebarColor)}
                     animate={{
@@ -30,21 +30,20 @@ function DefaultLayout() {
                 >
                     <Sidebar />
                 </motion.div>
-            </AnimatePresence>
-            <div className={cx('container')}>
-                <div className={cx('header', navbarColor)}>
-                    <Header />
+                <div className={cx('container')}>
+                    <div className={cx('header', navbarColor)}>
+                        <Header />
+                    </div>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, transition: { duration: 0.15 } }}
+                        className={cx('content')}
+                    >
+                        <Outlet />
+                    </motion.div>
                 </div>
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, transition: { duration: 0.15 } }}
-                    // exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                    className={cx('content')}
-                >
-                    <Outlet />
-                </motion.div>
             </div>
-        </div>
+        </AnimatePresence>
     );
 }
 

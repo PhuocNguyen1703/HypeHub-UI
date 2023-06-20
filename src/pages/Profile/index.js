@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import 'react-circular-progressbar/dist/styles.css';
 import {
-    BsPencil,
     BsTelephone,
     BsGenderAmbiguous,
     BsGeoAlt,
@@ -26,14 +25,13 @@ import { updateSuccess } from '~/redux/Slice/authSlice';
 import { uploadImages } from '~/services/uploadImagesApi';
 import EditProfile from '~/components/Modal/EditProfile';
 import images from '~/assets/images';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { FaFacebookSquare, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import routes from '~/config/routes';
-import PersonalInfo from '~/components/PersonalInfo/PersonalInfo';
-import Payment from '~/components/Payment/Payment';
-import ChangePassword from '~/components/ChangePassword/ChangePassword';
-import TimeSheets from '~/components/TimeSheets/TimeSheets';
+import PersonalInfo from '~/pages/Profile/components/PersonalInfo/PersonalInfo';
+import Payment from '~/pages/Profile/components/Payment/Payment';
+import ChangePassword from '~/pages/Profile/components/ChangePassword/ChangePassword';
+import TimeSheets from '~/pages/Profile/components/TimeSheets/TimeSheets';
 
 const cx = classNames.bind(styles);
 
@@ -118,9 +116,9 @@ function Profile() {
     };
 
     return (
-        <div className={cx('wrapper')}>
-            <div className={cx('container')}>
-                <div className={cx('user-info')}>
+        <>
+            <div className={cx('wrapper')}>
+                <div className={cx('left-container')}>
                     <div className={cx('avatar')}>
                         <Image
                             className={cx('user-avatar')}
@@ -182,16 +180,18 @@ function Profile() {
                     </div>
                 </div>
 
-                <Routes>
-                    <Route index element={<PersonalInfo />} />
-                    <Route path={routes.profile.payment} element={<Payment />} />
-                    <Route path={routes.profile.change_password} element={<ChangePassword />} />
-                    <Route path={routes.profile.time_sheets} element={<TimeSheets />} />
-                </Routes>
-            </div>
+                <div className={cx('right-container')}>
+                    <Routes>
+                        <Route index element={<PersonalInfo />} />
+                        <Route path={routes.profile.payment} element={<Payment />} />
+                        <Route path={routes.profile.change_password} element={<ChangePassword />} />
+                        <Route path={routes.profile.time_sheets} element={<TimeSheets />} />
+                    </Routes>
+                </div>
 
-            <EditProfile show={showEditProfileModal} setShowEditProfileModal={setShowEditProfileModal} />
-        </div>
+                <EditProfile show={showEditProfileModal} setShowEditProfileModal={setShowEditProfileModal} />
+            </div>
+        </>
     );
 }
 
