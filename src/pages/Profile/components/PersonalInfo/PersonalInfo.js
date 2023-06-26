@@ -41,7 +41,7 @@ function PersonalInfo() {
         address02: yup.string().max(120, 'Please enter at most 120 characters.'),
         country: yup.string().max(60, 'Please enter at most 60 characters.'),
         city: yup.string().max(30, 'Please enter at most 30 characters.'),
-        note: yup.string().max(500, 'Please enter at most 500 characters.'),
+        bio: yup.string().max(500, 'Please enter at most 500 characters.'),
     });
 
     const {
@@ -85,9 +85,14 @@ function PersonalInfo() {
             </header>
             <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
                 <div className={cx('full-name')}>
-                    <label className={cx('label')}>
-                        First Name
+                    <div className={cx('first-name')}>
                         <div className={cx('first-name-field')}>
+                            <label className={cx('label', errors.firstName && 'error-color')}>
+                                <span className={cx('icon-person')}>
+                                    <BsPerson />
+                                </span>
+                                First Name
+                            </label>
                             <input
                                 type="text"
                                 className={cx('input', errors.firstName && 'error-ipt')}
@@ -95,9 +100,6 @@ function PersonalInfo() {
                                 disabled={!isEditProfile}
                                 {...register('firstName')}
                             />
-                            <span className={cx('icon-person', errors.firstName && 'error-color')}>
-                                <BsPerson />
-                            </span>
                         </div>
                         {errors.firstName?.message && (
                             <span className={cx('error')}>
@@ -105,10 +107,16 @@ function PersonalInfo() {
                                 {errors.firstName?.message}
                             </span>
                         )}
-                    </label>
-                    <label className={cx('label')}>
-                        Last Name
+                    </div>
+
+                    <div className={cx('last-name')}>
                         <div className={cx('last-name-field')}>
+                            <label className={cx('label', errors.lastName && 'error-color')}>
+                                <span className={cx('icon-person')}>
+                                    <BsPerson />
+                                </span>
+                                Last Name
+                            </label>
                             <input
                                 type="text"
                                 className={cx('input', errors.lastName && 'error-ipt')}
@@ -116,9 +124,6 @@ function PersonalInfo() {
                                 disabled={!isEditProfile}
                                 {...register('lastName')}
                             />
-                            <span className={cx('icon-person', errors.firstName && 'error-color')}>
-                                <BsPerson />
-                            </span>
                         </div>
                         {errors.lastName?.message && (
                             <span className={cx('error')}>
@@ -126,21 +131,29 @@ function PersonalInfo() {
                                 {errors.lastName?.message}
                             </span>
                         )}
-                    </label>
+                    </div>
                 </div>
                 <div className={cx('email-and-birth')}>
-                    <label className={cx('label')}>
-                        Email Address
+                    <div className={cx('email')}>
                         <div className={cx('email-field')}>
+                            <label className={cx('label')}>
+                                <span className={cx('icon-email')}>
+                                    <BsEnvelope />
+                                </span>
+                                Email
+                            </label>
                             <input type="text" className={cx('input')} value="Admin@gmail.com" disabled />
-                            <span className={cx('icon-email')}>
-                                <BsEnvelope />
-                            </span>
                         </div>
-                    </label>
-                    <label className={cx('label')}>
-                        Date of Birth
+                    </div>
+
+                    <div className={cx('birth')}>
                         <div className={cx('birth-field')}>
+                            <label className={cx('label')}>
+                                <span className={cx('icon-birth')}>
+                                    <BsCalendarEvent />
+                                </span>
+                                Birth
+                            </label>
                             <input
                                 type="text"
                                 className={cx('input')}
@@ -148,16 +161,18 @@ function PersonalInfo() {
                                 disabled={!isEditProfile}
                                 {...register('birth')}
                             />
-                            <span className={cx('icon-birth')}>
-                                <BsCalendarEvent />
-                            </span>
                         </div>
-                    </label>
+                    </div>
                 </div>
                 <div className={cx('phone-and-position')}>
-                    <label className={cx('label')}>
-                        Phone Number
+                    <div className={cx('phone')}>
                         <div className={cx('phone-field')}>
+                            <label className={cx('label', errors.phoneNumber && 'error-color')}>
+                                <span className={cx('icon-phone')}>
+                                    <BsTelephone />
+                                </span>
+                                Phone
+                            </label>
                             <input
                                 type="text"
                                 className={cx('input', errors.phoneNumber && 'error-ipt')}
@@ -165,9 +180,6 @@ function PersonalInfo() {
                                 disabled={!isEditProfile}
                                 {...register('phoneNumber')}
                             />
-                            <span className={cx('icon-phone', errors.phoneNumber && 'error-color')}>
-                                <BsTelephone />
-                            </span>
                         </div>
                         {errors.phoneNumber?.message && (
                             <span className={cx('error')}>
@@ -175,21 +187,29 @@ function PersonalInfo() {
                                 {errors.phoneNumber?.message}
                             </span>
                         )}
-                    </label>
-                    <label className={cx('label')}>
-                        Position
+                    </div>
+
+                    <div className={cx('position')}>
                         <div className={cx('position-field')}>
+                            <label className={cx('label')}>
+                                <span className={cx('icon-position')}>
+                                    <BsBriefcase />
+                                </span>
+                                Position
+                            </label>
                             <input type="text" className={cx('input')} value="Software Engineer" disabled />
-                            <span className={cx('icon-position')}>
-                                <BsBriefcase />
-                            </span>
                         </div>
-                    </label>
+                    </div>
                 </div>
                 <div className={cx('hashtag-and-gender')}>
-                    <label className={cx('label')}>
-                        Hashtag
+                    <div className={cx('hashtag')}>
                         <div className={cx('hashtag-field')}>
+                            <label className={cx('label', errors.hashtag && 'error-color')}>
+                                <span className={cx('icon-hashtag')}>
+                                    <BsHash />
+                                </span>
+                                Hashtag
+                            </label>
                             <input
                                 type="text"
                                 className={cx('input', errors.hashtag && 'error-ipt')}
@@ -197,9 +217,6 @@ function PersonalInfo() {
                                 disabled={!isEditProfile}
                                 {...register('hashtag')}
                             />
-                            <span className={cx('icon-hashtag', errors.hashtag && 'error-color')}>
-                                <BsHash />
-                            </span>
                         </div>
                         {errors.hashtag?.message && (
                             <span className={cx('error')}>
@@ -207,10 +224,16 @@ function PersonalInfo() {
                                 {errors.hashtag?.message}
                             </span>
                         )}
-                    </label>
-                    <label className={cx('label')}>
-                        Gender
+                    </div>
+
+                    <div className={cx('gender')}>
                         <div className={cx('gender-field')}>
+                            <label className={cx('label')}>
+                                <span className={cx('icon-gender')}>
+                                    <BsGenderAmbiguous />
+                                </span>
+                                Gender
+                            </label>
                             <input
                                 type="text"
                                 className={cx('input')}
@@ -218,51 +241,19 @@ function PersonalInfo() {
                                 disabled={!isEditProfile}
                                 {...register('gender')}
                             />
-                            <span className={cx('icon-gender')}>
-                                <BsGenderAmbiguous />
-                            </span>
                         </div>
-                    </label>
+                    </div>
                 </div>
                 <span className={cx('address-label')}>Address</span>
-                <div className={cx('address')}>
-                    <label className={cx('label')}>
-                        Address 01
-                        <textarea
-                            type="text"
-                            className={cx('textarea', errors.address01 && 'error-ipt')}
-                            placeholder="Address 01"
-                            disabled={!isEditProfile}
-                            {...register('address01')}
-                        />
-                        {errors.address01?.message && (
-                            <span className={cx('error')}>
-                                <BsExclamationTriangle className={cx('icon-warning')} />
-                                {errors.address01?.message}
-                            </span>
-                        )}
-                    </label>
-                    <label className={cx('label')}>
-                        Address 02
-                        <textarea
-                            type="text"
-                            className={cx('textarea', errors.address02 && 'error-ipt')}
-                            placeholder="Address 02"
-                            disabled={!isEditProfile}
-                            {...register('address02')}
-                        />
-                        {errors.address02?.message && (
-                            <span className={cx('error')}>
-                                <BsExclamationTriangle className={cx('icon-warning')} />
-                                {errors.address02?.message}
-                            </span>
-                        )}
-                    </label>
-                </div>
                 <div className={cx('country-and-city')}>
-                    <label className={cx('label')}>
-                        Country
+                    <div className={cx('country')}>
                         <div className={cx('country-field')}>
+                            <label className={cx('label', errors.country && 'error-color')}>
+                                <span className={cx('icon-country')}>
+                                    <IoEarthOutline />
+                                </span>
+                                Country
+                            </label>
                             <input
                                 type="text"
                                 className={cx('input', errors.country && 'error-ipt')}
@@ -270,20 +261,24 @@ function PersonalInfo() {
                                 disabled={!isEditProfile}
                                 {...register('country')}
                             />
-                            <span className={cx('icon-country', errors.country && 'error-color')}>
-                                <IoEarthOutline />
-                            </span>
                         </div>
+
                         {errors.country?.message && (
                             <span className={cx('error')}>
                                 <BsExclamationTriangle className={cx('icon-warning')} />
                                 {errors.country?.message}
                             </span>
                         )}
-                    </label>
-                    <label className={cx('label')}>
-                        City
+                    </div>
+
+                    <div className={cx('city')}>
                         <div className={cx('city-field')}>
+                            <label className={cx('label', errors.city && 'error-color')}>
+                                <span className={cx('icon-country')}>
+                                    <IoEarthOutline />
+                                </span>
+                                City
+                            </label>
                             <input
                                 type="text"
                                 className={cx('input', errors.city && 'error-ipt')}
@@ -291,30 +286,66 @@ function PersonalInfo() {
                                 disabled={!isEditProfile}
                                 {...register('city')}
                             />
-                            <span className={cx('icon-country', errors.city && 'error-color')}>
-                                <IoEarthOutline />
-                            </span>
                         </div>
+
                         {errors.city?.message && (
                             <span className={cx('error')}>
                                 <BsExclamationTriangle className={cx('icon-warning')} />
                                 {errors.city?.message}
                             </span>
                         )}
-                    </label>
+                    </div>
                 </div>
-                <span className={cx('note-label')}>Note</span>
+                <div className={cx('address-container')}>
+                    <div className={cx('address-01')}>
+                        <div className={cx('address-field')}>
+                            <label className={cx('label', errors.address01 && 'error-color')}>Address 01</label>
+                            <textarea
+                                type="text"
+                                className={cx('textarea', errors.address01 && 'error-ipt')}
+                                placeholder="Address 01"
+                                disabled={!isEditProfile}
+                                {...register('address01')}
+                            />
+                        </div>
+                        {errors.address01?.message && (
+                            <span className={cx('error')}>
+                                <BsExclamationTriangle className={cx('icon-warning')} />
+                                {errors.address01?.message}
+                            </span>
+                        )}
+                    </div>
+                    <div className={cx('address-02')}>
+                        <div className={cx('address-field')}>
+                            <label className={cx('label', errors.address02 && 'error-color')}>Address 02</label>
+                            <textarea
+                                type="text"
+                                className={cx('textarea', errors.address02 && 'error-ipt')}
+                                placeholder="Address 02"
+                                disabled={!isEditProfile}
+                                {...register('address02')}
+                            />
+                        </div>
+                        {errors.address02?.message && (
+                            <span className={cx('error')}>
+                                <BsExclamationTriangle className={cx('icon-warning')} />
+                                {errors.address02?.message}
+                            </span>
+                        )}
+                    </div>
+                </div>
+                <span className={cx('bio-label')}>Bio</span>
                 <textarea
                     type="text"
-                    className={cx('textarea-note', errors.note && 'error-ipt')}
+                    className={cx('textarea-bio', errors.bio && 'error-ipt')}
                     placeholder="Write something..."
                     disabled={!isEditProfile}
-                    {...register('note')}
+                    {...register('bio')}
                 />
-                {errors.note?.message && (
+                {errors.bio?.message && (
                     <span className={cx('error')}>
                         <BsExclamationTriangle className={cx('icon-warning')} />
-                        {errors.note?.message}
+                        {errors.bio?.message}
                     </span>
                 )}
                 {isEditProfile && (
