@@ -9,6 +9,7 @@ import * as yup from 'yup';
 import {
     BsBriefcase,
     BsCalendarEvent,
+    BsChevronRight,
     BsEnvelope,
     BsExclamationTriangle,
     BsGenderAmbiguous,
@@ -19,12 +20,18 @@ import {
 } from 'react-icons/bs';
 import { motion } from 'framer-motion';
 import { IoEarthOutline } from 'react-icons/io5';
+import { MdNavigateNext } from 'react-icons/md';
+import Dropdown from '~/components/Dropdown/Dropdown';
 
 const cx = classNames.bind(styles);
 
 function PersonalInfo() {
     const { currentUser } = useSelector((state) => state.auth.login);
     const [isEditProfile, setIsEditProfile] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [genderValue, setGenderValue] = useState('Select an option');
+
+    const options = ['Male', 'Female', 'Other'];
 
     const phoneRegExp =
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -56,6 +63,16 @@ function PersonalInfo() {
 
     const handleEditProfile = () => {
         setIsEditProfile(true);
+    };
+
+    const handleToggleDropdown = () => {
+        if (isEditProfile) {
+            setShowDropdown((prevState) => !prevState);
+        }
+    };
+
+    const handleSelectOption = (option) => {
+        setGenderValue(option);
     };
 
     const handleCancelEditProfile = () => {
@@ -234,12 +251,24 @@ function PersonalInfo() {
                                 </span>
                                 Gender
                             </label>
-                            <input
-                                type="text"
-                                className={cx('input')}
-                                placeholder="Gender"
-                                disabled={!isEditProfile}
-                                {...register('gender')}
+                            <span
+                                className={cx(
+                                    'gender-option',
+                                    !isEditProfile && 'disable',
+                                    showDropdown && 'toggle-dropdown',
+                                )}
+                                onClick={handleToggleDropdown}
+                            >
+                                {genderValue}
+                                <span className={cx('icon-dropdown')}>
+                                    <BsChevronRight />
+                                </span>
+                            </span>
+                            <Dropdown
+                                isShowDropdown={showDropdown}
+                                setShowDropdown={setShowDropdown}
+                                options={options}
+                                onChange={handleSelectOption}
                             />
                         </div>
                     </div>

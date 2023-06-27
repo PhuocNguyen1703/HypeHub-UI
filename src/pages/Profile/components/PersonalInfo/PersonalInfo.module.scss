@@ -93,6 +93,7 @@
     .city-field {
         position: relative;
         width: 100%;
+        height: 46px;
     }
 
     .label {
@@ -100,8 +101,9 @@
         display: flex;
         align-items: center;
         font-weight: 700;
-        top: -12px;
+        bottom: 50%;
         left: 16px;
+        transform: translateY(-50%);
         padding: 0 8px;
         border-radius: 8px;
         background-color: var(--main-bg);
@@ -123,7 +125,7 @@
 
     .input {
         width: 100%;
-        height: 46px;
+        height: 100%;
         border: 1px solid var(--gray-alpha-40);
         border-radius: 6px;
         padding: 0 10px;
@@ -146,12 +148,54 @@
         box-shadow: none;
     }
 
+    .gender-option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        border: 1px solid var(--gray-alpha-40);
+        border-radius: 6px;
+        padding: 0 10px;
+        font-size: 1.6rem;
+        transition: box-shadow 0.3s;
+        cursor: pointer;
+
+        &:hover {
+            border-color: var(--blue-alpha-40);
+            box-shadow: var(--box-shadow-input-hover);
+        }
+
+        &:focus {
+            border-color: var(--blue-alpha-40);
+            box-shadow: var(--box-shadow-input-focus);
+        }
+
+        .icon-dropdown {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            transition: transform 0.3s;
+        }
+    }
+
+    .disable {
+        border-color: var(--gray-alpha-40) !important;
+        box-shadow: none !important;
+        cursor: default;
+    }
+
+    .toggle-dropdown .icon-dropdown {
+        transform: rotate(90deg);
+    }
+
     .address-label,
     .bio-label {
+        margin-top: 20px;
         padding-left: 10px;
-        padding-bottom: 10px;
+        padding-bottom: 6px;
         font-size: 1.8rem;
-        font-weight: 600;
+        font-weight: 700;
         border-bottom: 1px dashed var(--gray-alpha-60);
     }
 
