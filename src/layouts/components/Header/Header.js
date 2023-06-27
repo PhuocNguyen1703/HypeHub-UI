@@ -31,6 +31,7 @@ import Register from '~/components/Modal/Register';
 import UserMenu from '~/components/UserMenu';
 import FaceRecognition from '~/components/Modal/TimeKeeping/FaceRecognition';
 import Message from '~/components/Message/Message';
+import { CNFlagIcon, JPFlagIcon, KRFlagIcon, THFlagIcon, USFlagIcon, VNFlagIcon } from '~/components/Icons';
 
 const cx = classNames.bind(styles);
 
@@ -59,16 +60,34 @@ function Header() {
                 title: 'Language',
                 data: [
                     {
+                        icon: <USFlagIcon />,
                         code: 'en',
-                        title: 'English',
+                        title: 'English (US)',
                     },
                     {
+                        icon: <VNFlagIcon />,
                         code: 'vi',
-                        title: 'Tiếng Việt (Việt Nam)',
+                        title: 'Vietnamese',
                     },
                     {
+                        icon: <JPFlagIcon />,
                         code: 'ja',
-                        title: '日本語 (日本)',
+                        title: 'Japanese',
+                    },
+                    {
+                        icon: <KRFlagIcon />,
+                        code: 'kr',
+                        title: 'Korean',
+                    },
+                    {
+                        icon: <THFlagIcon />,
+                        code: 'th',
+                        title: 'Thai',
+                    },
+                    {
+                        icon: <CNFlagIcon />,
+                        code: 'cn',
+                        title: 'Chinese',
                     },
                 ],
             },
