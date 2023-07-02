@@ -63,6 +63,10 @@
         gap: 20px;
     }
 
+    .address-container {
+        margin-bottom: 20px;
+    }
+
     .first-name,
     .last-name,
     .email,
@@ -88,7 +92,6 @@
     .position-field,
     .hashtag-field,
     .gender-field,
-    .address-field,
     .country-field,
     .city-field {
         position: relative;
@@ -96,14 +99,19 @@
         height: 46px;
     }
 
+    .address-field {
+        position: relative;
+        width: 100%;
+    }
+
     .label {
         position: absolute;
         display: flex;
         align-items: center;
         font-weight: 700;
-        bottom: 50%;
+        bottom: 100%;
         left: 16px;
-        transform: translateY(-50%);
+        transform: translateY(50%);
         padding: 0 8px;
         border-radius: 8px;
         background-color: var(--main-bg);
@@ -191,23 +199,21 @@
 
     .address-label,
     .bio-label {
-        margin-top: 20px;
         padding-left: 10px;
-        padding-bottom: 6px;
         font-size: 1.8rem;
         font-weight: 700;
-        border-bottom: 1px dashed var(--gray-alpha-60);
+        border-bottom: 1px dashed var(--gray-alpha-40);
     }
 
     .textarea,
     .textarea-bio {
         width: 100%;
-        min-height: 86px;
+        height: 86px;
         padding: 8px;
         font-size: 1.6rem;
         color: var(--text-color);
-        border: 1px solid var(--gray-alpha-40);
         background-color: transparent;
+        border-color: var(--gray-alpha-40);
         transition: box-shadow 0.3s;
         outline: none;
         border-radius: 6px;
@@ -231,6 +237,7 @@
     }
 
     .textarea-bio {
+        margin-top: -10px;
         min-height: 120px;
     }
 
@@ -243,7 +250,6 @@
     }
 
     .error {
-        display: block;
         margin-top: 10px;
         margin-left: 4px;
         font-size: 1.4rem;

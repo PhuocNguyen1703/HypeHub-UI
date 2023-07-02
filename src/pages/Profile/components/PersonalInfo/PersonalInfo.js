@@ -44,10 +44,10 @@ function PersonalInfo() {
             .max(20, 'Phone number is not valid.')
             .matches(phoneRegExp, 'Phone number is not valid.'),
         hashtag: yup.string().max(50, 'Please enter at most 50 characters.'),
+        country: yup.string().max(20, 'Please enter at most 20 characters.'),
+        city: yup.string().max(20, 'Please enter at most 20 characters.'),
         address01: yup.string().max(120, 'Please enter at most 120 characters.'),
         address02: yup.string().max(120, 'Please enter at most 120 characters.'),
-        country: yup.string().max(60, 'Please enter at most 60 characters.'),
-        city: yup.string().max(30, 'Please enter at most 30 characters.'),
         bio: yup.string().max(500, 'Please enter at most 500 characters.'),
     });
 
