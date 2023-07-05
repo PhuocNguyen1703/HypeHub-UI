@@ -1,0 +1,201 @@
+.wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    min-width: 610px;
+    background-color: var(--main-bg);
+    border: 1px solid var(--gray-alpha-40);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    color: var(--text-color);
+}
+
+.header {
+    width: fit-content;
+    margin: 0 auto;
+    transform: translateY(-50%);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px 20px 16px;
+    margin-top: -70px;
+
+    .card-number,
+    .card-holder-name {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    .card-number-field,
+    .card-holder-name-field,
+    .month-field,
+    .year-field,
+    .bank-name-field {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 46px;
+        border: 1px solid var(--gray-alpha-40);
+        border-radius: 6px;
+        transition: box-shadow 0.2s;
+
+        &:hover {
+            border-color: var(--blue-alpha-40) !important;
+            box-shadow: var(--box-shadow-input-hover);
+        }
+
+        .label {
+            position: absolute;
+            font-weight: 600;
+            font-size: 1.7rem;
+            bottom: 100%;
+            left: 10px;
+            transform: translateY(50%);
+            padding: 0 8px;
+            border-radius: 8px;
+            background-color: var(--main-bg);
+            user-select: none;
+        }
+
+        .input {
+            width: 100%;
+            height: 100%;
+            font-size: 1.6rem;
+            padding: 0 10px;
+        }
+    }
+
+    .expiration-and-bank {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .expiration-label {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            margin-top: 10px;
+
+            .month-and-year {
+                display: flex;
+                width: 55%;
+                gap: 10px;
+
+                .month,
+                .year {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                }
+
+                .month-field,
+                .year-field {
+                    padding: 0;
+                    cursor: pointer;
+
+                    .month-option,
+                    .year-option {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 100%;
+                        height: 100%;
+                        padding: 0 10px;
+
+                        .icon-dropdown {
+                            display: flex;
+                            align-items: center;
+                            font-size: 1.4rem;
+                            transition: transform 0.2s;
+                        }
+                    }
+
+                    .toggle-dropdown .icon-dropdown {
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+
+            .bank-name {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
+        }
+    }
+
+    .action-btn {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 30px;
+        gap: 10px;
+    }
+
+    .cancel-btn,
+    .remove-btn,
+    .submit-btn {
+        padding: 10px 20px;
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: var(--white);
+        background-color: var(--blue);
+        border-radius: 6px;
+        cursor: pointer;
+        opacity: 0.85;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .cancel-btn {
+        color: var(--gray-alpha-60);
+        background-color: transparent;
+
+        &:hover {
+            color: var(--text-color);
+        }
+    }
+
+    .remove-btn {
+        background-color: var(--danger-color-dark);
+    }
+
+    .error {
+        margin-top: 10px;
+        margin-left: 4px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--red);
+
+        .icon-warning {
+            font-size: 1.2rem;
+            margin-right: 4px;
+        }
+    }
+
+    .error-ipt {
+        border: 1px solid var(--red) !important;
+    }
+
+    .wrapper-option {
+        top: unset;
+        bottom: 103%;
+        max-height: 200px;
+        overflow: overlay;
+    }
+}

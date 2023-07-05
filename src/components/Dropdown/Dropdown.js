@@ -5,7 +5,7 @@ import styles from './Dropdown.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Dropdown({ isShowDropdown, setShowDropdown, options = [], onChange }) {
+function Dropdown({ isShowDropdown, setShowDropdown, options = [], onChange, wrapperClass = '' }) {
     const dropdownRef = useRef(null);
 
     //handleClick out side
@@ -17,7 +17,6 @@ function Dropdown({ isShowDropdown, setShowDropdown, options = [], onChange }) {
     const hideOnClickOutside = (e) => {
         if (isShowDropdown) {
             if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-                console.log('ok');
                 setShowDropdown(false);
             }
         }
@@ -30,7 +29,7 @@ function Dropdown({ isShowDropdown, setShowDropdown, options = [], onChange }) {
 
     if (isShowDropdown) {
         return (
-            <div ref={dropdownRef} className={cx('wrapper')}>
+            <div ref={dropdownRef} className={cx('wrapper', wrapperClass)}>
                 {options.map((option, idx) => (
                     <span key={idx} className={cx('option')} onClick={() => handleSelectOption(option)}>
                         {option}

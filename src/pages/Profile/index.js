@@ -29,7 +29,7 @@ import { FaFacebookSquare, FaInstagram, FaLinkedin, FaTwitter } from 'react-icon
 import { NavLink, Route, Routes } from 'react-router-dom';
 import routes from '~/config/routes';
 import PersonalInfo from '~/pages/Profile/components/PersonalInfo/PersonalInfo';
-import Payment from '~/pages/Profile/components/Payment/Payment';
+import Wallet from '~/pages/Profile/components/Wallet/Wallet';
 import ChangePassword from '~/pages/Profile/components/ChangePassword/ChangePassword';
 import TimeSheets from '~/pages/Profile/components/TimeSheets/TimeSheets';
 
@@ -50,7 +50,7 @@ function Profile() {
 
     const sidebar = [
         { path: '', icon: <BsPerson />, title: 'Information' },
-        { path: routes.profile.payment, icon: <BsCreditCard2Back />, title: 'Payment' },
+        { path: routes.profile.wallet, icon: <BsCreditCard2Back />, title: 'Wallet' },
         { path: routes.profile.change_password, icon: <BsLock />, title: 'Change Password' },
         { path: routes.profile.time_sheets, icon: <BsClipboardCheck />, title: 'Time Sheets' },
     ];
@@ -183,7 +183,7 @@ function Profile() {
                 <div className={cx('right-container')}>
                     <Routes>
                         <Route index element={<PersonalInfo />} />
-                        <Route path={routes.profile.payment} element={<Payment />} />
+                        <Route path={routes.profile.wallet} element={<Wallet />} />
                         <Route path={routes.profile.change_password} element={<ChangePassword />} />
                         <Route path={routes.profile.time_sheets} element={<TimeSheets />} />
                     </Routes>

@@ -5,7 +5,7 @@ const routes = {
     sales: 'sales',
     profile: {
         info: 'profile',
-        payment: 'payment',
+        wallet: 'wallet',
         change_password: 'change-password',
         time_sheets: 'time-sheets',
     },
