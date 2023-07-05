@@ -7,6 +7,7 @@ const routes = {
         info: 'profile',
         wallet: 'wallet',
         change_password: 'change-password',
+        social_link: 'social-link',
         time_sheets: 'time-sheets',
     },
     chat: { private: 'chat/private', group: 'chat/group' },

@@ -3,20 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Profile.module.scss';
 import 'react-circular-progressbar/dist/styles.css';
-import {
-    BsTelephone,
-    BsGenderAmbiguous,
-    BsGeoAlt,
-    BsBriefcase,
-    BsEnvelope,
-    BsCalendarEvent,
-    BsPerson,
-    BsHash,
-    BsCamera,
-    BsLock,
-    BsClipboardCheck,
-    BsCreditCard2Back,
-} from 'react-icons/bs';
+import { BsPerson, BsCamera, BsLock, BsClipboardCheck, BsCreditCard2Back, BsLink } from 'react-icons/bs';
 import Image from '~/components/Image';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '~/services/userApi';
@@ -32,6 +19,7 @@ import PersonalInfo from '~/pages/Profile/components/PersonalInfo/PersonalInfo';
 import Wallet from '~/pages/Profile/components/Wallet/Wallet';
 import ChangePassword from '~/pages/Profile/components/ChangePassword/ChangePassword';
 import TimeSheets from '~/pages/Profile/components/TimeSheets/TimeSheets';
+import SocialLink from './components/SocialLink/SocialLink';
 
 const cx = classNames.bind(styles);
 
@@ -46,24 +34,12 @@ function Profile() {
     const dispatch = useDispatch();
     let axiosJWT = createAxios(currentUser, dispatch, updateSuccess);
 
-    const percentage = 15;
-
     const sidebar = [
         { path: '', icon: <BsPerson />, title: 'Information' },
         { path: routes.profile.wallet, icon: <BsCreditCard2Back />, title: 'Wallet' },
         { path: routes.profile.change_password, icon: <BsLock />, title: 'Change Password' },
+        { path: routes.profile.social_link, icon: <BsLink />, title: 'Social Link' },
         { path: routes.profile.time_sheets, icon: <BsClipboardCheck />, title: 'Time Sheets' },
-    ];
-
-    const iconProfile = [
-        { id: 'Email', icon: <BsEnvelope />, desc: email },
-        { id: 'FullName', icon: <BsPerson />, desc: fullName },
-        { id: 'Address', icon: <BsGeoAlt />, desc: streetAddress },
-        { id: 'Birth', icon: <BsCalendarEvent />, desc: birth },
-        { id: 'Gender', icon: <BsGenderAmbiguous />, desc: gender },
-        { id: 'HashTag', icon: <BsHash />, desc: hashtag },
-        { id: 'Work', icon: <BsBriefcase />, desc: position },
-        { id: 'Phone', icon: <BsTelephone />, desc: phone },
     ];
 
     const handleFileAvatarInputChange = (e) => {
@@ -185,6 +161,7 @@ function Profile() {
                         <Route index element={<PersonalInfo />} />
                         <Route path={routes.profile.wallet} element={<Wallet />} />
                         <Route path={routes.profile.change_password} element={<ChangePassword />} />
+                        <Route path={routes.profile.social_link} element={<SocialLink />} />
                         <Route path={routes.profile.time_sheets} element={<TimeSheets />} />
                     </Routes>
                 </div>
