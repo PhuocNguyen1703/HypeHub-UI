@@ -27,7 +27,7 @@ import Setting from '../Setting';
 import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
 import ContactManagement from '~/components/Modal/ContactManagement';
 import Notification from '~/components/Notification';
-import Register from '~/components/Modal/Register';
+import Register from '~/pages/Auth/Register';
 import UserMenu from '~/components/UserMenu';
 import FaceRecognition from '~/components/Modal/TimeKeeping/FaceRecognition';
 import Message from '~/components/Message/Message';

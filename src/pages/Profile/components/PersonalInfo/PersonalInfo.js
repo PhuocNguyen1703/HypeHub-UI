@@ -37,8 +37,8 @@ function PersonalInfo() {
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
     const formSchema = yup.object().shape({
-        firstName: yup.string().required('First Name is required.').max(50, 'Please enter at most 50 characters.'),
-        lastName: yup.string().required('Last Name is required.').max(50, 'Please enter at most 50 characters.'),
+        firstName: yup.string().required('First Name is required.').max(20, 'Please enter at most 20 characters.'),
+        lastName: yup.string().required('Last Name is required.').max(20, 'Please enter at most 20 characters.'),
         phoneNumber: yup
             .string()
             .max(20, 'Phone number is not valid.')
@@ -73,6 +73,7 @@ function PersonalInfo() {
 
     const handleSelectOption = (option) => {
         setGenderValue(option);
+        setShowDropdown(false);
     };
 
     const handleCancelEditProfile = () => {

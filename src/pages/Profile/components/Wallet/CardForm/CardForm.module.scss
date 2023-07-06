@@ -55,7 +55,7 @@
         .label {
             position: absolute;
             font-weight: 600;
-            font-size: 1.7rem;
+            line-height: 1;
             bottom: 100%;
             left: 10px;
             transform: translateY(50%);
@@ -121,6 +121,7 @@
                             align-items: center;
                             font-size: 1.4rem;
                             transition: transform 0.2s;
+                            z-index: -1;
                         }
                     }
 

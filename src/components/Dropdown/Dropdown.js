@@ -24,17 +24,20 @@ function Dropdown({ isShowDropdown, setShowDropdown, options = [], onChange, wra
 
     const handleSelectOption = (option) => {
         onChange(option);
-        setShowDropdown(false);
     };
 
     if (isShowDropdown) {
         return (
             <div ref={dropdownRef} className={cx('wrapper', wrapperClass)}>
-                {options.map((option, idx) => (
-                    <span key={idx} className={cx('option')} onClick={() => handleSelectOption(option)}>
-                        {option}
-                    </span>
-                ))}
+                {!Array.isArray(options) || !options.length ? (
+                    <span className={cx('option')}>No data</span>
+                ) : (
+                    options.map((option, idx) => (
+                        <span key={idx} className={cx('option')} onClick={() => handleSelectOption(option)}>
+                            {option}
+                        </span>
+                    ))
+                )}
             </div>
         );
     }

@@ -20,7 +20,7 @@ function CardForm({ show, setShowCardFormModal, selectedCard = {}, setSelectedCa
     const [showMonthDropdown, setShowMonthDropdown] = useState(false);
     const [showYearDropdown, setShowYearDropdown] = useState(false);
     const [monthValue, setMonthValue] = useState(selectedCard?.cardMonth ? selectedCard.cardMonth : 'MM');
-    const [yearValue, setYearValue] = useState(selectedCard?.cardYear ? selectedCard.cardYear : 'YY');
+    const [yearValue, setYearValue] = useState(selectedCard?.cardYear ? selectedCard.cardYear : 'YYYY');
     const [monthError, setMonthError] = useState(false);
     const [yearError, setYearError] = useState(false);
     console.log(cardData);
@@ -69,25 +69,26 @@ function CardForm({ show, setShowCardFormModal, selectedCard = {}, setSelectedCa
         [cardData],
     );
 
-    const handleToggleMonthDropdown = () => {
-        setShowMonthDropdown((prevState) => !prevState);
-    };
+    const handleToggleDropdown = (e) => {
+        const targetEl = e.target.dataset.field;
 
-    const handleToggleYearDropdown = () => {
-        setShowYearDropdown((prevState) => !prevState);
+        if (targetEl === 'month-options') return setShowMonthDropdown(true);
+        if (targetEl === 'year-options') return setShowYearDropdown(true);
     };
 
     const handleSelectOption = (option) => {
-        if (option.toString().length === 2) {
+        if (showMonthDropdown) {
             setMonthValue(option.toString());
             setMonthError(false);
             setCardData({ ...cardData, cardMonth: option.toString() });
+            setShowMonthDropdown(false);
         }
 
-        if (option.toString().length === 4) {
+        if (showYearDropdown) {
             setYearValue(option.toString());
             setYearError(false);
             setCardData({ ...cardData, cardYear: option.toString() });
+            setShowYearDropdown(false);
         }
     };
 
@@ -106,7 +107,7 @@ function CardForm({ show, setShowCardFormModal, selectedCard = {}, setSelectedCa
 
     const onSubmit = async (data) => {
         if (monthValue === 'MM') return setMonthError(true);
-        if (yearValue === 'YY') return setYearError(true);
+        if (yearValue === 'YYYY') return setYearError(true);
 
         const newData = { ...cardData, ...data, cardMonth: monthValue, cardYear: yearValue };
         console.log(newData);
@@ -171,11 +172,12 @@ function CardForm({ show, setShowCardFormModal, selectedCard = {}, setSelectedCa
                                         <div className={cx('month')}>
                                             <div className={cx('month-field', monthError && 'error-ipt')}>
                                                 <span
+                                                    data-field="month-options"
                                                     className={cx(
                                                         'month-option',
                                                         showMonthDropdown && 'toggle-dropdown',
                                                     )}
-                                                    onClick={handleToggleMonthDropdown}
+                                                    onClick={(e) => handleToggleDropdown(e)}
                                                 >
                                                     {monthValue}
                                                     <span className={cx('icon-dropdown')}>
@@ -200,8 +202,9 @@ function CardForm({ show, setShowCardFormModal, selectedCard = {}, setSelectedCa
                                         <div className={cx('year')}>
                                             <div className={cx('year-field', yearError && 'error-ipt')}>
                                                 <span
+                                                    data-field="year-options"
                                                     className={cx('year-option', showYearDropdown && 'toggle-dropdown')}
-                                                    onClick={handleToggleYearDropdown}
+                                                    onClick={(e) => handleToggleDropdown(e)}
                                                 >
                                                     {yearValue}
                                                     <span className={cx('icon-dropdown')}>
