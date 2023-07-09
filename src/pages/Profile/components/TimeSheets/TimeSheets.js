@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
-import DatePicker from 'react-datepicker';
 
 import styles from './TimeSheets.module.scss';
 import {
@@ -10,11 +9,16 @@ import {
     BsClipboardMinus,
     BsFillCaretDownFill,
 } from 'react-icons/bs';
+import { FaAngleRight } from 'react-icons/fa';
+import MonthYearPicker from '~/components/MonthYearPicker/MonthYearPicker';
+import dayjs from 'dayjs';
+import Table from '~/components/Table/Table';
 
 const cx = classNames.bind(styles);
 
 function TimeSheets() {
-    const [startDate, setStartDate] = useState(new Date());
+    const [calendarValue, setCalendarValue] = useState(dayjs().format('MM/YYYY'));
+    const [showMonthYearPicker, setShowMonthYearPicker] = useState(false);
 
     const [isOpenOption, setIsOpenOption] = useState(false);
     const optionRef = useRef(null);
@@ -32,7 +36,7 @@ function TimeSheets() {
         setIsOpenOption(true);
     };
 
-    const timeSheets = [
+    const timeSheetsData = [
         {
             date: '01',
             timeIn: '12:15',
@@ -125,81 +129,78 @@ function TimeSheets() {
         },
     ];
 
+    const timeSheetsTableHead = ['date', 'time in', 'time out', 'totalHrs', 'OT', 'status', 'note', 'action'];
+
+    const renderHead = (item, idx) => {
+        return (
+            <th key={idx}>
+                <span>{item}</span>
+            </th>
+        );
+    };
+
+    const renderBody = (item, idx) => {
+        return (
+            <tr key={idx}>
+                <td>{item.date}</td>
+                <td>{item.timeIn}</td>
+                <td>{item.timeOut}</td>
+                <td>{item.totalHrs}</td>
+                <td>{item.overtimeHrs}</td>
+                <td>{item.status}</td>
+                <td>{item.note}</td>
+                <td>
+                    <div className={cx('action-field')}>
+                        <button className={cx('icon-detail')}>
+                            <BsClipboardMinus />
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        );
+    };
+
+    const handleShowMonthYearPicker = () => {
+        setShowMonthYearPicker(true);
+    };
+
+    const handleSelectMonthYear = (selected) => {
+        setCalendarValue(selected);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <header className={cx('header')}>
                 <span className={cx('title')}>Time Sheets</span>
                 <div className={cx('calendar')}>
-                    <BsCalendarEvent className={cx('calendar-icon')} />
-                    <DatePicker
-                        selected={startDate}
-                        onChange={(date) => setStartDate(date)}
-                        dateFormat="MM/yyyy"
-                        showMonthYearPicker
-                        showFourColumnMonthYearPicker
+                    <span
+                        className={cx('select-calendar', showMonthYearPicker && 'open-calendar')}
+                        onClick={handleShowMonthYearPicker}
+                    >
+                        <span className={cx('icon-calendar')}>
+                            <BsCalendarEvent />
+                        </span>
+                        {calendarValue}
+                        <span className={cx('icon-dropdown')}>
+                            <FaAngleRight />
+                        </span>
+                    </span>
+                    <MonthYearPicker
+                        showMonthYearPicker={showMonthYearPicker}
+                        isHide={setShowMonthYearPicker}
+                        onChange={handleSelectMonthYear}
                     />
                 </div>
             </header>
 
             <div className={cx('table')}>
-                <div className={cx('table-head')}>
-                    <span className={cx('date')}>Date</span>
-                    <span className={cx('time-in')}>Time In</span>
-                    <span className={cx('time-out')}>Time Out</span>
-                    <span className={cx('total')}>Total Hrs</span>
-                    <span className={cx('overtime')}>OT Hrs</span>
-                    <span className={cx('status')}>Status</span>
-                    <span className={cx('note')}>Note</span>
-                    <span className={cx('action')}>Action</span>
-                </div>
-                {timeSheets.map((item, idx) => (
-                    <div key={idx} className={cx('table-row')}>
-                        <span className={cx('date')}>{item.date}</span>
-                        <span className={cx('time-in')}>{item.timeIn}</span>
-                        <span className={cx('time-out')}>{item.timeOut}</span>
-                        <span className={cx('total')}>{item.totalHrs}</span>
-                        <span className={cx('overtime')}>{item.overtimeHrs}</span>
-                        <span className={cx('status')}>{item.status}</span>
-                        <span className={cx('note')}>{item.note}</span>
-                        <span className={cx('action')}>
-                            <BsClipboardMinus />
-                        </span>
-                    </div>
-                ))}
-                <div className={cx('pagination')}>
-                    <div className={cx('pagination-left')}>
-                        <div className={cx('select')}>
-                            <span className={cx('selected')} onClick={handleToggleOption}>
-                                10
-                                <span className={cx('dropdown-icon')}>
-                                    <BsFillCaretDownFill />
-                                </span>
-                            </span>
-                            <span className={cx('text-per-page')}>Entries per page</span>
-                            {isOpenOption && (
-                                <ul ref={optionRef} className={cx('option')}>
-                                    <li className={cx('select-option')}>10</li>
-                                    <li className={cx('select-option')}>15</li>
-                                    <li className={cx('select-option')}>20</li>
-                                </ul>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className={cx('pagination-right')}>
-                        <button className={cx('prev-btn')}>
-                            <BsCaretLeftFill />
-                        </button>
-                        <div className={cx('page')}>
-                            Page
-                            <span className={cx('number')}>1</span>
-                            of 12
-                        </div>
-                        <button className={cx('next-btn')}>
-                            <BsCaretRightFill />
-                        </button>
-                    </div>
-                </div>
+                <Table
+                    limit={10}
+                    headData={timeSheetsTableHead}
+                    renderHead={renderHead}
+                    bodyData={timeSheetsData}
+                    renderBody={renderBody}
+                />
             </div>
         </div>
     );

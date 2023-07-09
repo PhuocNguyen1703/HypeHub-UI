@@ -1,9 +1,8 @@
 .wrapper {
-    flex: 1;
-    background-color: var(--main-bg);
     border-radius: 10px;
+    background-color: var(--main-bg);
     box-shadow: var(--box-shadow);
-    margin-left: 50px;
+    height: 100%;
 }
 
 .header {
@@ -11,203 +10,52 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    border-bottom: 1px solid var(--gray-alpha-20);
+    border-bottom: 2px solid var(--gray-alpha-20);
 
     .title {
         font-size: 2rem;
         font-weight: 700;
+        color: var(--text-color);
     }
 
     .calendar {
         display: flex;
         align-items: center;
+        position: relative;
+        width: 150px;
         padding: 4px 8px;
         border: 1px solid var(--gray-alpha-40);
         border-radius: 6px;
+        user-select: none;
 
-        .calendar-icon {
-            font-size: 1.8rem;
+        .select-calendar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
+
+            .icon-calendar,
+            .icon-dropdown {
+                display: flex;
+                align-items: center;
+                font-size: 1.6rem;
+            }
+
+            .icon-calendar {
+                margin-right: 10px;
+            }
+
+            .icon-dropdown {
+                margin-left: auto;
+                transition: all 0.3s;
+            }
         }
 
-        input {
-            margin-left: 10px;
-            font-size: 1.6rem;
-            color: var(--text-color);
+        .open-calendar .icon-dropdown {
+            transform: rotate(90deg);
         }
     }
 }
 
 .table {
-    display: flex;
-    flex-direction: column;
-    padding: 20px 10px;
-    margin: 20px 5px 10px 5px;
-    background-color: var(--main-bg);
-
-    .table-head {
-        font-size: 2rem !important;
-        font-weight: 700 !important;
-        color: var(--text-color) !important;
-        user-select: none;
-
-        &:hover {
-            background-color: transparent !important;
-        }
-    }
-
-    .table-head,
-    .table-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        width: 100%;
-        font-weight: 600;
-        padding: 10px 6px 6px 6px;
-        color: var(--gray);
-        border-bottom: 1px solid var(--gray-alpha-20);
-
-        &:hover {
-            background-color: var(--gray-alpha-05);
-            color: var(--text-color);
-        }
-
-        .date {
-            width: 5%;
-            text-align: center;
-        }
-
-        .time-in {
-            width: 10%;
-            text-align: center;
-        }
-
-        .time-out {
-            width: 10%;
-            text-align: center;
-        }
-
-        .total {
-            width: 10%;
-            text-align: center;
-        }
-
-        .overtime {
-            width: 10%;
-            text-align: center;
-        }
-
-        .status {
-            width: 15%;
-            text-align: center;
-        }
-
-        .note {
-            flex: 1;
-        }
-
-        .action {
-            width: 7%;
-            text-align: center;
-            cursor: pointer;
-        }
-    }
-}
-
-.pagination {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-    color: var(--text-color);
-
-    .pagination-left {
-        .select {
-            position: relative;
-            display: flex;
-            width: fit-content;
-        }
-
-        .selected {
-            display: flex;
-            align-items: center;
-            width: 41px;
-            padding: 2px 4px;
-            border: 1px solid var(--gray-alpha-60);
-            border-radius: 4px;
-            user-select: none;
-            cursor: pointer;
-        }
-
-        .dropdown-icon {
-            display: flex;
-            align-items: center;
-            font-size: 1.2rem;
-            margin-left: 4px;
-        }
-
-        .text-per-page {
-            display: flex;
-            align-items: center;
-            margin-left: 10px;
-            font-weight: 600;
-        }
-
-        .option {
-            position: absolute;
-            left: 0;
-            top: 100%;
-            width: 41px;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid var(--gray-alpha-60);
-            border-radius: 4px;
-            background-color: var(--main-bg);
-            user-select: none;
-            cursor: pointer;
-
-            .select-option {
-                padding: 2px 4px;
-
-                &:hover {
-                    background-color: var(--gray-alpha-10);
-                }
-            }
-        }
-    }
-
-    .pagination-right {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-
-        .prev-btn,
-        .next-btn {
-            display: flex;
-            align-items: center;
-            font-size: 1.4rem;
-            padding: 4px;
-            border: 1px solid var(--gray-alpha-20);
-            box-shadow: var(--box-shadow);
-            border-radius: 4px;
-            background-color: var(--second-bg);
-            color: var(--text-color);
-            cursor: pointer;
-
-            &:hover {
-                background-color: var(--gray-alpha-20);
-            }
-        }
-
-        .page {
-            user-select: none;
-
-            .number {
-                margin: 0 6px;
-                font-weight: 600;
-                padding: 2px 8px;
-                border: 1px solid var(--gray);
-                border-radius: 4px;
-            }
-        }
-    }
 }
