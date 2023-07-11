@@ -1,10 +1,11 @@
-.table-wrapper {
-    flex: 1;
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-table {
+.table {
     width: 100%;
-    min-width: 500px;
     border-spacing: 0;
     color: var(--text-color);
 }
@@ -54,31 +55,35 @@ tbody > tr:hover {
 
 .pagination {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 20px 0;
+    margin-top: 20px;
+    padding: 0 20px;
 }
 
-.item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    margin-left: 6px;
-    border-radius: 50%;
-    cursor: pointer;
+.page-size {
+    position: relative;
 
-    &:hover {
-        background-color: var(--gray-alpha-10);
+    .size-option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 110px;
+        padding: 4px 8px;
+        border: 1px solid var(--gray-alpha-20);
+        border-radius: 6px;
+        cursor: pointer;
+
+        .icon-dropdown {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            transition: all 0.2s;
+        }
     }
-}
 
-.active,
-.active:hover {
-    background-color: var(--blue);
-    color: var(--white);
-    font-weight: 600;
-    box-shadow: var(--box-shadow);
+    .toggle-dropdown .icon-dropdown {
+        transform: rotate(90deg);
+    }
 }

@@ -1,62 +1,74 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Table.module.scss';
+import Pagination from './Pagination/Pagination';
+import { FaAngleRight } from 'react-icons/fa';
+import Dropdown from '../Dropdown/Dropdown';
 
 const cx = classNames.bind(styles);
 
-function Table({ limit, bodyData, headData, renderHead, renderBody }) {
-    const initDataShow = limit && bodyData ? bodyData.slice(0, Number(limit)) : bodyData;
+function Table({ bodyData, headData, renderHead, renderBody }) {
+    const [currentPage, setCurrentPage] = useState(1);
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [pageSize, setPageSize] = useState(10);
 
-    const [dataShow, setDataShow] = useState(initDataShow);
-    let pages = 1;
-    let range = [];
+    const pageSizeOptions = [5, 10];
 
-    if (limit !== undefined) {
-        let page = Math.floor(bodyData.length / Number(limit));
-        pages = bodyData.length % Number(limit) === 0 ? page : page + 1;
-        range = [...Array(pages).keys()];
-    }
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * pageSize;
+        const lastPageIndex = firstPageIndex + pageSize;
+        return bodyData.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, pageSize]);
 
-    const [currentPage, setCurrentPage] = useState(0);
+    const handleToggleDropdown = () => {
+        setShowDropdown((prevState) => !prevState);
+    };
 
-    const selectPage = (page) => {
-        const start = Number(limit) * page;
-        const end = start + Number(limit);
-
-        setDataShow(bodyData.slice(start, end));
-        setCurrentPage(page);
+    const handleSelectOption = (option) => {
+        setPageSize(option);
+        setShowDropdown(false);
     };
 
     return (
-        <>
-            <div className={cx('table-wrapper')}>
-                <table>
-                    {headData && renderHead ? (
-                        <thead>
-                            <tr>{headData.map((item, idx) => renderHead(item, idx))}</tr>
-                        </thead>
-                    ) : null}
+        <div className={cx('wrapper')}>
+            <table className={cx('table')}>
+                {headData && renderHead ? (
+                    <thead>
+                        <tr>{headData.map((item, idx) => renderHead(item, idx))}</tr>
+                    </thead>
+                ) : null}
 
-                    {bodyData && renderBody ? (
-                        <tbody>{dataShow.map((item, idx) => renderBody(item, idx))}</tbody>
-                    ) : null}
-                </table>
-            </div>
-            {pages > 1 ? (
-                <div className={cx('pagination')}>
-                    {range.map((item, idx) => (
-                        <div
-                            key={idx}
-                            className={cx('item', currentPage === idx && 'active')}
-                            onClick={() => selectPage(idx)}
-                        >
-                            {item + 1}
-                        </div>
-                    ))}
+                {bodyData && renderBody ? (
+                    <tbody>{currentTableData.map((item, idx) => renderBody(item, idx))}</tbody>
+                ) : null}
+            </table>
+            <div className={cx('pagination')}>
+                <div className={cx('page-size')}>
+                    <span
+                        className={cx('size-option', showDropdown && 'toggle-dropdown')}
+                        onClick={handleToggleDropdown}
+                    >
+                        {pageSize} / page
+                        <span className={cx('icon-dropdown')}>
+                            <FaAngleRight />
+                        </span>
+                    </span>
+                    <Dropdown
+                        isShowDropdown={showDropdown}
+                        setShowDropdown={setShowDropdown}
+                        options={pageSizeOptions}
+                        onChange={handleSelectOption}
+                    />
                 </div>
-            ) : null}
-        </>
+                <Pagination
+                    currentPage={currentPage}
+                    totalCount={bodyData.length}
+                    pageSize={pageSize}
+                    onPageChange={(page) => setCurrentPage(page)}
+                />
+            </div>
+        </div>
     );
 }
 
