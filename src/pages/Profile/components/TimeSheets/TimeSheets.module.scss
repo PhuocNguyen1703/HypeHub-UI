@@ -58,4 +58,21 @@
 }
 
 .table {
+    margin: 10px;
+    padding-bottom: 20px;
+    border: 1px solid var(--gray-alpha-40);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+
+    .detail-btn {
+        display: flex;
+        align-items: center;
+        font-size: 1.6rem;
+        padding: 4px;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--blue);
+        }
+    }
 }

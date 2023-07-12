@@ -2,23 +2,20 @@ import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './TimeSheets.module.scss';
-import {
-    BsCalendarEvent,
-    BsCaretLeftFill,
-    BsCaretRightFill,
-    BsClipboardMinus,
-    BsFillCaretDownFill,
-} from 'react-icons/bs';
+import { BsCalendarEvent, BsClipboardMinus } from 'react-icons/bs';
 import { FaAngleRight } from 'react-icons/fa';
 import MonthYearPicker from '~/components/MonthYearPicker/MonthYearPicker';
 import dayjs from 'dayjs';
 import Table from '~/components/Table/Table';
+import TimeSheetDetail from './Note/NoteInTimeSheet';
 
 const cx = classNames.bind(styles);
 
 function TimeSheets() {
     const [calendarValue, setCalendarValue] = useState(dayjs().format('MM/YYYY'));
     const [showMonthYearPicker, setShowMonthYearPicker] = useState(false);
+    const [showDetailModal, setShowDetailModal] = useState(false);
+    const [item, setItem] = useState({});
 
     const [isOpenOption, setIsOpenOption] = useState(false);
     const optionRef = useRef(null);
@@ -258,11 +255,9 @@ function TimeSheets() {
                 <td>{item.status}</td>
                 <td>{item.note}</td>
                 <td>
-                    <div className={cx('action-field')}>
-                        <button className={cx('icon-detail')}>
-                            <BsClipboardMinus />
-                        </button>
-                    </div>
+                    <button className={cx('detail-btn')} onClick={() => handleToggleDetail(item)}>
+                        <BsClipboardMinus />
+                    </button>
                 </td>
             </tr>
         );
@@ -274,6 +269,11 @@ function TimeSheets() {
 
     const handleSelectMonthYear = (selected) => {
         setCalendarValue(selected);
+    };
+
+    const handleToggleDetail = (item) => {
+        console.log(item);
+        setShowDetailModal(true);
     };
 
     return (
@@ -310,6 +310,7 @@ function TimeSheets() {
                     renderBody={renderBody}
                 />
             </div>
+            <TimeSheetDetail show={showDetailModal} setShowDetailModal={setShowDetailModal} />
         </div>
     );
 }
