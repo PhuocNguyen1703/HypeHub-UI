@@ -2,18 +2,14 @@ import React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Manage.module.scss';
-import { NavLink, Route, Routes } from 'react-router-dom';
-import UserTable from './Table/UserTable';
-import UserSearch from './UserSearch';
-import TimeSheets from '../../TimeSheets';
+import { NavLink, Outlet } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function ManageUser() {
     const navList = [
-        { path: '', title: 'Table' },
+        { path: 'table', title: 'Table' },
         { path: 'search', title: 'Search' },
-        { path: 'timesheet', title: 'Time Sheets' },
     ];
 
     return (
@@ -25,12 +21,7 @@ function ManageUser() {
                     </NavLink>
                 ))}
             </nav>
-            <Routes>
-                <Route index element={<UserTable />} />
-                <Route path="search" element={<UserSearch />} />
-                <Route path="timesheet" element={<TimeSheets />} />
-                <Route path="*" element={<h1>Not Found</h1>} />
-            </Routes>
+            <Outlet />
         </div>
     );
 }

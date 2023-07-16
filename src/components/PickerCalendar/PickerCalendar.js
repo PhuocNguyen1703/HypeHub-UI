@@ -4,9 +4,9 @@ import classNames from 'classnames/bind';
 
 import styles from './PickerCalendar.module.scss';
 import { getMonth } from '~/utils/day';
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSmallCalendarSelectedDay } from '~/redux/Slice/calendarSlice';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 const cx = classNames.bind(styles);
 
@@ -44,16 +44,15 @@ function PickerCalendar() {
     };
 
     const handlePrevMonth = () => {
-        setCurrentMonthIdx(currentMonthIdx - 1);
+        setCurrentMonthIdx((currentMonthIdx) => currentMonthIdx - 1);
     };
 
     const handleNextMonth = () => {
-        setCurrentMonthIdx(currentMonthIdx + 1);
+        setCurrentMonthIdx((currentMonthIdx) => currentMonthIdx + 1);
     };
 
     const handleSelectedDay = (day) => {
         dispatch(setSmallCalendarSelectedDay(day.format('MMM DD, YYYY')));
-        // dispatch(setCalendarEventModalIsOpen(true));
     };
 
     return (
@@ -62,16 +61,18 @@ function PickerCalendar() {
                 <span className={cx('calendar-time')}>
                     {dayjs(new Date(dayjs().year(), currentMonthIdx)).format('MMMM YYYY')}
                 </span>
-                <div className={cx('action-btn')}>
-                    <button className={cx('icon-prev')} onClick={handlePrevMonth}>
-                        <BsChevronLeft />
-                    </button>
-                    <button className={cx('icon-next')} onClick={handleNextMonth}>
-                        <BsChevronRight />
-                    </button>
-                </div>
+                {
+                    <div className={cx('action-btn')}>
+                        <button className={cx('icon-prev')} onClick={handlePrevMonth}>
+                            <FaAngleLeft />
+                        </button>
+                        <button className={cx('icon-next')} onClick={handleNextMonth}>
+                            <FaAngleRight />
+                        </button>
+                    </div>
+                }
             </header>
-            <div className={cx('body')}>
+            <div className={cx('calendar')}>
                 {currentMonth[0].map((day, index) => (
                     <span className={cx('day', getWeekendClass(day))} key={index}>
                         {day.format('dd').charAt(0)}
@@ -80,13 +81,13 @@ function PickerCalendar() {
                 {currentMonth.map((row, idx) => (
                     <React.Fragment key={idx}>
                         {row.map((day, i) => (
-                            <button
+                            <span
                                 className={cx('date', getDayOfCurrentMonthClass(day), getSelectedDayClass(day))}
                                 key={i}
                                 onClick={() => handleSelectedDay(day)}
                             >
                                 {day.format('D')}
-                            </button>
+                            </span>
                         ))}
                     </React.Fragment>
                 ))}

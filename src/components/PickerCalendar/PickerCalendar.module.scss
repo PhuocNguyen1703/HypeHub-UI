@@ -1,7 +1,6 @@
 .wrapper {
     width: 100%;
     padding: 6px;
-    box-shadow: var(--box-shadow);
 }
 
 .header {
@@ -11,46 +10,56 @@
     margin: 4px;
     margin-bottom: 10px;
     color: var(--text-color);
-}
-.calendar-time {
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-.action-btn {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-.icon-prev,
-.icon-next {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px;
-    color: var(--gray);
-    font-size: 1.4rem;
-    border-radius: 999px;
-    cursor: pointer;
 
-    &:hover {
-        background-color: var(--gray-alpha-10);
+    .calendar-time {
+        font-weight: 600;
+    }
+
+    .action-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        .icon-prev,
+        .icon-next {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            font-size: 1.4rem;
+            border-radius: 999px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--gray-alpha-10);
+            }
+        }
     }
 }
-.body {
+.calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    gap: 4px;
+    grid-template-rows: repeat(7, 1fr);
+    gap: 2px;
     width: 100%;
 }
 
 .day {
-    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
     font-weight: 600;
-    text-align: center;
+    height: 28px;
+    user-select: none;
 }
 
 .date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 2px;
     border-radius: 999px;
     opacity: 0.5;
     color: var(--text-color);
@@ -71,7 +80,7 @@
 
 .today {
     background-color: var(--blue) !important;
-    color: var(--white);
+    color: var(--white) !important;
     opacity: 1;
 }
 
@@ -80,7 +89,11 @@
 }
 
 .selected {
-    background-color: var(--blue-alpha-40) !important;
-    color: var(--white);
+    background-color: var(--blue-alpha-40);
+    color: var(--blue);
     opacity: 1;
+
+    &:hover {
+        background-color: var(--blue-alpha-40);
+    }
 }

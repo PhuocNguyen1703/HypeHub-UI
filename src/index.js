@@ -7,15 +7,18 @@ import App from './App';
 import GlobalStyles from '~/components/GlobalStyles';
 import { store, persistor } from './redux/Store/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     // remove strict mode no support library react-beautiful-dnd
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-            <GlobalStyles>
-                <App />
-            </GlobalStyles>
+            <BrowserRouter>
+                <GlobalStyles>
+                    <App />
+                </GlobalStyles>
+            </BrowserRouter>
         </PersistGate>
     </Provider>,
 );

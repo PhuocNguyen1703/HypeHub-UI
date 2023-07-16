@@ -1,25 +1,42 @@
 const routes = {
     login: 'login',
     home: '/',
-    user_information: 'user_information',
-    sales: 'sales',
-    profile: {
-        info: 'profile',
-        wallet: 'wallet',
-        change_password: 'change-password',
-        social_link: 'social-link',
-        time_sheets: 'time-sheets',
-    },
-    chat: { private: 'chat/private', group: 'chat/group' },
-    employee: 'employee',
     email: 'email',
+    chat: { path: 'chat', children: { private_path: 'private', group_path: 'group' } },
     todo: 'todo',
     timeline: 'timeline',
-    calendar: 'calendar',
+    calendar: {
+        path: 'calendar',
+        children: {
+            day_path: 'day',
+            month_path: 'month',
+            year_path: 'year',
+            schedule_path: 'schedule',
+        },
+    },
     kanban: 'kanban',
-    board: 'kanban/board/:boardId',
+    profile: {
+        path: 'profile',
+        children: {
+            info_path: 'info',
+            wallet_path: 'wallet',
+            change_password_path: 'change-password',
+            social_link_path: 'social-link',
+            time_sheets_path: 'time-sheets',
+        },
+    },
     support: 'support',
-    manage: { user: 'manage/users', ticket: 'manage/tickets' },
+    ///// Admin Route /////
+    manage: {
+        path: 'manage',
+        children: {
+            users: {
+                path: 'users',
+                children: { table_path: 'table', search_path: 'search' },
+            },
+            tickets_path: 'tickets',
+        },
+    },
 };
 
 export default routes;

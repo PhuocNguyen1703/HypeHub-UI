@@ -13,7 +13,7 @@ import { uploadImages } from '~/services/uploadImagesApi';
 import EditProfile from '~/components/Modal/EditProfile';
 import images from '~/assets/images';
 import { FaFacebookSquare, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { NavLink, Outlet, Route, Routes } from 'react-router-dom';
 import routes from '~/config/routes';
 import PersonalInfo from '~/pages/Profile/components/PersonalInfo/PersonalInfo';
 import Wallet from '~/pages/Profile/components/Wallet/Wallet';
@@ -157,13 +157,7 @@ function Profile() {
                 </div>
 
                 <div className={cx('right-container')}>
-                    <Routes>
-                        <Route index element={<PersonalInfo />} />
-                        <Route path={routes.profile.wallet} element={<Wallet />} />
-                        <Route path={routes.profile.change_password} element={<ChangePassword />} />
-                        <Route path={routes.profile.social_link} element={<SocialLink />} />
-                        <Route path={routes.profile.time_sheets} element={<TimeSheets />} />
-                    </Routes>
+                    <Outlet />
                 </div>
 
                 <EditProfile show={showEditProfileModal} setShowEditProfileModal={setShowEditProfileModal} />

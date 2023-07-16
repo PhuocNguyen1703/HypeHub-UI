@@ -21,6 +21,14 @@ import SidebarItem from './SidebarItem';
 import { Link } from 'react-router-dom';
 import images from '~/assets/images';
 import { AnimatePresence, motion } from 'framer-motion';
+import {
+    CALENDAR_MONTH_PATH,
+    CHAT_GROUP_PATH,
+    CHAT_PRIVATE_PATH,
+    MANAGE_TICKETS_PATH,
+    MANAGE_USERS_TABLE_PATH,
+    PROFILE_INFO_PATH,
+} from '~/utils/constants';
 
 const cx = classNames.bind(styles);
 
@@ -40,12 +48,12 @@ function Sidebar() {
                 {
                     icon: <BsColumnsGap />,
                     title: 'Sales',
-                    path: config.routes.sales,
+                    path: config.routes.home,
                 },
                 {
                     icon: <BsColumnsGap />,
                     title: 'SD',
-                    path: config.routes.profile,
+                    path: config.routes.home,
                 },
             ],
         },
@@ -59,14 +67,14 @@ function Sidebar() {
             title: 'Chat',
             children: [
                 {
-                    icon: <BsPeople />,
-                    title: 'Group',
-                    path: config.routes.chat.group,
-                },
-                {
                     icon: <BsPerson />,
                     title: 'Private',
-                    path: config.routes.chat.private,
+                    path: CHAT_PRIVATE_PATH,
+                },
+                {
+                    icon: <BsPeople />,
+                    title: 'Group',
+                    path: CHAT_GROUP_PATH,
                 },
             ],
         },
@@ -83,7 +91,7 @@ function Sidebar() {
         {
             icon: <BsCalendar2Date />,
             title: 'Calendar',
-            path: config.routes.calendar,
+            path: CALENDAR_MONTH_PATH,
         },
         {
             icon: <BsClipboardCheck />,
@@ -93,7 +101,7 @@ function Sidebar() {
         {
             icon: <BsPerson />,
             title: 'Profile',
-            path: config.routes.profile.info,
+            path: PROFILE_INFO_PATH,
         },
         {
             icon: <BsPatchQuestion />,
@@ -109,13 +117,13 @@ function Sidebar() {
             children: [
                 {
                     icon: <BsClipboardData />,
-                    title: 'User',
-                    path: config.routes.manage.user,
+                    title: 'Users',
+                    path: MANAGE_USERS_TABLE_PATH,
                 },
                 {
                     icon: <BsPatchQuestion />,
-                    title: 'Ticket',
-                    path: config.routes.manage.ticket,
+                    title: 'Tickets',
+                    path: MANAGE_TICKETS_PATH,
                 },
             ],
         },
