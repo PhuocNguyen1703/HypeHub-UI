@@ -13,13 +13,8 @@ import { uploadImages } from '~/services/uploadImagesApi';
 import EditProfile from '~/components/Modal/EditProfile';
 import images from '~/assets/images';
 import { FaFacebookSquare, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { NavLink, Outlet, Route, Routes } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import routes from '~/config/routes';
-import PersonalInfo from '~/pages/Profile/components/PersonalInfo/PersonalInfo';
-import Wallet from '~/pages/Profile/components/Wallet/Wallet';
-import ChangePassword from '~/pages/Profile/components/ChangePassword/ChangePassword';
-import TimeSheets from '~/pages/Profile/components/TimeSheets/TimeSheets';
-import SocialLink from './components/SocialLink/SocialLink';
 
 const cx = classNames.bind(styles);
 
@@ -36,10 +31,10 @@ function Profile() {
 
     const sidebar = [
         { path: '', icon: <BsPerson />, title: 'Information' },
-        { path: routes.profile.wallet, icon: <BsCreditCard2Back />, title: 'Wallet' },
-        { path: routes.profile.change_password, icon: <BsLock />, title: 'Change Password' },
-        { path: routes.profile.social_link, icon: <BsLink />, title: 'Social Link' },
-        { path: routes.profile.time_sheets, icon: <BsClipboardCheck />, title: 'Time Sheets' },
+        { path: routes.profile.children.wallet_path, icon: <BsCreditCard2Back />, title: 'Wallet' },
+        { path: routes.profile.children.change_password_path, icon: <BsLock />, title: 'Change Password' },
+        { path: routes.profile.children.social_link_path, icon: <BsLink />, title: 'Social Link' },
+        { path: routes.profile.children.time_sheets_path, icon: <BsClipboardCheck />, title: 'Time Sheets' },
     ];
 
     const handleFileAvatarInputChange = (e) => {

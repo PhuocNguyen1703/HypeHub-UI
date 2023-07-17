@@ -53,6 +53,7 @@ export default function AppRouter() {
                             path: config.routes.calendar.path,
                             element: <Calendar />,
                             children: [
+                                { index: true, element: <Month /> },
                                 { path: config.routes.calendar.children.day_path, element: <Day /> },
                                 { path: config.routes.calendar.children.month_path, element: <Month /> },
                                 { path: config.routes.calendar.children.year_path, element: <Year /> },
@@ -64,7 +65,7 @@ export default function AppRouter() {
                             path: config.routes.profile.path,
                             element: <Profile />,
                             children: [
-                                { path: config.routes.profile.children.info_path, element: <PersonalInfo /> },
+                                { index: true, element: <PersonalInfo /> },
                                 { path: config.routes.profile.children.wallet_path, element: <Wallet /> },
                                 {
                                     path: config.routes.profile.children.change_password_path,
@@ -86,7 +87,7 @@ export default function AppRouter() {
                                             element: <ManageUser />,
                                             children: [
                                                 {
-                                                    path: config.routes.manage.children.users.children.table_path,
+                                                    index: true,
                                                     element: <UserTable />,
                                                 },
                                                 {

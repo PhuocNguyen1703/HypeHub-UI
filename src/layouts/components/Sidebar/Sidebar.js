@@ -26,8 +26,7 @@ import {
     CHAT_GROUP_PATH,
     CHAT_PRIVATE_PATH,
     MANAGE_TICKETS_PATH,
-    MANAGE_USERS_TABLE_PATH,
-    PROFILE_INFO_PATH,
+    MANAGE_USERS_PATH,
 } from '~/utils/constants';
 
 const cx = classNames.bind(styles);
@@ -91,7 +90,7 @@ function Sidebar() {
         {
             icon: <BsCalendar2Date />,
             title: 'Calendar',
-            path: CALENDAR_MONTH_PATH,
+            path: config.routes.calendar.path,
         },
         {
             icon: <BsClipboardCheck />,
@@ -101,7 +100,7 @@ function Sidebar() {
         {
             icon: <BsPerson />,
             title: 'Profile',
-            path: PROFILE_INFO_PATH,
+            path: config.routes.profile.path,
         },
         {
             icon: <BsPatchQuestion />,
@@ -118,7 +117,7 @@ function Sidebar() {
                 {
                     icon: <BsClipboardData />,
                     title: 'Users',
-                    path: MANAGE_USERS_TABLE_PATH,
+                    path: MANAGE_USERS_PATH,
                 },
                 {
                     icon: <BsPatchQuestion />,

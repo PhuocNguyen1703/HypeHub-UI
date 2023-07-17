@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 function ManageUser() {
     const navList = [
-        { path: 'table', title: 'Table' },
+        { path: '', title: 'Table' },
         { path: 'search', title: 'Search' },
     ];
 

@@ -90,7 +90,12 @@
                 display: flex;
                 align-items: center;
                 font-size: 1.4rem;
+                transition: all 0.2s;
             }
+        }
+
+        .toggle-dropdown .icon-dropdown {
+            transform: rotate(90deg);
         }
     }
 }

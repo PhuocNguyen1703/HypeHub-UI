@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Calendar.module.scss';
 import { getMonth } from '~/utils/day';
 import dayjs from 'dayjs';
-import { BsCheck2, BsChevronLeft, BsChevronRight, BsExclamationLg, BsJournal, BsPlus, BsTrash } from 'react-icons/bs';
+import { BsChevronLeft, BsChevronRight, BsPlus } from 'react-icons/bs';
 import CreateCalendar from '~/components/Modal/CreateCalendar';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -16,15 +16,8 @@ import {
 import PickerCalendar from '~/components/PickerCalendar';
 import { FaAngleRight } from 'react-icons/fa';
 import Dropdown from '~/components/Dropdown/Dropdown';
-import Month from './layouts/Month/Month';
-import Day from './layouts/Day/Day';
-import Year from './layouts/Year/Year';
-import Schedule from './layouts/Schedule/Schedule';
-import { Outlet, Route, Routes, useLocation, useNavigate, useRoutes } from 'react-router-dom';
-import routes from '~/config/routes';
-import Profile from '../Profile';
-import TimeSheets from '../TimeSheets';
-import Home from '../Overview';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -42,7 +35,7 @@ function Calendar() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const layoutOptions = ['Day', 'Week', 'Month', 'Year', 'Schedule'];
+    const layoutOptions = ['Day', 'Month', 'Year', 'Schedule'];
 
     // useEffect(() => {
     //     const getCalendars = async () => {
@@ -80,7 +73,7 @@ function Calendar() {
 
     const handleSelectOption = (option) => {
         setLayout(option);
-        navigate(`${location.pathname}/${option.toLowerCase()}`);
+        navigate(`${option.toLowerCase()}`);
         setShowDropdown(false);
     };
 
@@ -117,7 +110,10 @@ function Calendar() {
                     </button>
                 </div>
                 <div className={cx('header-right')}>
-                    <span className={cx('calendar-option')} onClick={handleToggleDropdown}>
+                    <span
+                        className={cx('calendar-option', showDropdown && 'toggle-dropdown')}
+                        onClick={handleToggleDropdown}
+                    >
                         {layout}
                         <span className={cx('icon-dropdown')}>
                             <FaAngleRight />

@@ -19,6 +19,5 @@ export const PROFILE_CHANGE_PASSWORD_PATH = `${config.routes.profile.path}/${con
 export const PROFILE_SOCIAL_LINK_PATH = `${config.routes.profile.path}/${config.routes.profile.children.social_link_path}`;
 export const PROFILE_TIME_SHEETS_PATH = `${config.routes.profile.path}/${config.routes.profile.children.time_sheets_path}`;
 
-export const MANAGE_USERS_TABLE_PATH = `${config.routes.manage.path}/${config.routes.manage.children.users.path}/${config.routes.manage.children.users.children.table_path}`;
-export const MANAGE_USERS_SEARCH_PATH = `${config.routes.manage.path}/${config.routes.manage.children.users.path}/${config.routes.manage.children.users.children.search_path}`;
+export const MANAGE_USERS_PATH = `${config.routes.manage.path}/${config.routes.manage.children.users.path}`;
 export const MANAGE_TICKETS_PATH = `${config.routes.manage.path}/${config.routes.manage.children.tickets_path}`;

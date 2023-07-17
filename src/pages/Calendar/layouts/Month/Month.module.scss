@@ -57,9 +57,9 @@
 .today {
     background-color: var(--blue);
     color: var(--text-white);
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 .day-of-current-month {
-    opacity: 1;
+    opacity: 1 !important;
 }

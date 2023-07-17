@@ -18,7 +18,6 @@ const routes = {
     profile: {
         path: 'profile',
         children: {
-            info_path: 'info',
             wallet_path: 'wallet',
             change_password_path: 'change-password',
             social_link_path: 'social-link',
