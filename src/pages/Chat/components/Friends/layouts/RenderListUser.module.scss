@@ -1,0 +1,84 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 10px 20px;
+}
+
+.user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin-top: 8px;
+
+    &:hover {
+        background-color: var(--gray-alpha-20);
+    }
+
+    .info {
+        display: flex;
+        align-items: center;
+
+        .avatar {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            .photo {
+                width: 40px;
+                height: 40px;
+                border-radius: 999px;
+                object-fit: cover;
+                user-select: none;
+            }
+
+            .icon-dot {
+                display: flex;
+                align-items: center;
+                position: absolute;
+                right: -3px;
+                bottom: -3px;
+                border-radius: 50%;
+                background-color: var(--main-bg);
+                color: green;
+            }
+        }
+
+        .user-name {
+            display: flex;
+            flex-direction: column;
+            margin-left: 12px;
+
+            .name {
+                font-weight: 700;
+            }
+
+            .status {
+                font-size: 1.4rem;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .action-btn {
+        display: flex;
+        align-items: center;
+
+        .message-btn,
+        .remove-btn {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            margin-left: 6px;
+            padding: 10px;
+            background-color: var(--gray-alpha-10);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .remove-btn:hover {
+            color: var(--danger-color-dark);
+        }
+    }
+}

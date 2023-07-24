@@ -5,9 +5,6 @@ export const MODAL_ACTION_CONFIRM = 'MODAL_ACTION_CONFIRM';
 export const DOTS = '...';
 
 //Path
-export const CHAT_PRIVATE_PATH = `${config.routes.chat.path}/${config.routes.chat.children.private_path}`;
-export const CHAT_GROUP_PATH = `${config.routes.chat.path}/${config.routes.chat.children.group_path}`;
-
 export const CALENDAR_DAY_PATH = `${config.routes.calendar.path}/${config.routes.calendar.children.day_path}`;
 export const CALENDAR_MONTH_PATH = `${config.routes.calendar.path}/${config.routes.calendar.children.month_path}`;
 export const CALENDAR_YEAR_PATH = `${config.routes.calendar.path}/${config.routes.calendar.children.year_path}`;

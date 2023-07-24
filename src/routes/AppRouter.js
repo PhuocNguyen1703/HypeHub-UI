@@ -7,8 +7,6 @@ import RequireAuth from './RequireAuth';
 import PrivateRoute from './PrivateRoute';
 import Home from '~/pages/Overview';
 import Email from '~/pages/Email';
-import PrivateChat from '~/pages/Chat/Private';
-import GroupChat from '~/pages/Chat/Group';
 import Todo from '~/pages/Todo';
 import Timeline from '~/pages/Timeline';
 import Calendar from '~/pages/Calendar';
@@ -28,6 +26,7 @@ import ManageUser from '~/pages/Manage/User';
 import UserTable from '~/pages/Manage/User/Table/UserTable';
 import UserSearch from '~/pages/Manage/User/UserSearch';
 import SupportCenter from '~/pages/SupportCenter';
+import Chat from '~/pages/Chat';
 
 export default function AppRouter() {
     const element = useRoutes([
@@ -41,11 +40,8 @@ export default function AppRouter() {
                         { path: config.routes.home, element: <Home /> },
                         { path: config.routes.email, element: <Email /> },
                         {
-                            path: config.routes.chat.path,
-                            children: [
-                                { path: config.routes.chat.children.private_path, element: <PrivateChat /> },
-                                { path: config.routes.chat.children.group_path, element: <GroupChat /> },
-                            ],
+                            path: config.routes.chat,
+                            element: <Chat />,
                         },
                         { path: config.routes.todo, element: <Todo /> },
                         { path: config.routes.timeline, element: <Timeline /> },

@@ -1,25 +1,19 @@
 import React, { useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './GroupChat.module.scss';
+import styles from './Chat.module.scss';
 import Image from '~/components/Image';
-import ChatBox from '~/layouts/components/ChatBox/ChatBox';
 import { useSelector } from 'react-redux';
-import { io } from 'socket.io-client';
-import { getAllUser } from '~/services/userApi';
-import { userChats } from '~/services/chatApi';
-import Conversation from '~/layouts/components/Conversation/Conversation';
-import Message from '~/components/Search/Message';
-import { BsFunnel, BsPatchPlus, BsStack } from 'react-icons/bs';
-import NotFound from '~/layouts/components/ChatBox/NotFound';
-import AddChannelModal from '~/components/Modal/AddChannel/AddChannelModal';
-import GroupChatBox from './GroupChatBox';
+import images from '~/assets/images';
+import { FaPlus } from 'react-icons/fa';
+import Search from '~/components/Search/Message/Message';
+import { BsPeople, BsPlus } from 'react-icons/bs';
+import Friends from './components/Friends/Friends';
+import CreateMessageForm from './components/CreateMessage/CreateMessageForm';
 
 const cx = classNames.bind(styles);
 
-function GroupChat() {
-    const [showAddChannelModal, setShowAddChannelModal] = useState(false);
-
+function Chat() {
     const { currentUser } = useSelector((state) => state.auth.login);
     const [allUsers, setAllUsers] = useState([]);
     const [chats, setChats] = useState([]);
@@ -27,15 +21,8 @@ function GroupChat() {
     const [onlineUsers, setOnlineUsers] = useState([]);
     const [sendMessage, setSendMessage] = useState(null);
     const [receiveMessage, setReceiveMessage] = useState(null);
+    const [showCreateMessage, setShowCreateMessage] = useState(false);
     const socket = useRef();
-
-    const channels = [
-        { id: 1, title: 'channel 1 ', description: 'room marketing' },
-        { id: 2, title: 'channel 2 ', description: 'room marketing' },
-        { id: 3, title: 'channel 3 ', description: 'room marketing' },
-        { id: 4, title: 'channel 4 ', description: 'room marketing' },
-        { id: 5, title: 'channel 5 ', description: 'room marketing' },
-    ];
 
     const memberList = [
         {
@@ -69,10 +56,6 @@ function GroupChat() {
             name: 'Victoria',
         },
     ];
-
-    const handleToggleAddChannelModal = () => {
-        setShowAddChannelModal(true);
-    };
 
     // Get the chat in chat section
     // useEffect(() => {
@@ -130,47 +113,56 @@ function GroupChat() {
     //     return online ? true : false;
     // };
 
+    const handleOnCreateMessage = () => {
+        setShowCreateMessage(true);
+    };
+
     return (
         <div className={cx('wrapper')}>
+            <div className={cx('room-list')}>
+                <div className={cx('private-chat-room')}>
+                    <Image className={cx('logo')} src={images.logo} alt="logo" />
+                </div>
+                <button className={cx('create-room-btn')}>
+                    <FaPlus />
+                </button>
+            </div>
             <div className={cx('sidebar')}>
-                <div className={cx('header')}>
-                    <h5 className={cx('label')}>Channels</h5>
-                    <span className={cx('add-channel-btn')} onClick={handleToggleAddChannelModal}>
-                        <BsPatchPlus />
-                    </span>
-                </div>
                 <div className={cx('search')}>
-                    <Message />
+                    <Search />
                 </div>
-                <div className={cx('channel-list')}>
-                    {channels.map((item) => (
-                        <div
-                            className={cx('item')}
-                            key={item.id}
-                            onClick={() => {
-                                setCurrentChat(item);
-                            }}
-                        >
-                            <span className={cx('title')}>{item.title}</span>
-                            <span className={cx('desc')}>{item.description}</span>
+                <button className={cx('friends')}>
+                    <span className={cx('icon-friend')}>
+                        <BsPeople />
+                    </span>
+                    Friends
+                </button>
+                <div className={cx('direct-messages')}>
+                    <span className={cx('title')}>DIRECT MESSAGES</span>
+                    <button className={cx('create-message-btn')} onClick={handleOnCreateMessage}>
+                        <BsPlus />
+                    </button>
+                    {showCreateMessage && (
+                        <CreateMessageForm isOpen={showCreateMessage} isHide={setShowCreateMessage} />
+                    )}
+                </div>
+
+                <div className={cx('message-list')}>
+                    {memberList.map((user, idx) => (
+                        <div key={user.id} className={cx('user')}>
+                            <div className={cx('info')}>
+                                <Image className={cx('avatar')} src={user.avatar} alt="avatar" />
+                            </div>
+                            <span className={cx('name')}>{user.name}</span>
                         </div>
                     ))}
                 </div>
             </div>
-            <GroupChatBox />
-            <div className={cx('member-list')}>
-                <span className={cx('label')}>Members</span>
-                {memberList.map((item) => (
-                    <div key={item.id} className={cx('member')}>
-                        <Image className={cx('avatar')} src={item.avatar} />
-                        <span className={cx('name')}>{item.name}</span>
-                    </div>
-                ))}
+            <div className={cx('container')}>
+                <Friends />
             </div>
-
-            <AddChannelModal show={showAddChannelModal} setShowAddChannelModal={setShowAddChannelModal} />
         </div>
     );
 }
 
-export default GroupChat;
+export default Chat;

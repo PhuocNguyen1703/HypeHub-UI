@@ -21,13 +21,7 @@ import SidebarItem from './SidebarItem';
 import { Link } from 'react-router-dom';
 import images from '~/assets/images';
 import { AnimatePresence, motion } from 'framer-motion';
-import {
-    CALENDAR_MONTH_PATH,
-    CHAT_GROUP_PATH,
-    CHAT_PRIVATE_PATH,
-    MANAGE_TICKETS_PATH,
-    MANAGE_USERS_PATH,
-} from '~/utils/constants';
+import { CHAT_GROUP_PATH, CHAT_PRIVATE_PATH, MANAGE_TICKETS_PATH, MANAGE_USERS_PATH } from '~/utils/constants';
 
 const cx = classNames.bind(styles);
 
@@ -64,18 +58,7 @@ function Sidebar() {
         {
             icon: <BsChatSquareDots />,
             title: 'Chat',
-            children: [
-                {
-                    icon: <BsPerson />,
-                    title: 'Private',
-                    path: CHAT_PRIVATE_PATH,
-                },
-                {
-                    icon: <BsPeople />,
-                    title: 'Group',
-                    path: CHAT_GROUP_PATH,
-                },
-            ],
+            path: config.routes.chat,
         },
         {
             icon: <BsCheck2Square />,

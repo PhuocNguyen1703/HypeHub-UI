@@ -2,7 +2,7 @@ const routes = {
     login: 'login',
     home: '/',
     email: 'email',
-    chat: { path: 'chat', children: { private_path: 'private', group_path: 'group' } },
+    chat: 'chat',
     todo: 'todo',
     timeline: 'timeline',
     calendar: {

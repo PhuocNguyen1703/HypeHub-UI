@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 
-import { SearchIcon } from '~/components/Icons';
 import styles from './Message.module.scss';
 import { useDebounce } from '~/hooks';
 import * as searchServices from '~/services/searchApi';
 import { IoCloseCircle } from 'react-icons/io5';
 import { FaSpinner } from 'react-icons/fa';
+import { BsSearch } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);
 
@@ -58,10 +58,11 @@ function Search() {
     const handleSubmit = () => {};
 
     return (
-        <div className={cx('search')}>
+        <div className={cx('wrapper')}>
             <input
                 ref={inputRef}
                 value={searchValue}
+                className={cx('search-input')}
                 placeholder="Search message"
                 spellCheck={false}
                 onChange={handleChange}
@@ -76,9 +77,9 @@ function Search() {
 
             {loading && <FaSpinner className={cx('loading')} />}
 
-            <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()} onClick={handleSubmit}>
-                <SearchIcon />
-            </button>
+            {/* <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()} onClick={handleSubmit}>
+                <BsSearch />
+            </button> */}
         </div>
     );
 }

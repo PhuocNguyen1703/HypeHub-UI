@@ -1,0 +1,138 @@
+.wrapper {
+    display: flex;
+    height: 100%;
+    color: var(--text-color);
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: var(--main-bg);
+    box-shadow: var(--box-shadow);
+}
+
+.room-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 72px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-right: 1px solid var(--gray);
+
+    .private-chat-room {
+        position: relative;
+        padding-top: 10px;
+        border-bottom: 2px solid var(--gray-alpha-40);
+        cursor: pointer;
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 999px;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+    }
+
+    .create-room-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 999px;
+        flex-shrink: 0;
+        background-color: var(--gray-alpha-20);
+        font-size: 1.8rem;
+        color: var(--blue);
+        cursor: pointer;
+    }
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--gray-alpha-40);
+
+    .search {
+        padding: 8px;
+        border-bottom: 1px solid var(--gray-alpha-40);
+    }
+
+    .friends {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        margin: 8px;
+        padding: 8px;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+        cursor: pointer;
+
+        .icon-friend {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        &:hover {
+            background-color: var(--gray-alpha-20);
+        }
+    }
+
+    .direct-messages {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 12px 10px 10px 16px;
+
+        .title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            user-select: none;
+        }
+
+        .create-message-btn {
+            display: flex;
+            align-items: center;
+            font-size: 2.2rem;
+            cursor: pointer;
+        }
+    }
+}
+
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px;
+
+    .user {
+        display: flex;
+        align-items: center;
+        padding: 6px 10px;
+        background-color: var(--gray-alpha-10);
+        border-radius: 6px;
+
+        .info {
+            display: flex;
+            align-items: center;
+
+            .avatar {
+                width: 34px;
+                height: 34px;
+                border-radius: 999px;
+                object-fit: cover;
+            }
+        }
+
+        .name {
+            margin-left: 12px;
+            font-weight: 600;
+        }
+    }
+}
+
+.container {
+    flex: 1;
+}

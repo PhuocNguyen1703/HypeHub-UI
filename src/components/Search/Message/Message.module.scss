@@ -1,44 +1,42 @@
-.search {
+.wrapper {
     --search-height: 40px;
     --search-border-radius: 6px;
     --search-top-spacer: 6px;
-    --search-button-width: 40px;
+    --search-button-width: 38px;
 
     position: relative;
     display: flex;
     align-items: center;
     height: var(--search-height);
-    padding-left: 12px;
+    width: 100%;
+    padding-left: 8px;
     background-color: var(--gray-alpha-20);
     border: 1px solid var(--gray-alpha-20);
     border-radius: var(--search-border-radius);
-    box-shadow: var(--box-shadow);
 
-    input {
+    .search-input {
         flex: 1;
-        height: 100%;
-        padding-right: 28px;
-        font-family: var(--font-family);
         font-size: 1.6rem;
+        margin-right: 30px;
         color: var(--text-color);
     }
 
-    input:not(:placeholder-shown) ~ .search-btn {
+    .search-input:not(:placeholder-shown) ~ .search-btn {
         color: var(--text-color);
     }
 
-    &::after {
-        content: '';
-        position: absolute;
-        top: var(--search-top-spacer);
-        right: var(--search-button-width);
-        width: 1px;
-        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
-        background-color: var(--gray-alpha-20);
-    }
+    // &::after {
+    //     content: '';
+    //     position: absolute;
+    //     top: var(--search-top-spacer);
+    //     right: var(--search-button-width);
+    //     width: 1px;
+    //     height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+    //     background-color: var(--gray-alpha-20);
+    // }
 
     &:focus-within {
-        border: 1px solid var(--gray-alpha-80);
+        border: 1px solid var(--gray-alpha-40);
     }
 }
 
@@ -47,7 +45,8 @@
     display: flex;
     align-items: center;
     position: absolute;
-    right: calc(var(--search-button-width) + 6px);
+    // right: calc(var(--search-button-width) + 6px);
+    right: 6px;
     color: var(--gray-alpha-40);
 }
 
@@ -62,18 +61,22 @@
 }
 
 .search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: var(--search-button-width);
+    font-size: 1.8rem;
     height: 100%;
     color: var(--gray-alpha-40);
-    border-top-right-radius: var(--search-border-radius);
-    border-bottom-right-radius: var(--search-border-radius);
+    transition: all 0.1s;
     cursor: pointer;
 
     &:hover {
-        background-color: rgba(22, 24, 35, 0.03);
+        background-color: var(--gray-alpha-05);
+        color: var(--text-color);
     }
 
     &:active {
-        background-color: var(--gray);
+        color: var(--text-color);
     }
 }
