@@ -1,5 +1,5 @@
 import 'react-18-image-lightbox/style.css';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
@@ -11,7 +11,7 @@ import styles from './GroupChatBox.module.scss';
 import { getUser } from '~/services/userApi';
 import { addMessage, getMessages } from '~/services/messageApi';
 import Image from '~/components/Image';
-import { BsCardImage, BsCursor, BsEmojiSmile, BsStack } from 'react-icons/bs';
+import { BsCardImage, BsCursor, BsEmojiSmile, BsPerson, BsRecord2Fill, BsStack } from 'react-icons/bs';
 import Lightbox from 'react-18-image-lightbox';
 import { useSelector } from 'react-redux';
 import { uploadImages } from '~/services/uploadImagesApi';
@@ -248,75 +248,111 @@ function GroupChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
             <header className={cx('header')}>
                 <div className={cx('header-left')}>
                     <span className={cx('title')}>
-                        <BsStack />
-                        Channel 1
+                        <Image
+                            className={cx('group-avatar')}
+                            src="https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                            alt="avatar"
+                        />
+                        Brian Nguyen
                     </span>
-                    <p className={cx('desc')}>What are you doing</p>
                 </div>
                 <div className={cx('header-right')}></div>
             </header>
 
             <div className={cx('container')}>
-                <div className={cx('content')}>
-                    {messageList.map((message) => (
-                        <div key={message.id} ref={scroll} className={cx('message')}>
+                <div className={cx('chat-box')}>
+                    <div className={cx('content')}>
+                        <div className={cx('begin-message')}>
                             <Image
-                                className={cx('avatar')}
-                                // src={message.senderId === currentUserId ? currentUser?.avatar : userData?.avatar}
-                                src={message.avatar}
+                                className={cx('group-avatar-begin')}
+                                src="https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                                 alt="avatar"
                             />
-                            <div className={cx('message-content')}>
-                                <div className={cx('user-info')}>
-                                    <span className={cx('name')}>{message.name}</span>
-                                    <span className={cx('chat-time')}>{message.date}</span>
-                                </div>
-                                <p>{message.content}</p>
-                                {/* {message.fileUrl ? (
-                                    <img
-                                        className={cx('image')}
-                                        src={message?.fileUrl}
-                                        alt="img"
-                                        onClick={handleClickImage}
-                                    />
-                                ) : null} */}
-                                {/* <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span> */}
-                                {/* <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span> */}
-                            </div>
+                            <span className={cx('group-name')}>Brian Nguyen</span>
+                            <p className={cx('welcome-text')}>
+                                Welcome to beginning of the <strong>Brian Nguyen</strong> group.
+                            </p>
                         </div>
-                    ))}
-                </div>
-
-                <div className={cx('footer')}>
-                    <label className={cx('icon-image')} onClick={() => imageRef.current.click()}>
-                        <BsCardImage />
-                    </label>
-                    <input id="send-file" type="file" ref={imageRef} hidden onChange={handleUploadImg} />
-                    <input
-                        className={cx('input-message')}
-                        type="text"
-                        placeholder="Enter message..."
-                        value={newMessage}
-                        onChange={handleChange}
-                        onKeyDown={handleEnter}
-                    />
-                    <div className={cx('emoji')}>
-                        <button className={cx('emoji-icon')} onClick={handleShowEmojis}>
-                            <BsEmojiSmile />
-                        </button>
-                        {showEmojis && (
-                            <div ref={emojiRef} className={cx('picker-emoji')}>
-                                <Picker
-                                    data={data}
-                                    onEmojiSelect={handleSelectEmoji}
-                                    previewPosition="none"
-                                    theme={themeMode === 'theme-mode-dark' ? 'dark' : 'light'}
+                        {messageList.map((message) => (
+                            <div key={message.id} ref={scroll} className={cx('message')}>
+                                <Image
+                                    className={cx('avatar')}
+                                    // src={message.senderId === currentUserId ? currentUser?.avatar : userData?.avatar}
+                                    src={message.avatar}
+                                    alt="avatar"
                                 />
+                                <div className={cx('message-content')}>
+                                    <div className={cx('user-info')}>
+                                        <span className={cx('name')}>{message.name}</span>
+                                        <span className={cx('chat-time')}>{message.date}</span>
+                                    </div>
+                                    <p>{message.content}</p>
+                                    {/* {message.fileUrl ? (
+                                        <img
+                                            className={cx('image')}
+                                            src={message?.fileUrl}
+                                            alt="img"
+                                            onClick={handleClickImage}
+                                        />
+                                    ) : null} */}
+                                    {/* <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span> */}
+                                    {/* <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span> */}
+                                </div>
                             </div>
-                        )}
+                        ))}
                     </div>
-                    <div className={cx('icon-send')}>
-                        <BsCursor onClick={handleSend} />
+
+                    <div className={cx('footer')}>
+                        <label className={cx('icon-image')} onClick={() => imageRef.current.click()}>
+                            <BsCardImage />
+                        </label>
+                        <input id="send-file" type="file" ref={imageRef} hidden onChange={handleUploadImg} />
+                        <input
+                            className={cx('input-message')}
+                            type="text"
+                            placeholder="Enter message..."
+                            value={newMessage}
+                            onChange={handleChange}
+                            onKeyDown={handleEnter}
+                        />
+                        <div className={cx('emoji')}>
+                            <button className={cx('emoji-icon')} onClick={handleShowEmojis}>
+                                <BsEmojiSmile />
+                            </button>
+                            {showEmojis && (
+                                <div ref={emojiRef} className={cx('picker-emoji')}>
+                                    <Picker
+                                        data={data}
+                                        onEmojiSelect={handleSelectEmoji}
+                                        previewPosition="none"
+                                        theme={themeMode === 'theme-mode-dark' ? 'dark' : 'light'}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                        <div className={cx('icon-send')}>
+                            <BsCursor onClick={handleSend} />
+                        </div>
+                    </div>
+                </div>
+                <div className={cx('sidebar-right')}>
+                    <header className={cx('member-header')}>Member-3</header>
+                    <div className={cx('member-list')}>
+                        {messageList.map((user, idx) => (
+                            <div key={user.id} className={cx('user')}>
+                                <div className={cx('info')}>
+                                    <div className={cx('avatar')}>
+                                        <Image className={cx('photo')} src={user.avatar} alt="avatar" />
+                                        <span className={cx('icon-dot')}>
+                                            <BsRecord2Fill />
+                                        </span>
+                                    </div>
+                                    <div className={cx('user-name')}>
+                                        <span className={cx('name')}>{user.name}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

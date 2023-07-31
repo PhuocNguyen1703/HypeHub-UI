@@ -105,30 +105,58 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
-    padding: 6px;
+    padding: 0 6px 6px 6px;
 
     .user {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         padding: 6px 10px;
-        background-color: var(--gray-alpha-10);
-        border-radius: 6px;
+        border-radius: 4px;
+        margin-top: 2px;
+        user-select: none;
+
+        &:hover {
+            background-color: var(--gray-alpha-20);
+        }
 
         .info {
             display: flex;
             align-items: center;
 
             .avatar {
-                width: 34px;
-                height: 34px;
-                border-radius: 999px;
-                object-fit: cover;
-            }
-        }
+                position: relative;
+                display: flex;
+                align-items: center;
 
-        .name {
-            margin-left: 12px;
-            font-weight: 600;
+                .photo {
+                    width: 34px;
+                    height: 34px;
+                    border-radius: 999px;
+                    object-fit: cover;
+                }
+
+                .icon-dot {
+                    display: flex;
+                    align-items: center;
+                    position: absolute;
+                    right: -3px;
+                    bottom: -3px;
+                    border-radius: 50%;
+                    background-color: var(--main-bg);
+                    color: green;
+                }
+            }
+
+            .user-name {
+                display: flex;
+                flex-direction: column;
+                margin-left: 12px;
+
+                .name {
+                    font-weight: 600;
+                }
+            }
         }
     }
 }
