@@ -5,7 +5,7 @@ import styles from './Friends.module.scss';
 import { BsPeople } from 'react-icons/bs';
 import Search from '~/components/Search/Message/Message';
 import RenderListUser from './layouts/RenderListUser';
-import AddFriend from './modals/AddFriend';
+import { AddFriendModal } from '../Modal';
 
 const cx = classNames.bind(styles);
 
@@ -113,7 +113,7 @@ function Friends() {
                 </div>
             </div>
 
-            {isOpenAddFriendModal && <AddFriend isOpen={isOpenAddFriendModal} isHide={setIsOpenAddFriendModal}/>}
+            {isOpenAddFriendModal && <AddFriendModal isOpen={isOpenAddFriendModal} isHide={setIsOpenAddFriendModal} />}
         </div>
     );
 }

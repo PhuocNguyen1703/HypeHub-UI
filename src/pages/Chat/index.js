@@ -12,11 +12,13 @@ import Friends from './components/Friends/Friends';
 import CreateMessageForm from './components/CreateMessage/CreateMessageForm';
 import GroupChatBox from './components/GroupChatBox';
 import PrivateChatBox from './components/PrivateChatBox/PrivateChatBox';
+import CreateRoomModal from './components/Modal/CreateRoomModal';
 
 const cx = classNames.bind(styles);
 
 function Chat() {
     const { currentUser } = useSelector((state) => state.auth.login);
+    const [showCreateRoomModal, setShowCreateRoomModal] = useState(false);
     const [allUsers, setAllUsers] = useState([]);
     const [chats, setChats] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
@@ -58,6 +60,10 @@ function Chat() {
             name: 'Victoria',
         },
     ];
+
+    const handleToggleCreateRoomModal = () => {
+        setShowCreateRoomModal(true);
+    };
 
     // Get the chat in chat section
     // useEffect(() => {
@@ -125,7 +131,7 @@ function Chat() {
                 <div className={cx('private-chat-room')}>
                     <Image className={cx('logo')} src={images.logo} alt="logo" />
                 </div>
-                <button className={cx('create-room-btn')}>
+                <button className={cx('create-room-btn')} onClick={handleToggleCreateRoomModal}>
                     <FaPlus />
                 </button>
             </div>
@@ -168,10 +174,12 @@ function Chat() {
                 </div>
             </div>
             <div className={cx('container')}>
-                {/* <Friends /> */}
+                <Friends />
                 {/* <GroupChatBox /> */}
-                <PrivateChatBox />
+                {/* <PrivateChatBox /> */}
             </div>
+
+            {showCreateRoomModal && <CreateRoomModal isOpen={showCreateRoomModal} isHide={setShowCreateRoomModal} />}
         </div>
     );
 }
