@@ -22,8 +22,8 @@ import { createAxios } from '~/services/axiosClient';
 import { useSelector } from 'react-redux';
 import { registerSuccess } from '~/redux/Slice/authSlice';
 import Modal from '../../../components/Modal/Modal';
-import images from '~/assets/images';
 import Dropdown from '~/components/Dropdown/Dropdown';
+import { images } from '~/assets/images';
 
 const cx = classNames.bind(styles);
 

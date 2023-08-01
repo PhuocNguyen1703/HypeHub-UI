@@ -10,7 +10,7 @@ import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill, BsFillLockFill, BsFil
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { RiLoader4Fill } from 'react-icons/ri';
-import images from '~/assets/images';
+import { images } from '~/assets/images';
 
 const cx = classNames.bind(styles);
 

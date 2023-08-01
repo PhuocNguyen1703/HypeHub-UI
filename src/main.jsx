@@ -11,16 +11,17 @@ import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    // remove strict mode no support library react-beautiful-dnd
-    <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            <BrowserRouter>
-                <GlobalStyles>
-                    <App />
-                </GlobalStyles>
-            </BrowserRouter>
-        </PersistGate>
-    </Provider>,
+    <React.StrictMode>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <BrowserRouter>
+                    <GlobalStyles>
+                        <App />
+                    </GlobalStyles>
+                </BrowserRouter>
+            </PersistGate>
+        </Provider>
+    </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -16,7 +16,7 @@ import {
 } from 'react-icons/bs';
 
 import styles from './Header.module.scss';
-import images from '~/assets/images';
+import {images} from '~/assets/images';
 import Image from '~/components/Image';
 import Search from '../Search';
 import config from '~/config';

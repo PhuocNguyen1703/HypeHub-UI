@@ -9,7 +9,7 @@ import Tippy from '@tippyjs/react';
 import { useDispatch } from 'react-redux';
 import { setFaceRecognitionModalIsOpen } from '~/redux/Slice/modalSlice';
 import { BsXLg } from 'react-icons/bs';
-import images from '~/assets/images';
+import { images } from '~/assets/images';
 import { useSelector } from 'react-redux';
 import { updateUserFaceId } from '~/services/userApi';
 import { createAxios } from '~/services/axiosClient';

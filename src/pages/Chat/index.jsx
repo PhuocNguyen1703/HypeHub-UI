@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './Chat.module.scss';
 import Image from '~/components/Image';
 import { useSelector } from 'react-redux';
-import images from '~/assets/images';
+import {images} from '~/assets/images';
 import { FaPlus } from 'react-icons/fa';
 import Search from '~/components/Search/Message/Message';
 import { BsPeople, BsPlus, BsRecord2Fill } from 'react-icons/bs';

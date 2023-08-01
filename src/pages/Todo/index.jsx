@@ -8,7 +8,6 @@ import {
     BsLayoutSidebar,
     BsClipboardMinus,
 } from 'react-icons/bs';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { motion } from 'framer-motion';
 
 import styles from './Todo.module.scss';

@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './TaskDetail.module.scss';
-import { convertToRaw, EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
 import { AnimatePresence } from 'framer-motion';
 import Modal from '../Modal';
 import { motion } from 'framer-motion';

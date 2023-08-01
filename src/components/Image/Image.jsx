@@ -2,8 +2,8 @@ import { useState, forwardRef } from 'react';
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 
-import images from '~/assets/images';
 import styles from './image.module.scss';
+import { images } from '~/assets/images';
 
 const cx = classNames.bind(styles);
 

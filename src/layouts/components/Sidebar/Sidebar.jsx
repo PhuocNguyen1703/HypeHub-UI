@@ -19,9 +19,9 @@ import config from '~/config';
 import styles from './Sidebar.module.scss';
 import SidebarItem from './SidebarItem';
 import { Link } from 'react-router-dom';
-import images from '~/assets/images';
+import { images } from '~/assets/images';
 import { AnimatePresence, motion } from 'framer-motion';
-import { CHAT_GROUP_PATH, CHAT_PRIVATE_PATH, MANAGE_TICKETS_PATH, MANAGE_USERS_PATH } from '~/utils/constants';
+import { MANAGE_TICKETS_PATH, MANAGE_USERS_PATH } from '~/utils/constants';
 
 const cx = classNames.bind(styles);
 
@@ -134,9 +134,15 @@ function Sidebar() {
                 <img className={cx('logo-image')} src={images.logo} alt="logo" />
                 <AnimatePresence>
                     {!sidebarCollapsed && (
-                        <motion.h1 variants={showAnimation} initial="show" animate="show" exit="hidden">
+                        <motion.span
+                            className={cx('app-name')}
+                            variants={showAnimation}
+                            initial="show"
+                            animate="show"
+                            exit="hidden"
+                        >
                             HypeHub
-                        </motion.h1>
+                        </motion.span>
                     )}
                 </AnimatePresence>
             </Link>

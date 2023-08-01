@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Overview.module.scss';
 import { useSelector } from 'react-redux';
-import images from '~/assets/images';
+import {images} from '~/assets/images';
 import { Link } from 'react-router-dom';
 import routes from '~/config/routes';
 import Image from '~/components/Image';

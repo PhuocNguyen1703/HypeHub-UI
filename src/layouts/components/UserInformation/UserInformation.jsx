@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import logo from '~/assets/images/logo.svg';
 
 import styles from './UserInformation.module.scss';
 import { useForm } from 'react-hook-form';
@@ -15,7 +14,7 @@ import {
     BsTelephone,
 } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
-import images from '~/assets/images';
+import { images } from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -51,7 +50,7 @@ function UserInformation() {
             <div className={cx('profile')}>
                 <header>
                     <div className={cx('header')}>
-                        <img className={cx('logo')} src={logo} alt="logo" />
+                        <img className={cx('logo')} src={images.logo} alt="logo" />
                         <h3>Minato</h3>
                     </div>
                     <h1 className={cx('title')}>Profile</h1>

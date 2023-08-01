@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Profile.module.scss';
-import 'react-circular-progressbar/dist/styles.css';
 import { BsPerson, BsCamera, BsLock, BsClipboardCheck, BsCreditCard2Back, BsLink } from 'react-icons/bs';
 import Image from '~/components/Image';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +10,7 @@ import { createAxios } from '~/services/axiosClient';
 import { updateSuccess } from '~/redux/Slice/authSlice';
 import { uploadImages } from '~/services/uploadImagesApi';
 import EditProfile from '~/components/Modal/EditProfile';
-import images from '~/assets/images';
+import {images} from '~/assets/images';
 import { FaFacebookSquare, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import routes from '~/config/routes';
