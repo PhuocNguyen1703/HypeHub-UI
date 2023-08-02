@@ -20,7 +20,6 @@ import {
 } from 'react-icons/bs';
 import { motion } from 'framer-motion';
 import { IoEarthOutline } from 'react-icons/io5';
-import { MdNavigateNext } from 'react-icons/md';
 import Dropdown from '~/components/Dropdown/Dropdown';
 
 const cx = classNames.bind(styles);
@@ -83,6 +82,8 @@ function PersonalInfo() {
 
     const onSubmit = async (data) => {
         console.log(data);
+        reset();
+        setIsEditProfile(false);
     };
 
     return (
@@ -96,12 +97,23 @@ function PersonalInfo() {
                     <span className={cx('title')}>Personal Information</span>
                     <span className={cx('identify')}>No: MNT#123456789</span>
                 </div>
-                <button className={cx('edit-btn')} onClick={handleEditProfile}>
-                    <BsPencil />
-                    Edit Profile
-                </button>
+                {!isEditProfile ? (
+                    <button className={cx('edit-btn')} onClick={handleEditProfile}>
+                        <BsPencil />
+                        Edit Profile
+                    </button>
+                ) : (
+                    <div className={cx('action-btn')}>
+                        <button className={cx('cancel-btn')} type="button" onClick={handleCancelEditProfile}>
+                            Cancel
+                        </button>
+                        <button className={cx('save-btn')} type="submit" form="hook-form">
+                            Save
+                        </button>
+                    </div>
+                )}
             </header>
-            <form className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
+            <form id="hook-form" className={cx('form')} onSubmit={handleSubmit(onSubmit)}>
                 <div className={cx('full-name')}>
                     <div className={cx('first-name')}>
                         <div className={cx('first-name-field')}>
@@ -377,16 +389,6 @@ function PersonalInfo() {
                         <BsExclamationTriangle className={cx('icon-warning')} />
                         {errors.bio?.message}
                     </span>
-                )}
-                {isEditProfile && (
-                    <div className={cx('action-btn')}>
-                        <button className={cx('cancel-btn')} type="button" onClick={handleCancelEditProfile}>
-                            Cancel
-                        </button>
-                        <button className={cx('save-btn')} type="submit">
-                            Save
-                        </button>
-                    </div>
                 )}
             </form>
         </motion.div>

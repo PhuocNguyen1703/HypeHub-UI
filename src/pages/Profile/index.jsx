@@ -9,8 +9,7 @@ import { updateUser } from '~/services/userApi';
 import { createAxios } from '~/services/axiosClient';
 import { updateSuccess } from '~/redux/Slice/authSlice';
 import { uploadImages } from '~/services/uploadImagesApi';
-import EditProfile from '~/components/Modal/EditProfile';
-import {images} from '~/assets/images';
+import { images } from '~/assets/images';
 import { FaFacebookSquare, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import routes from '~/config/routes';
@@ -20,8 +19,6 @@ const cx = classNames.bind(styles);
 function Profile() {
     const { currentUser } = useSelector((state) => state.auth.login);
     const { _id, accessToken, email, fullName, streetAddress, birth, gender, hashtag, position, phone } = currentUser;
-    const { editProfileModalIsOpen } = useSelector((state) => state.modal);
-    const [showEditProfileModal, setShowEditProfileModal] = useState(false);
     const [previewSourceAvatar, setPreviewSourceAvatar] = useState('');
     const [selectedFileAvatar, setSelectedFileAvatar] = useState();
 
@@ -78,11 +75,6 @@ function Profile() {
         await updateUser({ avatar: imgUrl }, _id, dispatch, accessToken, axiosJWT);
 
         setPreviewSourceAvatar('');
-    };
-
-    const handleEditProfileBtn = () => {
-        // dispatch(setEditProfileModalIsOpen(true));
-        setShowEditProfileModal(true);
     };
 
     return (
@@ -153,8 +145,6 @@ function Profile() {
                 <div className={cx('right-container')}>
                     <Outlet />
                 </div>
-
-                <EditProfile show={showEditProfileModal} setShowEditProfileModal={setShowEditProfileModal} />
             </div>
         </>
     );
