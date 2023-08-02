@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './Overview.module.scss';
+import styles from './Home.module.scss';
 import { useSelector } from 'react-redux';
 import {images} from '~/assets/images';
 import { Link } from 'react-router-dom';

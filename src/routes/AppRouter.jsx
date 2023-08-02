@@ -1,11 +1,8 @@
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import config from '~/config';
-import { DefaultLayout } from '~/layouts';
-import Login from '~/pages/Auth/Login';
 import RequireAuth from './RequireAuth';
-import PrivateRoute from './PrivateRoute';
-import Home from '~/pages/Overview';
+import PrivateRoute from './PrivateRoutes';
 import Email from '~/pages/Email';
 import Todo from '~/pages/Todo';
 import Timeline from '~/pages/Timeline';
@@ -27,6 +24,8 @@ import UserTable from '~/pages/Manage/User/Table/UserTable';
 import UserSearch from '~/pages/Manage/User/UserSearch';
 import SupportCenter from '~/pages/SupportCenter';
 import Chat from '~/pages/Chat';
+import Login from '~/pages/Auth/Login';
+import Home from '~/pages/Home';
 
 export default function AppRouter() {
     const element = useRoutes([
@@ -34,69 +33,64 @@ export default function AppRouter() {
         {
             element: <RequireAuth />,
             children: [
+                { path: config.routes.home, element: <Home /> },
+                { path: config.routes.email, element: <Email /> },
                 {
-                    element: <DefaultLayout />,
+                    path: config.routes.chat,
+                    element: <Chat />,
+                },
+                { path: config.routes.todo, element: <Todo /> },
+                { path: config.routes.timeline, element: <Timeline /> },
+                {
+                    path: config.routes.calendar.path,
+                    element: <Calendar />,
                     children: [
-                        { path: config.routes.home, element: <Home /> },
-                        { path: config.routes.email, element: <Email /> },
+                        { index: true, element: <Month /> },
+                        { path: config.routes.calendar.children.day_path, element: <Day /> },
+                        { path: config.routes.calendar.children.month_path, element: <Month /> },
+                        { path: config.routes.calendar.children.year_path, element: <Year /> },
+                        { path: config.routes.calendar.children.schedule_path, element: <Schedule /> },
+                    ],
+                },
+                { path: config.routes.kanban, element: <Kanban /> },
+                {
+                    path: config.routes.profile.path,
+                    element: <Profile />,
+                    children: [
+                        { index: true, element: <PersonalInfo /> },
+                        { path: config.routes.profile.children.wallet_path, element: <Wallet /> },
                         {
-                            path: config.routes.chat,
-                            element: <Chat />,
+                            path: config.routes.profile.children.change_password_path,
+                            element: <ChangePassword />,
                         },
-                        { path: config.routes.todo, element: <Todo /> },
-                        { path: config.routes.timeline, element: <Timeline /> },
+                        { path: config.routes.profile.children.social_link_path, element: <SocialLink /> },
+                        { path: config.routes.profile.children.time_sheets_path, element: <TimeSheets /> },
+                    ],
+                },
+                { path: config.routes.support, element: <Support /> },
+                {
+                    element: <PrivateRoute />,
+                    children: [
                         {
-                            path: config.routes.calendar.path,
-                            element: <Calendar />,
-                            children: [
-                                { index: true, element: <Month /> },
-                                { path: config.routes.calendar.children.day_path, element: <Day /> },
-                                { path: config.routes.calendar.children.month_path, element: <Month /> },
-                                { path: config.routes.calendar.children.year_path, element: <Year /> },
-                                { path: config.routes.calendar.children.schedule_path, element: <Schedule /> },
-                            ],
-                        },
-                        { path: config.routes.kanban, element: <Kanban /> },
-                        {
-                            path: config.routes.profile.path,
-                            element: <Profile />,
-                            children: [
-                                { index: true, element: <PersonalInfo /> },
-                                { path: config.routes.profile.children.wallet_path, element: <Wallet /> },
-                                {
-                                    path: config.routes.profile.children.change_password_path,
-                                    element: <ChangePassword />,
-                                },
-                                { path: config.routes.profile.children.social_link_path, element: <SocialLink /> },
-                                { path: config.routes.profile.children.time_sheets_path, element: <TimeSheets /> },
-                            ],
-                        },
-                        { path: config.routes.support, element: <Support /> },
-                        {
-                            element: <PrivateRoute />,
+                            path: config.routes.manage.path,
                             children: [
                                 {
-                                    path: config.routes.manage.path,
+                                    path: config.routes.manage.children.users.path,
+                                    element: <ManageUser />,
                                     children: [
                                         {
-                                            path: config.routes.manage.children.users.path,
-                                            element: <ManageUser />,
-                                            children: [
-                                                {
-                                                    index: true,
-                                                    element: <UserTable />,
-                                                },
-                                                {
-                                                    path: config.routes.manage.children.users.children.search_path,
-                                                    element: <UserSearch />,
-                                                },
-                                            ],
+                                            index: true,
+                                            element: <UserTable />,
                                         },
                                         {
-                                            path: config.routes.manage.children.tickets_path,
-                                            element: <SupportCenter />,
+                                            path: config.routes.manage.children.users.children.search_path,
+                                            element: <UserSearch />,
                                         },
                                     ],
+                                },
+                                {
+                                    path: config.routes.manage.children.tickets_path,
+                                    element: <SupportCenter />,
                                 },
                             ],
                         },

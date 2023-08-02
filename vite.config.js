@@ -12,16 +12,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '~': path.resolve(__dirname, 'src'),
+            '~': path.resolve(__dirname, './src'),
         },
-    },
-    define: {
-        // By default, Vite doesn't include shims for NodeJS/
-        // necessary for segment analytics lib to work
-        global: {},
-    },
-    build: {
-        // Relative to the root
-        outDir: '../dist',
     },
 });
