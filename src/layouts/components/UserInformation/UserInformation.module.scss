@@ -125,7 +125,7 @@
         position: absolute;
         left: 26px;
         top: 50%;
-        font-weight: 600;
+        font-weight: 500;
         transform: translateY(-50%);
         user-select: none;
         pointer-events: none;
@@ -229,7 +229,7 @@
 }
 
 .logout-btn {
-    font-weight: 600;
+    font-weight: 500;
     margin-left: 6px;
     color: var(--red);
     opacity: 0.8;

@@ -206,7 +206,7 @@ li {
 @font-face {
     font-family: ProximaNova;
     src: url('/assets/fonts/ProximaNova-Semibold.woff2');
-    font-weight: 600;
+    font-weight: 500;
 }
 
 @font-face {
@@ -236,7 +236,7 @@ body {
 body {
     .tippy-box {
         font-size: 1.6rem;
-        font-weight: 600;
+        font-weight: 500;
         line-height: 2.2rem;
         border-radius: 8px;
         color: var(--white);
@@ -321,7 +321,7 @@ body {
 
 .react-datepicker-year-header {
     color: var(--text-color);
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1.6rem;
     background-color: var(--second-bg);
 }
@@ -344,7 +344,7 @@ body {
 .react-datepicker-time__header,
 .react-datepicker-year-header {
     color: var(--text-color);
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1.6rem;
 }
 

@@ -5,7 +5,7 @@
 
 .title {
     font-size: 2.5rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .container {
@@ -52,7 +52,7 @@
     justify-content: space-between;
     p {
         margin-top: 16px;
-        font-weight: 600;
+        font-weight: 500;
         color: var(--gray);
         width: 90%;
     }
@@ -72,7 +72,7 @@
     margin-bottom: 10px;
     border-radius: 8px;
     color: var(--text-white);
-    font-weight: 600;
+    font-weight: 500;
     background-image: var(--button-primary);
     box-shadow: var(--box-shadow);
 
@@ -109,7 +109,7 @@
 
 .todo-title {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 500;
     height: 50px;
 }
 
@@ -149,7 +149,7 @@
 
     span {
         font-size: 1.4rem;
-        font-weight: 600;
+        font-weight: 500;
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
@@ -197,7 +197,7 @@
 
 .calendar-title {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 500;
     height: 50px;
 }
 
@@ -228,7 +228,7 @@
 
     span {
         font-size: 1.4rem;
-        font-weight: 600;
+        font-weight: 500;
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
@@ -266,7 +266,7 @@
 
 .notification-title {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 500;
     height: 50px;
 }
 
@@ -331,7 +331,7 @@
 
 .email-title {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 500;
     height: 50px;
 }
 .email-container {

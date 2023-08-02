@@ -21,9 +21,10 @@ import { RiLoader4Fill } from 'react-icons/ri';
 import { createAxios } from '~/services/axiosClient';
 import { useSelector } from 'react-redux';
 import { registerSuccess } from '~/redux/Slice/authSlice';
-import Modal from '../../../components/Modal/Modal';
+// import Modal from '../../../components/Modal/Modal';
 import Dropdown from '~/components/Dropdown/Dropdown';
 import { images } from '~/assets/images';
+import Modal from '~/components/Modal';
 
 const cx = classNames.bind(styles);
 
@@ -187,7 +188,7 @@ function Register({ show, setShowRegisterModal }) {
                             <div className={cx('logo')}>
                                 <img className={cx('logo-image')} src={images.logo} alt="logo" />
                                 <span className={cx('logo-text')}>
-                                    <h1>HypeHub</h1>
+                                    <span className={cx('app-name')}>HypeHub</span>
                                     <h6>Do it your way!</h6>
                                 </span>
                             </div>

@@ -23,6 +23,7 @@
 
     .logo {
         display: flex;
+        margin-top: 20px;
 
         .logo-image {
             width: 100px;
@@ -33,8 +34,9 @@
         .logo-text {
             text-align: center;
 
-            h1 {
+            .app-name {
                 font-size: 5rem;
+                font-weight: 700;
                 background-image: var(--text-logo-gradient-color);
                 background-size: 100%;
                 background-repeat: repeat;
@@ -131,7 +133,7 @@
 
         .label {
             position: absolute;
-            font-weight: 600;
+            font-weight: 500;
             line-height: 1;
             bottom: 100%;
             left: 16px;
@@ -197,7 +199,7 @@
 
         .position-label,
         .birth-label {
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .birth {
@@ -257,7 +259,7 @@
         margin-top: 10px;
         margin-left: 4px;
         font-size: 1.4rem;
-        font-weight: 600;
+        font-weight: 500;
         color: var(--red);
 
         .icon-warning {
@@ -279,7 +281,7 @@
     width: 180px;
     margin-top: 60px;
     font-size: 1.8rem;
-    font-weight: 600;
+    font-weight: 500;
     align-self: center;
     border-radius: 10px;
     color: var(--text-white);

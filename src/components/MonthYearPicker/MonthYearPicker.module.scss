@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-weight: 600;
+    font-weight: 500;
     padding: 4px 8px;
     border-bottom: 1px solid var(--gray-alpha-40);
 
@@ -41,7 +41,7 @@
     .month {
         width: calc((100% / 3) - 4px);
         text-align: center;
-        font-weight: 600;
+        font-weight: 500;
         padding: 2px 4px;
         border-radius: 4px;
         user-select: none;
