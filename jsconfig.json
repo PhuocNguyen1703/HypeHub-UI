@@ -1,8 +1,9 @@
 {
-    "compilerOptions": {
-        "module": "ES6",
-        "jsx": "preserve",
-        "checkJs": true
-    },
-    "exclude": ["src/**/*"]
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": { "~/*": ["./src/*"] }
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  }
 }

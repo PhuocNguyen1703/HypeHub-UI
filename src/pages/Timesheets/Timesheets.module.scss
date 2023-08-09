@@ -47,7 +47,7 @@
         gap: 6px;
         padding: 2px 4px;
         font-size: 1.6rem;
-        font-weight: 600;
+        font-weight: 500;
         cursor: pointer;
     }
 }
@@ -78,7 +78,7 @@
         align-items: center;
         gap: 8px;
         width: 100%;
-        font-weight: 600;
+        font-weight: 500;
         padding: 10px 6px 6px 6px;
         color: var(--gray);
         border-bottom: 1px solid var(--gray-alpha-20);
@@ -198,7 +198,7 @@
             display: flex;
             align-items: center;
             margin-left: 10px;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .option {
@@ -252,7 +252,7 @@
 
             .number {
                 margin: 0 6px;
-                font-weight: 600;
+                font-weight: 500;
                 padding: 2px 8px;
                 border: 1px solid var(--gray);
                 border-radius: 4px;

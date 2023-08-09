@@ -1,5 +1,5 @@
 import coverAvatar from '~/assets/images/cover-avatar.jpg';
-import faceRecognition from '~/assets/images/face_recognition.jpg';
+import faceRecognition from '~/assets/images/face_recognition.png';
 import workspace from '~/assets/images/workspace.png';
 import chip from '~/assets/images/chip.png';
 import map from '~/assets/images/map.png';

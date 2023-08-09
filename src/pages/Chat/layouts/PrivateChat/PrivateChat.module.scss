@@ -1,0 +1,113 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.search {
+    padding: 8px;
+    border-bottom: 1px solid var(--gray-alpha-40);
+}
+
+.friends {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    margin: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+
+    .icon-friend {
+        display: flex;
+        align-items: center;
+        font-size: 2rem;
+        margin-right: 10px;
+    }
+
+    &:hover {
+        background-color: var(--gray-alpha-20);
+    }
+}
+
+.direct-messages {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 12px 10px 10px 16px;
+
+    .title {
+        font-size: 1.4rem;
+        font-weight: 500;
+        user-select: none;
+    }
+
+    .create-message-btn {
+        display: flex;
+        align-items: center;
+        font-size: 2.2rem;
+        cursor: pointer;
+    }
+}
+
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 6px 6px 6px;
+
+    .user {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 4px;
+        margin-top: 2px;
+        user-select: none;
+
+        &:hover {
+            background-color: var(--gray-alpha-20);
+        }
+
+        .info {
+            display: flex;
+            align-items: center;
+
+            .avatar {
+                position: relative;
+                display: flex;
+                align-items: center;
+
+                .photo {
+                    width: 34px;
+                    height: 34px;
+                    border-radius: 999px;
+                    object-fit: cover;
+                }
+
+                .icon-dot {
+                    display: flex;
+                    align-items: center;
+                    position: absolute;
+                    right: -3px;
+                    bottom: -3px;
+                    border-radius: 50%;
+                    background-color: var(--main-bg);
+                    color: green;
+                }
+            }
+
+            .user-name {
+                display: flex;
+                flex-direction: column;
+                margin-left: 12px;
+
+                .name {
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

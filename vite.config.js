@@ -4,15 +4,9 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [
-        react({
-            // Use React plugin in all *.jsx and *.tsx , *.js files
-            include: '**/*.{jsx,tsx,js}',
-        }),
-    ],
-    resolve: {
-        alias: {
-            '~': path.resolve(__dirname, './src'),
-        },
-    },
+  // base: './',
+  plugins: [react()],
+  resolve: {
+    alias: [{ find: '~', replacement: path.resolve(__dirname, './src') }],
+  },
 });
