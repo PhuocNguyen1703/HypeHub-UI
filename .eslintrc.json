@@ -1,11 +1,4 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true,
-        "mocha": true,
-        "node": false
-    },
     "plugins": ["react"],
     "extends": ["eslint:recommended", "plugin:react/recommended"],
     "parserOptions": {
