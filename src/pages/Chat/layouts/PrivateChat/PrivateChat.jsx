@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import Search from '~/components/Search/Message/Message';
+import { useState } from 'react';
 import { BsPeople, BsPlus, BsRecord2Fill } from 'react-icons/bs';
+import Search from '~/components/Search/Message/Message';
 
-import styles from './PrivateChat.module.scss';
+import Image from '~/components/Image/Image';
 import CreateMessageForm from '../../components/CreateMessage/CreateMessageForm';
-import Image from '~/components/Image';
+import styles from './PrivateChat.module.scss';
 
 const cx = classNames.bind(styles);
 

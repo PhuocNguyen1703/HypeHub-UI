@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { Navigate, Outlet } from 'react-router-dom';
-import { DefaultLayout } from '~/layouts';
+import { Navigate } from 'react-router-dom';
+import DefaultLayout from '~/layouts/DefaultLayout/DefaultLayout';
 
 function RequireAuth() {
     const user = useSelector((state) => state.auth.login.currentUser);

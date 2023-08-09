@@ -1,14 +1,13 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import styles from './UserDetail.module.scss';
-import Modal from '../Modal';
 import { BsXLg } from 'react-icons/bs';
-import Image from '~/components/Image/Image';
-import { FaFacebookSquare, FaInstagram, FaInstagramSquare, FaLine, FaTwitter } from 'react-icons/fa';
+import { FaFacebookSquare, FaInstagram, FaLine, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import CircleHeader from '~/components/CircleHeader/CircleHeader';
+import Image from '~/components/Image/Image';
+import Modal from '../Modal';
+import styles from './UserDetail.module.scss';
 
 const cx = classNames.bind(styles);
 

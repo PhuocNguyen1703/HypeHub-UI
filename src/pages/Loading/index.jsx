@@ -1,9 +1,8 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 import { ImSpinner9 } from 'react-icons/im';
 
+import { images } from '~/assets/images';
 import styles from './Loading.module.scss';
-import {images} from '~/assets/images';
 
 const cx = classNames.bind(styles);
 

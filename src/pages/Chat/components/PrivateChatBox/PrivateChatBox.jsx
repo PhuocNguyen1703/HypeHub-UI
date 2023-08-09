@@ -1,30 +1,25 @@
-import 'react-18-image-lightbox/style.css';
-import React, { useRef, useState } from 'react';
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
 import classNames from 'classnames/bind';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
-import data from '@emoji-mart/data';
-import Picker from '@emoji-mart/react';
+import { useRef, useState } from 'react';
+import 'react-18-image-lightbox/style.css';
 
-import styles from './PrivateChatBox.module.scss';
-import { getUser } from '~/services/userApi';
-import { addMessage, getMessages } from '~/services/messageApi';
-import Image from '~/components/Image';
 import {
     BsCameraVideoFill,
     BsCardImage,
     BsCursor,
     BsEmojiSmile,
     BsGear,
-    BsPerson,
-    BsRecord2Fill,
-    BsStack,
+    BsRecord2Fill
 } from 'react-icons/bs';
-import Lightbox from 'react-18-image-lightbox';
-import { useSelector } from 'react-redux';
-import { uploadImages } from '~/services/uploadImagesApi';
 import { FaBars, FaPhoneVolume, FaUserPlus } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
+import Image from '~/components/Image/Image';
+import { addMessage } from '~/services/messageApi';
+import { uploadImages } from '~/services/uploadImagesApi';
+import styles from './PrivateChatBox.module.scss';
 
 const cx = classNames.bind(styles);
 dayjs.extend(utc);

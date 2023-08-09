@@ -1,14 +1,12 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './CreateBoardModal.module.scss';
-import { AnimatePresence } from 'framer-motion';
-import { motion } from 'framer-motion';
-import Modal from '../Modal';
-import { BsXLg } from 'react-icons/bs';
 import Tippy from '@tippyjs/react';
-import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '~/utils/constants';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
+import { BsXLg } from 'react-icons/bs';
+import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '~/utils/constants';
+import Modal from '../Modal';
+import styles from './CreateBoardModal.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 import {
-    BsTrash,
+    BsClipboardMinus,
     BsFileEarmarkPlus,
+    BsLayoutSidebar,
     BsPatchPlus,
     BsPlusCircleDotted,
-    BsLayoutSidebar,
-    BsClipboardMinus,
+    BsTrash,
 } from 'react-icons/bs';
-import { motion } from 'framer-motion';
 
 import styles from './Todo.module.scss';
 
-import CreateNote from '~/components/Modal/CreateNote';
-import TaskDetail from '~/components/Modal/TaskDetail';
-import { HiCheck } from 'react-icons/hi';
 import { AnimatePresence } from 'framer-motion';
-import ConfirmModal from '~/components/Modal/Confirm/ConfirmModal';
-import { MODAL_ACTION_CONFIRM } from '~/utils/constants';
 import { useForm } from 'react-hook-form';
+import { HiCheck } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
+import ConfirmModal from '~/components/Modal/Confirm/ConfirmModal';
+import CreateNote from '~/components/Modal/CreateNote/CreateNote';
+import TaskDetail from '~/components/Modal/TaskDetail/TaskDetail';
 import routes from '~/config/routes';
+import { MODAL_ACTION_CONFIRM } from '~/utils/constants';
 
 const cx = classNames.bind(styles);
 

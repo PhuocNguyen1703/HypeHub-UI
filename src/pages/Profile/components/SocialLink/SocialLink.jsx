@@ -1,12 +1,11 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './SocialLink.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { BsExclamationTriangle } from 'react-icons/bs';
 import { FaFacebookSquare, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import * as yup from 'yup';
+import styles from './SocialLink.module.scss';
 
 const cx = classNames.bind(styles);
 

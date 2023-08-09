@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { motion } from 'framer-motion';
 
-import styles from './EmailInfo.module.scss';
-import { useSelector } from 'react-redux';
-import { AnimatePresence } from 'framer-motion';
 import Tippy from '@tippyjs/react';
+import { AnimatePresence } from 'framer-motion';
 import {
     BsArrowBarLeft,
     BsArrowBarRight,
@@ -17,11 +14,11 @@ import {
     BsTrash,
     BsXLg,
 } from 'react-icons/bs';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Image from '~/components/Image/Image';
 import { setSelectedItem } from '~/redux/Slice/emailSlice';
-import { setEmailInfoModalIsOpen } from '~/redux/Slice/modalSlice';
-import Image from '~/components/Image';
 import Modal from '../Modal';
+import styles from './EmailInfo.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,7 +1,5 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './Sales.module.scss';
 import {
     BsArrowDownShort,
     BsArrowUpShort,
@@ -11,9 +9,10 @@ import {
     BsStack,
     BsThreeDots,
 } from 'react-icons/bs';
-import Piechart from '~/components/Chart/Pie';
 import Linechart from '~/components/Chart/Line';
-import Table from '~/components/Table';
+import Piechart from '~/components/Chart/Pie';
+import Table from '~/components/Table/Table';
+import styles from './Sales.module.scss';
 
 const cx = classNames.bind(styles);
 

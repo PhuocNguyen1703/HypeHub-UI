@@ -1,8 +1,7 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './Schedule.module.scss';
 import { FaRecordVinyl } from 'react-icons/fa';
+import styles from './Schedule.module.scss';
 
 const cx = classNames.bind(styles);
 

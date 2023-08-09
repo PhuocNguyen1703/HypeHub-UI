@@ -1,7 +1,5 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './RoomChat.module.scss';
 import { BsGear } from 'react-icons/bs';
 import {
   FaAngellist,
@@ -16,6 +14,7 @@ import {
   FaSpider,
   FaTheRedYeti,
 } from 'react-icons/fa6';
+import styles from './RoomChat.module.scss';
 
 const cx = classNames.bind(styles);
 

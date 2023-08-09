@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import styles from './Login.module.scss';
-import { loginUser } from '~/services/authApi';
-import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill, BsFillLockFill, BsFillPersonFill } from 'react-icons/bs';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill, BsFillLockFill, BsFillPersonFill } from 'react-icons/bs';
 import { RiLoader4Fill } from 'react-icons/ri';
+import * as yup from 'yup';
 import { images } from '~/assets/images';
+import { loginUser } from '~/services/authApi';
+import styles from './Login.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
 
-import styles from './Message.module.scss';
-import Modal from '../Modal/Modal';
 import { BsXLg } from 'react-icons/bs';
-import Search from '../Search/Message/Message';
 import Image from '../Image/Image';
 import MiniChat from '../MiniChat/MiniChat';
+import Modal from '../Modal/Modal';
+import Search from '../Search/Message/Message';
+import styles from './Message.module.scss';
 
 const cx = classNames.bind(styles);
 

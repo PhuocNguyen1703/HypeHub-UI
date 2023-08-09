@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
-import styles from './Profile.module.scss';
-import { BsPerson, BsCamera, BsLock, BsClipboardCheck, BsCreditCard2Back, BsLink } from 'react-icons/bs';
-import Image from '~/components/Image';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '~/services/userApi';
-import { createAxios } from '~/services/axiosClient';
-import { updateSuccess } from '~/redux/Slice/authSlice';
-import { uploadImages } from '~/services/uploadImagesApi';
-import { images } from '~/assets/images';
+import { BsCamera, BsClipboardCheck, BsCreditCard2Back, BsLink, BsLock, BsPerson } from 'react-icons/bs';
 import { FaFacebookSquare, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
+import { images } from '~/assets/images';
+import Image from '~/components/Image/Image';
 import routes from '~/config/routes';
+import { updateSuccess } from '~/redux/Slice/authSlice';
+import { createAxios } from '~/services/axiosClient';
+import { uploadImages } from '~/services/uploadImagesApi';
+import { updateUser } from '~/services/userApi';
+import styles from './Profile.module.scss';
 
 const cx = classNames.bind(styles);
 

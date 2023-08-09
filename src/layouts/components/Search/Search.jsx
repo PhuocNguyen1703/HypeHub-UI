@@ -1,15 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
+import { useEffect, useRef, useState } from 'react';
 
+import { FaSpinner } from 'react-icons/fa';
+import { IoCloseCircle } from 'react-icons/io5';
+import AccountItem from '~/components/AccountItem/AccountItem';
 import { SearchIcon } from '~/components/Icons';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-import AccountItem from '~/components/AccountItem';
-import styles from './Search.module.scss';
+import PopperWrapper from '~/components/Popper/PopperWrapper';
 import { useDebounce } from '~/hooks';
 import * as searchServices from '~/services/searchApi';
-import { IoCloseCircle } from 'react-icons/io5';
-import { FaSpinner } from 'react-icons/fa';
+import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 

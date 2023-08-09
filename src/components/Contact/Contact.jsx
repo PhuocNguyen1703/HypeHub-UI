@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import { motion } from 'framer-motion';
 
 import styles from './Contact.module.scss';
-import Card from '../Card';
+import Card from '../Card/Card';
 
 const cx = classNames.bind(styles);
 

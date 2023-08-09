@@ -1,13 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 
-import styles from './CreateTimeline.module.scss';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
     BsAlarm,
     BsApple,
-    BsFillCaretDownFill,
-    BsXLg,
     BsArchive,
     BsAward,
     BsBagCheck,
@@ -15,16 +13,17 @@ import {
     BsBell,
     BsBookmarkCheck,
     BsBriefcase,
+    BsCalendar,
     BsCalendarCheck,
     BsCardImage,
-    BsCpu,
     BsCoin,
-    BsCalendar,
+    BsCpu,
+    BsFillCaretDownFill,
+    BsXLg,
 } from 'react-icons/bs';
 import CircleHeader from '~/components/CircleHeader/CircleHeader';
-import { AnimatePresence } from 'framer-motion';
 import Modal from '../Modal';
-import { motion } from 'framer-motion';
+import styles from './CreateTimeline.module.scss';
 
 const cx = classNames.bind(styles);
 

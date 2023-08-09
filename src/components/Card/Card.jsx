@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Card.module.scss';
-import Image from '../Image';
+import Image from '../Image/Image';
 import { BsTrash } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);

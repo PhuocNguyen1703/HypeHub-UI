@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
-import styles from './CreateRoomModal.module.scss';
-import { AnimatePresence } from 'framer-motion';
-import Modal from '~/components/Modal/Modal';
-import { motion } from 'framer-motion';
-import CircleHeader from '~/components/CircleHeader/CircleHeader';
+import { AnimatePresence, motion } from 'framer-motion';
 import { BsCameraFill, BsChevronRight, BsXLg } from 'react-icons/bs';
+import CircleHeader from '~/components/CircleHeader/CircleHeader';
+import Modal from '~/components/Modal/Modal';
+import styles from './CreateRoomModal.module.scss';
 
 const cx = classNames.bind(styles);
 

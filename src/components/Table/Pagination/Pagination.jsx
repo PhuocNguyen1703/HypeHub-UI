@@ -1,10 +1,9 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './Pagination.module.scss';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { usePagination } from '~/hooks/usePagination';
 import { DOTS } from '~/utils/constants';
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import styles from './Pagination.module.scss';
 
 const cx = classNames.bind(styles);
 

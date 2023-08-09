@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
-import styles from './ChangePassword.module.scss';
-import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { BsExclamationTriangle, BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 import { HiCheck } from 'react-icons/hi';
+import * as yup from 'yup';
+import styles from './ChangePassword.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import styles from './CreateCardModal.module.scss';
+import HTMLReactParser from 'html-react-parser';
+import { cloneDeep } from 'lodash-es';
+import { useForm } from 'react-hook-form';
 import {
     BsArrowBarUp,
     BsBookmarks,
@@ -13,18 +15,13 @@ import {
     BsPalette,
     BsXLg,
 } from 'react-icons/bs';
-import { setCreateKanbanItemModalIsOpen } from '~/redux/Slice/modalSlice';
-import { useDispatch } from 'react-redux';
 import { FaChevronDown, FaTimes } from 'react-icons/fa';
-import DatePicker from '~/components/DatePicker';
-import { setSelectedItem } from '~/redux/Slice/kanbanSlice';
-import { useForm } from 'react-hook-form';
-import Modal from '../Modal';
-import { MODAL_ACTION_CLOSE } from '~/utils/constants';
-import HTMLReactParser from 'html-react-parser';
+import { useDispatch } from 'react-redux';
+import DatePicker from '~/components/DatePicker/DatePicker';
 import { createNewCard } from '~/services/kanbanApi';
-import { cloneDeep } from 'lodash-es';
-import { uploadImages } from '~/services/uploadImagesApi';
+import { MODAL_ACTION_CLOSE } from '~/utils/constants';
+import Modal from '../Modal';
+import styles from './CreateCardModal.module.scss';
 
 const cx = classNames.bind(styles);
 

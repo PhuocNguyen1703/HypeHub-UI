@@ -1,12 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useRef, useState } from 'react';
 
-import styles from './Message.module.scss';
+import { FaSpinner } from 'react-icons/fa';
+import { IoCloseCircle } from 'react-icons/io5';
 import { useDebounce } from '~/hooks';
 import * as searchServices from '~/services/searchApi';
-import { IoCloseCircle } from 'react-icons/io5';
-import { FaSpinner } from 'react-icons/fa';
-import { BsSearch } from 'react-icons/bs';
+import styles from './Message.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,17 +1,15 @@
-import { BsXLg } from 'react-icons/bs';
 import classNames from 'classnames/bind';
 import { AnimatePresence, motion } from 'framer-motion';
+import { BsXLg } from 'react-icons/bs';
 
-import styles from './CreateCalendar.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
-import EventForm from './EventForm';
-import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
-import dayjs from 'dayjs';
 import Tippy from '@tippyjs/react';
-import EventInfo from '~/components/EventInfo';
-import { useState } from 'react';
+import dayjs from 'dayjs';
+import { useDispatch, useSelector } from 'react-redux';
+import EventInfo from '~/components/EventInfo/EventInfo';
+import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import Modal from '../Modal';
+import styles from './CreateCalendar.module.scss';
+import EventForm from './EventForm/EventForm';
 
 const cx = classNames.bind(styles);
 

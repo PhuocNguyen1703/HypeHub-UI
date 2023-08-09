@@ -1,11 +1,10 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import styles from './AddFriendModal.module.scss';
 import { BsXLg } from 'react-icons/bs';
 import CircleHeader from '~/components/CircleHeader/CircleHeader';
 import Modal from '~/components/Modal/Modal';
+import styles from './AddFriendModal.module.scss';
 
 const cx = classNames.bind(styles);
 

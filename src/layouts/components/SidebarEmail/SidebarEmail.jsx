@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import classNames from 'classnames/bind';
+import { NavLink } from 'react-router-dom';
 
-import styles from './SidebarEmail.module.scss';
-import { AnimatePresence } from 'framer-motion';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { BsPlus } from 'react-icons/bs';
+import styles from './SidebarEmail.module.scss';
 
 const cx = classNames.bind(styles);
 

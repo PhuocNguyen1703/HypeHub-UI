@@ -1,8 +1,7 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
+import { images } from '~/assets/images';
 import styles from './Card.module.scss';
-import {images} from '~/assets/images';
 
 const cx = classNames.bind(styles);
 

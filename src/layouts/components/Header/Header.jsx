@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { CgMenu, CgMoreVerticalAlt } from 'react-icons/cg';
-import { IoLanguageOutline, IoLogOutOutline, IoSettingsOutline } from 'react-icons/io5';
+import classNames from 'classnames/bind';
+import { useState } from 'react';
 import {
-    BsFullscreen,
-    BsChatSquareDots,
     BsBell,
+    BsChatSquareDots,
+    BsFillPersonPlusFill,
+    BsFullscreen,
     BsFullscreenExit,
     BsPersonBoundingBox,
-    BsFillPersonPlusFill,
 } from 'react-icons/bs';
+import { CgMenu, CgMoreVerticalAlt } from 'react-icons/cg';
+import { IoLanguageOutline, IoLogOutOutline, IoSettingsOutline } from 'react-icons/io5';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import 'tippy.js/dist/tippy.css';
 
-import styles from './Header.module.scss';
-import Image from '~/components/Image';
-import Search from '../Search';
-import { logOutUser } from '~/services/authApi';
-import { logOutSuccess } from '~/redux/Slice/authSlice';
-import { createAxios } from '~/services/axiosClient';
-import Setting from '../Setting';
-import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
-import ContactManagement from '~/components/Modal/ContactManagement';
-import Notification from '~/components/Notification';
-import Register from '~/pages/Auth/Register';
-import UserMenu from '~/components/UserMenu';
-import FaceRecognition from '~/components/Modal/TimeKeeping/FaceRecognition';
-import Message from '~/components/Message/Message';
 import { CNFlagIcon, JPFlagIcon, KRFlagIcon, THFlagIcon, USFlagIcon, VNFlagIcon } from '~/components/Icons';
+import Image from '~/components/Image/Image';
+import Message from '~/components/Message/Message';
+import ContactManagement from '~/components/Modal/ContactManagement/ContactManagement';
+import FaceRecognition from '~/components/Modal/TimeKeeping/FaceRecognition/FaceRecognition';
+import Notification from '~/components/Notification/Notification';
+import UserMenu from '~/components/UserMenu/UserMenu';
+import Register from '~/pages/Auth/Register';
+import { logOutSuccess } from '~/redux/Slice/authSlice';
+import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
+import { logOutUser } from '~/services/authApi';
+import { createAxios } from '~/services/axiosClient';
+import Search from '../Search/Search';
+import Setting from '../Setting';
+import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -7,7 +7,7 @@ import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import dayjs from 'dayjs';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 import { BsTrash, BsXLg } from 'react-icons/bs';
-import EventForm from '../Modal/CreateCalendar/EventForm';
+import EventForm from '../Modal/CreateCalendar/EventForm/EventForm';
 import Tippy from '@tippyjs/react';
 import { motion } from 'framer-motion';
 

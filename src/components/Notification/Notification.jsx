@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
-import styles from './Notification.module.scss';
-import { useDispatch } from 'react-redux';
-import { setNotificationModalIsOpen } from '~/redux/Slice/modalSlice';
-import { BsXLg } from 'react-icons/bs';
-import { useSelector } from 'react-redux';
-import Image from '../Image';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import Modal from '../Modal';
+import { BsXLg } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
+import Image from '../Image/Image';
+import Modal from '../Modal/Modal';
+import styles from './Notification.module.scss';
 
 const cx = classNames.bind(styles);
 dayjs.extend(relativeTime);

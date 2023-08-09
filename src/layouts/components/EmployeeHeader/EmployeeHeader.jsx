@@ -1,8 +1,7 @@
-import React from 'react';
 import classNames from 'classnames/bind';
-import { RiFilterLine, RiSearchLine, RiMore2Fill } from 'react-icons/ri';
-import { MdOutlineFileDownload } from 'react-icons/md';
 import { BsPrinter } from 'react-icons/bs';
+import { MdOutlineFileDownload } from 'react-icons/md';
+import { RiFilterLine, RiMore2Fill, RiSearchLine } from 'react-icons/ri';
 
 import styles from './EmployeeHeader.module.scss';
 

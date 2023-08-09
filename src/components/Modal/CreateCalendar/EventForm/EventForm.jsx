@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
-import styles from './EventForm.module.scss';
+import dayjs from 'dayjs';
+import { useForm } from 'react-hook-form';
 import { BsClipboard, BsClock, BsJustifyLeft, BsTags } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import dayjs from 'dayjs';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
-import { useForm } from 'react-hook-form';
-import { createCalendar } from '~/services/calendarApi';
+import styles from './EventForm.module.scss';
 
 const cx = classNames.bind(styles);
 

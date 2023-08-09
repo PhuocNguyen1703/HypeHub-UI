@@ -1,8 +1,7 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './Manage.module.scss';
 import { NavLink, Outlet } from 'react-router-dom';
+import styles from './Manage.module.scss';
 
 const cx = classNames.bind(styles);
 

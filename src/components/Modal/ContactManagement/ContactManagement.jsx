@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
 
-import styles from './ContactManagement.module.scss';
 import { BsXLg } from 'react-icons/bs';
-import Contact from '~/components/Contact';
-import Account from '~/components/Search/Account';
-import Directory from '~/components/Directory';
-import FriendRequest from '~/components/FriendRequest';
-import Confirm from '~/components/Confirm';
 import { useDispatch } from 'react-redux';
-import { setContactManagementModalIsOpen } from '~/redux/Slice/modalSlice';
+import Confirm from '~/components/Confirm/Confirm';
+import Contact from '~/components/Contact/Contact';
+import Directory from '~/components/Directory/Directory';
+import FriendRequest from '~/components/FriendRequest/FriendRequest';
+import Account from '~/components/Search/Account/Account';
 import Modal from '../Modal';
+import styles from './ContactManagement.module.scss';
 
 const cx = classNames.bind(styles);
 

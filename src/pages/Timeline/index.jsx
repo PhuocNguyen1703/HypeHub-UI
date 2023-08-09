@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useRef, useState } from 'react';
 
-import styles from './Timeline.module.scss';
 import { BsCheck, BsClock, BsLadder, BsPencil, BsPhone, BsPlus, BsThermometer } from 'react-icons/bs';
 import CreateTimeline from '~/components/Modal/CreateTimeline/CreateTimeline';
+import styles from './Timeline.module.scss';
 
 const cx = classNames.bind(styles);
 

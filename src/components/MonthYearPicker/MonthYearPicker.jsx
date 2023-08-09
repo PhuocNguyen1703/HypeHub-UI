@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useRef, useState } from 'react';
 
-import styles from './MonthYearPicker.module.scss';
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import dayjs from 'dayjs';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import styles from './MonthYearPicker.module.scss';
 
 const cx = classNames.bind(styles);
 

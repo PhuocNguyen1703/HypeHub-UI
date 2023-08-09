@@ -1,27 +1,23 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 import {
-    BsLayoutSidebar,
     BsArrowClockwise,
-    BsTrash,
-    BsPlus,
     BsCursor,
     BsEnvelope,
     BsFileEarmarkMinus,
-    BsStar,
-    BsPatchExclamation,
     BsFillStarFill,
+    BsLayoutSidebar,
+    BsPatchExclamation,
+    BsStar,
+    BsTrash
 } from 'react-icons/bs';
 
-import styles from './Email.module.scss';
-import SidebarItem from '~/layouts/components/Sidebar/SidebarItem';
-import ComposeEmail from '~/components/Modal/ComposeEmail';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { AnimatePresence, motion } from 'framer-motion';
-import EmailInfo from '~/components/Modal/EmailInfo';
-import { setSelectedItem } from '~/redux/Slice/emailSlice';
+import ComposeEmail from '~/components/Modal/ComposeEmail/ComposeEmail';
+import EmailInfo from '~/components/Modal/EmailInfo/EmailInfo';
 import SidebarEmail from '~/layouts/components/SidebarEmail/SidebarEmail';
+import { setSelectedItem } from '~/redux/Slice/emailSlice';
+import styles from './Email.module.scss';
 
 const cx = classNames.bind(styles);
 

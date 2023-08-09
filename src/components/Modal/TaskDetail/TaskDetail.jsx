@@ -1,15 +1,12 @@
-import React from 'react';
-
 import classNames from 'classnames/bind';
-import styles from './TaskDetail.module.scss';
-import { AnimatePresence } from 'framer-motion';
-import Modal from '../Modal';
-import { motion } from 'framer-motion';
-import { BsPerson, BsXLg } from 'react-icons/bs';
-import { RiLoader4Fill } from 'react-icons/ri';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
+import { BsPerson, BsXLg } from 'react-icons/bs';
 import { HiOutlineUserGroup } from 'react-icons/hi';
+import { RiLoader4Fill } from 'react-icons/ri';
 import CircleHeader from '~/components/CircleHeader/CircleHeader';
+import Modal from '../Modal';
+import styles from './TaskDetail.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
-import styles from './Support.module.scss';
 import { BsArrowBarUp, BsClipboardMinus, BsDownload, BsFillCloudArrowUpFill } from 'react-icons/bs';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-import SupportTicketInfo from '~/components/Modal/SupportTicketInfo';
+import SupportTicketInfo from '~/components/Modal/SupportTicketInfo/SupportTicketInfo';
+import styles from './Support.module.scss';
 
 const cx = classNames.bind(styles);
 

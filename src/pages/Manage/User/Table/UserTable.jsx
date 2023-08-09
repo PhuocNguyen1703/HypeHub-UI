@@ -1,8 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useRef, useState } from 'react';
 
-import styles from './UserTable.module.scss';
-import Image from '~/components/Image';
 import {
     BsCaretLeftFill,
     BsCaretRightFill,
@@ -15,9 +13,11 @@ import {
     BsTrash,
 } from 'react-icons/bs';
 import { FaCheck, FaMars, FaSort, FaVenus } from 'react-icons/fa';
+import Image from '~/components/Image/Image';
 import UserDetail from '~/components/Modal/UserDetail/UserDetail';
-import Table from '~/components/Table/Table';
 import Search from '~/components/Search/Message/Message';
+import Table from '~/components/Table/Table';
+import styles from './UserTable.module.scss';
 
 const cx = classNames.bind(styles);
 

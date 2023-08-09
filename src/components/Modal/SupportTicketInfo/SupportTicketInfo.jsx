@@ -1,11 +1,9 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './SupportTicketInfo.module.scss';
-import Modal from '../Modal';
-import { AnimatePresence } from 'framer-motion';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { BsXLg } from 'react-icons/bs';
+import Modal from '../Modal';
+import styles from './SupportTicketInfo.module.scss';
 
 const cx = classNames.bind(styles);
 

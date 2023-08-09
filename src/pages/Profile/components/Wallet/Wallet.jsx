@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
-import styles from './Wallet.module.scss';
 import { BsPlus } from 'react-icons/bs';
-import CardForm from './CardForm/CardForm';
 import Card from './Card/Card';
+import CardForm from './CardForm/CardForm';
+import styles from './Wallet.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import classNames from 'classnames/bind';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import classNames from 'classnames/bind';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import styles from './CardForm.module.scss';
-import { BsChevronRight, BsExclamationTriangle } from 'react-icons/bs';
-import Modal from '~/components/Modal/Modal';
-import { AnimatePresence } from 'framer-motion';
-import { motion } from 'framer-motion';
-import Card from '../Card/Card';
-import Dropdown from '~/components/Dropdown/Dropdown';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useCallback } from 'react';
+import { BsChevronRight, BsExclamationTriangle } from 'react-icons/bs';
+import Dropdown from '~/components/Dropdown/Dropdown';
+import Modal from '~/components/Modal/Modal';
+import Card from '../Card/Card';
+import styles from './CardForm.module.scss';
 
 const cx = classNames.bind(styles);
 

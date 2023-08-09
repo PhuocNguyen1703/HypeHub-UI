@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 import CreateBoardModal from '~/components/Modal/CreateBoard/CreateBoardModal';
 
-import styles from './Kanban.module.scss';
-import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '~/utils/constants';
-import { createNewBoard, getAllBoard, updateBoard } from '~/services/kanbanApi';
-import { useSelector } from 'react-redux';
-import { BsPencil, BsTrash } from 'react-icons/bs';
-import EditBoardModal from '~/components/Modal/EditBoard/EditBoard';
-import ConfirmModal from '~/components/Modal/Confirm/ConfirmModal';
-import { useLocation, useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
+import { BsPencil, BsTrash } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import ConfirmModal from '~/components/Modal/Confirm/ConfirmModal';
+import EditBoardModal from '~/components/Modal/EditBoard/EditBoard';
 import KanbanSkeleton from '~/layouts/components/Skeleton/Kanban/KanbanSkeleton';
+import { createNewBoard, getAllBoard, updateBoard } from '~/services/kanbanApi';
+import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '~/utils/constants';
+import styles from './Kanban.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
 
-import styles from './TodoInfo.module.scss';
-import { BsTrash, BsXLg } from 'react-icons/bs';
 import Tippy from '@tippyjs/react';
-import { useDispatch } from 'react-redux';
-import { setTodoInfoModalIsOpen } from '~/redux/Slice/modalSlice';
-import { useSelector } from 'react-redux';
+import { BsTrash, BsXLg } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedTodoItem } from '~/redux/Slice/todoSlice';
 import Modal from '../Modal';
+import styles from './TodoInfo.module.scss';
 
 const cx = classNames.bind(styles);
 

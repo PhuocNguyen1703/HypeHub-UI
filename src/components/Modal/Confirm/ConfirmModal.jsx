@@ -1,12 +1,11 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 import { motion } from 'framer-motion';
 
-import styles from './ConfirmModal.module.scss';
-import { BsXLg } from 'react-icons/bs';
-import Modal from '../Modal';
 import HTMLReactParser from 'html-react-parser';
+import { BsXLg } from 'react-icons/bs';
 import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '~/utils/constants';
+import Modal from '../Modal';
+import styles from './ConfirmModal.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 
-import styles from './Column.module.scss';
-import Card from '../Card';
 import { Draggable } from 'react-beautiful-dnd';
-import { FaPlus } from 'react-icons/fa';
 import { BsTrash } from 'react-icons/bs';
+import { FaPlus } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
+import ConfirmModal from '~/components/Modal/Confirm/ConfirmModal';
+import CreateCardModal from '~/components/Modal/CreateCardModal/CreateCardModal';
 import { setCreateKanbanItemModalIsOpen } from '~/redux/Slice/modalSlice';
-import { mapOrder } from '~/utils/sort';
 import { updateColumn } from '~/services/kanbanApi';
-import ConfirmModal from '~/components/Modal/Confirm';
 import { MODAL_ACTION_CONFIRM } from '~/utils/constants';
-import CreateCardModal from '~/components/Modal/CreateCardModal';
+import { mapOrder } from '~/utils/sort';
+import Card from '../Card/Card';
+import styles from './Column.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
-import styles from './ComposeEmail.module.scss';
-import { BsArrowsAngleContract, BsDash, BsTrash, BsX } from 'react-icons/bs';
-import { IoResizeSharp } from 'react-icons/io5';
-import { useDispatch } from 'react-redux';
-import 'react-quill/dist/quill.snow.css';
-import ReactQuill from 'react-quill';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { BsArrowsAngleContract, BsDash, BsTrash, BsX } from 'react-icons/bs';
+import { IoResizeSharp } from 'react-icons/io5';
+import { RiLoader4Fill } from 'react-icons/ri';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { useDispatch, useSelector } from 'react-redux';
 import { createEmail } from '~/services/emailApi';
 import Modal from '../Modal';
-import { RiLoader4Fill } from 'react-icons/ri';
+import styles from './ComposeEmail.module.scss';
 
 const cx = classNames.bind(styles);
 

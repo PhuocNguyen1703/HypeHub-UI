@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { MdNavigateNext } from 'react-icons/md';
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
+import { MdNavigateNext } from 'react-icons/md';
 
-import styles from './Sidebar.module.scss';
-import { NavLink } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
-import { useSelector } from 'react-redux';
+import styles from './Sidebar.module.scss';
 
 const cx = classNames.bind(styles);
 

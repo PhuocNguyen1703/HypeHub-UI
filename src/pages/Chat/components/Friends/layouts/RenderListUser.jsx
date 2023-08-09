@@ -1,10 +1,9 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './RenderListUser.module.scss';
-import Image from '~/components/Image/Image';
-import { FaCommentDots } from 'react-icons/fa';
 import { BsFillTrashFill, BsRecord2Fill } from 'react-icons/bs';
+import { FaCommentDots } from 'react-icons/fa';
+import Image from '~/components/Image/Image';
+import styles from './RenderListUser.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
-import styles from './Setting.module.scss';
-import ToggleSwitch from '~/components/ToggleSwitch';
-import { useDispatch } from 'react-redux';
-import { setSettingModalIsOpen } from '~/redux/Slice/modalSlice';
 import { BsCheck, BsXLg } from 'react-icons/bs';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Modal from '~/components/Modal/Modal';
+import ToggleSwitch from '~/components/ToggleSwitch';
 import { setNavbarColor, setSidebarColor, setThemeMode } from '~/redux/Slice/themeSlice';
-import Modal from '~/components/Modal';
+import styles from './Setting.module.scss';
 
 const cx = classNames.bind(styles);
 

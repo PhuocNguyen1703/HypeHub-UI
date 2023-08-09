@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useRef, useState } from 'react';
 
-import styles from './UserMenu.module.scss';
 import Header from '../Popper/Menu/Header';
-import ViewProfile from '../Popper/Menu/ViewProfile';
 import MenuItem from '../Popper/Menu/MenuItem';
+import ViewProfile from '../Popper/Menu/ViewProfile';
+import styles from './UserMenu.module.scss';
 
 const cx = classNames.bind(styles);
 

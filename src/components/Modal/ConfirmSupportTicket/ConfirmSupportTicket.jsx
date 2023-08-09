@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
-import styles from './ConfirmSupportTicket.module.scss';
 import { AnimatePresence } from 'framer-motion';
-import Modal from '../Modal';
 import { BsFillCaretDownFill, BsXLg } from 'react-icons/bs';
+import Modal from '../Modal';
+import styles from './ConfirmSupportTicket.module.scss';
 
 const cx = classNames.bind(styles);
 

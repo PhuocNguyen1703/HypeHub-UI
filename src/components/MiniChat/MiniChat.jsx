@@ -1,18 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
-import styles from './MiniChat.module.scss';
-import Modal from '../Modal/Modal';
-import { BsArrowsAngleContract, BsCardImage, BsCursor, BsDash, BsEmojiSmile, BsX } from 'react-icons/bs';
-import { IoResizeSharp } from 'react-icons/io5';
-import Image from '../Image/Image';
-import { uploadImages } from '~/services/uploadImagesApi';
-import { addMessage } from '~/services/messageApi';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
-import { useSelector } from 'react-redux';
 import Lightbox from 'react-18-image-lightbox';
+import { BsCardImage, BsCursor, BsDash, BsEmojiSmile, BsX } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
+import { addMessage } from '~/services/messageApi';
+import { uploadImages } from '~/services/uploadImagesApi';
+import Image from '../Image/Image';
+import Modal from '../Modal/Modal';
+import styles from './MiniChat.module.scss';
 
 const cx = classNames.bind(styles);
 

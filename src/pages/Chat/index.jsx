@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 
 import { FaPlus } from 'react-icons/fa';
 import { images } from '~/assets/images';
-import Image from '~/components/Image';
+import Image from '~/components/Image/Image';
 import styles from './Chat.module.scss';
 import Friends from './components/Friends/Friends';
 import CreateRoomModal from './components/Modal/CreateRoomModal';

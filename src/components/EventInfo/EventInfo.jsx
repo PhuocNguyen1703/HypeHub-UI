@@ -6,7 +6,7 @@ import { BsClock, BsJustifyLeft, BsPencil, BsTrash, BsXLg } from 'react-icons/bs
 import { useDispatch, useSelector } from 'react-redux';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
 import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
-import EditForm from '../EditForm';
+import EditForm from '../EditForm/EditForm';
 import { motion } from 'framer-motion';
 
 import styles from './EventInfo.module.scss';

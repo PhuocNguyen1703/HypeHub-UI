@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useRef, useState } from 'react';
 
-import styles from './UserSearch.module.scss';
-import { useDebounce } from '~/hooks';
-import { IoCloseCircle } from 'react-icons/io5';
 import { FaSpinner } from 'react-icons/fa';
+import { IoCloseCircle } from 'react-icons/io5';
 import { SearchIcon } from '~/components/Icons';
+import { useDebounce } from '~/hooks';
+import styles from './UserSearch.module.scss';
 
 const cx = classNames.bind(styles);
 

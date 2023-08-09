@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
-import styles from './ToggleSwitch.module.scss';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSidebarCollapsed } from '~/redux/Slice/layoutSlice';
+import styles from './ToggleSwitch.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,9 +1,8 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import styles from './EditProfile.module.scss';
 import Tippy from '@tippyjs/react';
+import { useForm } from 'react-hook-form';
 import {
     BsBriefcase,
     BsCalendarEvent,
@@ -15,14 +14,13 @@ import {
     BsTelephone,
     BsXLg,
 } from 'react-icons/bs';
-import { setEditProfileModalIsOpen } from '~/redux/Slice/modalSlice';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import { updateUser } from '~/services/userApi';
-import { createAxios } from '~/services/axiosClient';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateSuccess } from '~/redux/Slice/authSlice';
+import { setEditProfileModalIsOpen } from '~/redux/Slice/modalSlice';
+import { createAxios } from '~/services/axiosClient';
+import { updateUser } from '~/services/userApi';
 import Modal from '../Modal';
+import styles from './EditProfile.module.scss';
 
 const cx = classNames.bind(styles);
 

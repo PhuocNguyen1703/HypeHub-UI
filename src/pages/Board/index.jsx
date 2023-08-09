@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 
-import styles from './Board.module.scss';
-import Column from '~/layouts/components/Column';
-import { cloneDeep, isEmpty } from 'lodash-es';
+import { cloneDeep } from 'lodash-es';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
-import { createNewColumn, getBoardDetails, updateCard, updateColumn, updateTwoColumn } from '~/services/kanbanApi';
-import Modal from '~/components/Modal';
-import CreateKanbanItem from '~/components/Modal/CreateCardModal';
-import { mapOrder } from '~/utils/sort';
 import { useParams } from 'react-router-dom';
+import Column from '~/layouts/components/Column/Column';
+import { createNewColumn, getBoardDetails, updateCard, updateColumn, updateTwoColumn } from '~/services/kanbanApi';
+import { mapOrder } from '~/utils/sort';
+import styles from './Board.module.scss';
 
 const cx = classNames.bind(styles);
 

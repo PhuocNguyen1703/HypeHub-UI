@@ -1,11 +1,10 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import Image from '~/components/Image';
-import styles from './Menu.module.scss';
-import Button from '~/components/Button';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Button from '~/components/Button/Button';
+import Image from '~/components/Image/Image';
+import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
 

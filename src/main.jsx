@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import reportWebVitals from './reportWebVitals';
 import App from './App';
-import GlobalStyles from '~/components/GlobalStyles';
+import GlobalStyles from '~/components/GlobalStyles/GlobalStyles';
 import { store, persistor } from './redux/Store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';

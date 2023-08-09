@@ -1,18 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useRef, useState } from 'react';
 
-import styles from './SupportCenter.module.scss';
 import {
-    BsCaretLeftFill,
-    BsCaretRightFill,
     BsClipboardMinus,
     BsDownload,
-    BsFillCaretDownFill,
-    BsTrash,
+    BsTrash
 } from 'react-icons/bs';
 import { FaCheck } from 'react-icons/fa';
-import ConfirmSupportTicket from '~/components/Modal/ConfirmSupportTicket';
+import ConfirmSupportTicket from '~/components/Modal/ConfirmSupportTicket/ConfirmSupportTicket';
 import Table from '~/components/Table/Table';
+import styles from './SupportCenter.module.scss';
 
 const cx = classNames.bind(styles);
 

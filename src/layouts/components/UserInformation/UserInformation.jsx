@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
-import styles from './UserInformation.module.scss';
 import { useForm } from 'react-hook-form';
-import Image from '~/components/Image';
 import {
     BsBriefcase,
     BsCalendarEvent,
@@ -15,6 +13,8 @@ import {
 } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { images } from '~/assets/images';
+import Image from '~/components/Image/Image';
+import styles from './UserInformation.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
-import styles from './PersonalInfo.module.scss';
-import { useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import {
     BsBriefcase,
     BsCalendarEvent,
@@ -18,9 +16,11 @@ import {
     BsPerson,
     BsTelephone,
 } from 'react-icons/bs';
-import { motion } from 'framer-motion';
 import { IoEarthOutline } from 'react-icons/io5';
+import { useSelector } from 'react-redux';
+import * as yup from 'yup';
 import Dropdown from '~/components/Dropdown/Dropdown';
+import styles from './PersonalInfo.module.scss';
 
 const cx = classNames.bind(styles);
 

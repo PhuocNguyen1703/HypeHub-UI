@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
-import styles from './Calendar.module.scss';
-import { getMonth } from '~/utils/day';
 import dayjs from 'dayjs';
 import { BsChevronLeft, BsChevronRight, BsPlus } from 'react-icons/bs';
-import CreateCalendar from '~/components/Modal/CreateCalendar';
+import { FaAngleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import Dropdown from '~/components/Dropdown/Dropdown';
+import CreateCalendar from '~/components/Modal/CreateCalendar/CreateCalendar';
+import PickerCalendar from '~/components/PickerCalendar/PickerCalendar';
 import {
     setDaySelected,
     setMonthIndex,
     setSelectedEvent,
     setSmallCalendarSelectedDay,
 } from '~/redux/Slice/calendarSlice';
-import PickerCalendar from '~/components/PickerCalendar';
-import { FaAngleRight } from 'react-icons/fa';
-import Dropdown from '~/components/Dropdown/Dropdown';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import config from '~/config';
+import { getMonth } from '~/utils/day';
+import styles from './Calendar.module.scss';
 
 const cx = classNames.bind(styles);
 

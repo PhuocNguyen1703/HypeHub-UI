@@ -1,20 +1,16 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-undef */
-import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
-import styles from './FaceRecognition.module.scss';
 import Tippy from '@tippyjs/react';
-import { useDispatch } from 'react-redux';
-import { setFaceRecognitionModalIsOpen } from '~/redux/Slice/modalSlice';
 import { BsXLg } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
 import { images } from '~/assets/images';
-import { useSelector } from 'react-redux';
-import { updateUserFaceId } from '~/services/userApi';
-import { createAxios } from '~/services/axiosClient';
 import { updateSuccess } from '~/redux/Slice/authSlice';
+import { setFaceRecognitionModalIsOpen } from '~/redux/Slice/modalSlice';
+import { createAxios } from '~/services/axiosClient';
 import Modal from '../../Modal';
+import styles from './FaceRecognition.module.scss';
 
 const cx = classNames.bind(styles);
 

@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import { useSelector } from 'react-redux';
 
-import Portal from '~/components/Portal';
+import Portal from '~/components/Portal/Portal';
 import styles from './Modal.module.scss';
 
 const cx = classNames.bind(styles);

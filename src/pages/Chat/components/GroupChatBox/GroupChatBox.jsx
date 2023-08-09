@@ -1,20 +1,17 @@
-import 'react-18-image-lightbox/style.css';
-import React, { useRef, useState } from 'react';
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
 import classNames from 'classnames/bind';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
-import data from '@emoji-mart/data';
-import Picker from '@emoji-mart/react';
+import { useRef, useState } from 'react';
+import 'react-18-image-lightbox/style.css';
 
-import styles from './GroupChatBox.module.scss';
-import { getUser } from '~/services/userApi';
-import { addMessage, getMessages } from '~/services/messageApi';
-import Image from '~/components/Image';
-import { BsCardImage, BsCursor, BsEmojiSmile, BsPerson, BsRecord2Fill, BsStack } from 'react-icons/bs';
-import Lightbox from 'react-18-image-lightbox';
+import { BsCardImage, BsCursor, BsEmojiSmile, BsRecord2Fill } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
+import Image from '~/components/Image/Image';
+import { addMessage } from '~/services/messageApi';
 import { uploadImages } from '~/services/uploadImagesApi';
+import styles from './GroupChatBox.module.scss';
 
 const cx = classNames.bind(styles);
 dayjs.extend(utc);

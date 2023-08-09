@@ -1,10 +1,10 @@
-import React, { useMemo, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useMemo, useState } from 'react';
 
-import styles from './Table.module.scss';
-import Pagination from './Pagination/Pagination';
 import { FaAngleRight } from 'react-icons/fa';
 import Dropdown from '../Dropdown/Dropdown';
+import Pagination from './Pagination/Pagination';
+import styles from './Table.module.scss';
 
 const cx = classNames.bind(styles);
 

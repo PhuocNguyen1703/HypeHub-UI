@@ -1,16 +1,14 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './NoteInTimeSheet.module.scss';
-import { AnimatePresence } from 'framer-motion';
-import Modal from '~/components/Modal/Modal';
-import { motion } from 'framer-motion';
-import CircleHeader from '~/components/CircleHeader/CircleHeader';
-import { BsCursor, BsXLg } from 'react-icons/bs';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useForm } from 'react-hook-form';
+import { BsCursor, BsXLg } from 'react-icons/bs';
 import * as yup from 'yup';
+import CircleHeader from '~/components/CircleHeader/CircleHeader';
 import Image from '~/components/Image/Image';
+import Modal from '~/components/Modal/Modal';
+import styles from './NoteInTimeSheet.module.scss';
 
 const cx = classNames.bind(styles);
 

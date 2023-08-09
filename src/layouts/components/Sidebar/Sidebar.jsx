@@ -1,27 +1,26 @@
 import classNames from 'classnames/bind';
 import {
-    BsColumnsGap,
     BsCalendar2Date,
     BsChatSquareDots,
     BsCheck2Square,
     BsClipboardCheck,
-    BsEnvelope,
-    BsPerson,
     BsClipboardData,
-    BsPeople,
-    BsPatchQuestion,
     BsClock,
+    BsColumnsGap,
+    BsEnvelope,
+    BsPatchQuestion,
+    BsPerson
 } from 'react-icons/bs';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import { useSelector } from 'react-redux';
 import config from '~/config';
 
-import styles from './Sidebar.module.scss';
-import SidebarItem from './SidebarItem';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { images } from '~/assets/images';
-import { AnimatePresence, motion } from 'framer-motion';
 import { MANAGE_TICKETS_PATH, MANAGE_USERS_PATH } from '~/utils/constants';
+import styles from './Sidebar.module.scss';
+import SidebarItem from './SidebarItem';
 
 const cx = classNames.bind(styles);
 

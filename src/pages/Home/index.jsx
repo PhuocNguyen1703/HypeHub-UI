@@ -1,13 +1,12 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './Home.module.scss';
-import { useSelector } from 'react-redux';
-import {images} from '~/assets/images';
-import { Link } from 'react-router-dom';
-import routes from '~/config/routes';
-import Image from '~/components/Image';
 import { BsLayers } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { images } from '~/assets/images';
+import Image from '~/components/Image/Image';
+import routes from '~/config/routes';
+import styles from './Home.module.scss';
 
 const cx = classNames.bind(styles);
 

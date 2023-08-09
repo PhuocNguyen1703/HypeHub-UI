@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
-import styles from './Friends.module.scss';
 import { BsPeople } from 'react-icons/bs';
 import Search from '~/components/Search/Message/Message';
+import  AddFriendModal  from '../Modal/AddFriendModal';
+import styles from './Friends.module.scss';
 import RenderListUser from './layouts/RenderListUser';
-import { AddFriendModal } from '../Modal';
 
 const cx = classNames.bind(styles);
 

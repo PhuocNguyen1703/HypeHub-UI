@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 
-import styles from './Conversation.module.scss';
-import { getUser } from '~/services/userApi';
-import Image from '~/components/Image';
+import Image from '~/components/Image/Image';
 import { getMessages } from '~/services/messageApi';
+import { getUser } from '~/services/userApi';
+import styles from './Conversation.module.scss';
 
 const cx = classNames.bind(styles);
 

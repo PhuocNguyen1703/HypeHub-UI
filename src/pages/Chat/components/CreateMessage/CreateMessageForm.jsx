@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useRef } from 'react';
 
-import styles from './CreateMessageForm.module.scss';
-import { handleClickOutSide } from '~/utils/handleClickOutSide';
 import { BsRecord2Fill } from 'react-icons/bs';
-import Image from '~/components/Image/Image';
 import { HiCheck } from 'react-icons/hi';
+import Image from '~/components/Image/Image';
+import { handleClickOutSide } from '~/utils/handleClickOutSide';
+import styles from './CreateMessageForm.module.scss';
 
 const cx = classNames.bind(styles);
 

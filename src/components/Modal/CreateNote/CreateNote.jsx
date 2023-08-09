@@ -1,20 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
-import styles from './CreateNote.module.scss';
 import Tippy from '@tippyjs/react';
-import { BsJustifyLeft, BsTags, BsXLg } from 'react-icons/bs';
-import { useDispatch } from 'react-redux';
-import { setCreateTaskModalIsOpen } from '~/redux/Slice/modalSlice';
 import { AnimatePresence } from 'framer-motion';
-import DatePicker from '~/components/DatePicker';
-import { FaChevronDown, FaTimes } from 'react-icons/fa';
-import Modal from '../Modal';
 import { useForm } from 'react-hook-form';
-import { createTodo } from '~/services/todoApi';
-import { useSelector } from 'react-redux';
+import { BsXLg } from 'react-icons/bs';
 import { RiLoader4Fill } from 'react-icons/ri';
+import { useDispatch, useSelector } from 'react-redux';
+import { createTodo } from '~/services/todoApi';
+import Modal from '../Modal';
+import styles from './CreateNote.module.scss';
 
 const cx = classNames.bind(styles);
 

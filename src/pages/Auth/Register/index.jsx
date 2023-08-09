@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames/bind';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { AnimatePresence, motion } from 'framer-motion';
 import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
 
-import styles from './Register.module.scss';
 import {
     BsChevronRight,
     BsEnvelope,
@@ -18,13 +17,13 @@ import {
     BsXLg,
 } from 'react-icons/bs';
 import { RiLoader4Fill } from 'react-icons/ri';
-import { createAxios } from '~/services/axiosClient';
 import { useSelector } from 'react-redux';
 import { registerSuccess } from '~/redux/Slice/authSlice';
-// import Modal from '../../../components/Modal/Modal';
-import Dropdown from '~/components/Dropdown/Dropdown';
+import { createAxios } from '~/services/axiosClient';
+import styles from './Register.module.scss';
 import { images } from '~/assets/images';
-import Modal from '~/components/Modal';
+import Dropdown from '~/components/Dropdown/Dropdown';
+import Modal from '~/components/Modal/Modal';
 
 const cx = classNames.bind(styles);
 
