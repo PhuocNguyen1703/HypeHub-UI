@@ -1,8 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useEffect, useRef, useState } from 'react';
 
-import styles from './TimeSheets.module.scss';
-import Table from '~/components/Table';
 import {
     BsCalendarWeek,
     BsCaretLeftFill,
@@ -10,9 +8,9 @@ import {
     BsClipboardMinus,
     BsDownload,
     BsFillCaretDownFill,
-    BsPatchCheck,
-    BsTrash,
+    BsPatchCheck
 } from 'react-icons/bs';
+import styles from './TimeSheets.module.scss';
 
 const cx = classNames.bind(styles);
 
