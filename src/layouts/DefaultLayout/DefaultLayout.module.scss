@@ -1,39 +1,33 @@
 .wrapper {
-    position: relative;
-    display: flex;
-    gap: 10px;
-    padding: 10px 6px;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--second-bg);
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.sidebar {
-    border-radius: 10px;
-    background-color: var(--main-color);
-    box-shadow: var(--box-shadow);
+.header {
+  position: relative;
+  width: 100%;
+  background-color: var(--main-bg);
+  border-bottom: 1px solid var(--gray-alpha-20);
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+
+  .sidebar {
+    position: relative;
+    width: 60px;
+    background-color: var(--main-bg);
+    border-right: 1px solid var(--gray-alpha-20);
+  }
+
+  .content {
+    position: relative;
     flex: 1;
-    gap: 10px;
-
-    .header {
-        position: relative;
-        width: 100%;
-        border-radius: 10px;
-        box-shadow: var(--box-shadow);
-        background-color: var(--main-color);
-    }
-
-    .content {
-        position: relative;
-        flex: 1;
-        background-color: var(--second-bg);
-        box-shadow: var(--box-shadow-lg);
-        border-radius: 10px;
-        overflow: hidden;
-    }
+    background-color: var(--main-bg);
+    overflow: hidden;
+  }
 }

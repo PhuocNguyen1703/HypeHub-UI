@@ -1,10 +1,12 @@
 import classNames from 'classnames/bind';
 
-import { BsGear } from 'react-icons/bs';
+import { useEffect, useRef, useState } from 'react';
+import { BsGear, BsTrash } from 'react-icons/bs';
 import {
   FaAngellist,
-  FaAngleRight,
   FaBity,
+  FaFileMedical,
+  FaFolderPlus,
   FaGg,
   FaGrunt,
   FaJava,
@@ -13,56 +15,276 @@ import {
   FaSnapchat,
   FaSpider,
   FaTheRedYeti,
+  FaUserPlus,
 } from 'react-icons/fa6';
+import Icon from '~/components/Icon/Icon';
+import { handleClickOutSide } from '~/utils/handleClickOutSide';
+import CategoryMenu from '../../components/CategoryMenu/CategoryMenu';
 import styles from './RoomChat.module.scss';
+import { Outlet } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 const RoomChat = () => {
-  const channelList = [
-    { id: 1, icon: <FaAngellist />, name: 'general' },
-    { id: 2, icon: <FaBity />, name: 'culture' },
-    { id: 3, icon: <FaGg />, name: 'marketing' },
-    { id: 4, icon: <FaGrunt />, name: 'study' },
-    { id: 5, icon: <FaJenkins />, name: 'school' },
-    { id: 6, icon: <FaJava />, name: 'fruit' },
-    { id: 7, icon: <FaSnapchat />, name: 'monkey' },
-    { id: 8, icon: <FaTheRedYeti />, name: 'cow' },
-    { id: 9, icon: <FaMicrochip />, name: 'bird' },
-    { id: 10, icon: <FaSpider />, name: 'chicken' },
+  const [isShowSetting, setIsShowSetting] = useState(false);
+  const settingRef = useRef();
+
+  const settingMenu = [
+    {
+      icon: <FaUserPlus />,
+      title: 'Invite People',
+    },
+    {
+      icon: <FaFolderPlus />,
+      title: 'Create Category',
+    },
+    {
+      icon: <FaFileMedical />,
+      title: 'Create Channel',
+    },
+    {
+      icon: <BsTrash />,
+      title: 'Delete Room',
+      separate: true,
+    },
   ];
+
+  const sidebar = [
+    {
+      title: 'Information',
+      children: [
+        {
+          icon: <FaAngellist />,
+          title: 'Welcome-and-rule',
+          path: '',
+        },
+        {
+          icon: <FaBity />,
+          title: 'Announcement',
+          path: 'asdasd',
+        },
+        {
+          icon: <FaGg />,
+          title: 'feedback',
+          path: 'asdad',
+        },
+      ],
+    },
+    {
+      title: 'Marketing',
+      children: [
+        {
+          icon: <FaAngellist />,
+          title: 'general',
+          path: 'asd',
+        },
+        {
+          icon: <FaBity />,
+          title: 'culture',
+          path: 'asdasd',
+        },
+        {
+          icon: <FaGg />,
+          title: 'marketing',
+          path: 'asdad',
+        },
+        {
+          icon: <FaGrunt />,
+          title: 'study',
+          path: 'asdad',
+        },
+        {
+          icon: <FaJenkins />,
+          title: 'school',
+          path: 'asdad',
+        },
+        {
+          icon: <FaJava />,
+          title: 'fruit',
+          path: 'asdad',
+        },
+        {
+          icon: <FaSnapchat />,
+          title: 'monkey',
+          path: 'asdad',
+        },
+        {
+          icon: <FaTheRedYeti />,
+          title: 'cow',
+          path: 'asdad',
+        },
+        {
+          icon: <FaMicrochip />,
+          title: 'bird',
+          path: 'asdad',
+        },
+        {
+          icon: <FaSpider />,
+          title: 'chicken',
+          path: 'asdad',
+        },
+      ],
+    },
+    {
+      title: 'Marketing',
+      children: [
+        {
+          icon: <FaAngellist />,
+          title: 'general',
+          path: 'asd',
+        },
+        {
+          icon: <FaBity />,
+          title: 'culture',
+          path: 'asdasd',
+        },
+        {
+          icon: <FaGg />,
+          title: 'marketing',
+          path: 'asdad',
+        },
+        {
+          icon: <FaGrunt />,
+          title: 'study',
+          path: 'asdad',
+        },
+        {
+          icon: <FaJenkins />,
+          title: 'school',
+          path: 'asdad',
+        },
+        {
+          icon: <FaJava />,
+          title: 'fruit',
+          path: 'asdad',
+        },
+        {
+          icon: <FaSnapchat />,
+          title: 'monkey',
+          path: 'asdad',
+        },
+        {
+          icon: <FaTheRedYeti />,
+          title: 'cow',
+          path: 'asdad',
+        },
+        {
+          icon: <FaMicrochip />,
+          title: 'bird',
+          path: 'asdad',
+        },
+        {
+          icon: <FaSpider />,
+          title: 'chicken',
+          path: 'asdad',
+        },
+      ],
+    },
+    {
+      title: 'Marketing',
+      children: [
+        {
+          icon: <FaAngellist />,
+          title: 'general',
+          path: 'asd',
+        },
+        {
+          icon: <FaBity />,
+          title: 'culture',
+          path: 'asdasd',
+        },
+        {
+          icon: <FaGg />,
+          title: 'marketing',
+          path: 'asdad',
+        },
+        {
+          icon: <FaGrunt />,
+          title: 'study',
+          path: 'asdad',
+        },
+        {
+          icon: <FaJenkins />,
+          title: 'school',
+          path: 'asdad',
+        },
+        {
+          icon: <FaJava />,
+          title: 'fruit',
+          path: 'asdad',
+        },
+        {
+          icon: <FaSnapchat />,
+          title: 'monkey',
+          path: 'asdad',
+        },
+        {
+          icon: <FaTheRedYeti />,
+          title: 'cow',
+          path: 'asdad',
+        },
+        {
+          icon: <FaMicrochip />,
+          title: 'bird',
+          path: 'asdad',
+        },
+        {
+          icon: <FaSpider />,
+          title: 'chicken',
+          path: 'asdad',
+        },
+      ],
+    },
+  ];
+
+  useEffect(() => {
+    handleClickOutSide(isShowSetting, setIsShowSetting, settingRef);
+  }, [isShowSetting]);
+
+  const handleToggleSetting = () => {
+    setIsShowSetting(true);
+  };
+
+  const handleSelectSetting = (data) => {};
 
   return (
     <div className={cx('wrapper')}>
-      <header className={cx('header')}>
-        <img
-          className={cx('banner')}
-          src="https://images.unsplash.com/photo-1691030133693-84d7bbec65a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
-          alt="banner"
-        />
-        <div className={cx('room-info')}>
-          <span className={cx('room-name')}>User's room</span>
-          <button className={cx('icon-setting')}>
-            <BsGear />
-          </button>
-        </div>
-      </header>
-      <div className={cx('channel')}>
-        <span className={cx('title')}>INFORMATION</span>
-        <span className={cx('icon-dropdown')}>
-          <FaAngleRight />
-        </span>
-      </div>
-      <div className={cx('channel-list')}>
-        {channelList.map((channel, idx) => (
-          <div key={channel.id} className={cx('channel-item')}>
-            <span className={cx('icon-channel')}>{channel.icon}</span>
-            <span className={cx('name')}>{channel.name}</span>
-            <span className={cx('icon-setting')}>
+      <div className={cx('sidebar')}>
+        <header className={cx('header')}>
+          <img
+            className={cx('banner')}
+            src="https://images.unsplash.com/photo-1691855408946-6709f6c1b915?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOXx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            alt="banner"
+          />
+          <div className={cx('room-info')}>
+            <span className={cx('room-name')}>User's room</span>
+            <button className={cx('icon-setting')} onClick={handleToggleSetting}>
               <BsGear />
-            </span>
+            </button>
+            {isShowSetting && (
+              <div ref={settingRef} className={cx('setting-dropdown')}>
+                {settingMenu.map((item, idx) => (
+                  <button
+                    key={idx}
+                    className={cx('option-setting', { separate: item.separate })}
+                    onClick={handleSelectSetting}
+                  >
+                    <span className={cx('title')}>{item.title}</span>
+                    <Icon icon={item.icon} size="1.6rem" />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
-        ))}
+        </header>
+        <div className={cx('category')}>
+          {sidebar.map((item, index) => (
+            <CategoryMenu key={index} item={item} />
+          ))}
+        </div>
+      </div>
+      <div className={cx('container')}>
+        <Outlet />
       </div>
     </div>
   );

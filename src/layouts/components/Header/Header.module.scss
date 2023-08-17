@@ -1,74 +1,108 @@
 .wrapper {
-    --search-border-radius: 92px;
-    --search-height: 46px;
-    --search-top-spacer: 9px;
-    --search-button-width: 48px;
+  --header-height: 56px;
+  --search-border-radius: 92px;
+  --search-height: 40px;
+  --search-top-spacer: 8px;
+  --search-button-width: 38px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+  padding: 0 10px;
+  user-select: none;
 }
 
 .header-left {
+  display: flex;
+  align-items: center;
+
+  .toggle-sidebar-btn {
+    margin-right: 14px;
+    margin-left: 4px;
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--gray-alpha-20);
+    }
+  }
+
+  .logo {
     display: flex;
     align-items: center;
-    font-size: 3rem;
-    color: var(--second-color);
-    cursor: pointer;
+    user-select: none;
+
+    .logo-image {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+
+    .app-name {
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin-left: 6px;
+      background: var(--text-logo-gradient-color);
+      background-size: 100%;
+      background-repeat: repeat;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-background-clip: text;
+      -moz-background-clip: transparent;
+    }
+  }
 }
 
-//Actions
 .header-right {
-    position: relative;
-    display: flex;
-    align-items: center;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .more-icon {
-    color: var(--second-color);
+  font-size: 1.8rem;
+  color: var(--gray-alpha-40);
+  margin: 0 6px;
 }
 
-.actions {
+.actions-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .button {
     display: flex;
     align-items: center;
-    gap: 10px;
-}
+  }
 
-.action-btn {
+  .action-btn {
     position: relative;
-    display: flex;
-    background-color: transparent;
-    padding: 0 10px;
+    padding: 4px;
     cursor: pointer;
-    color: var(--second-color);
-}
 
-.icon {
-    width: 18px;
-    height: 18px;
-}
+    .icon {
+      font-size: 1.8rem;
+    }
 
-.badge {
-    position: absolute;
-    top: -5px;
-    right: 2px;
-    height: 8px;
-    width: 8px;
-    border-radius: 999px;
-    background-color: var(--red);
-}
-
-.notification {
-    position: relative;
+    .badge {
+      position: absolute;
+      top: -5px;
+      right: 2px;
+      height: 8px;
+      width: 8px;
+      border-radius: 999px;
+      background-color: var(--red);
+    }
+  }
 }
 
 .user-avatar {
-    width: 35px;
-    height: 35px;
-    margin: 0 5px 0 15px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: var(--box-shadow);
-    cursor: pointer;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
 }

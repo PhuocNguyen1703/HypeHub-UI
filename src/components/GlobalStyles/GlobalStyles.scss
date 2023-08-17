@@ -1,354 +1,357 @@
 @import 'normalize.css';
 
 :root {
-    --red: #e41e3f;
-    --white: #ffffff;
-    --text-primary: #161823;
-    --text-linear-gradient-color: linear-gradient(98.63deg, #f9a225 0%, #ff6a00 100%);
-    --text-logo-gradient-color: linear-gradient(98deg, var(--blue) 0%, var(--red) 80%);
-    --secondary-button-background: linear-gradient(177.34deg, #21a2ff, #8951ff 73.36%);
+  // Variables
+  --header-height: 56px;
 
-    //Color//
-    --init-color: #33b5e5;
-    --init-color-dark: #0099cc;
-    --done-color: #00c851;
-    --done-color-dark: #007e33;
-    --warning-color: #ffbb33;
-    --warning-color-dark: #ff8800;
-    --danger-color: #ff4444;
-    --danger-color-dark: #cc0000;
+  --red: #e41e3f;
+  --white: #ffffff;
+  --text-primary: #161823;
+  --text-linear-gradient-color: linear-gradient(98.63deg, #f9a225 0%, #ff6a00 100%);
+  --text-logo-gradient-color: linear-gradient(98deg, var(--blue) 0%, var(--red) 80%);
+  --secondary-button-background: linear-gradient(177.34deg, #21a2ff, #8951ff 73.36%);
 
-    --blue: rgb(24, 119, 242);
-    --blue-alpha-90: rgba(24, 119, 242, 0.9);
-    --blue-alpha-80: rgba(24, 119, 242, 0.8);
-    --blue-alpha-60: rgba(24, 119, 242, 0.6);
-    --blue-alpha-40: rgba(24, 119, 242, 0.4);
-    --blue-alpha-20: rgba(24, 119, 242, 0.2);
-    --blue-alpha-10: rgba(24, 119, 242, 0.1);
-    --blue-alpha-05: rgba(24, 119, 242, 0.05);
+  //Color//
+  --init-color: #33b5e5;
+  --init-color-dark: #0099cc;
+  --done-color: #00c851;
+  --done-color-dark: #007e33;
+  --warning-color: #ffbb33;
+  --warning-color-dark: #ff8800;
+  --danger-color: #ff4444;
+  --danger-color-dark: #cc0000;
 
-    --skyBlue: #a4cde3;
-    --skyBlue-alpha-80: rgba(164, 205, 227, 0.8);
-    --skyBlue-alpha-60: rgba(164, 205, 227, 0.6);
-    --skyBlue-alpha-40: rgba(164, 205, 227, 0.4);
-    --skyBlue-alpha-20: rgba(165, 206, 227, 0.2);
+  --blue: rgb(24, 119, 242);
+  --blue-alpha-90: rgba(24, 119, 242, 0.9);
+  --blue-alpha-80: rgba(24, 119, 242, 0.8);
+  --blue-alpha-60: rgba(24, 119, 242, 0.6);
+  --blue-alpha-40: rgba(24, 119, 242, 0.4);
+  --blue-alpha-20: rgba(24, 119, 242, 0.2);
+  --blue-alpha-10: rgba(24, 119, 242, 0.1);
+  --blue-alpha-05: rgba(24, 119, 242, 0.05);
 
-    --black: #141416;
-    --black-alpha-80: rgba(20, 20, 22, 0.8);
-    --black-alpha-60: rgba(20, 20, 22, 0.6);
-    --black-alpha-40: rgba(20, 20, 22, 0.4);
-    --black-alpha-20: rgba(20, 20, 22, 0.2);
+  --skyBlue: #a4cde3;
+  --skyBlue-alpha-80: rgba(164, 205, 227, 0.8);
+  --skyBlue-alpha-60: rgba(164, 205, 227, 0.6);
+  --skyBlue-alpha-40: rgba(164, 205, 227, 0.4);
+  --skyBlue-alpha-20: rgba(165, 206, 227, 0.2);
 
-    --gray: #8e94a3;
-    --gray-alpha-80: rgba(143, 149, 163, 0.8);
-    --gray-alpha-60: rgba(142, 148, 163, 0.6);
-    --gray-alpha-40: rgba(142, 148, 163, 0.4);
-    --gray-alpha-20: rgba(142, 148, 163, 0.2);
-    --gray-alpha-10: rgba(142, 148, 163, 0.1);
-    --gray-alpha-05: rgba(142, 148, 163, 0.05);
+  --black: #141416;
+  --black-alpha-80: rgba(20, 20, 22, 0.8);
+  --black-alpha-60: rgba(20, 20, 22, 0.6);
+  --black-alpha-40: rgba(20, 20, 22, 0.4);
+  --black-alpha-20: rgba(20, 20, 22, 0.2);
 
-    // DefaultLayout
-    --default-background-color: rgb(1, 94, 194);
-    --main-overlay-color: rgba(255, 255, 255, 0.91);
+  --gray: #8e94a3;
+  --gray-alpha-80: rgba(143, 149, 163, 0.8);
+  --gray-alpha-60: rgba(142, 148, 163, 0.6);
+  --gray-alpha-40: rgba(142, 148, 163, 0.4);
+  --gray-alpha-20: rgba(142, 148, 163, 0.2);
+  --gray-alpha-10: rgba(142, 148, 163, 0.1);
+  --gray-alpha-05: rgba(142, 148, 163, 0.05);
 
-    //Font
-    --font-family: 'Roboto', 'Arial', sans-serif;
+  // DefaultLayout
+  --default-background-color: rgb(1, 94, 194);
+  --main-overlay-color: rgba(255, 255, 255, 0.91);
 
-    //box-shadow
-    --box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    --box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
-    --box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.075);
-    --box-shadow-input-hover: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px var(--blue-alpha-40);
-    --box-shadow-input-focus: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px 1px var(--blue-alpha-40);
+  //Font
+  --font-family: 'Roboto', 'Arial', sans-serif;
 
-    //////////////
-    --saturation-factor: 1;
-    --text-black: #161823;
-    --text-white: #ffffff;
+  //box-shadow
+  --box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+  --box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+  --box-shadow-input-hover: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px var(--blue-alpha-40);
+  --box-shadow-input-focus: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px 1px var(--blue-alpha-40);
 
-    // mode default
-    --main-bg: #e3f4ff;
-    --second-bg: #ffffff;
-    --main-color: #e3f4ff;
-    --text-color: #161823;
-    --second-color: #455560;
-    --text-hover-color: var(--text-white);
-    --button-primary: linear-gradient(
-        90deg,
-        hsl(269, calc(var(--saturation-factor, 1) * 52.7%), 52.7%),
-        hsl(325, calc(var(--saturation-factor, 1) * 31.7%), 51.8%)
-    );
-    --button-secondary: linear-gradient(
-        90deg,
-        hsl(235, calc(var(--saturation-factor, 1) * 85.6%), 64.7%),
-        hsl(202, calc(var(--saturation-factor, 1) * 100%), 38%)
-    );
-    // --sidebar-item-color: linear-gradient(177.34deg, var(--hover-main-color), var(--hover-second-color) 73.36%);
-    --sidebar-item-color: linear-gradient(
-        90deg,
-        hsl(235, calc(var(--saturation-factor, 1) * 85.6%), 64.7%),
-        hsl(202, calc(var(--saturation-factor, 1) * 100%), 38%)
-    );
+  //////////////
+  --saturation-factor: 1;
+  --text-black: #161823;
+  --text-white: #ffffff;
 
-    // --second-color: #62b4ff;
+  // mode default
+  --main-bg: #e3f4ff;
+  --second-bg: #ffffff;
+  --main-color: #e3f4ff;
+  --text-color: #161823;
+  --second-color: #455560;
+  --text-hover-color: var(--text-white);
+  --button-primary: linear-gradient(
+    90deg,
+    hsl(269, calc(var(--saturation-factor, 1) * 52.7%), 52.7%),
+    hsl(325, calc(var(--saturation-factor, 1) * 31.7%), 51.8%)
+  );
+  --button-secondary: linear-gradient(
+    90deg,
+    hsl(235, calc(var(--saturation-factor, 1) * 85.6%), 64.7%),
+    hsl(202, calc(var(--saturation-factor, 1) * 100%), 38%)
+  );
+  // --sidebar-item-color: linear-gradient(177.34deg, var(--hover-main-color), var(--hover-second-color) 73.36%);
+  --sidebar-item-color: linear-gradient(
+    90deg,
+    hsl(235, calc(var(--saturation-factor, 1) * 85.6%), 64.7%),
+    hsl(202, calc(var(--saturation-factor, 1) * 100%), 38%)
+  );
 
-    --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  // --second-color: #62b4ff;
 
-    //light mode
-    --main-bg-light: #ffffff;
-    --second-bg-light: #fafafb;
-    --text-color-light: #455560;
-    --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
-    //dark mode
-    --main-bg-dark: hsl(216, calc(var(--saturation-factor, 1) * 7.2%), 13.5%);
-    --second-bg-dark: hsl(0, 0%, 18%);
-    --text-color-dark: #b9bbbe;
-    --box-shadow-dark: rgba(0, 0, 0, 0.2) 0px 5px 10px;
+  //light mode
+  --main-bg-light: #ffffff;
+  --second-bg-light: #fafafb;
+  --text-color-light: #455560;
+  --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
-    // Main color
-    --main-color-radicchio: #cca6ac;
-    --main-color-citron: #fbe983;
-    --main-color-basil: #16a765;
-    --main-color-blueBerry: #4986e7;
-    --main-color-grape: #9360f7;
-    --main-color-avocado: #b3dc6c;
-    --main-color-eucalyptus: #42d692;
-    --main-color-lavender: #9a9cff;
-    --main-color-cocoa: #ac725e;
-    --main-color-mango: #ffad46;
-    --main-color-pistachio: #7bd148;
-    --main-color-peacock: #9fe1e7;
-    --main-color-wisteria: #b99aff;
-    --main-color-graphite: #c2c2c2;
-    --main-color-flamingo: #d06b64;
-    --main-color-banana: #fad165;
-    --main-color-sage: #92e1c0;
-    --main-color-cobalt: #9fc6e7;
-    --main-color-amethyst: #a47ae2;
-    --main-color-birch: #cabdbf;
-    --main-color-cyan: #10d4d2;
-    --main-color-orange: #d68102;
-    --main-color-lemon: #f7b928;
-    --main-color-lime: #45bd62;
-    --main-color-seafoam: #54c7ec;
-    --main-color-teal: #2abba7;
+  //dark mode
+  --main-bg-dark: hsl(216, calc(var(--saturation-factor, 1) * 7.2%), 13.5%);
+  --second-bg-dark: hsl(0, 0%, 18%);
+  --text-color-dark: #b9bbbe;
+  --box-shadow-dark: rgba(0, 0, 0, 0.2) 0px 5px 10px;
 
-    --hover-main-color: #349eff;
-    --hover-second-color: #62b4ff;
-    --active-main-color: #349eff;
-    --active-second-color: #62b4ff;
+  // Main color
+  --main-color-radicchio: #cca6ac;
+  --main-color-citron: #fbe983;
+  --main-color-basil: #16a765;
+  --main-color-blueBerry: #4986e7;
+  --main-color-grape: #9360f7;
+  --main-color-avocado: #b3dc6c;
+  --main-color-eucalyptus: #42d692;
+  --main-color-lavender: #9a9cff;
+  --main-color-cocoa: #ac725e;
+  --main-color-mango: #ffad46;
+  --main-color-pistachio: #7bd148;
+  --main-color-peacock: #9fe1e7;
+  --main-color-wisteria: #b99aff;
+  --main-color-graphite: #c2c2c2;
+  --main-color-flamingo: #d06b64;
+  --main-color-banana: #fad165;
+  --main-color-sage: #92e1c0;
+  --main-color-cobalt: #9fc6e7;
+  --main-color-amethyst: #a47ae2;
+  --main-color-birch: #cabdbf;
+  --main-color-cyan: #10d4d2;
+  --main-color-orange: #d68102;
+  --main-color-lemon: #f7b928;
+  --main-color-lime: #45bd62;
+  --main-color-seafoam: #54c7ec;
+  --main-color-teal: #2abba7;
 
-    // --main-color-red: #fb0b12;
-    // --second-color-red: #ff4a6b;
-    --second-color-cyan: #2ae9e6;
+  --hover-main-color: #349eff;
+  --hover-second-color: #62b4ff;
+  --active-main-color: #349eff;
+  --active-second-color: #62b4ff;
 
-    // --main-color-green: #019707;
-    // --second-color-green: #4caf50;
-    --second-color-orange: #fca11a;
+  // --main-color-red: #fb0b12;
+  // --second-color-red: #ff4a6b;
+  --second-color-cyan: #2ae9e6;
 
-    --transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  // --main-color-green: #019707;
+  // --second-color-green: #4caf50;
+  --second-color-orange: #fca11a;
+
+  --transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 // Scrollbar CSS
 html *::-webkit-scrollbar {
-    border-radius: 0;
-    width: 8px;
-    height: 8px;
+  border-radius: 0;
+  width: 8px;
+  height: 8px;
 }
 
 html *::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 html *::-webkit-scrollbar-track {
-    border-radius: 0;
-    background-color: rgba(0, 0, 0, 0);
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 button,
 input {
-    outline: none;
-    border: none;
-    font-family: var(--font-family);
-    background-color: transparent;
-    color: var(--text-color);
-    font-size: 1.6rem;
+  outline: none;
+  border: none;
+  font-family: var(--font-family);
+  background-color: transparent;
+  color: var(--text-color);
+  font-size: 1.6rem;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 ul,
 li {
-    list-style: none;
+  list-style: none;
 }
 
 body {
-    font-family: var(--font-family);
-    color: var(--text-color);
-    font-size: 1.6rem;
-    line-height: 1.5;
-    text-rendering: optimizeSpeed;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-y: overlay;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: overlay;
 }
 
 //Custom Tippy UI
 body {
-    .tippy-box {
-        font-size: 1.6rem;
-        font-weight: 500;
-        line-height: 2.2rem;
-        border-radius: 8px;
-        color: var(--white);
-        background-color: rgba(84, 84, 84, 0.7);
-    }
+  .tippy-box {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 2.2rem;
+    border-radius: 8px;
+    color: var(--white);
+    background-color: rgba(84, 84, 84, 0.7);
+  }
 
-    .tippy-content {
-        padding: 8px;
-    }
+  .tippy-content {
+    padding: 8px;
+  }
 
-    .tippy-arrow {
-        color: rgba(84, 84, 84, 0.7);
-    }
+  .tippy-arrow {
+    color: rgba(84, 84, 84, 0.7);
+  }
 
-    .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
-        top: -8px;
-    }
+  .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+    top: -8px;
+  }
 }
 
 //Custom quill
 body {
-    .quill {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        color: var(--text-color);
-        overflow: hidden;
-    }
+  .quill {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: var(--text-color);
+    overflow: hidden;
+  }
 
-    .ql-toolbar {
-        width: 100%;
-        border: 1px solid var(--gray-alpha-10) !important;
-        border-radius: 4px;
-    }
+  .ql-toolbar {
+    width: 100%;
+    border: 1px solid var(--gray-alpha-10) !important;
+    border-radius: 4px;
+  }
 
-    .ql-container {
-        flex: 1;
-        border: none !important;
-        overflow: overlay;
-    }
+  .ql-container {
+    flex: 1;
+    border: none !important;
+    overflow: overlay;
+  }
 
-    .ql-editor {
-        font-size: 1.6rem;
-    }
+  .ql-editor {
+    font-size: 1.6rem;
+  }
 
-    .ql-picker {
-        color: var(--gray-alpha-80) !important;
-    }
+  .ql-picker {
+    color: var(--gray-alpha-80) !important;
+  }
 
-    .ql-picker-options {
-        background-color: var(--main-bg) !important;
-    }
+  .ql-picker-options {
+    background-color: var(--main-bg) !important;
+  }
 }
 
 //Custom LightBox
 body {
-    .ReactModal__Content {
-        background-color: var(--gray-alpha-10) !important;
-        backdrop-filter: saturate(120%) blur(2px);
-    }
+  .ReactModal__Content {
+    background-color: var(--gray-alpha-10) !important;
+    backdrop-filter: saturate(120%) blur(2px);
+  }
 }
 
 body {
-    .rdw-option-wrapper {
-        background-color: rgba(255, 255, 255, 0.5);
-    }
-    .rdw-dropdown-wrapper {
-        background-color: rgba(255, 255, 255, 0.5);
-    }
+  .rdw-option-wrapper {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .rdw-dropdown-wrapper {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
 }
 
 //Custom style DatePicker ( time sheet)
 .react-datepicker {
-    font-family: var(--font-family);
-    font-size: 1.6rem;
-    background-color: var(--main-bg);
-    color: var(--text-color);
-    border: 1px solid var(--gray-alpha-20);
-    border-radius: 4px;
-    box-shadow: var(--box-shadow);
+  font-family: var(--font-family);
+  font-size: 1.6rem;
+  background-color: var(--main-bg);
+  color: var(--text-color);
+  border: 1px solid var(--gray-alpha-20);
+  border-radius: 4px;
+  box-shadow: var(--box-shadow);
 }
 
 .react-datepicker-year-header {
-    color: var(--text-color);
-    font-weight: 500;
-    font-size: 1.6rem;
-    background-color: var(--second-bg);
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 1.6rem;
+  background-color: var(--second-bg);
 }
 
 .react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::before {
-    border-bottom-color: var(--gray-alpha-60);
+  border-bottom-color: var(--gray-alpha-60);
 }
 
 .react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::after {
-    border-bottom-color: var(--second-bg);
+  border-bottom-color: var(--second-bg);
 }
 
 //Custom style DatePicker ( Timeline)
 .react-datepicker__header {
-    background-color: var(--second-bg);
-    border-bottom: 1px solid var(--gray-alpha-60);
+  background-color: var(--second-bg);
+  border-bottom: 1px solid var(--gray-alpha-60);
 }
 
 .react-datepicker__current-month,
 .react-datepicker-time__header,
 .react-datepicker-year-header {
-    color: var(--text-color);
-    font-weight: 500;
-    font-size: 1.6rem;
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 1.6rem;
 }
 
 .react-datepicker__day--selected {
-    background-color: var(--blue-alpha-40);
+  background-color: var(--blue-alpha-40);
 }
 
 .react-datepicker__time-container {
-    border-left: 1px solid var(--gray-alpha-60);
+  border-left: 1px solid var(--gray-alpha-60);
 }
 
 .react-datepicker__day-name,
 .react-datepicker__day,
 .react-datepicker__time-name {
-    color: var(--text-color);
-    padding: 4px;
-    width: 24px;
-    line-height: 1;
-    margin: 1px;
+  color: var(--text-color);
+  padding: 4px;
+  width: 24px;
+  line-height: 1;
+  margin: 1px;
 }
 
 .react-datepicker__time-box {
-    background-color: var(--main-bg);
+  background-color: var(--main-bg);
 }
 
 .react-datepicker__time-list-item:hover {
-    background-color: var(--gray-alpha-20) !important;
+  background-color: var(--gray-alpha-20) !important;
 }
 
 .react-datepicker__day:hover {
-    background-color: var(--gray-alpha-20);
+  background-color: var(--gray-alpha-20);
 }

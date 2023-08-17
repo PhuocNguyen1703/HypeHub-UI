@@ -2,17 +2,17 @@ import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import {
-    BsBell,
-    BsChatSquareDots,
-    BsFillPersonPlusFill,
-    BsFullscreen,
-    BsFullscreenExit,
-    BsPersonBoundingBox,
+  BsBell,
+  BsChatSquareDots,
+  BsFillPersonPlusFill,
+  BsFullscreen,
+  BsFullscreenExit,
+  BsPersonBoundingBox,
 } from 'react-icons/bs';
 import { CgMenu, CgMoreVerticalAlt } from 'react-icons/cg';
 import { IoLanguageOutline, IoLogOutOutline, IoSettingsOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css';
 
 import { CNFlagIcon, JPFlagIcon, KRFlagIcon, THFlagIcon, USFlagIcon, VNFlagIcon } from '~/components/Icons';
@@ -30,251 +30,251 @@ import { createAxios } from '~/services/axiosClient';
 import Search from '../Search/Search';
 import Setting from '../Setting';
 import styles from './Header.module.scss';
+import Icon from '~/components/Icon/Icon';
+import { images } from '~/assets/images';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
 function Header() {
-    const { currentUser } = useSelector((state) => state.auth.login);
-    const { sidebarCollapsed } = useSelector((state) => state.layout);
-    const [isFullScreen, setIsFullScreen] = useState(false);
-    const [showMessageModal, setShowMessageModal] = useState(false);
-    const [showContactModal, setShowContactModal] = useState(false);
-    const [showRegisterModal, setShowRegisterModal] = useState(false);
-    const [showNotificationModal, setShowNotificationModal] = useState(false);
-    const [showSettingModal, setShowSettingModal] = useState(false);
-    const [showFaceRecognitionModal, setShowFaceRecognitionModal] = useState(false);
-    const [faceRecognitionTitle, setFaceRecognitionTitle] = useState('');
-    const accessToken = currentUser?.accessToken;
-    const id = currentUser?._id;
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    let axiosJWT = createAxios(currentUser, dispatch, logOutSuccess);
+  const { currentUser } = useSelector((state) => state.auth.login);
+  const { sidebarCollapsed } = useSelector((state) => state.layout);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [showMessageModal, setShowMessageModal] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showNotificationModal, setShowNotificationModal] = useState(false);
+  const [showSettingModal, setShowSettingModal] = useState(false);
+  const [showFaceRecognitionModal, setShowFaceRecognitionModal] = useState(false);
+  const [faceRecognitionTitle, setFaceRecognitionTitle] = useState('');
+  const accessToken = currentUser?.accessToken;
+  const id = currentUser?._id;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  let axiosJWT = createAxios(currentUser, dispatch, logOutSuccess);
 
-    const userMenu = [
-        {
-            icon: <IoLanguageOutline />,
-            title: 'Language',
-            children: {
-                title: 'Language',
-                data: [
-                    {
-                        icon: <USFlagIcon />,
-                        code: 'en',
-                        title: 'English (US)',
-                    },
-                    {
-                        icon: <VNFlagIcon />,
-                        code: 'vi',
-                        title: 'Vietnamese',
-                    },
-                    {
-                        icon: <JPFlagIcon />,
-                        code: 'ja',
-                        title: 'Japanese',
-                    },
-                    {
-                        icon: <KRFlagIcon />,
-                        code: 'kr',
-                        title: 'Korean',
-                    },
-                    {
-                        icon: <THFlagIcon />,
-                        code: 'th',
-                        title: 'Thai',
-                    },
-                    {
-                        icon: <CNFlagIcon />,
-                        code: 'cn',
-                        title: 'Chinese',
-                    },
-                ],
-            },
-        },
-        {
-            icon: <BsPersonBoundingBox />,
-            title: 'Check in',
-        },
-        {
-            icon: <BsPersonBoundingBox />,
-            title: 'Check out',
-        },
-        {
-            icon: <IoSettingsOutline />,
-            title: 'Settings',
-        },
-        {
-            icon: <IoLogOutOutline />,
-            title: 'Logout',
-            to: '/login',
-            separate: true,
-        },
-    ];
+  const userMenu = [
+    {
+      icon: <IoLanguageOutline />,
+      title: 'Language',
+      children: {
+        title: 'Language',
+        data: [
+          {
+            icon: <USFlagIcon />,
+            code: 'en',
+            title: 'English (US)',
+          },
+          {
+            icon: <VNFlagIcon />,
+            code: 'vi',
+            title: 'Vietnamese',
+          },
+          {
+            icon: <JPFlagIcon />,
+            code: 'ja',
+            title: 'Japanese',
+          },
+          {
+            icon: <KRFlagIcon />,
+            code: 'kr',
+            title: 'Korean',
+          },
+          {
+            icon: <THFlagIcon />,
+            code: 'th',
+            title: 'Thai',
+          },
+          {
+            icon: <CNFlagIcon />,
+            code: 'cn',
+            title: 'Chinese',
+          },
+        ],
+      },
+    },
+    {
+      icon: <BsPersonBoundingBox />,
+      title: 'Check in',
+    },
+    {
+      icon: <BsPersonBoundingBox />,
+      title: 'Check out',
+    },
+    {
+      icon: <IoSettingsOutline />,
+      title: 'Settings',
+    },
+    {
+      icon: <IoLogOutOutline />,
+      title: 'Logout',
+      to: '/login',
+      separate: true,
+    },
+  ];
 
-    const adminMenu = [
-        {
-            icon: <BsFillPersonPlusFill />,
-            title: 'Create user',
-        },
-        ...userMenu,
-    ];
+  const adminMenu = [
+    {
+      icon: <BsFillPersonPlusFill />,
+      title: 'Create user',
+    },
+    ...userMenu,
+  ];
 
-    const handleFullscreen = () => {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch((err) => console.log(err));
-        } else if (document.exitFullscreen) {
-            document.exitFullscreen().catch((err) => console.log(err));
-        }
-    };
+  const handleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch((err) => console.log(err));
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen().catch((err) => console.log(err));
+    }
+  };
 
-    document.addEventListener('fullscreenchange', () => {
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'F11') {
-                e.preventDefault();
-            }
-        });
-
-        if (!document.fullscreenElement) {
-            setIsFullScreen(false);
-        } else if (document.exitFullscreen) {
-            setIsFullScreen(true);
-        }
+  document.addEventListener('fullscreenchange', () => {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'F11') {
+        e.preventDefault();
+      }
     });
 
-    const toggleShowRegisterModal = () => {
-        setShowRegisterModal(true);
-    };
+    if (!document.fullscreenElement) {
+      setIsFullScreen(false);
+    } else if (document.exitFullscreen) {
+      setIsFullScreen(true);
+    }
+  });
 
-    const handleMenuChange = (title) => {
-        if (title === 'Logout') logOutUser(dispatch, id, navigate, accessToken, axiosJWT);
+  const toggleShowRegisterModal = () => {
+    setShowRegisterModal(true);
+  };
 
-        if (title === 'Settings') setShowSettingModal(true);
+  const handleMenuChange = (title) => {
+    if (title === 'Logout') logOutUser(dispatch, id, navigate, accessToken, axiosJWT);
 
-        if (title === 'Check in') {
-            setFaceRecognitionTitle('Check in');
-            setShowFaceRecognitionModal(true);
-        }
+    if (title === 'Settings') setShowSettingModal(true);
 
-        if (title === 'Check out') {
-            setFaceRecognitionTitle('Check out');
-            setShowFaceRecognitionModal(true);
-        }
+    if (title === 'Check in') {
+      setFaceRecognitionTitle('Check in');
+      setShowFaceRecognitionModal(true);
+    }
 
-        if (title === 'Create user') toggleShowRegisterModal();
-    };
+    if (title === 'Check out') {
+      setFaceRecognitionTitle('Check out');
+      setShowFaceRecognitionModal(true);
+    }
 
-    const handleShowNotificationModal = () => {
-        setShowNotificationModal(true);
-    };
+    if (title === 'Create user') toggleShowRegisterModal();
+  };
 
-    const handleToggleMessageModal = () => {
-        setShowMessageModal(true);
-    };
+  const handleShowNotificationModal = () => {
+    setShowNotificationModal(true);
+  };
 
-    const handleOpenFaceModal = () => {
-        setFaceRecognitionTitle('Sign up');
-        setShowFaceRecognitionModal(true);
-    };
+  const handleToggleMessageModal = () => {
+    setShowMessageModal(true);
+  };
 
-    const handleIsShowSidebar = () => {
-        dispatch(setSidebarCollapsed(!sidebarCollapsed));
-    };
+  const handleOpenFaceModal = () => {
+    setFaceRecognitionTitle('Sign up');
+    setShowFaceRecognitionModal(true);
+  };
 
-    const handleContactManagement = () => {
-        setShowContactModal(true);
-    };
+  const handleIsShowSidebar = () => {
+    dispatch(setSidebarCollapsed(!sidebarCollapsed));
+  };
 
-    return (
-        <div className={cx('wrapper')}>
-            <div className={cx('header-left')}>
-                <CgMenu onClick={handleIsShowSidebar} />
+  const handleContactManagement = () => {
+    setShowContactModal(true);
+  };
+
+  return (
+    <div className={cx('wrapper')}>
+      <div className={cx('header-left')}>
+        <button className={cx('toggle-sidebar-btn')} onClick={handleIsShowSidebar}>
+          <Icon icon={<CgMenu />} size="2.4rem" />
+        </button>
+        <Link to={config.routes.home} className={cx('logo')}>
+          <img className={cx('logo-image')} src={images.logo} alt="logo" />
+          <span className={cx('app-name')}>HypeHub</span>
+        </Link>
+      </div>
+
+      <Search />
+
+      <div className={cx('header-right')}>
+        <Icon icon={<CgMoreVerticalAlt />} className={cx('more-icon')} />
+        <div className={cx('actions-group')}>
+          <div className={cx('button')}>
+            <Tippy delay={[0, 50]} interactive content="Language">
+              <button className={cx('action-btn')}>
+                <Icon icon={<USFlagIcon />} />
+              </button>
+            </Tippy>
+          </div>
+          <div className={cx('button')}>
+            <Tippy delay={[0, 50]} interactive content={isFullScreen ? 'Exit fullscreen' : 'Fullscreen'}>
+              <button className={cx('action-btn')} onClick={handleFullscreen}>
+                <Icon icon={isFullScreen ? <BsFullscreenExit /> : <BsFullscreen />} className={cx('icon')} />
+              </button>
+            </Tippy>
+          </div>
+          <div className={cx('button')}>
+            <Tippy delay={[0, 50]} interactive content="Notification">
+              <button className={cx('action-btn')} onClick={handleShowNotificationModal}>
+                <Icon icon={<BsBell />} className={cx('icon')} />
+                <span className={cx('badge')}></span>
+              </button>
+            </Tippy>
+          </div>
+          <div className={cx('button')}>
+            <Tippy delay={[0, 50]} interactive content="Message">
+              <button className={cx('action-btn')} onClick={handleToggleMessageModal}>
+                <Icon icon={<BsChatSquareDots />} className={cx('icon')} />
+                <span className={cx('badge')}></span>
+              </button>
+            </Tippy>
+          </div>
+          <div className={cx('button')}>
+            <Tippy delay={[0, 50]} interactive content="Contact management">
+              <button className={cx('action-btn')} onClick={handleContactManagement}>
+                <Icon icon={<BsFillPersonPlusFill />} className={cx('icon')} />
+              </button>
+            </Tippy>
+          </div>
+          {currentUser?.faceId ? null : (
+            <div className={cx('button')}>
+              <Tippy delay={[0, 50]} interactive content="Sign up">
+                <button className={cx('action-btn')} onClick={handleOpenFaceModal}>
+                  <Icon icon={<BsPersonBoundingBox />} className={cx('icon')} />
+                </button>
+              </Tippy>
             </div>
-
-            <Search />
-
-            <div className={cx('header-right')}>
-                <CgMoreVerticalAlt className={cx('more-icon')} />
-                <div className={cx('actions')}>
-                    <div>
-                        <Tippy delay={[0, 50]} interactive content="Language">
-                            <button className={cx('action-btn')}>
-                                <span>EN</span>
-                                <IoLanguageOutline className={cx('icon')} />
-                            </button>
-                        </Tippy>
-                    </div>
-                    <div>
-                        <Tippy delay={[0, 50]} interactive content={isFullScreen ? 'Exit fullscreen' : 'Fullscreen'}>
-                            <button className={cx('action-btn')} onClick={handleFullscreen}>
-                                {isFullScreen ? (
-                                    <BsFullscreenExit className={cx('icon')} />
-                                ) : (
-                                    <BsFullscreen className={cx('icon')} />
-                                )}
-                            </button>
-                        </Tippy>
-                    </div>
-                    <div className={cx('notification')}>
-                        <Tippy delay={[0, 50]} interactive content="Notification">
-                            <button className={cx('action-btn')} onClick={handleShowNotificationModal}>
-                                <BsBell className={cx('icon')} />
-                                <span className={cx('badge')}></span>
-                            </button>
-                        </Tippy>
-                    </div>
-                    <div>
-                        <Tippy delay={[0, 50]} interactive content="Message">
-                            <button className={cx('action-btn')} onClick={handleToggleMessageModal}>
-                                <BsChatSquareDots className={cx('icon')} />
-                                <span className={cx('badge')}></span>
-                            </button>
-                        </Tippy>
-                    </div>
-                    <div>
-                        <Tippy delay={[0, 50]} interactive content="Contact management">
-                            <button className={cx('action-btn')} onClick={handleContactManagement}>
-                                <BsFillPersonPlusFill className={cx('icon')} />
-                            </button>
-                        </Tippy>
-                    </div>
-                    {currentUser?.faceId ? null : (
-                        <div>
-                            <Tippy delay={[0, 50]} interactive content="Sign up">
-                                <button className={cx('action-btn')} onClick={handleOpenFaceModal}>
-                                    <BsPersonBoundingBox className={cx('icon')} />
-                                </button>
-                            </Tippy>
-                        </div>
-                    )}
-                </div>
-                <CgMoreVerticalAlt className={cx('more-icon')} />
-
-                <UserMenu
-                    items={currentUser?.isAdmin ? adminMenu : userMenu}
-                    onChange={handleMenuChange}
-                    viewProfile={true}
-                >
-                    <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="Nguyen  van A" />
-                </UserMenu>
-            </div>
-
-            <Register show={showRegisterModal} setShowRegisterModal={setShowRegisterModal} />
-
-            <Notification show={showNotificationModal} setShowNotificationModal={setShowNotificationModal} />
-            <Message show={showMessageModal} setShowMessageModal={setShowMessageModal} />
-
-            <Setting show={showSettingModal} setShowSettingModal={setShowSettingModal} />
-
-            {showFaceRecognitionModal && (
-                <FaceRecognition
-                    show={showFaceRecognitionModal}
-                    title={faceRecognitionTitle}
-                    setShowFaceRecognitionModal={setShowFaceRecognitionModal}
-                />
-            )}
-
-            <ContactManagement show={showContactModal} setShowContactModal={setShowContactModal} />
+          )}
         </div>
-    );
+        <Icon icon={<CgMoreVerticalAlt />} className={cx('more-icon')} />
+
+        <UserMenu items={currentUser?.isAdmin ? adminMenu : userMenu} onChange={handleMenuChange} viewProfile={true}>
+          <Image className={cx('user-avatar')} src={`${currentUser?.avatar}`} alt="Nguyen  van A" />
+        </UserMenu>
+      </div>
+
+      <Register show={showRegisterModal} setShowRegisterModal={setShowRegisterModal} />
+
+      <Notification show={showNotificationModal} setShowNotificationModal={setShowNotificationModal} />
+      <Message show={showMessageModal} setShowMessageModal={setShowMessageModal} />
+
+      <Setting show={showSettingModal} setShowSettingModal={setShowSettingModal} />
+
+      {showFaceRecognitionModal && (
+        <FaceRecognition
+          show={showFaceRecognitionModal}
+          title={faceRecognitionTitle}
+          setShowFaceRecognitionModal={setShowFaceRecognitionModal}
+        />
+      )}
+
+      <ContactManagement show={showContactModal} setShowContactModal={setShowContactModal} />
+    </div>
+  );
 }
 
 export default Header;

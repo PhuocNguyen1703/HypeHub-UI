@@ -14,95 +14,95 @@ import styles from './Search.module.scss';
 const cx = classNames.bind(styles);
 
 function Search() {
-    const [searchValue, setSearchValue] = useState('');
-    const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(true);
-    const [loading, setLoading] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
+  const [showResult, setShowResult] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-    const debounced = useDebounce(searchValue, 700);
+  const debounced = useDebounce(searchValue, 700);
 
-    const inputRef = useRef();
+  const inputRef = useRef();
 
-    useEffect(() => {
-        if (!debounced.trim()) {
-            setSearchResult([]);
-            return;
-        }
+  useEffect(() => {
+    if (!debounced.trim()) {
+      setSearchResult([]);
+      return;
+    }
 
-        const fetchApi = async () => {
-            setLoading(true);
+    const fetchApi = async () => {
+      setLoading(true);
 
-            const result = await searchServices.search(debounced);
-            setSearchResult(result);
+      const result = await searchServices.search(debounced);
+      setSearchResult(result);
 
-            setLoading(false);
-        };
-        fetchApi();
-    }, [debounced]);
-
-    const handleClear = () => {
-        setSearchValue('');
-        setSearchResult([]);
-        inputRef.current.focus();
+      setLoading(false);
     };
+    fetchApi();
+  }, [debounced]);
 
-    const handleHideResult = () => {
-        setShowResult(false);
-    };
+  const handleClear = () => {
+    setSearchValue('');
+    setSearchResult([]);
+    inputRef.current.focus();
+  };
 
-    const handleChange = (e) => {
-        const searchValue = e.target.value;
+  const handleHideResult = () => {
+    setShowResult(false);
+  };
 
-        if (!searchValue.startsWith(' ')) {
-            setSearchValue(searchValue);
-        }
-    };
+  const handleChange = (e) => {
+    const searchValue = e.target.value;
 
-    const handleSubmit = () => {};
+    if (!searchValue.startsWith(' ')) {
+      setSearchValue(searchValue);
+    }
+  };
 
-    return (
-        // Using a wrapper <div> tag around the reference element solves
-        // this by creating a new parentNode context.
-        <div>
-            <HeadlessTippy
-                visible={showResult && searchResult.length > 0}
-                interactive
-                render={(attrs) => (
-                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                        <PopperWrapper>
-                            {searchResult.map((result) => (
-                                <AccountItem key={result.id} data={result} />
-                            ))}
-                        </PopperWrapper>
-                    </div>
-                )}
-                onClickOutside={handleHideResult}
-            >
-                <div className={cx('search')}>
-                    <input
-                        ref={inputRef}
-                        value={searchValue}
-                        placeholder="Search value"
-                        spellCheck={false}
-                        onChange={handleChange}
-                        onFocus={() => setShowResult(true)}
-                    />
+  const handleSubmit = () => {};
 
-                    {!!searchValue && !loading && (
-                        <button className={cx('clear-btn')} onClick={handleClear}>
-                            <IoCloseCircle />
-                        </button>
-                    )}
+  return (
+    // Using a wrapper <div> tag around the reference element solves
+    // this by creating a new parentNode context.
+    <div>
+      <HeadlessTippy
+        visible={showResult && searchResult.length > 0}
+        interactive
+        render={(attrs) => (
+          <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+            <PopperWrapper>
+              {searchResult.map((result) => (
+                <AccountItem key={result.id} data={result} />
+              ))}
+            </PopperWrapper>
+          </div>
+        )}
+        onClickOutside={handleHideResult}
+      >
+        <div className={cx('search')}>
+          <input
+            ref={inputRef}
+            value={searchValue}
+            placeholder="Search profile user"
+            spellCheck={false}
+            onChange={handleChange}
+            onFocus={() => setShowResult(true)}
+          />
 
-                    {loading && <FaSpinner className={cx('loading')} />}
+          {!!searchValue && !loading && (
+            <button className={cx('clear-btn')} onClick={handleClear}>
+              <IoCloseCircle />
+            </button>
+          )}
 
-                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()} onClick={handleSubmit}>
-                        <SearchIcon />
-                    </button>
-                </div>
-            </HeadlessTippy>
+          {loading && <FaSpinner className={cx('loading')} />}
+
+          <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()} onClick={handleSubmit}>
+            <SearchIcon />
+          </button>
         </div>
-    );
+      </HeadlessTippy>
+    </div>
+  );
 }
 
 export default Search;
