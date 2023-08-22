@@ -5,6 +5,8 @@
 }
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
   width: 240px;
   flex-shrink: 0;
   border-right: 1px solid var(--gray-alpha-20);
@@ -63,8 +65,10 @@
   .message-list {
     display: flex;
     flex-direction: column;
+    flex: 1;
     gap: 2px;
     padding: 0 6px 6px 6px;
+    overflow: overlay;
 
     .user {
       display: flex;
@@ -120,12 +124,9 @@
     }
 
     .active {
-      border: 1px solid var(--gray-alpha-20);
-      background-color: var(--second-bg);
-      box-shadow: var(--box-shadow);
+      background-color: var(--gray-alpha-20);
 
       &:hover {
-        background-color: var(--second-bg);
         cursor: default;
       }
     }

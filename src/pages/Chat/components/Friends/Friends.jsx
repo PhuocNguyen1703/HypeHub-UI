@@ -6,11 +6,12 @@ import Search from '~/components/Search/Message/Message';
 import AddFriendModal from '../Modal/AddFriendModal';
 import styles from './Friends.module.scss';
 import RenderListUser from './layouts/RenderListUser';
+import Icon from '~/components/Icon/Icon';
 
 const cx = classNames.bind(styles);
 
 function Friends() {
-  const [activeButton, setActiveButton] = useState('online');
+  const [activeIdButton, setActiveIdButton] = useState('online');
   const [isOpenAddFriendModal, setIsOpenAddFriendModal] = useState(false);
 
   const userList = [
@@ -59,7 +60,7 @@ function Friends() {
   ];
 
   const handleOnBtn = (e) => {
-    setActiveButton(e.target.id);
+    setActiveIdButton(e.target.id);
   };
 
   const handleToggleAddFriendModal = () => {
@@ -70,35 +71,33 @@ function Friends() {
     <div className={cx('wrapper')}>
       <header className={cx('header')}>
         <span className={cx('friends')}>
-          <span className={cx('icon-friend')}>
-            <BsPeople />
-          </span>
+          <Icon icon={<BsPeople />} className={cx('icon-friend')} />
           Friends
         </span>
         <button
           id="online"
-          className={cx('online-btn', activeButton === 'online' && 'isActive')}
+          className={cx('online-btn', activeIdButton === 'online' && 'isActive')}
           onClick={(e) => handleOnBtn(e)}
         >
           Online
         </button>
         <button
           id="all"
-          className={cx('all-btn', activeButton === 'all' && 'isActive')}
+          className={cx('all-btn', activeIdButton === 'all' && 'isActive')}
           onClick={(e) => handleOnBtn(e)}
         >
           All
         </button>
         <button
           id="pending"
-          className={cx('pending-btn', activeButton === 'pending' && 'isActive')}
+          className={cx('pending-btn', activeIdButton === 'pending' && 'isActive')}
           onClick={(e) => handleOnBtn(e)}
         >
           Pending
         </button>
         <button
           id="blocked"
-          className={cx('blocked-btn', activeButton === 'blocked' && 'isActive')}
+          className={cx('blocked-btn', activeIdButton === 'blocked' && 'isActive')}
           onClick={(e) => handleOnBtn(e)}
         >
           Blocked
