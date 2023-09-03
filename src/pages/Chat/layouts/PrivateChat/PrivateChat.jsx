@@ -19,121 +19,62 @@ const PrivateChat = () => {
       id: '123asd13123',
       avatar:
         'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      name: 'Tony',
+      member: ['Tony', 'Yama', 'Alex nguyen'],
     },
     {
       id: '13sadasd123asdasd',
       avatar:
         'https://images.unsplash.com/photo-1640960543409-dbe56ccc30e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
-      name: 'Alex Nguyen',
+
+      member: ['Tony'],
     },
     {
       id: '123hdsuygfysdf',
       avatar:
         'https://images.unsplash.com/photo-1640951613773-54706e06851d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
-      name: 'Thomson',
+      member: ['Thomson'],
     },
     {
       id: 'asdyfjyqwe123asd',
       avatar:
         'https://images.unsplash.com/photo-1608889175123-8ee362201f81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
-      name: 'Yamamoto Yuki',
+      member: ['Yamamoto Yuki', 'Brian Nguyen', 'Alex nguyen'],
     },
     {
       id: 'asdigjq34',
       avatar:
         'https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
-      name: 'Brian Nguyen',
+      member: ['Yama'],
     },
     {
       id: 'as231zd24',
       avatar:
         'https://plus.unsplash.com/premium_photo-1688891564708-9b2247085923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-      name: 'Victoria',
+      member: ['Alex nguyen'],
     },
     {
       id: 'asd3zxd34',
       avatar:
         'https://plus.unsplash.com/premium_photo-1688891564708-9b2247085923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-      name: 'Victoria',
+      member: ['Tony', 'Yama', 'Alex nguyen', 'Tony', 'Yama', 'Alex nguyen'],
     },
     {
       id: 'asezxd234',
       avatar:
         'https://plus.unsplash.com/premium_photo-1688891564708-9b2247085923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-      name: 'Victoria',
+      member: ['Tony', 'Yama'],
     },
     {
       id: 'asdq31eazd234',
       avatar:
         'https://plus.unsplash.com/premium_photo-1688891564708-9b2247085923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-      name: 'Victoria',
+      member: ['Tony', 'Yama', 'Alex nguyen', 'Victoria'],
     },
     {
       id: 'asdadqwazxdd34',
       avatar:
         'https://plus.unsplash.com/premium_photo-1688891564708-9b2247085923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-      name: 'Victoria',
-    },
-    {
-      id: 'ad12sd2zxd234',
-      avatar:
-        'https://plus.unsplash.com/premium_photo-1688891564708-9b2247085923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-      name: 'Victoria',
-    },
-    {
-      id: '13ad1323',
-      avatar:
-        'https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      name: 'Tony',
-    },
-    {
-      id: '1ada123aasd',
-      avatar:
-        'https://images.unsplash.com/photo-1640960543409-dbe56ccc30e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
-      name: 'Alex Nguyen',
-    },
-    {
-      id: '1hduygsdf',
-      avatar:
-        'https://images.unsplash.com/photo-1640951613773-54706e06851d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
-      name: 'Thomson',
-    },
-    {
-      id: 'adyfyqwe12asd',
-      avatar:
-        'https://images.unsplash.com/photo-1608889175123-8ee362201f81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
-      name: 'Yamamoto Yuki',
-    },
-    {
-      id: 'asdigj',
-      avatar:
-        'https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
-      name: 'Brian Nguyen',
-    },
-    {
-      id: 'ad231azd34',
-      avatar:
-        'https://plus.unsplash.com/premium_photo-1688891564708-9b2247085923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-      name: 'Victoria',
-    },
-    {
-      id: 'a231d234',
-      avatar:
-        'https://plus.unsplash.com/premium_photo-1688891564708-9b2247085923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-      name: 'Victoria',
-    },
-    {
-      id: 'aszxdd34',
-      avatar:
-        'https://plus.unsplash.com/premium_photo-1688891564708-9b2247085923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-      name: 'Victoria',
-    },
-    {
-      id: 'asdqzxdd234',
-      avatar:
-        'https://plus.unsplash.com/premium_photo-1688891564708-9b2247085923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-      name: 'Victoria',
+      member: ['Victoria'],
     },
   ];
 
@@ -167,7 +108,8 @@ const PrivateChat = () => {
                   <Icon icon={<BsRecord2Fill />} className={cx('icon-dot')} />
                 </div>
                 <div className={cx('user-name')}>
-                  <span className={cx('name')}>{user.name}</span>
+                  <span className={cx('name')}>{user.member.join(', ')}</span>
+                  {user.member.length > 1 && <span className={cx('member-count')}>{user.member.length} Members</span>}
                 </div>
               </div>
             </NavLink>

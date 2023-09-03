@@ -74,9 +74,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 6px 10px;
+      padding: 0 4px;
+      height: 50px;
       border-radius: 4px;
-      margin-top: 2px;
+      margin-top: 4px;
       color: var(--text-color);
       cursor: pointer;
       user-select: none;
@@ -114,10 +115,20 @@
         .user-name {
           display: flex;
           flex-direction: column;
-          margin-left: 12px;
+          margin-left: 10px;
 
           .name {
             font-weight: 500;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-word;
+          }
+
+          .member-count {
+            font-size: 1.2rem;
           }
         }
       }
