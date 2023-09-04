@@ -60,7 +60,6 @@ function CreateRoomModal() {
       coverAvatar:
         'https://plus.unsplash.com/premium_photo-1688891564708-9b2247085923?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
     };
-    onAction(newData);
     handleCloseModal();
   };
 

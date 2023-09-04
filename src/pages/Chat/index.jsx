@@ -8,7 +8,9 @@ import { MessageIcon } from '~/components/Icons';
 import Image from '~/components/Image/Image';
 import { setModalOnOpen } from '~/redux/Slice/modalSlice';
 import styles from './Chat.module.scss';
-import { MODAL_CREATE_ROOM } from '~/utils/constants';
+import { MODAL_CREATE_ROOM, MODAL_JOIN_ROOM } from '~/utils/constants';
+import Icon from '~/components/Icon/Icon';
+import { BsDoorOpen } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);
 
@@ -65,6 +67,10 @@ function Chat() {
 
   const handleToggleCreateRoomModal = () => {
     dispatch(setModalOnOpen(MODAL_CREATE_ROOM));
+  };
+
+  const handleToggleJoinRoomModal = () => {
+    dispatch(setModalOnOpen(MODAL_JOIN_ROOM));
   };
 
   // Get the chat in chat section
@@ -142,6 +148,9 @@ function Chat() {
         </div>
         <button className={cx('create-room-btn')} onClick={handleToggleCreateRoomModal}>
           <FaPlus />
+        </button>
+        <button className={cx('join-room-btn')} onClick={handleToggleJoinRoomModal}>
+          <Icon icon={<BsDoorOpen />} className={cx('icon-join-room')} />
         </button>
       </div>
       <div className={cx('container')}>

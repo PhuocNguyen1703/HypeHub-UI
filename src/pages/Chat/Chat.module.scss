@@ -103,7 +103,7 @@
     width: 48px;
     height: var(--create-room-btn-height);
     border-radius: 14px;
-    margin: 10px 0;
+    margin: 10px 0 24px 0;
     flex-shrink: 0;
     background-color: var(--gray-alpha-20);
     font-size: 1.8rem;
@@ -113,6 +113,42 @@
 
     &:hover {
       opacity: 1;
+    }
+  }
+
+  .join-room-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: auto;
+    margin-bottom: 14px;
+    height: 44px;
+    width: 44px;
+    border-radius: 10px;
+    background-image: var(--sidebar-item-color);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--gray-alpha-10);
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 2px;
+      width: 120%;
+      background-color: var(--gray-alpha-20);
+    }
+
+    .icon-join-room {
+      font-size: 2rem;
+      color: var(--white);
     }
   }
 }
