@@ -1,15 +1,13 @@
-import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './EditForm.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
-import dayjs from 'dayjs';
-import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
-import { BsTrash, BsXLg } from 'react-icons/bs';
-import EventForm from '../Modal/CreateCalendar/EventForm/EventForm';
 import Tippy from '@tippyjs/react';
+import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
+import { BsTrash, BsXLg } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
+import EventForm from '../Modal/CreateCalendar/EventForm/EventForm';
+import styles from './EditForm.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -18,7 +16,7 @@ function EditForm() {
 
     const closeModal = () => {
         dispatch(setDaySelected(dayjs().format('MMM DD, YYYY')));
-        dispatch(setCalendarEventModalIsOpen(false));
+        // dispatch(setCalendarEventModalIsOpen(false));
         dispatch(setSelectedEvent(null));
     };
 

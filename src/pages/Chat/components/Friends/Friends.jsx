@@ -7,12 +7,15 @@ import AddFriendModal from '../Modal/AddFriendModal';
 import styles from './Friends.module.scss';
 import RenderListUser from './layouts/RenderListUser';
 import Icon from '~/components/Icon/Icon';
+import { useDispatch } from 'react-redux';
+import { setModalOnOpen } from '~/redux/Slice/modalSlice';
+import { MODAL_ADD_FRIEND } from '~/utils/constants';
 
 const cx = classNames.bind(styles);
 
 function Friends() {
   const [activeIdButton, setActiveIdButton] = useState('online');
-  const [isOpenAddFriendModal, setIsOpenAddFriendModal] = useState(false);
+  const dispatch = useDispatch();
 
   const userList = [
     {
@@ -64,7 +67,7 @@ function Friends() {
   };
 
   const handleToggleAddFriendModal = () => {
-    setIsOpenAddFriendModal(true);
+    dispatch(setModalOnOpen(MODAL_ADD_FRIEND));
   };
 
   return (
@@ -117,8 +120,6 @@ function Friends() {
           <RenderListUser userList={userList} />
         </div>
       </div>
-
-      {isOpenAddFriendModal && <AddFriendModal isOpen={isOpenAddFriendModal} isHide={setIsOpenAddFriendModal} />}
     </div>
   );
 }

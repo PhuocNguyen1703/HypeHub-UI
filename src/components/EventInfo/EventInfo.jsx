@@ -1,13 +1,12 @@
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import dayjs from 'dayjs';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { BsClock, BsJustifyLeft, BsPencil, BsTrash, BsXLg } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
-import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 import EditForm from '../EditForm/EditForm';
-import { motion } from 'framer-motion';
 
 import styles from './EventInfo.module.scss';
 
@@ -21,7 +20,7 @@ function EventInfo() {
 
     const closeModal = () => {
         dispatch(setDaySelected(dayjs().format('MMM DD, YYYY')));
-        dispatch(setCalendarEventModalIsOpen(false));
+        // dispatch(setCalendarEventModalIsOpen(false));
         dispatch(setSelectedEvent(null));
     };
 

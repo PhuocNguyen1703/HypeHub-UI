@@ -8,6 +8,7 @@ import GlobalStyles from '~/components/GlobalStyles/GlobalStyles';
 import { store, persistor } from './redux/Store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
+import { ModalProvider } from './components/Modal/ModalProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
       <BrowserRouter>
         <GlobalStyles>
           <App />
+          <ModalProvider />
         </GlobalStyles>
       </BrowserRouter>
     </PersistGate>

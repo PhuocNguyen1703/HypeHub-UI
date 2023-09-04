@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import { BsClipboard, BsClock, BsJustifyLeft, BsTags } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDaySelected, setSelectedEvent } from '~/redux/Slice/calendarSlice';
-import { setCalendarEventModalIsOpen } from '~/redux/Slice/modalSlice';
 import styles from './EventForm.module.scss';
 
 const cx = classNames.bind(styles);
@@ -194,7 +193,7 @@ function EventForm() {
 
     const handleCancel = () => {
         dispatch(setDaySelected(dayjs().format('MMM DD, YYYY')));
-        dispatch(setCalendarEventModalIsOpen(false));
+        // dispatch(setCalendarEventModalIsOpen(false));
         dispatch(setSelectedEvent(null));
     };
 

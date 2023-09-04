@@ -2,12 +2,13 @@ import classNames from 'classnames/bind';
 import { useRef, useState } from 'react';
 
 import { FaPlus } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
 import { MessageIcon } from '~/components/Icons';
-import styles from './Chat.module.scss';
-import CreateRoomModal from './components/Modal/CreateRoomModal';
 import Image from '~/components/Image/Image';
-import Tippy from '@tippyjs/react';
+import { setModalOnOpen } from '~/redux/Slice/modalSlice';
+import styles from './Chat.module.scss';
+import { MODAL_CREATE_ROOM } from '~/utils/constants';
 
 const cx = classNames.bind(styles);
 
@@ -60,13 +61,10 @@ function Chat() {
   const [sendMessage, setSendMessage] = useState(null);
   const [receiveMessage, setReceiveMessage] = useState(null);
   const socket = useRef();
+  const dispatch = useDispatch();
 
   const handleToggleCreateRoomModal = () => {
-    setShowCreateRoomModal(true);
-  };
-
-  const handleSubmitCreateRoom = (data) => {
-    setRoomList([...roomList, data]);
+    dispatch(setModalOnOpen(MODAL_CREATE_ROOM));
   };
 
   // Get the chat in chat section
@@ -149,14 +147,6 @@ function Chat() {
       <div className={cx('container')}>
         <Outlet />
       </div>
-
-      {showCreateRoomModal && (
-        <CreateRoomModal
-          isOpen={showCreateRoomModal}
-          isHide={setShowCreateRoomModal}
-          onAction={handleSubmitCreateRoom}
-        />
-      )}
     </div>
   );
 }

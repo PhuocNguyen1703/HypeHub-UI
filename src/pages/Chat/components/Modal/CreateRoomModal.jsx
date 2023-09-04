@@ -5,17 +5,24 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { BsCameraFill, BsChevronRight, BsXLg } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import CircleHeader from '~/components/CircleHeader/CircleHeader';
 import Icon from '~/components/Icon/Icon';
 import Modal from '~/components/Modal/Modal';
+import { setModalOnClose } from '~/redux/Slice/modalSlice';
 import styles from './CreateRoomModal.module.scss';
+import { MODAL_CREATE_ROOM } from '~/utils/constants';
 
 const cx = classNames.bind(styles);
 
-function CreateRoomModal({ isOpen, isHide, onAction }) {
+function CreateRoomModal() {
+  const { isOpen, modalType } = useSelector((state) => state.modal);
   const [isCreateRoomForm, setIsCreateRoomForm] = useState(true);
   const [type, setType] = useState('');
+  const dispatch = useDispatch();
+
+  const isModalOpen = isOpen & (modalType === MODAL_CREATE_ROOM);
 
   const formSchema = yup.object().shape({});
 
@@ -30,7 +37,7 @@ function CreateRoomModal({ isOpen, isHide, onAction }) {
   });
 
   const handleCloseModal = () => {
-    isHide(!isOpen);
+    dispatch(setModalOnClose());
     reset();
   };
 
@@ -57,7 +64,7 @@ function CreateRoomModal({ isOpen, isHide, onAction }) {
     handleCloseModal();
   };
 
-  if (isOpen) {
+  if (isModalOpen) {
     return (
       <AnimatePresence>
         <Modal>
