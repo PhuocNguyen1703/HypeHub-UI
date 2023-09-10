@@ -17,34 +17,42 @@ import {
   FaTheRedYeti,
   FaUserPlus,
 } from 'react-icons/fa6';
+import { Outlet } from 'react-router-dom';
 import Icon from '~/components/Icon/Icon';
 import { handleClickOutSide } from '~/utils/handleClickOutSide';
 import CategoryMenu from '../../components/CategoryMenu/CategoryMenu';
 import styles from './RoomChat.module.scss';
-import { Outlet } from 'react-router-dom';
+import { MODAL_CREATE_CATEGORY, MODAL_CREATE_CHANNEL, MODAL_DELETE_ROOM, MODAL_INVITE_PEOPLE } from '~/utils/constants';
+import { useDispatch } from 'react-redux';
+import { setModalOnOpen } from '~/redux/Slice/modalSlice';
 
 const cx = classNames.bind(styles);
 
 const RoomChat = () => {
   const [isShowSetting, setIsShowSetting] = useState(false);
+  const dispatch = useDispatch();
   const settingRef = useRef();
 
   const settingMenu = [
     {
       icon: <FaUserPlus />,
       title: 'Invite People',
+      type: MODAL_INVITE_PEOPLE,
     },
     {
       icon: <FaFolderPlus />,
       title: 'Create Category',
+      type: MODAL_CREATE_CATEGORY,
     },
     {
       icon: <FaFileMedical />,
       title: 'Create Channel',
+      type: MODAL_CREATE_CHANNEL,
     },
     {
       icon: <BsTrash />,
       title: 'Delete Room',
+      type: MODAL_DELETE_ROOM,
       separate: true,
     },
   ];
@@ -245,7 +253,9 @@ const RoomChat = () => {
     setIsShowSetting(true);
   };
 
-  const handleSelectSetting = (data) => {};
+  const handleSelectMenu = (type) => {
+    dispatch(setModalOnOpen(type));
+  };
 
   return (
     <div className={cx('wrapper')}>
@@ -257,17 +267,17 @@ const RoomChat = () => {
             alt="banner"
           />
           <div className={cx('room-info')}>
-            <span className={cx('room-name')}>User's room</span>
-            <button className={cx('icon-setting')} onClick={handleToggleSetting}>
-              <BsGear />
-            </button>
+            <div className={cx('setting')} onClick={handleToggleSetting}>
+              <span className={cx('room-name')}>User's room</span>
+              <Icon icon={<BsGear />} className={cx('icon-setting')} />
+            </div>
             {isShowSetting && (
               <div ref={settingRef} className={cx('setting-dropdown')}>
                 {settingMenu.map((item, idx) => (
                   <button
                     key={idx}
                     className={cx('option-setting', { separate: item.separate })}
-                    onClick={handleSelectSetting}
+                    onClick={() => handleSelectMenu(item.type)}
                   >
                     <span className={cx('title')}>{item.title}</span>
                     <Icon icon={item.icon} size="1.6rem" />
