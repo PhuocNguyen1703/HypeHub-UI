@@ -4,6 +4,7 @@ import JoinRoomModal from './JoinRoomModal/JoinRoomModal';
 import RoomSetting from './RoomSetting/RoomSetting';
 import DeleteRoom from './DeleteRoom/DeleteRoom';
 import InvitePeople from './InvitePeople/InvitePeople';
+import CreateCategory from './CreateCategory/CreateCategory';
 
 export const ModalProvider = () => {
   return (
@@ -14,6 +15,7 @@ export const ModalProvider = () => {
       <RoomSetting />
       <InvitePeople />
       <DeleteRoom />
+      <CreateCategory />
     </>
   );
 };
