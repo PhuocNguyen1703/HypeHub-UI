@@ -13,7 +13,7 @@ import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Search({ memberList, setMemberList }) {
+function Search({ memberList = [], setMemberList }) {
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setShowResult] = useState(true);

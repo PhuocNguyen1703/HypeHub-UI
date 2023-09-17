@@ -3,6 +3,7 @@ import CreateRoomModal from '~/pages/Chat/components/Modal/CreateRoomModal';
 import JoinRoomModal from './JoinRoomModal/JoinRoomModal';
 import RoomSetting from './RoomSetting/RoomSetting';
 import DeleteRoom from './DeleteRoom/DeleteRoom';
+import InvitePeople from './InvitePeople/InvitePeople';
 
 export const ModalProvider = () => {
   return (
@@ -11,6 +12,7 @@ export const ModalProvider = () => {
       <JoinRoomModal />
       <AddFriendModal />
       <RoomSetting />
+      <InvitePeople />
       <DeleteRoom />
     </>
   );
