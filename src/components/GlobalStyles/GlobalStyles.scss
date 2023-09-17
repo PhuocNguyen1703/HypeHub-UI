@@ -21,6 +21,8 @@
   --danger-color: #ff4444;
   --danger-color-dark: #cc0000;
 
+  --status-warning-background: hsl(38 calc(var(--saturation-factor, 1) * 78.6%) 38.4% /1);
+
   --blue: rgb(24, 119, 242);
   --blue-alpha-90: rgba(24, 119, 242, 0.9);
   --blue-alpha-80: rgba(24, 119, 242, 0.8);

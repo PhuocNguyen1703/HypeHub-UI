@@ -1,0 +1,145 @@
+.wrapper {
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.room-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--gray-alpha-20);
+
+  .left-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+
+    .avatar {
+      display: flex;
+      gap: 40px;
+
+      .avatar-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 999px;
+        box-shadow: var(--box-shadow);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+      .upload-action {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .note {
+          font-size: 1.4rem;
+        }
+        .upload-btn {
+          width: fit-content;
+          padding: 10px;
+          border: 1px solid var(--gray);
+          border-radius: 6px;
+          font-weight: 500;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .room-name {
+      display: flex;
+      flex-direction: column;
+      font-weight: 500;
+
+      .input {
+        padding: 10px;
+        font-size: 1.6rem;
+        background-color: var(--gray-alpha-20);
+        border-radius: 6px;
+      }
+    }
+  }
+
+  .banner-label {
+    font-size: 1.6rem;
+    font-weight: 500;
+
+    .banner-img {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+      width: 350px;
+      height: 180px;
+      border: 1px dashed var(--gray-alpha-40);
+      border-radius: 6px;
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+      cursor: pointer;
+
+      .upload-icon {
+        font-size: 5rem;
+      }
+
+      .text {
+        margin-top: -20px;
+        font-size: 2rem;
+        font-weight: 500;
+        line-height: 1;
+      }
+    }
+  }
+}
+
+.room-link {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--gray-alpha-20);
+
+  .room-link-label,
+  .invite-code {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+
+    .input-group {
+      display: flex;
+      align-items: center;
+
+      .input {
+        flex: 1;
+        padding: 10px;
+        font-size: 1.6rem;
+        background-color: var(--gray-alpha-20);
+        border-radius: 6px;
+      }
+
+      .icon-copy {
+        margin-left: 10px;
+        font-size: 1.6rem;
+        padding: 6px;
+        background-color: var(--gray-alpha-05);
+        border: 1px solid var(--gray-alpha-40);
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .room-link-label {
+    flex: 1;
+  }
+
+  .invite-code {
+    width: 340px;
+  }
+}

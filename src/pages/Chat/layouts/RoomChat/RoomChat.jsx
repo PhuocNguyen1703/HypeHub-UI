@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 
 import { useEffect, useRef, useState } from 'react';
-import { BsGear, BsTrash } from 'react-icons/bs';
+import { BsGear, BsLink45Deg, BsTrash } from 'react-icons/bs';
 import {
   FaAngellist,
   FaBity,
@@ -22,7 +22,13 @@ import Icon from '~/components/Icon/Icon';
 import { handleClickOutSide } from '~/utils/handleClickOutSide';
 import CategoryMenu from '../../components/CategoryMenu/CategoryMenu';
 import styles from './RoomChat.module.scss';
-import { MODAL_CREATE_CATEGORY, MODAL_CREATE_CHANNEL, MODAL_DELETE_ROOM, MODAL_INVITE_PEOPLE } from '~/utils/constants';
+import {
+  MODAL_CREATE_CATEGORY,
+  MODAL_CREATE_CHANNEL,
+  MODAL_DELETE_ROOM,
+  MODAL_INVITE_PEOPLE,
+  MODAL_ROOM_SETTING,
+} from '~/utils/constants';
 import { useDispatch } from 'react-redux';
 import { setModalOnOpen } from '~/redux/Slice/modalSlice';
 
@@ -50,10 +56,9 @@ const RoomChat = () => {
       type: MODAL_CREATE_CHANNEL,
     },
     {
-      icon: <BsTrash />,
-      title: 'Delete Room',
-      type: MODAL_DELETE_ROOM,
-      separate: true,
+      icon: <BsGear />,
+      title: 'Room Setting',
+      type: MODAL_ROOM_SETTING,
     },
   ];
 
@@ -255,6 +260,7 @@ const RoomChat = () => {
 
   const handleSelectMenu = (type) => {
     dispatch(setModalOnOpen(type));
+    setIsShowSetting(false);
   };
 
   return (
