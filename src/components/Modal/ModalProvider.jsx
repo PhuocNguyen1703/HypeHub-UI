@@ -6,6 +6,7 @@ import DeleteRoom from './DeleteRoom/DeleteRoom';
 import InvitePeople from './InvitePeople/InvitePeople';
 import CreateCategory from './CreateCategory/CreateCategory';
 import CreateChannel from './CreateChannel/CreateChannel';
+import LeaveRoom from './LeaveRoom/LeaveRoom';
 
 export const ModalProvider = () => {
   return (
@@ -18,6 +19,7 @@ export const ModalProvider = () => {
       <DeleteRoom />
       <CreateCategory />
       <CreateChannel />
+      <LeaveRoom />
     </>
   );
 };

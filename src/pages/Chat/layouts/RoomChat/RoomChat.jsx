@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 
 import { useEffect, useRef, useState } from 'react';
-import { BsGear, BsLink45Deg, BsTrash } from 'react-icons/bs';
+import { BsGear } from 'react-icons/bs';
 import {
   FaAngellist,
   FaBity,
@@ -12,25 +12,26 @@ import {
   FaJava,
   FaJenkins,
   FaMicrochip,
+  FaShareFromSquare,
   FaSnapchat,
   FaSpider,
   FaTheRedYeti,
   FaUserPlus,
 } from 'react-icons/fa6';
+import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import Icon from '~/components/Icon/Icon';
-import { handleClickOutSide } from '~/utils/handleClickOutSide';
-import CategoryMenu from '../../components/CategoryMenu/CategoryMenu';
-import styles from './RoomChat.module.scss';
+import { setModalOnOpen } from '~/redux/Slice/modalSlice';
 import {
   MODAL_CREATE_CATEGORY,
   MODAL_CREATE_CHANNEL,
-  MODAL_DELETE_ROOM,
   MODAL_INVITE_PEOPLE,
+  MODAL_LEAVE_ROOM,
   MODAL_ROOM_SETTING,
 } from '~/utils/constants';
-import { useDispatch } from 'react-redux';
-import { setModalOnOpen } from '~/redux/Slice/modalSlice';
+import { handleClickOutSide } from '~/utils/handleClickOutSide';
+import CategoryMenu from '../../components/CategoryMenu/CategoryMenu';
+import styles from './RoomChat.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -59,6 +60,12 @@ const RoomChat = () => {
       icon: <BsGear />,
       title: 'Room Setting',
       type: MODAL_ROOM_SETTING,
+    },
+    {
+      icon: <FaShareFromSquare />,
+      title: 'Leave Room',
+      type: MODAL_LEAVE_ROOM,
+      separate: true,
     },
   ];
 
