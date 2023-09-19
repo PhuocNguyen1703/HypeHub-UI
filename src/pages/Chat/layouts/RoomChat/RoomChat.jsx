@@ -76,17 +76,17 @@ const RoomChat = () => {
         {
           icon: <FaAngellist />,
           title: 'Welcome-and-rule',
-          path: '',
+          path: 'Welcome-and-rule',
         },
         {
           icon: <FaBity />,
           title: 'Announcement',
-          path: 'asdasd',
+          path: 'Announcement',
         },
         {
           icon: <FaGg />,
-          title: 'feedback',
-          path: 'asdad',
+          title: 'Feedback',
+          path: 'feedback',
         },
       ],
     },
@@ -96,162 +96,52 @@ const RoomChat = () => {
         {
           icon: <FaAngellist />,
           title: 'general',
-          path: 'asd',
+          path: 'general',
         },
         {
           icon: <FaBity />,
           title: 'culture',
-          path: 'asdasd',
+          path: 'culture',
         },
         {
           icon: <FaGg />,
           title: 'marketing',
-          path: 'asdad',
+          path: 'marketing',
         },
         {
           icon: <FaGrunt />,
           title: 'study',
-          path: 'asdad',
+          path: 'study',
         },
         {
           icon: <FaJenkins />,
           title: 'school',
-          path: 'asdad',
+          path: 'school',
         },
         {
           icon: <FaJava />,
           title: 'fruit',
-          path: 'asdad',
+          path: 'fruit',
         },
         {
           icon: <FaSnapchat />,
           title: 'monkey',
-          path: 'asdad',
+          path: 'monkey',
         },
         {
           icon: <FaTheRedYeti />,
           title: 'cow',
-          path: 'asdad',
+          path: 'cow',
         },
         {
           icon: <FaMicrochip />,
           title: 'bird',
-          path: 'asdad',
+          path: 'bird',
         },
         {
           icon: <FaSpider />,
           title: 'chicken',
-          path: 'asdad',
-        },
-      ],
-    },
-    {
-      title: 'Marketing',
-      children: [
-        {
-          icon: <FaAngellist />,
-          title: 'general',
-          path: 'asd',
-        },
-        {
-          icon: <FaBity />,
-          title: 'culture',
-          path: 'asdasd',
-        },
-        {
-          icon: <FaGg />,
-          title: 'marketing',
-          path: 'asdad',
-        },
-        {
-          icon: <FaGrunt />,
-          title: 'study',
-          path: 'asdad',
-        },
-        {
-          icon: <FaJenkins />,
-          title: 'school',
-          path: 'asdad',
-        },
-        {
-          icon: <FaJava />,
-          title: 'fruit',
-          path: 'asdad',
-        },
-        {
-          icon: <FaSnapchat />,
-          title: 'monkey',
-          path: 'asdad',
-        },
-        {
-          icon: <FaTheRedYeti />,
-          title: 'cow',
-          path: 'asdad',
-        },
-        {
-          icon: <FaMicrochip />,
-          title: 'bird',
-          path: 'asdad',
-        },
-        {
-          icon: <FaSpider />,
-          title: 'chicken',
-          path: 'asdad',
-        },
-      ],
-    },
-    {
-      title: 'Marketing',
-      children: [
-        {
-          icon: <FaAngellist />,
-          title: 'general',
-          path: 'asd',
-        },
-        {
-          icon: <FaBity />,
-          title: 'culture',
-          path: 'asdasd',
-        },
-        {
-          icon: <FaGg />,
-          title: 'marketing',
-          path: 'asdad',
-        },
-        {
-          icon: <FaGrunt />,
-          title: 'study',
-          path: 'asdad',
-        },
-        {
-          icon: <FaJenkins />,
-          title: 'school',
-          path: 'asdad',
-        },
-        {
-          icon: <FaJava />,
-          title: 'fruit',
-          path: 'asdad',
-        },
-        {
-          icon: <FaSnapchat />,
-          title: 'monkey',
-          path: 'asdad',
-        },
-        {
-          icon: <FaTheRedYeti />,
-          title: 'cow',
-          path: 'asdad',
-        },
-        {
-          icon: <FaMicrochip />,
-          title: 'bird',
-          path: 'asdad',
-        },
-        {
-          icon: <FaSpider />,
-          title: 'chicken',
-          path: 'asdad',
+          path: 'chicken',
         },
       ],
     },

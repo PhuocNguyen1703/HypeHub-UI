@@ -82,23 +82,22 @@
     .begin-message {
       display: flex;
       flex-direction: column;
-      margin-bottom: 30px;
-      user-select: none;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--gray-alpha-20);
 
-      .group-avatar-begin {
-        width: 80px;
-        height: 80px;
-        border-radius: 999px;
-        object-fit: cover;
-      }
-
-      .group-name {
-        margin-top: 10px;
+      .title,
+      .room-name {
         font-size: 3rem;
-        font-weight: 500;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
       }
 
-      .welcome-text {
+      .sub-title {
+        margin-top: 10px;
+        text-align: center;
+        color: var(--gray);
       }
     }
 

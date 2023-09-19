@@ -7,24 +7,21 @@ import { useRef, useState } from 'react';
 import 'react-18-image-lightbox/style.css';
 
 import { BsCardImage, BsCursor, BsEmojiSmile, BsGear, BsRecord2Fill } from 'react-icons/bs';
-import { useSelector } from 'react-redux';
+import { FaHashtag, FaUsers, FaUsersSlash } from 'react-icons/fa6';
+import { useDispatch, useSelector } from 'react-redux';
+import Button from '~/components/Button/Button';
+import Icon from '~/components/Icon/Icon';
 import Image from '~/components/Image/Image';
+import { setModalOnOpen } from '~/redux/Slice/modalSlice';
 import { addMessage } from '~/services/messageApi';
 import { uploadImages } from '~/services/uploadImagesApi';
-import styles from './GroupChatBox.module.scss';
-import Icon from '~/components/Icon/Icon';
-import { FaHashtag, FaUsers, FaUsersSlash } from 'react-icons/fa6';
-import Button from '~/components/Button/Button';
-import { useDispatch } from 'react-redux';
-import { setModalOnOpen } from '~/redux/Slice/modalSlice';
 import { MODAL_CHANNEL_DETAIL } from '~/utils/constants';
+import styles from './RoomChatBox.module.scss';
 
 const cx = classNames.bind(styles);
 dayjs.extend(utc);
-// dayjs.extend(timezone);
-// dayjs.tz.setDefault('Asia/Tokyo');
 
-function GroupChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
+function RoomChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
   const { currentUser } = useSelector((state) => state.auth.login);
   const { themeMode } = useSelector((state) => state.theme);
   const [showMemberList, setShowMemberList] = useState(true);
@@ -292,43 +289,10 @@ function GroupChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
         <div className={cx('chat-box')}>
           <div className={cx('content')}>
             <div className={cx('begin-message')}>
-              <Image
-                className={cx('group-avatar-begin')}
-                src="https://images.unsplash.com/photo-1628890923662-2cb23c2e0cfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                alt="avatar"
-              />
-              <span className={cx('group-name')}>Brian Nguyen</span>
-              <p className={cx('welcome-text')}>
-                Welcome to beginning of the <strong>Brian Nguyen</strong> group.
-              </p>
+              <span className={cx('title')}>Welcome to</span>
+              <span className={cx('room-name')}>Pisces Room</span>
+              <span className={cx('sub-title')}>This is the beginning of this room.</span>
             </div>
-            {messageList.map((message) => (
-              <div key={message.id} ref={scroll} className={cx('message')}>
-                <Image
-                  className={cx('avatar')}
-                  // src={message.senderId === currentUserId ? currentUser?.avatar : userData?.avatar}
-                  src={message.avatar}
-                  alt="avatar"
-                />
-                <div className={cx('message-content')}>
-                  <div className={cx('user-info')}>
-                    <span className={cx('name')}>{message.name}</span>
-                    <span className={cx('chat-time')}>{message.date}</span>
-                  </div>
-                  <p>{message.content}</p>
-                  {/* {message.fileUrl ? (
-                                        <img
-                                            className={cx('image')}
-                                            src={message?.fileUrl}
-                                            alt="img"
-                                            onClick={handleClickImage}
-                                        />
-                                    ) : null} */}
-                  {/* <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span> */}
-                  {/* <span className={cx('chat-time')}>{dayjs(message.createdAt).fromNow()}</span> */}
-                </div>
-              </div>
-            ))}
           </div>
 
           <div className={cx('footer')}>
@@ -396,4 +360,4 @@ function GroupChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
   );
 }
 
-export default GroupChatBox;
+export default RoomChatBox;

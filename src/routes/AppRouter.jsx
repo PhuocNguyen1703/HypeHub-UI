@@ -31,6 +31,7 @@ import Friends from '~/pages/Chat/components/Friends/Friends';
 import PrivateChatBox from '~/pages/Chat/components/PrivateChatBox/PrivateChatBox';
 import RoomChat from '~/pages/Chat/layouts/RoomChat/RoomChat';
 import GroupChatBox from '~/pages/Chat/components/GroupChatBox/GroupChatBox';
+import RoomChatBox from '~/pages/Chat/layouts/RoomChat/Layouts/RoomChatBox/RoomChatBox';
 
 export default function AppRouter() {
   const element = useRoutes([
@@ -58,7 +59,7 @@ export default function AppRouter() {
               element: <RoomChat />,
               children: [
                 { index: true, element: <GroupChatBox /> },
-                { path: ':id', element: <GroupChatBox /> },
+                { path: ':id', element: <RoomChatBox /> },
               ],
             },
           ],
