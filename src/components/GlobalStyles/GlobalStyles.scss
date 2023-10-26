@@ -215,12 +215,14 @@ body {
 //Custom Tippy UI
 body {
   .tippy-box {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 500;
-    line-height: 2.2rem;
-    border-radius: 8px;
+    line-height: 1;
+    border-radius: 6px;
     color: var(--white);
-    background-color: rgba(84, 84, 84, 0.7);
+    background-color: var(--black);
+    text-wrap: nowrap;
+    user-select: none;
   }
 
   .tippy-content {
@@ -228,11 +230,11 @@ body {
   }
 
   .tippy-arrow {
-    color: rgba(84, 84, 84, 0.7);
+    color: var(--black);
   }
 
   .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
-    top: -8px;
+    top: -6px;
   }
 }
 

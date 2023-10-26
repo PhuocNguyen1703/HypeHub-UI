@@ -105,7 +105,6 @@
 
   .user {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 5px 10px;
     border-radius: 8px;
@@ -120,37 +119,27 @@
       background-color: var(--gray-alpha-10);
     }
 
-    .info {
-      display: flex;
-      align-items: center;
-
-      .avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 999px;
-        object-fit: cover;
-      }
-
-      .user-name {
-        display: flex;
-        flex-direction: column;
-        margin-left: 12px;
-
-        .name {
-          font-weight: 700;
-          line-height: 1;
-        }
-
-        .position {
-          font-size: 1.2rem;
-          color: var(--gray);
-        }
-      }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      object-fit: cover;
     }
 
-    .icon-check {
-      font-size: 2rem;
-      color: var(--done-color-dark);
+    .user-name {
+      display: flex;
+      flex-direction: column;
+      margin-left: 12px;
+
+      .name {
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .position {
+        font-size: 1.2rem;
+        color: var(--gray);
+      }
     }
   }
 }

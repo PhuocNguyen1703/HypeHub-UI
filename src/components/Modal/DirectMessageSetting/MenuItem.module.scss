@@ -1,0 +1,43 @@
+.item {
+  position: relative;
+  margin-bottom: 12px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    height: 1px;
+    width: 80%;
+    transform: translateX(-50%);
+    background-color: var(--gray-alpha-40);
+  }
+
+  .item-title {
+    .title {
+      font-weight: 500;
+      color: var(--gray);
+    }
+  }
+
+  .child-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 2px 4px 0 4px;
+
+    .child-item {
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--gray-alpha-20);
+      }
+
+      .title {
+        color: var(--text-color);
+      }
+    }
+  }
+}

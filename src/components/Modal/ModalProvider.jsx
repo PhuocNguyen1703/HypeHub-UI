@@ -8,6 +8,7 @@ import CreateCategory from './CreateCategory/CreateCategory';
 import CreateChannel from './CreateChannel/CreateChannel';
 import LeaveRoom from './LeaveRoom/LeaveRoom';
 import ChannelDetail from './ChannelDetail/ChannelDetail';
+import DirectMessageSetting from './DirectMessageSetting/DirectMessageSetting';
 
 export const ModalProvider = () => {
   return (
@@ -16,6 +17,7 @@ export const ModalProvider = () => {
       <JoinRoomModal />
       <AddFriendModal />
       <RoomSetting />
+      <DirectMessageSetting />
       <InvitePeople />
       <DeleteRoom />
       <CreateCategory />

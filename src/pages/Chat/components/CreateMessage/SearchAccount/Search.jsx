@@ -2,9 +2,7 @@ import classNames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
 
 import { FaSpinner } from 'react-icons/fa';
-import { HiCheck } from 'react-icons/hi';
 import { IoCloseCircle } from 'react-icons/io5';
-import Icon from '~/components/Icon/Icon';
 import { SearchIcon } from '~/components/Icons';
 import Image from '~/components/Image/Image';
 import { useDebounce } from '~/hooks';
@@ -13,7 +11,7 @@ import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Search({ memberList = [], setMemberList }) {
+function Search({ memberList = [], setMemberList, currentMembers = [] }) {
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setShowResult] = useState(true);
@@ -23,6 +21,8 @@ function Search({ memberList = [], setMemberList }) {
 
   const searchRef = useRef(null);
   const inputRef = useRef(null);
+
+  const limitFriendsLength = 9 - memberList.length - currentMembers.length;
 
   //handleClick out side
   useEffect(() => {
@@ -51,6 +51,7 @@ function Search({ memberList = [], setMemberList }) {
 
       const result = await searchServices.search(debounced);
       const transformResult = result.filter((user) => !memberList.some((member) => user.id === member.id));
+
       setSearchResult(transformResult);
 
       setLoading(false);
@@ -78,17 +79,16 @@ function Search({ memberList = [], setMemberList }) {
   };
 
   const handleSelectUser = (user) => {
-    if (memberList.length > 8) return handleResetSearchForm();
+    if (limitFriendsLength === 0) return handleResetSearchForm();
 
     const newSearchResult = searchResult.filter((searchUser) => searchUser.id !== user.id);
     setMemberList([...memberList, user]);
     setSearchResult(newSearchResult);
-    console.log(user);
   };
 
   return (
     <div ref={searchRef} className={cx('wrapper')}>
-      <div className={cx('search-input', memberList.length > 8 && 'disabled')}>
+      <div className={cx('search-input', limitFriendsLength < 1 && 'disabled')}>
         <input
           ref={inputRef}
           value={searchValue}
@@ -110,18 +110,15 @@ function Search({ memberList = [], setMemberList }) {
         </button>
       </div>
 
-      {showResult && searchResult.length > 0 && (
+      {showResult && searchResult.length > 0 && limitFriendsLength > 0 && (
         <div className={cx('search-result')}>
-          {searchResult.map((user, idx) => (
+          {searchResult.map((user) => (
             <div key={user.id} className={cx('user')} onClick={() => handleSelectUser(user)}>
-              <div className={cx('info')}>
-                <Image className={cx('avatar')} src={user.avatar} alt="avatar" />
-                <div className={cx('user-name')}>
-                  <span className={cx('name')}>{user.full_name}</span>
-                  <span className={cx('position')}>Designer</span>
-                </div>
+              <Image className={cx('avatar')} src={user.avatar} alt="avatar" />
+              <div className={cx('user-name')}>
+                <span className={cx('name')}>{user.full_name}</span>
+                <span className={cx('position')}>Designer</span>
               </div>
-              <Icon icon={<HiCheck />} className={cx('icon-check')} />
             </div>
           ))}
         </div>

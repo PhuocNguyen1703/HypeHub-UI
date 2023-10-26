@@ -1,0 +1,85 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  color: var(--text-color);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--gray-alpha-40);
+
+  .header-left {
+    display: flex;
+    user-select: none;
+
+    .user-info {
+      display: flex;
+      align-items: center;
+
+      .avatar {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .photo {
+          width: 40px;
+          height: 40px;
+          border-radius: 999px;
+          object-fit: cover;
+        }
+
+        .icon-dot {
+          display: flex;
+          align-items: center;
+          position: absolute;
+          right: -3px;
+          bottom: -3px;
+          border-radius: 50%;
+          background-color: var(--main-bg);
+          color: green;
+        }
+      }
+
+      .user-name {
+        display: flex;
+        flex-direction: column;
+        margin-left: 12px;
+
+        .name {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .invite-friend {
+      position: relative;
+    }
+
+    .voice-call-btn,
+    .video-call-btn,
+    .add-friend-btn,
+    .toggle-sidebar-right-btn,
+    .setting-btn {
+      font-size: 2rem;
+      padding: 2px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  height: calc(100% - 57px);
+}

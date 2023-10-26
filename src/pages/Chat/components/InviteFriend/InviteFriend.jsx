@@ -6,15 +6,18 @@ import { FaXmark } from 'react-icons/fa6';
 import Icon from '~/components/Icon/Icon';
 import Image from '~/components/Image/Image';
 import { handleClickOutSide } from '~/utils/handleClickOutSide';
-import styles from './CreateMessageForm.module.scss';
-import Search from './SearchAccount/Search';
+import styles from './InviteFriend.module.scss';
+import Search from '../CreateMessage/SearchAccount/Search';
 
 const cx = classNames.bind(styles);
 
-function CreateMessageForm({ isOpen, isHide }) {
+function InviteFriend({ isOpen, isHide, currentMembers }) {
   const [memberList, setMemberList] = useState([]);
   const createMessageRef = useRef(null);
+
   console.log(memberList);
+
+  const limitMembersLength = 9 - currentMembers.length - memberList.length;
 
   //handleClick out side
   useEffect(() => {
@@ -29,13 +32,13 @@ function CreateMessageForm({ isOpen, isHide }) {
   return (
     <div ref={createMessageRef} className={cx('wrapper')}>
       <header className={cx('header')}>
-        <span className={cx('title')}>Select Friends</span>
-        <span className={cx('sub-title')} style={{ color: memberList.length > 8 && 'red' }}>
-          You can add <strong>{9 - memberList.length}</strong> more friends.
+        <span className={cx('title')}>Invite Friends</span>
+        <span className={cx('sub-title')} style={{ color: limitMembersLength === 0 && 'red' }}>
+          You can add <strong>{limitMembersLength}</strong> more friends.
         </span>
       </header>
       <div className={cx('from-search')}>
-        <Search memberList={memberList} setMemberList={setMemberList} />
+        <Search memberList={memberList} setMemberList={setMemberList} currentMembers={currentMembers} />
       </div>
       <span className={cx('label-member')}>Member : {memberList.length}</span>
       {memberList.length > 0 ? (
@@ -62,15 +65,15 @@ function CreateMessageForm({ isOpen, isHide }) {
       ) : (
         <div className={cx('no-friends')}>
           <div className={cx('image')}></div>
-          <span className={cx('text')}>No friends found that are not already in this DM.</span>
+          <span className={cx('text')}>No friends invited that are from search.</span>
         </div>
       )}
 
       <button type="submit" className={cx('submit-btn', memberList.length < 1 && 'disabled')}>
-        {memberList.length < 2 ? 'Create DM' : 'Create Group DM'}
+        Invite friends
       </button>
     </div>
   );
 }
 
-export default CreateMessageForm;
+export default InviteFriend;

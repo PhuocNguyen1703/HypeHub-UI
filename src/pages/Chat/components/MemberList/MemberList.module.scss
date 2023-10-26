@@ -1,0 +1,53 @@
+.wrapper {
+  width: 240px;
+  padding: 20px 8px 0 8px;
+  border-left: 1px solid var(--gray-alpha-20);
+  background-color: var(--gray-alpha-20);
+  user-select: none;
+}
+
+.title {
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.member-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 10px;
+
+  .member {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 6px;
+    color: var(--second-color);
+    transition: background-color 0.1s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--main-bg);
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      object-fit: cover;
+    }
+
+    .name {
+      font-weight: 500;
+    }
+
+    .icon-owner {
+      display: flex;
+      align-items: center;
+      color: var(--main-color-orange);
+    }
+  }
+}
