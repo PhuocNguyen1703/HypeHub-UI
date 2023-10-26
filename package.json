@@ -44,6 +44,7 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.2.0",
     "@vitejs/plugin-react": "^4.0.4",
     "eslint": "^8.46.0",
     "eslint-plugin-react": "^7.33.1",
