@@ -6,81 +6,82 @@ import { IoCloseCircle } from 'react-icons/io5';
 import { useDebounce } from '~/hooks';
 import * as searchServices from '~/services/searchApi';
 import styles from './Message.module.scss';
+import { BsSearch } from 'react-icons/bs';
 
 const cx = classNames.bind(styles);
 
 function Search() {
-    const [searchValue, setSearchValue] = useState('');
-    const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(true);
-    const [loading, setLoading] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
+  const [showResult, setShowResult] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-    const debounced = useDebounce(searchValue, 700);
+  const debounced = useDebounce(searchValue, 700);
 
-    const inputRef = useRef();
+  const inputRef = useRef();
 
-    useEffect(() => {
-        if (!debounced.trim()) {
-            setSearchResult([]);
-            return;
-        }
+  useEffect(() => {
+    if (!debounced.trim()) {
+      setSearchResult([]);
+      return;
+    }
 
-        const fetchApi = async () => {
-            setLoading(true);
+    const fetchApi = async () => {
+      setLoading(true);
 
-            const result = await searchServices.search(debounced);
-            setSearchResult(result);
+      const result = await searchServices.search(debounced);
+      setSearchResult(result);
 
-            setLoading(false);
-        };
-        fetchApi();
-    }, [debounced]);
-
-    const handleClear = () => {
-        setSearchValue('');
-        setSearchResult([]);
-        inputRef.current.focus();
+      setLoading(false);
     };
+    fetchApi();
+  }, [debounced]);
 
-    const handleHideResult = () => {
-        setShowResult(false);
-    };
+  const handleClear = () => {
+    setSearchValue('');
+    setSearchResult([]);
+    inputRef.current.focus();
+  };
 
-    const handleChange = (e) => {
-        const searchValue = e.target.value;
+  const handleHideResult = () => {
+    setShowResult(false);
+  };
 
-        if (!searchValue.startsWith(' ')) {
-            setSearchValue(searchValue);
-        }
-    };
+  const handleChange = (e) => {
+    const searchValue = e.target.value;
 
-    const handleSubmit = () => {};
+    if (!searchValue.startsWith(' ')) {
+      setSearchValue(searchValue);
+    }
+  };
 
-    return (
-        <div className={cx('wrapper')}>
-            <input
-                ref={inputRef}
-                value={searchValue}
-                className={cx('search-input')}
-                placeholder="Search message"
-                spellCheck={false}
-                onChange={handleChange}
-                onFocus={() => setShowResult(true)}
-            />
+  const handleSubmit = () => {};
 
-            {!!searchValue && !loading && (
-                <button className={cx('clear-btn')} onClick={handleClear}>
-                    <IoCloseCircle />
-                </button>
-            )}
+  return (
+    <div className={cx('wrapper')}>
+      <input
+        ref={inputRef}
+        value={searchValue}
+        className={cx('search-input')}
+        placeholder="Search message"
+        spellCheck={false}
+        onChange={handleChange}
+        onFocus={() => setShowResult(true)}
+      />
 
-            {loading && <FaSpinner className={cx('loading')} />}
+      {!!searchValue && !loading && (
+        <button className={cx('clear-btn')} onClick={handleClear}>
+          <IoCloseCircle />
+        </button>
+      )}
 
-            {/* <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()} onClick={handleSubmit}>
-                <BsSearch />
-            </button> */}
-        </div>
-    );
+      {loading && <FaSpinner className={cx('loading')} />}
+
+      <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()} onClick={handleSubmit}>
+        <BsSearch />
+      </button>
+    </div>
+  );
 }
 
 export default Search;

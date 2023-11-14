@@ -1,0 +1,28 @@
+.wrapper {
+  position: relative;
+}
+
+.label {
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  width: auto;
+  padding: 4px 0;
+  margin-right: -6px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--main-bg);
+  box-shadow: var(--box-shadow);
+  border: 1px solid var(--gray-alpha-10);
+  border-radius: 8px;
+  z-index: 10;
+
+  .menu-item {
+    padding: 8px 12px;
+    font-weight: 400;
+    min-width: 180px;
+  }
+}

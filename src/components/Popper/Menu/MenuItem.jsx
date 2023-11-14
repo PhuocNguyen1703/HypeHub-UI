@@ -6,21 +6,22 @@ import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
 
-function MenuItem({ data, onClick }) {
-    return (
-        <Button
-            className={cx('menu-item', { separate: data.separate })}
-            leftIcon={data.icon}
-            to={data.to}
-            onClick={onClick}
-        >
-            {data.title}
-        </Button>
-    );
+function MenuItem({ data, className, onClick }) {
+  return (
+    <Button
+      className={cx('menu-item', className, { separate: data.separate })}
+      leftIcon={data.icon}
+      colorLeftIcon={data.colorLeftIcon}
+      to={data.to}
+      onClick={onClick}
+    >
+      {data.title}
+    </Button>
+  );
 }
 
 MenuItem.propTypes = {
-    data: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default MenuItem;

@@ -7,138 +7,121 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 240px;
+  width: 300px;
   flex-shrink: 0;
   border-right: 1px solid var(--gray-alpha-20);
 
-  .search {
-    padding: 8px;
-    border-bottom: 1px solid var(--gray-alpha-40);
-  }
-
-  .friends {
+  .header {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 8px;
-    padding: 8px 12px;
-    color: var(--text-color);
-    border-radius: 4px;
-    transition: background-color 0.2s;
-    cursor: pointer;
-
-    &:hover {
-      background-color: var(--gray-alpha-20);
-    }
-
-    .title {
-      font-size: 1.6rem;
-      font-weight: 500;
-    }
-  }
-
-  .active {
-    background-color: var(--gray-alpha-20);
-  }
-
-  .direct-messages {
-    position: relative;
-    display: flex;
-    align-items: center;
     justify-content: space-between;
-    margin: 12px 10px 10px 16px;
+    align-items: center;
+    padding: 10px;
+    user-select: none;
 
     .title {
-      font-size: 1.4rem;
-      font-weight: 500;
-      user-select: none;
+      font-size: 2.2rem;
+      font-weight: 600;
     }
 
-    .create-message-btn {
+    .action-group {
+      position: relative;
       display: flex;
       align-items: center;
-      font-size: 2.2rem;
-      cursor: pointer;
+      gap: 6px;
+
+      .category-btn,
+      .contact-btn,
+      .create-btn {
+        color: var(--text-color);
+        font-size: 1.8rem;
+        padding: 2px;
+        cursor: pointer;
+      }
     }
   }
 
-  .message-list {
+  .search {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .chat-list {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    gap: 2px;
-    padding: 0 6px 6px 6px;
+    gap: 10px;
+    margin-top: 4px;
+    padding: 2px;
     overflow: overlay;
 
-    .user {
+    .chat {
+      position: relative;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 0 4px;
-      height: 50px;
+      padding: 4px 8px 4px 4px;
       border-radius: 4px;
       margin-top: 4px;
       color: var(--text-color);
       cursor: pointer;
-      user-select: none;
 
       &:hover {
         background-color: var(--gray-alpha-20);
       }
 
-      .info {
+      .avatar {
+        position: relative;
         display: flex;
         align-items: center;
 
-        .avatar {
-          position: relative;
-          display: flex;
-          align-items: center;
-
-          .photo {
-            width: 34px;
-            height: 34px;
-            border-radius: 999px;
-            object-fit: cover;
-          }
-
-          .icon-dot {
-            position: absolute;
-            right: -3px;
-            bottom: -3px;
-            border-radius: 50%;
-            background-color: var(--main-bg);
-            color: green;
-          }
+        .photo {
+          width: 42px;
+          height: 42px;
+          border-radius: 999px;
+          object-fit: cover;
         }
 
-        .user-name {
-          display: flex;
-          flex-direction: column;
-          margin-left: 10px;
-
-          .name {
-            font-weight: 500;
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-break: break-word;
-          }
-
-          .member-count {
-            font-size: 1.2rem;
-          }
+        .icon-dot {
+          position: absolute;
+          right: -3px;
+          bottom: -3px;
+          border-radius: 50%;
+          background-color: var(--main-bg);
+          color: green;
         }
       }
-    }
 
-    .active {
-      background-color: var(--gray-alpha-20);
+      .info {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        margin-left: 10px;
 
-      &:hover {
-        cursor: default;
+        .name,
+        .last-msg {
+          font-weight: 500;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          word-break: break-word;
+        }
+
+        .last-msg {
+          font-size: 1.4rem;
+          font-weight: unset;
+          color: var(--gray);
+        }
+      }
+
+      .unread {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background-color: var(--blue);
       }
     }
   }

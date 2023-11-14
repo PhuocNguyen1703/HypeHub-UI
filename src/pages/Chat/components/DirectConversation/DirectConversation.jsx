@@ -1,20 +1,22 @@
 import classNames from 'classnames/bind';
 
-import dayjs from 'dayjs';
+import { faker } from '@faker-js/faker';
 import { Picker } from 'emoji-mart';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { BsCardImage, BsCursor, BsEmojiSmile, BsPencil, BsThreeDots, BsTrash } from 'react-icons/bs';
-import Button from '~/components/Button/Button';
-import Icon from '~/components/Icon/Icon';
+import { BsCardImage, BsCursor, BsEmojiSmile, BsPaperclip } from 'react-icons/bs';
 import Image from '~/components/Image/Image';
 import Modal from '~/components/Modal/Modal';
+import { chatHistory } from '~/data/mock-data';
 import { handleClickOutSide } from '~/utils/handleClickOutSide';
 import styles from './DirectConversation.module.scss';
+import Icon from '~/components/Icon/Icon';
 
 const cx = classNames.bind(styles);
 
-const DirectConversation = ({ conversation }) => {
+const DirectConversation = () => {
+  const conversation = chatHistory;
+
   const [showEmojis, setShowEmojis] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
   const [messages, setMessages] = useState();
@@ -28,20 +30,20 @@ const DirectConversation = ({ conversation }) => {
   const lightBoxRef = useRef(null);
   const moreMenuRef = useRef(null);
 
-  const separateDate = Array.from(
-    new Set(conversation.messages?.map((message) => dayjs(message.createdAt).format('MMMM D, YYYY'))),
-  );
+  // const separateDate = Array.from(
+  //   new Set(conversation.messages?.map((message) => dayjs(message.createdAt).format('MMMM D, YYYY'))),
+  // );
 
-  const moreAction = [
-    {
-      icon: <BsPencil />,
-      title: 'Edit Message',
-    },
-    {
-      icon: <BsTrash />,
-      title: 'Delete Message',
-    },
-  ];
+  // const moreAction = [
+  //   {
+  //     icon: <BsPencil />,
+  //     title: 'Edit Message',
+  //   },
+  //   {
+  //     icon: <BsTrash />,
+  //     title: 'Delete Message',
+  //   },
+  // ];
 
   //handleClick out side
   useEffect(() => {
@@ -144,91 +146,68 @@ const DirectConversation = ({ conversation }) => {
     <div className={cx('wrapper')}>
       <div className={cx('content')}>
         <div className={cx('begin-message')}>
-          <Image className={cx('user-avatar-begin')} src={conversation?.cover_avatar} alt="avatar" />
-          <span className={cx('user-name')}>{conversation.members?.join(', ')}</span>
+          <Image className={cx('user-avatar-begin')} src={faker.image.avatar()} alt="avatar" />
+          <span className={cx('user-name')}>{faker.person.fullName()}</span>
           <p className={cx('welcome-text')}>
-            This is the beginning of your direct message history with{' '}
-            <strong>{conversation.members?.join(', ')}</strong>.
+            This is the beginning of your direct message history with
+            <strong>{faker.person.fullName()}</strong>.
           </p>
         </div>
-        {separateDate.map((date, idx) => (
-          <div key={idx} className={cx('message-container')}>
-            <span className={cx('separate-label')}>{date}</span>
-            {conversation.messages?.map(
-              (message) =>
-                dayjs(message.createdAt).format('MMMM D, YYYY') === date && (
-                  <div key={message._id} ref={scroll} className={cx('message')} onMouseLeave={handleHoverOutSide}>
-                    <Image className={cx('avatar')} src={message.user_avatar} alt="avatar" />
-                    <div className={cx('message-content')}>
-                      <div className={cx('user-info')}>
-                        <span className={cx('name')}>{message.user_name}</span>
-                        <span className={cx('chat-time')}>{message.createdAt}</span>
-                      </div>
-                      <p>{message.body}</p>
-                      {message.file_url && (
-                        <div className={cx('image-container')}>
-                          <img
-                            className={cx('image')}
-                            srcSet={message.file_url}
-                            alt="file_img"
-                            onClick={() => handleOnClickImage(message.file_url)}
-                          />
-                        </div>
-                      )}
-                    </div>
-                    <div className={cx('action-group')}>
-                      <Button className={cx('more-btn')} onClick={handleToggleMoreMenu}>
-                        <Icon icon={<BsThreeDots />} />
-                      </Button>
-                      {showMoreMenu && (
-                        <div ref={moreMenuRef} className={cx('more-menu')}>
-                          {moreAction.map((btn, idx) => (
-                            <Button key={idx} className={cx('btn')} rightIcon={btn.icon}>
-                              {btn.title}
-                            </Button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ),
-            )}
+        {conversation.map((message, idx) => (
+          <div ref={scroll} key={idx} className={cx('message-container', message.to === 'owner' && 'owner')}>
+            {message.to !== 'owner' && <Image className={cx('avatar')} src={faker.image.avatar()} alt="avatar" />}
+            <div className={cx('message')}>
+              <p className={cx('text')}>{message?.msg}</p>
+              {message?.img_url && (
+                <div className={cx('image-container')}>
+                  <img
+                    className={cx('image')}
+                    src={message.img_url}
+                    alt="img_img"
+                    onClick={() => handleOnClickImage(message.img_url)}
+                  />
+                </div>
+              )}
+              <span className={cx('time')}>{message.createdAt}</span>
+            </div>
           </div>
         ))}
       </div>
 
-      <div className={cx('footer')}>
-        <label className={cx('icon-image')} onClick={() => imageRef.current.click()}>
-          <BsCardImage />
-        </label>
-        <input id="send-file" type="file" ref={imageRef} hidden onChange={handleUploadImg} />
-        <input
-          className={cx('input-message')}
-          type="text"
-          placeholder="Enter message..."
-          value={newMessage}
-          onChange={handleChange}
-          onKeyDown={handleEnter}
-        />
-        <div className={cx('emoji')}>
-          <button className={cx('emoji-icon')} onClick={handleShowEmojis}>
-            <BsEmojiSmile />
-          </button>
-          {showEmojis && (
-            <div ref={emojiRef} className={cx('picker-emoji')}>
-              <Picker
-                data={data}
-                onEmojiSelect={handleSelectEmoji}
-                previewPosition="none"
-                theme={themeMode === 'theme-mode-dark' ? 'dark' : 'light'}
-              />
-            </div>
-          )}
+      <footer className={cx('footer')}>
+        <div className={cx('input-group')}>
+          <label onClick={() => imageRef.current.click()}>
+            <Icon icon={<BsPaperclip />} className={cx('icon-image')}></Icon>
+          </label>
+          <input id="send-file" type="file" ref={imageRef} hidden onChange={handleUploadImg} />
+          <input
+            className={cx('input-message')}
+            type="text"
+            placeholder="Enter message..."
+            value={newMessage}
+            onChange={handleChange}
+            onKeyDown={handleEnter}
+          />
+          <div className={cx('emoji')}>
+            <button className={cx('icon-emoji')} onClick={handleShowEmojis}>
+              <BsEmojiSmile />
+            </button>
+            {showEmojis && (
+              <div ref={emojiRef} className={cx('picker-emoji')}>
+                <Picker
+                  data={data}
+                  onEmojiSelect={handleSelectEmoji}
+                  previewPosition="none"
+                  theme={themeMode === 'theme-mode-dark' ? 'dark' : 'light'}
+                />
+              </div>
+            )}
+          </div>
         </div>
-        <div className={cx('icon-send')}>
+        <div className={cx('btn-send')}>
           <BsCursor onClick={handleSend} />
         </div>
-      </div>
+      </footer>
       {isOpenLightBox && (
         <Modal>
           <motion.div
